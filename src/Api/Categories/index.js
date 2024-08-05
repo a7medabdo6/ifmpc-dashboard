@@ -7,7 +7,7 @@ const fetchCategories = async () => {
 };
 
 export const createCategories = async (data) => {
-  const response = await axiosInstance.post("/categories", data);
+  const response = await axiosInstance.post("/categories/", data);
   return response.data;
 };
 

@@ -16,6 +16,7 @@ import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 import DropdownItem from "react-bootstrap/esm/DropdownItem";
 import user1 from "../../../assets/img/users/1.jpg";
 import { useCategories } from "../../../Api/Categories/index";
+import { Link } from "react-router-dom";
 const Categories = () => {
   const { data, error, isLoading } = useCategories();
   console.log(data);
@@ -75,13 +76,15 @@ const Categories = () => {
         </div>
         <div className="d-flex">
           <div className="justify-content-center">
-            <Button
-              variant="primary"
-              type="button"
-              className="my-2 btn-icon-text"
-            >
-              <i className="fe fe-plus me-2"></i> Create
-            </Button>
+            <Link to={"/spruha/preview/pages/categories/create"}>
+              <Button
+                variant="primary"
+                type="button"
+                className="my-2 btn-icon-text"
+              >
+                <i className="fe fe-plus me-2"></i> Create
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
@@ -118,10 +121,6 @@ border hover"
                         <tr key={index} data-index={index}>
                           <td className="font-weight-semibold">
                             <div className="d-flex">
-                              <label className="ckbox my-auto me-4">
-                                <input readOnly="" type="checkbox" />
-                                <span></span>
-                              </label>
                               <span className="mt-1">{item.name}</span>
                             </div>
                           </td>
