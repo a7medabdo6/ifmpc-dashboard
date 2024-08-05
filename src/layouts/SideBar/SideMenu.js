@@ -11,13 +11,13 @@ export const MENUITEMS = [
         title: "Dashboard",
       },
       {
-        path: `${process.env.PUBLIC_URL}/pages/users`,
+        path: `${process.env.PUBLIC_URL}/pages/categories`,
         type: "link",
-        icon: "ti-user",
+        icon: "ti-list",
 
         active: false,
         selected: false,
-        title: "Users",
+        title: "Categories",
       },
       {
         title: "ECommerce",

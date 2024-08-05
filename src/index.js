@@ -4,7 +4,10 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./index.scss";
 import Loader from "./layouts/Loader/Loader";
 import Auth from "./Authentication/auth";
-import Users from "./components/Pages/Users";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+import AddEditcategories from "./components/Pages/Categories/AddEdit";
+import Categories from "./components/Pages/Categories";
 // Dashboard
 const Landingpageapp = React.lazy(() => import("./components/Landingpageapp"));
 const Dashboard = React.lazy(() => import("./components/Dashboard/Dashboard"));
@@ -754,8 +757,16 @@ const Root = () => {
               {/* Pages */}
               <Route>
                 <Route
-                  path={`${process.env.PUBLIC_URL}/pages/users`}
-                  element={<Users />}
+                  path={`${process.env.PUBLIC_URL}/pages/categories`}
+                  element={<Categories />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/pages/categories/create`}
+                  element={<AddEditcategories />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/pages/categories/edit/:id`}
+                  element={<AddEditcategories />}
                 />
                 <Route
                   path={`${process.env.PUBLIC_URL}/pages/emptypage`}
@@ -861,5 +872,11 @@ const Root = () => {
     </Fragment>
   );
 };
+const queryClient = new QueryClient();
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<Root />);
+root.render(
+  <QueryClientProvider client={queryClient}>
+    <Root />
+  </QueryClientProvider>
+);

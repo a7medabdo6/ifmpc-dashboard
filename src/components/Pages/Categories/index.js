@@ -15,8 +15,11 @@ import CircularProgress from "@mui/material/CircularProgress";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 import DropdownItem from "react-bootstrap/esm/DropdownItem";
 import user1 from "../../../assets/img/users/1.jpg";
+import { useCategories } from "../../../Api/Categories/index";
+const Categories = () => {
+  const { data, error, isLoading } = useCategories();
+  console.log(data);
 
-const Users = () => {
   const TASKS = [
     {
       Task: "Evaluating the design",
@@ -64,10 +67,10 @@ const Users = () => {
       {/* <!-- Page Header --> */}
       <div className="page-header">
         <div>
-          <h2 className="main-content-title tx-24 mg-b-5">Users Page</h2>
+          <h2 className="main-content-title tx-24 mg-b-5">Categories Page</h2>
           <Breadcrumb>
             <Breadcrumb.Item href="#"> Pages </Breadcrumb.Item>
-            <Breadcrumb.Item active>Users Page</Breadcrumb.Item>
+            <Breadcrumb.Item active>Categories Page</Breadcrumb.Item>
           </Breadcrumb>
         </div>
         <div className="d-flex">
@@ -91,7 +94,7 @@ const Users = () => {
             <Card.Body>
               <Card.Header className="card-header border-bottom-0 pt-0 ps-0 pe-0 d-flex">
                 <div>
-                  <label className="main-content-label mb-2">Users</label>
+                  <label className="main-content-label mb-2">Categories</label>
                 </div>
               </Card.Header>
               <div className=" tasks">
@@ -104,14 +107,53 @@ border hover"
                   <thead>
                     <tr>
                       <th className="wd-lg-10p">Name</th>
-                      <th className="wd-lg-20p">Team</th>
-                      <th className="wd-lg-20p text-center">Open task</th>
-                      <th className="wd-lg-20p">Prority</th>
-                      <th className="wd-lg-20p">Status</th>
+                      <th className="wd-lg-20p">project_count</th>
+                      <th className="wd-lg-20p ">publication_count</th>
+                      <th className="wd-lg-20p">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {TASKS.map((items, index) => (
+                    {data?.results.map((item, index) => {
+                      return (
+                        <tr key={index} data-index={index}>
+                          <td className="font-weight-semibold">
+                            <div className="d-flex">
+                              <label className="ckbox my-auto me-4">
+                                <input readOnly="" type="checkbox" />
+                                <span></span>
+                              </label>
+                              <span className="mt-1">{item.name}</span>
+                            </div>
+                          </td>
+                          <td className="font-weight-semibold">
+                            <div className="d-flex">
+                              <span className="mt-1">{item.project_count}</span>
+                            </div>
+                          </td>{" "}
+                          <td className="font-weight-semibold">
+                            <div className="d-flex">
+                              <span className="mt-1">
+                                {item.publication_count}
+                              </span>
+                            </div>
+                          </td>
+                          <td className="font-weight-semibold">
+                            <div className="d-flex">
+                              <Button type="submit">Edit</Button>
+                              <Button
+                                type="submit"
+                                style={{ marginInline: "5px" }}
+                                className="mr-1 ml-1"
+                                variant="danger"
+                              >
+                                Delete
+                              </Button>
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                    {/* {TASKS.map((items, index) => (
                       <tr key={index} data-index={index}>
                         <td className="font-weight-semibold">
                           <div className="d-flex">
@@ -147,7 +189,7 @@ border hover"
                           </span>
                         </td>
                       </tr>
-                    ))}
+                    ))} */}
                   </tbody>
                 </Table>
               </div>
@@ -160,8 +202,8 @@ border hover"
   );
 };
 
-Users.propTypes = {};
+Categories.propTypes = {};
 
-Users.defaultProps = {};
+Categories.defaultProps = {};
 
-export default Users;
+export default Categories;
