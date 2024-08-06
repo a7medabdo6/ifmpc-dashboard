@@ -21,7 +21,7 @@ export const editCategories = async (data) => {
   console.log(data);
 
   const response = await axiosInstance.put(
-    `/categories/${data.id}`,
+    `/categories/${data.id}/`,
     data?.data
   );
   return response.data;

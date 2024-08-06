@@ -20,6 +20,24 @@ export const MENUITEMS = [
         title: "Categories",
       },
       {
+        path: `${process.env.PUBLIC_URL}/pages/tages`,
+        type: "link",
+        icon: "ti-list",
+
+        active: false,
+        selected: false,
+        title: "Tages",
+      },
+      {
+        path: `${process.env.PUBLIC_URL}/pages/contacts`,
+        type: "link",
+        icon: "ti-user",
+
+        active: false,
+        selected: false,
+        title: "Contacts",
+      },
+      {
         title: "ECommerce",
         icon: "ti-shopping-cart-full",
         type: "sub",

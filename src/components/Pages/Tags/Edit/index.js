@@ -3,7 +3,7 @@ import { Breadcrumb, Button, Col, Row, Card } from "react-bootstrap";
 import { Formik } from "formik";
 import { Form, InputGroup } from "react-bootstrap";
 import * as yup from "yup";
-import { useEditCategory } from "../../../../Api/Categories";
+import { useEditTage } from "../../../../Api/Tags";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const schema = yup.object().shape({
@@ -16,8 +16,8 @@ const schema = yup.object().shape({
   // file: yup.mixed().required(),
   // terms: yup.bool().required().oneOf([true], "terms must be accepted"),
 });
-const Editcategories = ({ id, itemData, viewDemoClose }) => {
-  const { mutate,data } = useEditCategory();
+const EditeTags = ({ id, itemData, viewDemoClose }) => {
+  const { mutate,data } = useEditTage ();
   console.log(data);
   useEffect(()=>{
     if (data !== undefined) {
@@ -238,8 +238,8 @@ const Editcategories = ({ id, itemData, viewDemoClose }) => {
   );
 };
 
-Editcategories.propTypes = {};
+EditeTags.propTypes = {};
 
-Editcategories.defaultProps = {};
+EditeTags.defaultProps = {};
 
-export default Editcategories;
+export default EditeTags;

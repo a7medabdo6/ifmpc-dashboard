@@ -15,19 +15,19 @@ import {
   Modal,
 } from "react-bootstrap";
 import Searchable from "react-searchable-dropdown";
-import Editcategories from "./Edit/index";
+import EditeContacts from "./Edit/index";
 import CircularProgress from "@mui/material/CircularProgress";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 import DropdownItem from "react-bootstrap/esm/DropdownItem";
 import user1 from "../../../assets/img/users/1.jpg";
-import { useCategories } from "../../../Api/Categories/index";
+import { useContacts } from "../../../Api/Contacts/index";
 import { Link } from "react-router-dom";
-import { useDeleteCategory, useEditCategory } from "../../../Api/Categories";
+import { useDeleteContact, useEditContact } from "../../../Api/Contacts";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const Categories = () => {
-  const { mutate } = useDeleteCategory();
-  const { mutate: mutateEdite } = useEditCategory();
+const Contacts = () => {
+  const { mutate } = useDeleteContact();
+  const { mutate: mutateEdite } = useEditContact();
 
   const [Basic, setShow1] = useState(false);
   const [id, setId] = useState();
@@ -63,65 +63,24 @@ const Categories = () => {
     }
   };
 
-  const { data, error, isLoading } = useCategories();
+  const { data, error, isLoading } = useContacts();
+
   console.log(data);
 
-  const TASKS = [
-    {
-      Task: "Evaluating the design",
-      TeamMember1: user1,
-
-      OpenTask: "37",
-      TaskProfit: "High",
-      Profittext: "primary",
-      Status: "Completed",
-      Statustext: "primary",
-    },
-    {
-      Task: "Generate ideas for design",
-      TeamMember1: user1,
-
-      OpenTask: "37",
-      TaskProfit: "Normal",
-      Profittext: "secondary",
-      Status: "pending",
-      Statustext: "warning",
-    },
-    {
-      Task: "Define the problem",
-      TeamMember1: user1,
-
-      OpenTask: "37",
-      TaskProfit: "Low",
-      Profittext: "warning",
-      Status: "Completed",
-      Statustext: "primary",
-    },
-    {
-      Task: "Empathize with users",
-      TeamMember1: user1,
-
-      OpenTask: "37",
-      TaskProfit: "high",
-      Profittext: "primary",
-      Status: "Rejected",
-      Statustext: "danger",
-    },
-  ];
   return (
     <Fragment>
       {/* <!-- Page Header --> */}
       <div className="page-header">
         <div>
-          <h2 className="main-content-title tx-24 mg-b-5">Categories Page</h2>
+          <h2 className="main-content-title tx-24 mg-b-5">Contacts Page</h2>
           <Breadcrumb>
             <Breadcrumb.Item href="#"> Pages </Breadcrumb.Item>
-            <Breadcrumb.Item active>Categories Page</Breadcrumb.Item>
+            <Breadcrumb.Item active>Contacts Page</Breadcrumb.Item>
           </Breadcrumb>
         </div>
         <div className="d-flex">
           <div className="justify-content-center">
-            <Link to={"/spruha/preview/pages/categories/create"}>
+            <Link to={"/spruha/preview/pages/contacts/create"}>
               <Button
                 variant="primary"
                 type="button"
@@ -142,7 +101,7 @@ const Categories = () => {
             <Card.Body>
               <Card.Header className="card-header border-bottom-0 pt-0 ps-0 pe-0 d-flex">
                 <div>
-                  <label className="main-content-label mb-2">Categories</label>
+                  <label className="main-content-label mb-2">Contacts</label>
                 </div>
               </Card.Header>
               <div className=" tasks">
@@ -154,9 +113,12 @@ border hover"
                 >
                   <thead>
                     <tr>
-                      <th className="wd-lg-10p">Name</th>
-                      <th className="wd-lg-20p">project_count</th>
-                      <th className="wd-lg-20p ">publication_count</th>
+                      <th className="wd-lg-10p">first_name</th>
+                      <th className="wd-lg-20p">last_name</th>
+                      <th className="wd-lg-20p ">email</th>
+                      <th className="wd-lg-20p ">phone</th>
+                      <th className="wd-lg-20p ">description</th>
+
                       <th className="wd-lg-20p">Actions</th>
                     </tr>
                   </thead>
@@ -166,19 +128,29 @@ border hover"
                         <tr key={index} data-index={index}>
                           <td className="font-weight-semibold">
                             <div className="d-flex">
-                              <span className="mt-1">{item.name}</span>
+                              <span className="mt-1">{item.first_name}</span>
                             </div>
                           </td>
                           <td className="font-weight-semibold">
                             <div className="d-flex">
-                              <span className="mt-1">{item.project_count}</span>
+                              <span className="mt-1">{item.last_name}</span>
                             </div>
                           </td>{" "}
                           <td className="font-weight-semibold">
                             <div className="d-flex">
                               <span className="mt-1">
-                                {item.publication_count}
+                                {item.email}
                               </span>
+                            </div>
+                          </td>
+                          <td className="font-weight-semibold">
+                            <div className="d-flex">
+                              <span className="mt-1">{item.phone}</span>
+                            </div>
+                          </td>
+                          <td className="font-weight-semibold">
+                            <div className="d-flex">
+                              <span className="mt-1">{item.description}</span>
                             </div>
                           </td>
                           <td className="font-weight-semibold">
@@ -187,7 +159,7 @@ border hover"
                                 type="submit"
                                 onClick={() => {
                                   return (
-                                    setId(item?.id), viewDemoShow("show10"),setItemData(item)
+                                    setId(item?.id), viewDemoShow("show10"), setItemData(item)
                                   );
                                 }}
                               >
@@ -258,7 +230,7 @@ border hover"
                       </Modal.Header>
                       <Modal.Body>
                         <Modal.Title>Edit categorie</Modal.Title>
-                        <Editcategories id={id} itemData={itemData} viewDemoClose={viewDemoClose}/>
+                        <EditeContacts id={id} itemData={itemData} viewDemoClose={viewDemoClose} />
                       </Modal.Body>
                       {/* <Modal.Footer>
                         <Button
@@ -327,8 +299,8 @@ border hover"
   );
 };
 
-Categories.propTypes = {};
+Contacts.propTypes = {};
 
-Categories.defaultProps = {};
+Contacts.defaultProps = {};
 
-export default Categories;
+export default Contacts;

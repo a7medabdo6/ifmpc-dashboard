@@ -8,6 +8,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import AddEditcategories from "./components/Pages/Categories/AddEdit";
 import Categories from "./components/Pages/Categories";
+import AddContacts from "./components/Pages/Contacts/Add";
+import Tages from "./components/Pages/Tags";
+import AddTags from "./components/Pages/Tags/Add";
 // Dashboard
 const Landingpageapp = React.lazy(() => import("./components/Landingpageapp"));
 const Dashboard = React.lazy(() => import("./components/Dashboard/Dashboard"));
@@ -19,8 +22,11 @@ const Calendar = React.lazy(() =>
 );
 const Cards = React.lazy(() => import("./components/AdvanceUI/Cards/Cards"));
 const Chat = React.lazy(() => import("./components/AdvanceUI/Chat/Chat"));
+// const Contacts = React.lazy(() =>
+//   import("./components/AdvanceUI/Contacts/Contacts")
+// );
 const Contacts = React.lazy(() =>
-  import("./components/AdvanceUI/Contacts/Contacts")
+  import("./components/Pages/Contacts")
 );
 const Carousels = React.lazy(() =>
   import("./components/AdvanceUI/Carousels/Carousels")
@@ -650,10 +656,10 @@ const Root = () => {
                   path={`${process.env.PUBLIC_URL}/advanceUI/chat`}
                   element={<Chat />}
                 />
-                <Route
+                {/* <Route
                   path={`${process.env.PUBLIC_URL}/advanceUI/contacts`}
                   element={<Contacts />}
-                />
+                /> */}
                 <Route
                   path={`${process.env.PUBLIC_URL}/advanceUI/carousels`}
                   element={<Carousels />}
@@ -760,13 +766,29 @@ const Root = () => {
                   path={`${process.env.PUBLIC_URL}/pages/categories`}
                   element={<Categories />}
                 />
+                 <Route
+                  path={`${process.env.PUBLIC_URL}/pages/tages`}
+                  element={<Tages />}
+                />
                 <Route
                   path={`${process.env.PUBLIC_URL}/pages/categories/create`}
                   element={<AddEditcategories />}
                 />
                 <Route
+                  path={`${process.env.PUBLIC_URL}/pages/tags/create`}
+                  element={<AddTags />}
+                />
+                <Route
                   path={`${process.env.PUBLIC_URL}/pages/categories/edit/:id`}
                   element={<AddEditcategories />}
+                />
+                  <Route
+                  path={`${process.env.PUBLIC_URL}/pages/contacts`}
+                  element={<Contacts />}
+                />
+                 <Route
+                  path={`${process.env.PUBLIC_URL}/pages/contacts/create`}
+                  element={<AddContacts />}
                 />
                 <Route
                   path={`${process.env.PUBLIC_URL}/pages/emptypage`}
