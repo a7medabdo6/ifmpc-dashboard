@@ -11,6 +11,8 @@ import Categories from "./components/Pages/Categories";
 import AddContacts from "./components/Pages/Contacts/Add";
 import Tages from "./components/Pages/Tags";
 import AddTags from "./components/Pages/Tags/Add";
+import Projects from "./components/Pages/Projects";
+import AddProjects from "./components/Pages/Projects/Add";
 // Dashboard
 const Landingpageapp = React.lazy(() => import("./components/Landingpageapp"));
 const Dashboard = React.lazy(() => import("./components/Dashboard/Dashboard"));
@@ -778,6 +780,10 @@ const Root = () => {
                   path={`${process.env.PUBLIC_URL}/pages/tags/create`}
                   element={<AddTags />}
                 />
+                  <Route
+                  path={`${process.env.PUBLIC_URL}/pages/projects/create`}
+                  element={<AddProjects />}
+                />
                 <Route
                   path={`${process.env.PUBLIC_URL}/pages/categories/edit/:id`}
                   element={<AddEditcategories />}
@@ -785,6 +791,10 @@ const Root = () => {
                   <Route
                   path={`${process.env.PUBLIC_URL}/pages/contacts`}
                   element={<Contacts />}
+                />
+                  <Route
+                  path={`${process.env.PUBLIC_URL}/pages/projects`}
+                  element={<Projects />}
                 />
                  <Route
                   path={`${process.env.PUBLIC_URL}/pages/contacts/create`}
