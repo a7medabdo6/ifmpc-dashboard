@@ -1,7 +1,19 @@
 import React, { Fragment, useState } from "react";
-import { Alert, Row, Col, Breadcrumb, Button, Card, Form } from "react-bootstrap";
+import {
+  Alert,
+  Row,
+  Col,
+  Breadcrumb,
+  Button,
+  Card,
+  Form,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { initialList,initialListdismissing,initialListicons } from '../../../data/Alertsdata';
+import {
+  initialList,
+  initialListdismissing,
+  initialListicons,
+} from "../../../data/Alertsdata";
 function Alerts() {
   const [show1, setShow1] = useState(true);
   const [show2, setShow2] = useState(true);
@@ -22,89 +34,80 @@ function Alerts() {
   let handleRemove = (id) => {
     const newList = alertData.filter((list) => list.id !== id);
     setalertData(newList);
-  }
+  };
   let handleRemoveoutline = (id) => {
     const newList = outline.filter((list) => list.id !== id);
     setoutline(newList);
-  }
+  };
   let handleRemovesolid = (id) => {
     const newList = solid.filter((list) => list.id !== id);
     setsolid(newList);
-  }
+  };
   let handleRemovedismissing = (id) => {
     const newList = Alertdismissing.filter((list) => list.id !== id);
     setAlertdismissing(newList);
-  }
+  };
   let handleRemoveicons = (id) => {
     const newList = iconsdismissing.filter((list) => list.id !== id);
     seticonsdismissing(newList);
-  }
+  };
   const Alertcode = () => {
     if (Alertscode === false) {
-      setAlertscode(true)
+      setAlertscode(true);
+    } else if (Alertscode === true) {
+      setAlertscode(false);
     }
-    else if (Alertscode === true) {
-      setAlertscode(false)
-    }
-  }
+  };
   const outerlineshowcode = () => {
     if (Alertscode === false) {
-      setAlertsouterline(true)
+      setAlertsouterline(true);
+    } else if (Alertscode === true) {
+      setAlertsouterline(false);
     }
-    else if (Alertscode === true) {
-      setAlertsouterline(false)
-    }
-  }
+  };
   const solidalertcode = () => {
     if (solidalert === false) {
-      setsolidalert(true)
+      setsolidalert(true);
+    } else if (solidalert === true) {
+      setsolidalert(false);
     }
-    else if (solidalert === true) {
-      setsolidalert(false)
-    }
-  }
+  };
   const linkalertcode = () => {
     if (linkalert === false) {
-      setlinkalert(true)
+      setlinkalert(true);
+    } else if (linkalert === true) {
+      setlinkalert(false);
     }
-    else if (linkalert === true) {
-      setlinkalert(false)
-    }
-  }
+  };
   const addtionalertshowcode = () => {
     if (addtionalalert === false) {
-      setaddtionalalert(true)
+      setaddtionalalert(true);
+    } else if (addtionalalert === true) {
+      setaddtionalalert(false);
     }
-    else if (addtionalalert === true) {
-      setaddtionalalert(false)
-    }
-  }
+  };
   const dismissingalertshowcode = () => {
     if (dismissingalert === false) {
-      setdismissingalert(true)
+      setdismissingalert(true);
+    } else if (dismissingalert === true) {
+      setdismissingalert(false);
     }
-    else if (dismissingalert === true) {
-      setdismissingalert(false)
-    }
-  }
+  };
   const icondismisshowcode = () => {
     if (icondismiss === false) {
-      seticondismiss(true)
+      seticondismiss(true);
+    } else if (icondismiss === true) {
+      seticondismiss(false);
     }
-    else if (icondismiss === true) {
-      seticondismiss(false)
-    }
-  }
+  };
   const dismissingalertcode = () => {
     if (dismissingalert1 === false) {
-      setdismissingalert1(true)
+      setdismissingalert1(true);
+    } else if (dismissingalert1 === true) {
+      setdismissingalert1(false);
     }
-    else if (dismissingalert1 === true) {
-      setdismissingalert1(false)
-    }
-  }
+  };
 
-    
   return (
     <Fragment>
       {/* <!-- Page Header --> */}
@@ -112,30 +115,28 @@ function Alerts() {
         <div>
           <h2 className="main-content-title tx-24 mg-b-5">Alerts</h2>
           <Breadcrumb className="breadcrumb">
-            <Breadcrumb.Item
-              href="#">Elements
-            </Breadcrumb.Item>
-            <Breadcrumb.Item active >
-              Alerts
-            </Breadcrumb.Item>
+            <Breadcrumb.Item href="#">Elements</Breadcrumb.Item>
+            <Breadcrumb.Item active>Alerts</Breadcrumb.Item>
           </Breadcrumb>
-
         </div>
         <div className="d-flex">
           <div className="justify-content-center">
-            <Button variant="white"
+            <Button
+              variant="white"
               type="button"
               className="btn-icon-text my-2 me-2"
             >
               <i className="fe fe-download me-2"></i> Import
             </Button>
-            <Button variant="white"
+            <Button
+              variant="white"
               type="button"
               className="btn-icon-text my-2 me-2"
             >
               <i className="fe fe-filter me-2"></i> Filter
             </Button>
-            <Button variant="primary"
+            <Button
+              variant="primary"
               type="button"
               className=" my-2 btn-icon-text"
             >
@@ -156,20 +157,21 @@ function Alerts() {
                   Use one of the four required contextual classes.
                 </p>
               </div>
-              <Form.Check className="mb-3 mb-sm-0"
+              <Form.Check
+                className="mb-3 mb-sm-0"
                 aria-controls="example-collapse-text"
-                onClick={() => { Alertcode() }}
+                onClick={() => {
+                  Alertcode();
+                }}
                 type="switch"
-
                 label="ShowCode"
               />
             </Card.Header>
 
-            <Card.Body >
-
+            <Card.Body>
               <div className="text-wrap">
                 <div className="example">
-                <React.Fragment>
+                  <React.Fragment>
                     {alertData.map((item, k) => (
                       <React.Fragment key={k}>
                         <Alert
@@ -189,10 +191,7 @@ function Alerts() {
                         </Alert>
                       </React.Fragment>
                     ))}
-
                   </React.Fragment>
-
-
 
                   {/* <alerts.AlertSuccess /> */}
                   {/* <alerts.Alertinfo /> */}
@@ -200,8 +199,7 @@ function Alerts() {
                   {/* <alerts.Alertdanger /> */}
                   {Alertscode ? (
                     <pre>
-                      {
-                        `
+                      {`
 export function AlertSuccess(){
 const [show, setShow] = useState(true);
 if (show) {
@@ -213,12 +211,9 @@ return (
 );
 }
 return <p onClick={() => setShow(true)}></p>;
-}`
-
-                      }
+}`}
                     </pre>
-                  ) : null
-                  }
+                  ) : null}
                 </div>
               </div>
             </Card.Body>
@@ -231,20 +226,21 @@ return <p onClick={() => setShow(true)}></p>;
                   Use one of the four required contextual classes.
                 </p>
               </div>
-              <Form.Check className="mb-3 mb-sm-0"
+              <Form.Check
+                className="mb-3 mb-sm-0"
                 aria-controls="example-collapse-text"
-                onClick={() => { outerlineshowcode() }}
+                onClick={() => {
+                  outerlineshowcode();
+                }}
                 type="switch"
-
                 label="ShowCode"
               />
-
             </Card.Header>
 
-            <Card.Body >
+            <Card.Body>
               <div className="text-wrap">
                 <div className="example">
-                <React.Fragment>
+                  <React.Fragment>
                     {outline.map((item, k) => (
                       <React.Fragment key={k}>
                         <Alert
@@ -264,7 +260,6 @@ return <p onClick={() => setShow(true)}></p>;
                         </Alert>
                       </React.Fragment>
                     ))}
-
                   </React.Fragment>
                   {/* <alerts.Alertsuccessouterline /> */}
                   {/* <alerts.Alertinfoouterline /> */}
@@ -272,7 +267,6 @@ return <p onClick={() => setShow(true)}></p>;
                   {/* <alerts.Alertdangeruterline /> */}
                   {Alertsouterline ? (
                     <pre>
-
                       {`
 
 export function Alertsuccessouterline() {
@@ -294,12 +288,9 @@ again.
 }
 return <p onClick={() => setShow(true)}> </p>;
 }
-                      `
-                      }</pre>
-
-                  ) : null
-
-                  }
+                      `}
+                    </pre>
+                  ) : null}
                 </div>
               </div>
             </Card.Body>
@@ -314,19 +305,20 @@ return <p onClick={() => setShow(true)}> </p>;
                   Use one of the four required contextual classes.
                 </p>
               </div>
-              <Form.Check className="mb-3 mb-sm-0"
+              <Form.Check
+                className="mb-3 mb-sm-0"
                 aria-controls="example-collapse-text"
-                onClick={() => { solidalertcode() }}
+                onClick={() => {
+                  solidalertcode();
+                }}
                 type="switch"
-
                 label="ShowCode"
               />
             </Card.Header>
             <Card.Body>
-
               <div className="text-wrap">
                 <div className="example">
-                <React.Fragment>
+                  <React.Fragment>
                     {solid.map((item, k) => (
                       <React.Fragment key={k}>
                         <Alert
@@ -346,7 +338,6 @@ return <p onClick={() => setShow(true)}> </p>;
                         </Alert>
                       </React.Fragment>
                     ))}
-
                   </React.Fragment>
                   {/* <alerts.AlertSuccesssolid /> */}
 
@@ -355,8 +346,7 @@ return <p onClick={() => setShow(true)}> </p>;
                   {/* <alerts.Alertdangerutersolid /> */}
                   {solidalert ? (
                     <pre>
-                      {
-                        `
+                      {`
 export function Alertdangerutersolid() {
 const [show, setShow] = useState(true);
 if (show) {
@@ -369,13 +359,9 @@ again.
 }
 return <p onClick={() => setShow(true)}> </p>;
 }
-                        `
-                      }
-
+                        `}
                     </pre>
-                  ) : null
-                  }
-
+                  ) : null}
                 </div>
               </div>
             </Card.Body>
@@ -389,74 +375,59 @@ return <p onClick={() => setShow(true)}> </p>;
                   utility className to quickly provide matching colored links
                   within any alert.
                 </p>
-
               </div>
-              <Form.Check className="mb-3 mb-sm-0"
+              <Form.Check
+                className="mb-3 mb-sm-0"
                 aria-controls="example-collapse-text"
-                onClick={() => { linkalertcode() }}
+                onClick={() => {
+                  linkalertcode();
+                }}
                 type="switch"
-
                 label="ShowCode"
               />
             </Card.Header>
-            <Card.Body >
+            <Card.Body>
               <div className="text-wrap">
                 <div className="example">
                   <Alert className="alert alert-primary" role="alert">
                     This is a primary alert with
-                    <Alert.Link href="#">
-                      an example link
-                    </Alert.Link>
-                    . Give it a click if you like.
+                    <Alert.Link href="#">an example link</Alert.Link>. Give it a
+                    click if you like.
                   </Alert>
                   <Alert className="alert alert-secondary" role="alert">
                     This is a secondary alert with
-                    <Alert.Link href="#">
-                      an example link
-                    </Alert.Link>
-                    . Give it a click if you like.
+                    <Alert.Link href="#">an example link</Alert.Link>. Give it a
+                    click if you like.
                   </Alert>
                   <Alert className="alert alert-success" role="alert">
                     This is a success alert with
-                    <Alert.Link href="#">
-                      an example link
-                    </Alert.Link>
-                    . Give it a click if you like.
+                    <Alert.Link href="#">an example link</Alert.Link>. Give it a
+                    click if you like.
                   </Alert>
                   <Alert className="alert alert-danger" role="alert">
                     This is a danger alert with
-                    <Alert.Link href="#">
-                      an example link
-                    </Alert.Link>
-                    . Give it a click if you like.
+                    <Alert.Link href="#">an example link</Alert.Link>. Give it a
+                    click if you like.
                   </Alert>
                   <Alert className="alert alert-warning" role="alert">
                     This is a warning alert with
-                    <Alert.Link href="#">
-                      an example link
-                    </Alert.Link>
-                    . Give it a click if you like.
+                    <Alert.Link href="#">an example link</Alert.Link>. Give it a
+                    click if you like.
                   </Alert>
                   <Alert className="alert alert-info" role="alert">
                     This is a info alert with
-                    <Alert.Link href="#">
-                      an example link
-                    </Alert.Link>
-                    . Give it a click if you like.
+                    <Alert.Link href="#">an example link</Alert.Link>. Give it a
+                    click if you like.
                   </Alert>
                   <Alert className="alert alert-light" role="alert">
                     This is a light alert with
-                    <Alert.Link href="#">
-                      an example link
-                    </Alert.Link>
-                    . Give it a click if you like.
+                    <Alert.Link href="#">an example link</Alert.Link>. Give it a
+                    click if you like.
                   </Alert>
                   <Alert className="alert alert-dark mb-0" role="alert">
                     This is a dark alert with
-                    <Alert.Link href="#">
-                      an example link
-                    </Alert.Link>
-                    . Give it a click if you like.
+                    <Alert.Link href="#">an example link</Alert.Link>. Give it a
+                    click if you like.
                   </Alert>
                 </div>
                 {linkalert ? (
@@ -521,11 +492,9 @@ an example link
 . Give it a click if you like.
 </Alert>
 </div>
-                    `
-                    }
+                    `}
                   </pre>
-                ) : null
-                }
+                ) : null}
               </div>
             </Card.Body>
           </Card>
@@ -540,19 +509,23 @@ an example link
                   headings, paragraphs and dividers.
                 </p>
               </div>
-              <Form.Check className="mb-3 mb-sm-0"
+              <Form.Check
+                className="mb-3 mb-sm-0"
                 aria-controls="example-collapse-text"
-                onClick={() => { addtionalertshowcode() }}
+                onClick={() => {
+                  addtionalertshowcode();
+                }}
                 type="switch"
-
                 label="ShowCode"
               />
             </Card.Header>
-            <Card.Body >
+            <Card.Body>
               <div className="text-wrap">
                 <div className="example">
                   <Alert className="alert alert-success mb-0" role="alert">
-                    <Alert.Heading className="alert-heading">Well done!</Alert.Heading>
+                    <Alert.Heading className="alert-heading">
+                      Well done!
+                    </Alert.Heading>
                     <p>
                       Aww yeah, you successfully read this important alert
                       message. This example text is going to run a bit longer so
@@ -584,17 +557,14 @@ keep things nice and tidy.
 </p>
 </Alert>
 
-                    `
-                    }
+                    `}
                   </pre>
-                ) : null
-                }
+                ) : null}
               </div>
             </Card.Body>
           </Card>
           <Card className="custom-card">
             <Card.Header className="d-sm-flex  justify-content-between align-items-center">
-
               <div>
                 <h6 className="main-content-label mb-1">Dismissing Alerts</h6>
                 <p className="text-muted card-sub-title">
@@ -602,42 +572,43 @@ keep things nice and tidy.
                   any alert inline.
                 </p>
               </div>
-              <Form.Check className="mb-3 mb-sm-0"
+              <Form.Check
+                className="mb-3 mb-sm-0"
                 aria-controls="example-collapse-text"
-                onClick={() => { dismissingalertshowcode() }}
+                onClick={() => {
+                  dismissingalertshowcode();
+                }}
                 type="switch"
-
                 label="ShowCode"
               />
             </Card.Header>
-            <Card.Body >
-
+            <Card.Body>
               <div className="text-wrap">
                 <div className="example">
-                <React.Fragment>
-      {Alertdismissing.map((playerData) => (
-        <React.Fragment key={playerData.id}>
-          <Alert
-            variant=""
-            className={`alert fade show alert-dismissible alert-${playerData.variant}`}
-          >
-            {" "}
-            <strong>{playerData.show}</strong> {playerData.text}
-            <Button
-              variant=""
-              type="button"
-              onClick={() => handleRemovedismissing(playerData.id)}
-              className="btn-close"
-            >
-              <span aria-hidden="true">×</span>
-            </Button>
-          </Alert>
-        </React.Fragment>
-      ))}
-
-    </React.Fragment>
+                  <React.Fragment>
+                    {Alertdismissing.map((playerData) => (
+                      <React.Fragment key={playerData.id}>
+                        <Alert
+                          variant=""
+                          className={`alert fade show alert-dismissible alert-${playerData.variant}`}
+                        >
+                          {" "}
+                          <strong>{playerData.show}</strong> {playerData.text}
+                          <Button
+                            variant=""
+                            type="button"
+                            onClick={() =>
+                              handleRemovedismissing(playerData.id)
+                            }
+                            className="btn-close"
+                          >
+                            <span aria-hidden="true">×</span>
+                          </Button>
+                        </Alert>
+                      </React.Fragment>
+                    ))}
+                  </React.Fragment>
                   {/* <alerts.AlertWarning /> */}
-
 
                   {/* <alerts.AlertSuccess /> */}
 
@@ -669,11 +640,9 @@ good.
 return <p onClick={() => setShow(true)}> </p>;
 }
 
-                    `
-                  }
+                    `}
                 </pre>
-              ) : null
-              }
+              ) : null}
             </Card.Body>
           </Card>
           <Card className="custom-card" id="icon-alerts">
@@ -685,15 +654,17 @@ return <p onClick={() => setShow(true)}> </p>;
                   headings, paragraphs and dividers.
                 </p>
               </div>
-              <Form.Check className="mb-3 mb-sm-0"
+              <Form.Check
+                className="mb-3 mb-sm-0"
                 aria-controls="example-collapse-text"
-                onClick={() => { icondismisshowcode() }}
+                onClick={() => {
+                  icondismisshowcode();
+                }}
                 type="switch"
-
                 label="ShowCode"
               />
             </Card.Header>
-            <Card.Body >
+            <Card.Body>
               <div className="text-wrap">
                 <div className="example">
                   <Alert variant="default" role="alert">
@@ -763,11 +734,9 @@ out that has an icon too!
 </span>
 </Alert>
 
-                    `
-                      }
+                    `}
                     </pre>
-                  ) : null
-                  }
+                  ) : null}
                 </div>
               </div>
             </Card.Body>
@@ -783,45 +752,45 @@ out that has an icon too!
                   headings, paragraphs and dividers.
                 </p>
               </div>
-              <Form.Check className="mb-3 mb-sm-0"
+              <Form.Check
+                className="mb-3 mb-sm-0"
                 aria-controls="example-collapse-text"
-                onClick={() => { dismissingalertcode() }}
+                onClick={() => {
+                  dismissingalertcode();
+                }}
                 type="switch"
                 label="ShowCode"
               />
             </Card.Header>
-            <Card.Body >
-
+            <Card.Body>
               <div className="text-wrap">
                 <div className="example">
-                <React.Fragment>
-
-{iconsdismissing.map((playerData) => (
-  <React.Fragment key={playerData.id}>
-    <Alert
-      variant=""
-      className={`alert fade show alert-dismissible alert-${playerData.variant}`}
-    >
-      {" "}
-      <span className="alert-inner--icon">
-        <i className={`${playerData.icons} `}></i>
-      </span>{" "}
-      <span className="alert-inner--text">
-        <strong>{playerData.show}</strong> {playerData.text}
-      </span>
-      <Button
-        variant=""
-        type="button"
-        onClick={() => handleRemoveicons(playerData.id)}
-        className="btn-close"
-      >
-        <span aria-hidden="true">×</span>
-      </Button>
-    </Alert>
-  </React.Fragment>
-))}
-
-</React.Fragment>
+                  <React.Fragment>
+                    {iconsdismissing.map((playerData) => (
+                      <React.Fragment key={playerData.id}>
+                        <Alert
+                          variant=""
+                          className={`alert fade show alert-dismissible alert-${playerData.variant}`}
+                        >
+                          {" "}
+                          <span className="alert-inner--icon">
+                            <i className={`${playerData.icons} `}></i>
+                          </span>{" "}
+                          <span className="alert-inner--text">
+                            <strong>{playerData.show}</strong> {playerData.text}
+                          </span>
+                          <Button
+                            variant=""
+                            type="button"
+                            onClick={() => handleRemoveicons(playerData.id)}
+                            className="btn-close"
+                          >
+                            <span aria-hidden="true">×</span>
+                          </Button>
+                        </Alert>
+                      </React.Fragment>
+                    ))}
+                  </React.Fragment>
                   {/* <alerts.Alerticons /> */}
 
                   {/* <alerts.Primaryicons /> */}
@@ -834,7 +803,6 @@ out that has an icon too!
 
                   {/* <alerts.Dangericons /> */}
                 </div>
-
 
                 {dismissingalert1 ? (
                   <pre>
@@ -865,11 +833,9 @@ export function Alerticons() {
   return <p onClick={() => setShow(true)}></p>;
 }
 
-                    `
-                    }
+                    `}
                   </pre>
-                ) : null
-                }
+                ) : null}
               </div>
             </Card.Body>
           </Card>
@@ -879,7 +845,8 @@ export function Alerticons() {
             <div className="bg-white box-shadow custom-card card">
               {show1 ? (
                 <div className="alert text-center fade show p-3">
-                  <Button variant="default"
+                  <Button
+                    variant="default"
                     type="button"
                     className="btn-close"
                     data-bs-dismiss="alert"
@@ -902,7 +869,8 @@ export function Alerticons() {
             <div className="bg-white box-shadow custom-card card">
               {show2 ? (
                 <div className="alert text-center fade show p-3">
-                  <Button variant="default"
+                  <Button
+                    variant="default"
                     type="button"
                     className="btn-close"
                     data-bs-dismiss="alert"

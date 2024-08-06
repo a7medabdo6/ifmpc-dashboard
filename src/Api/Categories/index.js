@@ -17,8 +17,13 @@ export const deleteCategories = async (id) => {
 };
 
 // Edit a data
-export const editCategories = async ({ id, data }) => {
-  const response = await axiosInstance.put(`/categories/${id}`, data);
+export const editCategories = async (data) => {
+  console.log(data);
+
+  const response = await axiosInstance.put(
+    `/categories/${data.id}`,
+    data?.data
+  );
   return response.data;
 };
 export const useCategories = () => {
