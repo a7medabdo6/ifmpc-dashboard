@@ -7,6 +7,8 @@ import { useLocation } from "react-router-dom";
 let history = [];
 const SideBar = () => {
   let location = useLocation();
+  console.log(location.pathname);
+  
   const [menuitems, setMenuitems] = useState(MENUITEMS);
   // initial loading
   useEffect(() => {

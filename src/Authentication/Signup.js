@@ -10,22 +10,23 @@ import {
   Card,
   Container,
 } from "react-bootstrap";
+
 const SignUp = () => {
   const [err, setError] = useState("");
-  const [data, setData] = React.useState({
-    fullname: "",
-    email: "",
+  const [data, setData] = useState({
+    username: "",
     password: "",
   });
-  const { email, password, fullname } = data;
+  const { username, password } = data;
+
   const changeHandler = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
   const Signup = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     auth
-      .createUserWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(username, password)
       .then((user) => {
         console.log(user);
         routeChange();
@@ -35,11 +36,13 @@ const SignUp = () => {
         setError(err.message);
       });
   };
+
   let navigate = useNavigate();
   const routeChange = () => {
     let path = `${process.env.PUBLIC_URL}/dashboard/`;
     navigate(path);
   };
+
   return (
     <div className="page main-signin-wrapper">
       <Row className="signpages text-center">
@@ -93,35 +96,21 @@ const SignUp = () => {
                       <Form>
                         <Form.Group
                           className="text-start form-group"
-                          controlId="fromName"
+                          controlId="formUsername"
                         >
-                          <Form.Label>Name</Form.Label>
+                          <Form.Label>Username</Form.Label>
                           <Form.Control
                             className="form-control"
-                            placeholder="Enter your firstname and lastname"
+                            placeholder="Enter your username"
                             type="text"
-                            name="fullname"
-                            value={fullname}
+                            name="username"
+                            value={username}
                             onChange={changeHandler}
                           />
                         </Form.Group>
                         <Form.Group
                           className="text-start form-group"
-                          controlId="formEmail"
-                        >
-                          <Form.Label>Email</Form.Label>
-                          <Form.Control
-                            className="form-control"
-                            placeholder="Enter your email"
-                            type="text"
-                            name="email"
-                            value={email}
-                            onChange={changeHandler}
-                          />
-                        </Form.Group>
-                        <Form.Group
-                          className="text-start form-group"
-                          controlId="formpassword"
+                          controlId="formPassword"
                         >
                           <Form.Label>Password</Form.Label>
                           <Form.Control
@@ -163,6 +152,7 @@ const SignUp = () => {
     </div>
   );
 };
+
 SignUp.propTypes = {};
 
 SignUp.defaultProps = {};
