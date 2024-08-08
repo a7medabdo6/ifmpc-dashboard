@@ -133,12 +133,7 @@ const SignUp = () => {
                       <div className="text-start mt-5 ms-0">
                         <p className="mb-0">
                           Already have an account?
-                          <Link
-                            to={`${process.env.PUBLIC_URL}/authentication/login`}
-                          >
-                            {" "}
-                            SignIn
-                          </Link>
+                          <Link to={`${process.env.PUBLIC_URL}`}> SignIn</Link>
                         </p>
                       </div>
                     </Card.Body>

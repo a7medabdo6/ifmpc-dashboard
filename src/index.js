@@ -5,7 +5,8 @@ import "./index.scss";
 import Loader from "./layouts/Loader/Loader";
 import Auth from "./Authentication/auth";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
+import { Provider, useSelector } from "react-redux";
+import { store } from "./store";
 import AddEditcategories from "./components/Pages/Categories/AddEdit";
 import Categories from "./components/Pages/Categories";
 import AddContacts from "./components/Pages/Contacts/Add";
@@ -13,6 +14,9 @@ import Tages from "./components/Pages/Tags";
 import AddTags from "./components/Pages/Tags/Add";
 import Projects from "./components/Pages/Projects";
 import AddProjects from "./components/Pages/Projects/Add";
+import ProtectedRoute from "./ProtectedRoute";
+import AuthRedirect from "./AuthRedirect"; // Import AuthRedirect
+
 // Dashboard
 const Landingpageapp = React.lazy(() => import("./components/Landingpageapp"));
 const Dashboard = React.lazy(() => import("./components/Dashboard/Dashboard"));
@@ -27,9 +31,7 @@ const Chat = React.lazy(() => import("./components/AdvanceUI/Chat/Chat"));
 // const Contacts = React.lazy(() =>
 //   import("./components/AdvanceUI/Contacts/Contacts")
 // );
-const Contacts = React.lazy(() =>
-  import("./components/Pages/Contacts")
-);
+const Contacts = React.lazy(() => import("./components/Pages/Contacts"));
 const Carousels = React.lazy(() =>
   import("./components/AdvanceUI/Carousels/Carousels")
 );
@@ -352,7 +354,18 @@ const Root = () => {
                 element={<AuthSignup />}
               />
             </Route>
-            <Route path={`${process.env.PUBLIC_URL}/`} element={<App />}>
+            <Route
+              path={`${process.env.PUBLIC_URL}/`}
+              element={
+                <React.Fragment>
+                  <AuthRedirect /> {/* Include AuthRedirect */}
+                  <ProtectedRoute>
+                    <App />
+                  </ProtectedRoute>
+                </React.Fragment>
+              }
+            >
+              {" "}
               <Route>
                 <Route
                   path={`${process.env.PUBLIC_URL}/dashboard`}
@@ -360,7 +373,6 @@ const Root = () => {
                 />
               </Route>
               {/* crytocurrency */}
-
               {/*  E-Commerce */}
               <Route>
                 <Route
@@ -517,7 +529,6 @@ const Root = () => {
                   element={<Blogpost />}
                 />
               </Route>
-
               {/* utilites */}
               <Route>
                 <Route
@@ -768,7 +779,7 @@ const Root = () => {
                   path={`${process.env.PUBLIC_URL}/pages/categories`}
                   element={<Categories />}
                 />
-                 <Route
+                <Route
                   path={`${process.env.PUBLIC_URL}/pages/tages`}
                   element={<Tages />}
                 />
@@ -780,7 +791,7 @@ const Root = () => {
                   path={`${process.env.PUBLIC_URL}/pages/tags/create`}
                   element={<AddTags />}
                 />
-                  <Route
+                <Route
                   path={`${process.env.PUBLIC_URL}/pages/projects/create`}
                   element={<AddProjects />}
                 />
@@ -788,15 +799,15 @@ const Root = () => {
                   path={`${process.env.PUBLIC_URL}/pages/categories/edit/:id`}
                   element={<AddEditcategories />}
                 />
-                  <Route
+                <Route
                   path={`${process.env.PUBLIC_URL}/pages/contacts`}
                   element={<Contacts />}
                 />
-                  <Route
+                <Route
                   path={`${process.env.PUBLIC_URL}/pages/projects`}
                   element={<Projects />}
                 />
-                 <Route
+                <Route
                   path={`${process.env.PUBLIC_URL}/pages/contacts/create`}
                   element={<AddContacts />}
                 />
@@ -909,6 +920,8 @@ const queryClient = new QueryClient();
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <QueryClientProvider client={queryClient}>
-    <Root />
+    <Provider store={store}>
+      <Root />
+    </Provider>
   </QueryClientProvider>
 );
