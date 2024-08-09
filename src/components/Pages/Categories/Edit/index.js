@@ -6,28 +6,27 @@ import * as yup from "yup";
 import { useEditCategory } from "../../../../Api/Categories";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 const schema = yup.object().shape({
   name: yup.string().required(),
+  name_en: yup.string().required(),
+  name_ar: yup.string().required(),
   publication_count: yup.string().required(),
   project_count: yup.string().required(),
-  // city: yup.string().required(),
-  // state: yup.string().required(),
-  // zip: yup.string().required(),
-  // file: yup.mixed().required(),
-  // terms: yup.bool().required().oneOf([true], "terms must be accepted"),
 });
-const Editcategories = ({ id, itemData, viewDemoClose }) => {
-  const { mutate,data } = useEditCategory();
-  console.log(data);
-  useEffect(()=>{
-    if (data !== undefined) {
-      toast.success("This item has been successfully editing.");
 
+const Editcategories = ({ id, itemData, viewDemoClose }) => {
+  const { mutate, data } = useEditCategory();
+  console.log(data);
+  
+  useEffect(() => {
+    if (data !== undefined) {
+      toast.success("This item has been successfully edited.");
     }
-  },[data])
+  }, [data]);
+
   return (
     <Fragment>
-      {/* <!-- Row --> */}
       <div className="col-xl-12 col-lg-12 col-md-12">
         <div className="card custom-card">
           <div className="card-body">
@@ -43,22 +42,17 @@ const Editcategories = ({ id, itemData, viewDemoClose }) => {
               }
               initialValues={{
                 name: itemData?.name,
+                name_en: itemData?.name_en || "",
+                name_ar: itemData?.name_ar || "",
                 publication_count: itemData?.publication_count,
                 project_count: itemData?.project_count,
-                // city: "",
-                // state: "",
-                // zip: "",
-                // file: null,
-                // terms: false,
               }}
             >
               {({
                 handleSubmit,
                 handleChange,
-                // handleBlur,
                 values,
                 touched,
-                // isValid,
                 errors,
               }) => (
                 <Form noValidate onSubmit={handleSubmit}>
@@ -77,14 +71,46 @@ const Editcategories = ({ id, itemData, viewDemoClose }) => {
                         onChange={handleChange}
                         isValid={touched.name && !errors.name}
                       />
-                      {/* <Form.Control.Feedback tooltip>
-                        Looks good!
-                      </Form.Control.Feedback> */}
                     </Form.Group>
+                    
                     <Form.Group
                       as={Col}
                       md="4"
                       controlid="validationFormik102"
+                      className="position-relative"
+                    >
+                      <Form.Label>Name (English)</Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="name_en"
+                        value={values.name_en}
+                        onChange={handleChange}
+                        isValid={touched.name_en && !errors.name_en}
+                      />
+                    </Form.Group>
+
+                    <Form.Group
+                      as={Col}
+                      md="4"
+                      controlid="validationFormik103"
+                      className="position-relative"
+                    >
+                      <Form.Label>Name (Arabic)</Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="name_ar"
+                        value={values.name_ar}
+                        onChange={handleChange}
+                        isValid={touched.name_ar && !errors.name_ar}
+                      />
+                    </Form.Group>
+                  </Row>
+
+                  <Row className="mb-3">
+                    <Form.Group
+                      as={Col}
+                      md="4"
+                      controlid="validationFormik104"
                       className="position-relative"
                     >
                       <Form.Label>Publication Count</Form.Label>
@@ -97,149 +123,48 @@ const Editcategories = ({ id, itemData, viewDemoClose }) => {
                           touched.publication_count && !errors.publication_count
                         }
                       />
-
-                      {/* <Form.Control.Feedback tooltip>
-                        Looks good!
-                      </Form.Control.Feedback> */}
                     </Form.Group>
+                    
                     <Form.Group
                       as={Col}
                       md="4"
-                      controlid="validationFormikUsername2"
+                      controlid="validationFormik105"
+                      className="position-relative"
                     >
-                      <Form.Label>project_count</Form.Label>
+                      <Form.Label>Project Count</Form.Label>
                       <InputGroup hasValidation>
                         <Form.Control
                           type="number"
-                          aria-describedby="inputGroupPrepend"
                           name="project_count"
                           value={values.project_count}
                           onChange={handleChange}
                           isValid={
-                            touched.publication_count &&
-                            !errors.publication_count
+                            touched.project_count && !errors.project_count
                           }
                         />
-                        {/* <Form.Control.Feedback type="invalid" tooltip>
-                          {errors.project_count}
-                        </Form.Control.Feedback> */}
                       </InputGroup>
                     </Form.Group>
                   </Row>
-                  {/* <Row className="mb-3">
-                  <Form.Group
-                    as={Col}
-                    md="6"
-                    controlid="validationFormik103"
-                    className="position-relative"
-                  >
-                    <Form.Label>City</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="City"
-                      name="city"
-                      value={values.city}
-                      onChange={handleChange}
-                      isInvalid={!!errors.city}
-                    />
 
-                    <Form.Control.Feedback type="invalid" tooltip>
-                      {errors.city}
-                    </Form.Control.Feedback>
-                  </Form.Group>
-                  <Form.Group
-                    as={Col}
-                    md="3"
-                    controlid="validationFormik104"
-                    className="position-relative"
-                  >
-                    <Form.Label>State</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="State"
-                      name="state"
-                      value={values.state}
-                      onChange={handleChange}
-                      isInvalid={!!errors.state}
-                    />
-                    <Form.Control.Feedback type="invalid" tooltip>
-                      {errors.state}
-                    </Form.Control.Feedback>
-                  </Form.Group>
-                  <Form.Group
-                    as={Col}
-                    md="3"
-                    controlid="validationFormik105"
-                    className="position-relative"
-                  >
-                    <Form.Label>Zip</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Zip"
-                      name="zip"
-                      value={values.zip}
-                      onChange={handleChange}
-                      isInvalid={!!errors.zip}
-                    />
-
-                    <Form.Control.Feedback type="invalid" tooltip>
-                      {errors.zip}
-                    </Form.Control.Feedback>
-                  </Form.Group>
-                </Row>
-                <Form.Group className="position-relative mb-3">
-                  <Form.Label>File</Form.Label>
-                  <Form.Control
-                    type="file"
-                    required
-                    name="file"
-                    onChange={handleChange}
-                    isInvalid={!!errors.file}
-                  />
-                  <Form.Control.Feedback type="invalid" tooltip>
-                    {errors.file}
-                  </Form.Control.Feedback>
-                </Form.Group>
-                <Form.Group className="position-relative mb-3">
-                  <Form.Check
-                    required
-                    name="terms"
-                    label="Agree to terms and conditions"
-                    onChange={handleChange}
-                    isInvalid={!!errors.terms}
-                    feedback={errors.terms}
-                    feedbackType="invalid"
-                    id="validationFormik106"
-                    feedbackTooltip
-                  />
-                </Form.Group> */}
                   <div className="d-flex flex-row-reverse">
-                  <Button
-                  className="ms-3"
-                    variant="secondary"
-                    onClick={() => viewDemoClose("show10")}
-                  >
-                    Cancel
-                  </Button>
-                  <Button type="submit">Save</Button>
-              
+                    <Button
+                      className="ms-3"
+                      variant="secondary"
+                      onClick={() => viewDemoClose("show10")}
+                    >
+                      Cancel
+                    </Button>
+                    <Button type="submit">Save</Button>
                   </div>
-                 
                 </Form>
               )}
             </Formik>
           </div>
         </div>
       </div>
-      {/* <!-- End Row --> */}
       <ToastContainer />
-
     </Fragment>
   );
 };
-
-Editcategories.propTypes = {};
-
-Editcategories.defaultProps = {};
 
 export default Editcategories;

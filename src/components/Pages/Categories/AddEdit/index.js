@@ -1,39 +1,36 @@
 import React, { Fragment } from "react";
-import { Breadcrumb, Button, Col, Row, Card } from "react-bootstrap";
+import { Breadcrumb, Button, Col, Row } from "react-bootstrap";
 import { Formik } from "formik";
 import { Form, InputGroup } from "react-bootstrap";
 import * as yup from "yup";
 import { useCreateCategory } from "../../../../Api/Categories";
+
 const schema = yup.object().shape({
   name: yup.string().required(),
+  name_ar: yup.string().required(),
+  name_en: yup.string().required(),
   publication_count: yup.string().required(),
   project_count: yup.string().required(),
-  // city: yup.string().required(),
-  // state: yup.string().required(),
-  // zip: yup.string().required(),
-  // file: yup.mixed().required(),
-  // terms: yup.bool().required().oneOf([true], "terms must be accepted"),
+  // other fields
 });
+
 const AddEditcategories = () => {
   const { mutate } = useCreateCategory();
 
   return (
     <Fragment>
-      {/* <!-- Page Header --> */}
       <div className="page-header">
         <div>
           <h2 className="main-content-title tx-24 mg-b-5">
             Create / Edit categories
           </h2>
           <Breadcrumb>
-            <Breadcrumb.Item href="#"> Pages </Breadcrumb.Item>
+            <Breadcrumb.Item href="#">Pages</Breadcrumb.Item>
             <Breadcrumb.Item active>Create / Edit categories</Breadcrumb.Item>
           </Breadcrumb>
         </div>
       </div>
-      {/* <!-- End Page Header --> */}
 
-      {/* <!-- Row --> */}
       <div className="col-xl-12 col-lg-12 col-md-12">
         <div className="card custom-card">
           <div className="card-body">
@@ -42,22 +39,18 @@ const AddEditcategories = () => {
               onSubmit={(data) => mutate(data)}
               initialValues={{
                 name: "",
+                name_ar: "",
+                name_en: "",
                 publication_count: "",
                 project_count: "",
-                // city: "",
-                // state: "",
-                // zip: "",
-                // file: null,
-                // terms: false,
+                // other fields
               }}
             >
               {({
                 handleSubmit,
                 handleChange,
-                // handleBlur,
                 values,
                 touched,
-                // isValid,
                 errors,
               }) => (
                 <Form noValidate onSubmit={handleSubmit}>
@@ -65,25 +58,69 @@ const AddEditcategories = () => {
                     <Form.Group
                       as={Col}
                       md="4"
-                      controlid="validationFormik101"
+                      controlId="validationFormikName"
                       className="position-relative"
                     >
-                      <Form.Label> Name</Form.Label>
+                      <Form.Label>Name</Form.Label>
                       <Form.Control
                         type="text"
                         name="name"
                         value={values.name}
                         onChange={handleChange}
                         isValid={touched.name && !errors.name}
+                        isInvalid={touched.name && !!errors.name}
                       />
-                      {/* <Form.Control.Feedback tooltip>
-                        Looks good!
-                      </Form.Control.Feedback> */}
+                      <Form.Control.Feedback type="invalid">
+                        {errors.name}
+                      </Form.Control.Feedback>
                     </Form.Group>
+
                     <Form.Group
                       as={Col}
                       md="4"
-                      controlid="validationFormik102"
+                      controlId="validationFormikNameAr"
+                      className="position-relative"
+                    >
+                      <Form.Label>Name (Arabic)</Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="name_ar"
+                        value={values.name_ar}
+                        onChange={handleChange}
+                        isValid={touched.name_ar && !errors.name_ar}
+                        isInvalid={touched.name_ar && !!errors.name_ar}
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.name_ar}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+
+                    <Form.Group
+                      as={Col}
+                      md="4"
+                      controlId="validationFormikNameEn"
+                      className="position-relative"
+                    >
+                      <Form.Label>Name (English)</Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="name_en"
+                        value={values.name_en}
+                        onChange={handleChange}
+                        isValid={touched.name_en && !errors.name_en}
+                        isInvalid={touched.name_en && !!errors.name_en}
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.name_en}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                  </Row>
+
+                  <Row className="mb-3">
+                    <Form.Group
+                      as={Col}
+                      md="4"
+                      controlId="validationFormikPublicationCount"
                       className="position-relative"
                     >
                       <Form.Label>Publication Count</Form.Label>
@@ -95,18 +132,20 @@ const AddEditcategories = () => {
                         isValid={
                           touched.publication_count && !errors.publication_count
                         }
+                        isInvalid={touched.publication_count && !!errors.publication_count}
                       />
-
-                      {/* <Form.Control.Feedback tooltip>
-                        Looks good!
-                      </Form.Control.Feedback> */}
+                      <Form.Control.Feedback type="invalid">
+                        {errors.publication_count}
+                      </Form.Control.Feedback>
                     </Form.Group>
+
                     <Form.Group
                       as={Col}
                       md="4"
-                      controlid="validationFormikUsername2"
+                      controlId="validationFormikProjectCount"
+                      className="position-relative"
                     >
-                      <Form.Label>project_count</Form.Label>
+                      <Form.Label>Project Count</Form.Label>
                       <InputGroup hasValidation>
                         <Form.Control
                           type="number"
@@ -115,103 +154,17 @@ const AddEditcategories = () => {
                           value={values.project_count}
                           onChange={handleChange}
                           isValid={
-                            touched.publication_count &&
-                            !errors.publication_count
+                            touched.project_count && !errors.project_count
                           }
+                          isInvalid={touched.project_count && !!errors.project_count}
                         />
-                        {/* <Form.Control.Feedback type="invalid" tooltip>
+                        <Form.Control.Feedback type="invalid">
                           {errors.project_count}
-                        </Form.Control.Feedback> */}
+                        </Form.Control.Feedback>
                       </InputGroup>
                     </Form.Group>
                   </Row>
-                  {/* <Row className="mb-3">
-                  <Form.Group
-                    as={Col}
-                    md="6"
-                    controlid="validationFormik103"
-                    className="position-relative"
-                  >
-                    <Form.Label>City</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="City"
-                      name="city"
-                      value={values.city}
-                      onChange={handleChange}
-                      isInvalid={!!errors.city}
-                    />
 
-                    <Form.Control.Feedback type="invalid" tooltip>
-                      {errors.city}
-                    </Form.Control.Feedback>
-                  </Form.Group>
-                  <Form.Group
-                    as={Col}
-                    md="3"
-                    controlid="validationFormik104"
-                    className="position-relative"
-                  >
-                    <Form.Label>State</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="State"
-                      name="state"
-                      value={values.state}
-                      onChange={handleChange}
-                      isInvalid={!!errors.state}
-                    />
-                    <Form.Control.Feedback type="invalid" tooltip>
-                      {errors.state}
-                    </Form.Control.Feedback>
-                  </Form.Group>
-                  <Form.Group
-                    as={Col}
-                    md="3"
-                    controlid="validationFormik105"
-                    className="position-relative"
-                  >
-                    <Form.Label>Zip</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Zip"
-                      name="zip"
-                      value={values.zip}
-                      onChange={handleChange}
-                      isInvalid={!!errors.zip}
-                    />
-
-                    <Form.Control.Feedback type="invalid" tooltip>
-                      {errors.zip}
-                    </Form.Control.Feedback>
-                  </Form.Group>
-                </Row>
-                <Form.Group className="position-relative mb-3">
-                  <Form.Label>File</Form.Label>
-                  <Form.Control
-                    type="file"
-                    required
-                    name="file"
-                    onChange={handleChange}
-                    isInvalid={!!errors.file}
-                  />
-                  <Form.Control.Feedback type="invalid" tooltip>
-                    {errors.file}
-                  </Form.Control.Feedback>
-                </Form.Group>
-                <Form.Group className="position-relative mb-3">
-                  <Form.Check
-                    required
-                    name="terms"
-                    label="Agree to terms and conditions"
-                    onChange={handleChange}
-                    isInvalid={!!errors.terms}
-                    feedback={errors.terms}
-                    feedbackType="invalid"
-                    id="validationFormik106"
-                    feedbackTooltip
-                  />
-                </Form.Group> */}
                   <Button type="submit">Save</Button>
                 </Form>
               )}
@@ -219,13 +172,8 @@ const AddEditcategories = () => {
           </div>
         </div>
       </div>
-      {/* <!-- End Row --> */}
     </Fragment>
   );
 };
-
-AddEditcategories.propTypes = {};
-
-AddEditcategories.defaultProps = {};
 
 export default AddEditcategories;

@@ -181,7 +181,7 @@
 
 // export default SignIn;
 
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import {
   Button,
   Col,
@@ -195,16 +195,17 @@ import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../Firebase/firebase";
 import { useDispatch } from "react-redux";
 import { login } from "../features/auth/authSlice";
-import { useCreateUser } from "../Api/Auth/index";
+import { useLoginUser } from "../Api/Auth/index";
 const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { mutate } = useCreateUser();
+  const { mutate, data: DataLoginResponse } = useLoginUser();
+  console.log(DataLoginResponse);
 
   const [err, setError] = useState("");
   const [data, setData] = useState({
-    username: "user", // Change email to username
-    password: "1234567890",
+    username: "ehapsamy", // Change email to username
+    password: "123456789++",
   });
 
   const { username, password } = data;
@@ -218,18 +219,28 @@ const SignIn = () => {
     let path = `${process.env.PUBLIC_URL}/dashboard`;
     navigate(path);
   };
-
   const Login = async (e) => {
     e.preventDefault();
 
     // Use username for login instead of email
-    // dispatch(login({ username }));
+    // dispatch(login({ access: DataLoginResponse?.access }));
+
     let data = {
       username,
       password,
     };
+
     await mutate(data);
+    // routeChange()
   };
+  useEffect(() => {
+    if (DataLoginResponse?.access) {
+      dispatch(login({ access: DataLoginResponse?.access }));
+
+      routeChange()
+    }
+  }, [DataLoginResponse?.access, routeChange])
+
 
   return (
     <Fragment>

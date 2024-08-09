@@ -30,7 +30,7 @@ export const useUsers = () => {
   });
 };
 
-export const useCreateUser = () => {
+export const useLoginUser = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: createUsers,

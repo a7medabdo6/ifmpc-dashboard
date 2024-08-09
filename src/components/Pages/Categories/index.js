@@ -66,48 +66,7 @@ const Categories = () => {
   const { data, error, isLoading } = useCategories();
   console.log(data);
 
-  const TASKS = [
-    {
-      Task: "Evaluating the design",
-      TeamMember1: user1,
 
-      OpenTask: "37",
-      TaskProfit: "High",
-      Profittext: "primary",
-      Status: "Completed",
-      Statustext: "primary",
-    },
-    {
-      Task: "Generate ideas for design",
-      TeamMember1: user1,
-
-      OpenTask: "37",
-      TaskProfit: "Normal",
-      Profittext: "secondary",
-      Status: "pending",
-      Statustext: "warning",
-    },
-    {
-      Task: "Define the problem",
-      TeamMember1: user1,
-
-      OpenTask: "37",
-      TaskProfit: "Low",
-      Profittext: "warning",
-      Status: "Completed",
-      Statustext: "primary",
-    },
-    {
-      Task: "Empathize with users",
-      TeamMember1: user1,
-
-      OpenTask: "37",
-      TaskProfit: "high",
-      Profittext: "primary",
-      Status: "Rejected",
-      Statustext: "danger",
-    },
-  ];
   return (
     <Fragment>
       {/* <!-- Page Header --> */}
@@ -154,7 +113,11 @@ border hover"
                 >
                   <thead>
                     <tr>
-                      <th className="wd-lg-10p">Name</th>
+                      <th className="wd-lg-10p">name</th>
+
+                      <th className="wd-lg-10p">Name_en</th>
+                      <th className="wd-lg-10p">Name_ar</th>
+
                       <th className="wd-lg-20p">project_count</th>
                       <th className="wd-lg-20p ">publication_count</th>
                       <th className="wd-lg-20p">Actions</th>
@@ -167,6 +130,16 @@ border hover"
                           <td className="font-weight-semibold">
                             <div className="d-flex">
                               <span className="mt-1">{item.name}</span>
+                            </div>
+                          </td>
+                          <td className="font-weight-semibold">
+                            <div className="d-flex">
+                              <span className="mt-1">{item.name_en}</span>
+                            </div>
+                          </td>
+                          <td className="font-weight-semibold">
+                            <div className="d-flex">
+                              <span className="mt-1">{item.name_ar}</span>
                             </div>
                           </td>
                           <td className="font-weight-semibold">
@@ -187,7 +160,7 @@ border hover"
                                 type="submit"
                                 onClick={() => {
                                   return (
-                                    setId(item?.id), viewDemoShow("show10"),setItemData(item)
+                                    setId(item?.id), viewDemoShow("show10"), setItemData(item)
                                   );
                                 }}
                               >
@@ -258,7 +231,7 @@ border hover"
                       </Modal.Header>
                       <Modal.Body>
                         <Modal.Title>Edit categorie</Modal.Title>
-                        <Editcategories id={id} itemData={itemData} viewDemoClose={viewDemoClose}/>
+                        <Editcategories id={id} itemData={itemData} viewDemoClose={viewDemoClose} />
                       </Modal.Body>
                       {/* <Modal.Footer>
                         <Button

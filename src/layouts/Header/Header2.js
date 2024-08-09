@@ -3,7 +3,8 @@ import { Dropdown, Container, Form, Nav, Navbar } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../Firebase/firebase";
 import Searchable from "react-searchable-dropdown";
-
+import { useDispatch } from "react-redux";
+import { logout } from "../../features/auth/authSlice";
 // FuScreen-start
 function Fullscreen() {
   if (
@@ -31,6 +32,8 @@ function Fullscreen() {
 }
 // FullScreen-end
 function Header2() {
+  const dispatch = useDispatch();
+
   let navigate = useNavigate();
   const routeChange = () => {
     let path = `${process.env.PUBLIC_URL}/`;
@@ -454,8 +457,11 @@ function Header2() {
                       </Dropdown.Item>
                       <Dropdown.Item
                         onClick={() => {
-                          auth.signOut();
+                          // auth.signOut();
+                          dispatch(logout());
+
                           routeChange();
+
                         }}
                       >
                         <i className="fe fe-power"></i> Sign Out

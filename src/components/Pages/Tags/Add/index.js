@@ -1,12 +1,14 @@
 import React, { Fragment } from "react";
 import { Breadcrumb, Button, Col, Row, Card } from "react-bootstrap";
 import { Formik } from "formik";
-import { Form, InputGroup } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import * as yup from "yup";
 import { useCreateTage } from "../../../../Api/Tags";
 
 const schema = yup.object().shape({
   name: yup.string().required(),
+  name_en: yup.string().required(),
+  name_ar: yup.string().required(),
   post_count: yup.number().required(),
 });
 
@@ -18,12 +20,10 @@ const AddTags = () => {
       {/* <!-- Page Header --> */}
       <div className="page-header">
         <div>
-          <h2 className="main-content-title tx-24 mg-b-5">
-            Create  Tags
-          </h2>
+          <h2 className="main-content-title tx-24 mg-b-5">Create Tags</h2>
           <Breadcrumb>
-            <Breadcrumb.Item href="#"> Pages </Breadcrumb.Item>
-            <Breadcrumb.Item active>Create  Tags</Breadcrumb.Item>
+            <Breadcrumb.Item href="#">Pages</Breadcrumb.Item>
+            <Breadcrumb.Item active>Create Tags</Breadcrumb.Item>
           </Breadcrumb>
         </div>
       </div>
@@ -38,7 +38,9 @@ const AddTags = () => {
               onSubmit={(data) => mutate(data)}
               initialValues={{
                 name: "string",
-                post_count: 2147483647,
+                name_en: "string",
+                name_ar: "string",
+                post_count: 1,
               }}
             >
               {({
@@ -52,7 +54,7 @@ const AddTags = () => {
                   <Row className="mb-3">
                     <Form.Group
                       as={Col}
-                      md="6"
+                      md="4"
                       controlId="validationFormik101"
                       className="position-relative"
                     >
@@ -67,8 +69,40 @@ const AddTags = () => {
                     </Form.Group>
                     <Form.Group
                       as={Col}
-                      md="6"
+                      md="4"
                       controlId="validationFormik102"
+                      className="position-relative"
+                    >
+                      <Form.Label>Name (English)</Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="name_en"
+                        value={values.name_en}
+                        onChange={handleChange}
+                        isValid={touched.name_en && !errors.name_en}
+                      />
+                    </Form.Group>
+                    <Form.Group
+                      as={Col}
+                      md="4"
+                      controlId="validationFormik103"
+                      className="position-relative"
+                    >
+                      <Form.Label>Name (Arabic)</Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="name_ar"
+                        value={values.name_ar}
+                        onChange={handleChange}
+                        isValid={touched.name_ar && !errors.name_ar}
+                      />
+                    </Form.Group>
+                  </Row>
+                  <Row className="mb-3">
+                    <Form.Group
+                      as={Col}
+                      md="6"
+                      controlId="validationFormik104"
                       className="position-relative"
                     >
                       <Form.Label>Post Count</Form.Label>

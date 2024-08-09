@@ -15,7 +15,7 @@ import {
   Modal,
 } from "react-bootstrap";
 import Searchable from "react-searchable-dropdown";
-import Editcategories from "./Edit/index";
+import EditTags from "./Edit/index";
 import CircularProgress from "@mui/material/CircularProgress";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 import DropdownItem from "react-bootstrap/esm/DropdownItem";
@@ -66,7 +66,7 @@ const Tags = () => {
   const { data, error, isLoading } = useTags();
   console.log(data);
 
- 
+
   return (
     <Fragment>
       {/* <!-- Page Header --> */}
@@ -114,8 +114,11 @@ border hover"
                   <thead>
                     <tr>
                       <th className="wd-lg-10p">Name</th>
+                      <th className="wd-lg-10p">Name_en</th>
+                      <th className="wd-lg-10p">Name_ar</th>
+
                       <th className="wd-lg-20p">post_count</th>
-                      {/* <th className="wd-lg-20p">Actions</th> */}
+                      <th className="wd-lg-20p">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -129,17 +132,27 @@ border hover"
                           </td>
                           <td className="font-weight-semibold">
                             <div className="d-flex">
+                              <span className="mt-1">{item.name_en}</span>
+                            </div>
+                          </td>
+                          <td className="font-weight-semibold">
+                            <div className="d-flex">
+                              <span className="mt-1">{item.name_ar}</span>
+                            </div>
+                          </td>
+                          <td className="font-weight-semibold">
+                            <div className="d-flex">
                               <span className="mt-1">{item.post_count}</span>
                             </div>
                           </td>{" "}
-                         
-                          {/* <td className="font-weight-semibold">
+
+                          <td className="font-weight-semibold">
                             <div className="d-flex">
                               <Button
                                 type="submit"
                                 onClick={() => {
                                   return (
-                                    setId(item?.id), viewDemoShow("show10"),setItemData(item)
+                                    setId(item?.id), viewDemoShow("show10"), setItemData(item)
                                   );
                                 }}
                               >
@@ -157,7 +170,7 @@ border hover"
                                 Delete
                               </Button>
                             </div>
-                          </td> */}
+                          </td>
                         </tr>
                       );
                     })}
@@ -210,7 +223,7 @@ border hover"
                       </Modal.Header>
                       <Modal.Body>
                         <Modal.Title>Edit categorie</Modal.Title>
-                        <Editcategories id={id} itemData={itemData} viewDemoClose={viewDemoClose}/>
+                        <EditTags id={id} itemData={itemData} viewDemoClose={viewDemoClose} />
                       </Modal.Body>
                       {/* <Modal.Footer>
                         <Button
