@@ -113,7 +113,7 @@ border hover"
                 >
                   <thead>
                     <tr>
-                      <th className="wd-lg-10p">name</th>
+                      {/* <th className="wd-lg-10p">name</th> */}
 
                       <th className="wd-lg-10p">Name_en</th>
                       <th className="wd-lg-10p">Name_ar</th>
@@ -127,11 +127,11 @@ border hover"
                     {data?.results.map((item, index) => {
                       return (
                         <tr key={index} data-index={index}>
-                          <td className="font-weight-semibold">
+                          {/* <td className="font-weight-semibold">
                             <div className="d-flex">
                               <span className="mt-1">{item.name}</span>
                             </div>
-                          </td>
+                          </td> */}
                           <td className="font-weight-semibold">
                             <div className="d-flex">
                               <span className="mt-1">{item.name_en}</span>
