@@ -19,15 +19,24 @@ export const MENUITEMS = [
         selected: false,
         title: "Categories",
       },
-      {
-        path: `${process.env.PUBLIC_URL}/pages/projects`,
-        type: "link",
-        icon: "ti-list",
+      // {
+      //   path: `${process.env.PUBLIC_URL}/pages/projects`,
+      //   type: "link",
+      //   icon: "ti-list",
 
-        active: false,
-        selected: false,
-        title: "Projects",
-      },
+      //   active: false,
+      //   selected: false,
+      //   title: "Projects",
+      // },
+      // {
+      //   path: `${process.env.PUBLIC_URL}/pages/authors`,
+      //   type: "link",
+      //   icon: "ti-list",
+
+      //   active: false,
+      //   selected: false,
+      //   title: "Authors",
+      // },
       {
         path: `${process.env.PUBLIC_URL}/pages/tages`,
         type: "link",

@@ -16,6 +16,8 @@ import Projects from "./components/Pages/Projects";
 import AddProjects from "./components/Pages/Projects/Add";
 import ProtectedRoute from "./ProtectedRoute";
 import AuthRedirect from "./AuthRedirect"; // Import AuthRedirect
+import Authors from "./components/Pages/Authors";
+import AddAuthors from "./components/Pages/Authors/Add";
 
 // Dashboard
 const Landingpageapp = React.lazy(() => import("./components/Landingpageapp"));
@@ -810,6 +812,14 @@ const Root = () => {
                 <Route
                   path={`${process.env.PUBLIC_URL}/pages/contacts/create`}
                   element={<AddContacts />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/pages/authors`}
+                  element={<Authors />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/pages/authors/create`}
+                  element={<AddAuthors />}
                 />
                 <Route
                   path={`${process.env.PUBLIC_URL}/pages/emptypage`}
