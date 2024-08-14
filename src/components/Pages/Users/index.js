@@ -15,22 +15,25 @@ import {
   Modal,
 } from "react-bootstrap";
 import Searchable from "react-searchable-dropdown";
-import EditeAuthors from "./Edit/index";
+import EditeUsers from "./Edit/index";
 import CircularProgress from "@mui/material/CircularProgress";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 import DropdownItem from "react-bootstrap/esm/DropdownItem";
 import user1 from "../../../assets/img/users/1.jpg";
-import { useAuthors } from "../../../Api/Authors/index";
+import { useUsers } from "../../../Api/User/index";
 import { Link } from "react-router-dom";
-import { useDeleteAuthor, useEditAuthor } from "../../../Api/Authors";
+import { useDeleteUser, useEditUser } from "../../../Api/User";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const Authors = () => {
-  const { mutate } = useDeleteAuthor();
-  const { mutate: mutateEdite } = useEditAuthor();
+import OneUser from './OneUser/index'
+const Users = () => {
+  const { mutate } = useDeleteUser();
+  const { mutate: mutateEdite } = useEditUser();
 
   const [Basic, setShow1] = useState(false);
   const [id, setId] = useState();
+  const [username, setUserName] = useState();
+
   const [itemData, setItemData] = useState();
 
   const handleDelete = () => {
@@ -63,24 +66,24 @@ const Authors = () => {
     }
   };
 
-  const { data, error, isLoading } = useAuthors();
+  const { data, error, isLoading } = useUsers();
 
-console.log(data);
+  console.log(data);
 
   return (
     <Fragment>
       {/* <!-- Page Header --> */}
       <div className="page-header">
         <div>
-          <h2 className="main-content-title tx-24 mg-b-5">Authors Page</h2>
+          <h2 className="main-content-title tx-24 mg-b-5">Users Page</h2>
           <Breadcrumb>
             <Breadcrumb.Item href="#"> Pages </Breadcrumb.Item>
-            <Breadcrumb.Item active>Authors Page</Breadcrumb.Item>
+            <Breadcrumb.Item active>Users Page</Breadcrumb.Item>
           </Breadcrumb>
         </div>
         <div className="d-flex">
           <div className="justify-content-center">
-            <Link to={"/spruha/preview/pages/Authors/create"}>
+            {/* <Link to={"/spruha/preview/pages/Users/create"}>
               <Button
                 variant="primary"
                 type="button"
@@ -88,7 +91,7 @@ console.log(data);
               >
                 <i className="fe fe-plus me-2"></i> Create
               </Button>
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>
@@ -101,7 +104,7 @@ console.log(data);
             <Card.Body>
               <Card.Header className="card-header border-bottom-0 pt-0 ps-0 pe-0 d-flex">
                 <div>
-                  <label className="main-content-label mb-2">Authors</label>
+                  <label className="main-content-label mb-2">Users</label>
                 </div>
               </Card.Header>
               <div className=" tasks">
@@ -113,8 +116,10 @@ border hover"
                 >
                   <thead>
                     <tr>
-                      <th className="wd-lg-10p">name</th>
-                      <th className="wd-lg-20p">image</th>
+                      <th className="wd-lg-10p">username</th>
+                      <th className="wd-lg-20p">name</th>
+                      <th className="wd-lg-20p ">url</th>
+                     
 
                       <th className="wd-lg-20p">Actions</th>
                     </tr>
@@ -125,23 +130,30 @@ border hover"
                         <tr key={index} data-index={index}>
                           <td className="font-weight-semibold">
                             <div className="d-flex">
-                              <span className="mt-1">{item.name}</span>
+                              <span className="mt-1">{item.username}</span>
                             </div>
                           </td>
                           <td className="font-weight-semibold">
                             <div className="d-flex">
-                              <span className="mt-1">{item.image}</span>
+                              <span className="mt-1">{item.name}</span>
                             </div>
                           </td>{" "}
+                          <td className="font-weight-semibold">
+                            <div className="d-flex">
+                              <span className="mt-1">
+                                {item.url}
+                              </span>
+                            </div>
+                          </td>
+                      
+                        
                           <td className="font-weight-semibold">
                             <div className="d-flex">
                               <Button
                                 type="submit"
                                 onClick={() => {
                                   return (
-                                    setId(item?.id),
-                                    viewDemoShow("show10"),
-                                    setItemData(item)
+                                    setId(item?.id), viewDemoShow("show10"), setItemData(item)
                                   );
                                 }}
                               >
@@ -149,14 +161,14 @@ border hover"
                               </Button>
                               <Button
                                 onClick={() => {
-                                  return setId(item?.id), viewDemoShow("Basic");
+                                  return setUserName(item?.username), viewDemoShow("Basic");
                                 }}
                                 type="submit"
                                 style={{ marginInline: "5px" }}
                                 className="mr-1 ml-1"
                                 variant="danger"
                               >
-                                Delete
+                                Info
                               </Button>
                             </div>
                           </td>
@@ -164,7 +176,7 @@ border hover"
                       );
                     })}
 
-                    <Modal show={Basic} size="large">
+                    <Modal show={Basic} size="xl">
                       <Modal.Header
                         closeButton
                         onClick={() => {
@@ -174,12 +186,11 @@ border hover"
                         <h6>Confirm Deletion</h6>
                       </Modal.Header>
                       <Modal.Body>
-                        {/* <h6>Modal Body</h6> */}
-                        Are you sure you want to delete this item?
-                        <br />
+                        <OneUser username={username}/>
+                 
                       </Modal.Body>
                       <Modal.Footer>
-                        <Button
+                        {/* <Button
                           variant="primary"
                           onClick={() => {
                             viewDemoClose("Basic");
@@ -188,7 +199,7 @@ border hover"
                           className="text-center"
                         >
                           Delete
-                        </Button>
+                        </Button> */}
                         <Button
                           variant="danger"
                           onClick={() => {
@@ -212,11 +223,7 @@ border hover"
                       </Modal.Header>
                       <Modal.Body>
                         <Modal.Title>Edit categorie</Modal.Title>
-                        <EditeAuthors
-                          id={id}
-                          itemData={itemData}
-                          viewDemoClose={viewDemoClose}
-                        />
+                        <EditeUsers username={itemData?.username} itemData={itemData} viewDemoClose={viewDemoClose} />
                       </Modal.Body>
                       {/* <Modal.Footer>
                         <Button
@@ -285,8 +292,8 @@ border hover"
   );
 };
 
-Authors.propTypes = {};
+Users.propTypes = {};
 
-Authors.defaultProps = {};
+Users.defaultProps = {};
 
-export default Authors;
+export default Users;

@@ -2,7 +2,13 @@ import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import axiosInstance from "../axiosConfig";
 
 const fetchUsers = async () => {
-  const response = await axiosInstance.get("/users/authors/");
+  const response = await axiosInstance.get("/users/");
+  return response.data;
+};
+const fetchOneUsers = async (username) => {
+  console.log(username);
+
+  const response = await axiosInstance.get(`/users/${username}`);
   return response.data;
 };
 
@@ -18,15 +24,21 @@ export const deleteUsers = async (id) => {
 
 // Edit a data
 export const editUsers = async (data) => {
-  console.log(data);
 
-  const response = await axiosInstance.put(`/users/${data.id}/`, data?.data);
+  const response = await axiosInstance.put(`/users/${data.username}/`, data?.data);
   return response.data;
 };
 export const useUsers = () => {
   return useQuery({
     queryKey: ["users"],
     queryFn: fetchUsers,
+  });
+};
+export const useOneUsers = (username) => {
+  return useQuery({
+    queryKey: ["user", username],
+    queryFn: () => fetchOneUsers(username),
+    enabled: !!username, // Ensure the query doesn't run until a username is provided
   });
 };
 

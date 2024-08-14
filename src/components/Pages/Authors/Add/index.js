@@ -1,16 +1,13 @@
 import React, { Fragment } from "react";
-import { Breadcrumb, Button, Col, Row, Card } from "react-bootstrap";
+import { Breadcrumb, Button, Col, Row } from "react-bootstrap";
 import { Formik } from "formik";
-import { Form, InputGroup } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import * as yup from "yup";
 import { useCreateAuthor } from "../../../../Api/Authors";
 
 const schema = yup.object().shape({
-  first_name: yup.string().required(),
-  last_name: yup.string().required(),
-  email: yup.string().email().required(),
-  phone: yup.string().required(),
-  description: yup.string().required(),
+  name: yup.string().required(),
+  image: yup.mixed().required("An image is required"),
 });
 
 const AddAuthors = () => {
@@ -33,94 +30,66 @@ const AddAuthors = () => {
           <div className="card-body">
             <Formik
               validationSchema={schema}
-              onSubmit={(data) => mutate(data)}
+              onSubmit={(values) => {
+                const formData = new FormData();
+                formData.append("name", values.name);
+                formData.append("image", values.image);
+
+                console.log("FormData values:", values); // للتحقق من القيم
+
+                mutate(formData); // إرسال البيانات باستخدام FormData
+              }}
               initialValues={{
-                first_name: "",
-                last_name: "",
-                email: "user@example.com",
-                phone: "",
-                description: "",
+                name: "",
+                image: null,
               }}
             >
-              {({ handleSubmit, handleChange, values, touched, errors }) => (
+              {({
+                handleSubmit,
+                handleChange,
+                setFieldValue,
+                values,
+                touched,
+                errors,
+              }) => (
                 <Form noValidate onSubmit={handleSubmit}>
                   <Row className="mb-3">
                     <Form.Group
                       as={Col}
-                      md="4"
-                      controlId="validationFormik101"
+                      md="6"
+                      controlId="validationFormikname"
                       className="position-relative"
                     >
-                      <Form.Label>First Name</Form.Label>
+                      <Form.Label>name</Form.Label>
                       <Form.Control
                         type="text"
-                        name="first_name"
-                        value={values.first_name}
+                        name="name"
+                        value={values.name}
                         onChange={handleChange}
-                        isValid={touched.first_name && !errors.first_name}
+                        isValid={touched.name && !errors.name}
                       />
                     </Form.Group>
                     <Form.Group
                       as={Col}
-                      md="4"
-                      controlId="validationFormik102"
+                      md="6"
+                      controlId="validationFormikImage"
                       className="position-relative"
                     >
-                      <Form.Label>Last Name</Form.Label>
+                      <Form.Label>Image</Form.Label>
                       <Form.Control
-                        type="text"
-                        name="last_name"
-                        value={values.last_name}
-                        onChange={handleChange}
-                        isValid={touched.last_name && !errors.last_name}
+                        type="file"
+                        name="image"
+                        onChange={(event) => {
+                          const file = event.currentTarget.files[0];
+                          setFieldValue("image", file);
+                          console.log(file); // طباعة قيمة الصورة في الـ console
+                        }}
+                        isValid={touched.image && !errors.image}
+                        isInvalid={touched.image && !!errors.image}
                       />
-                    </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="4"
-                      controlId="validationFormikEmail"
-                      className="position-relative"
-                    >
-                      <Form.Label>Email</Form.Label>
-                      <Form.Control
-                        type="email"
-                        name="email"
-                        value={values.email}
-                        onChange={handleChange}
-                        isValid={touched.email && !errors.email}
-                      />
-                    </Form.Group>
-                  </Row>
-                  <Row className="mb-3">
-                    <Form.Group
-                      as={Col}
-                      md="4"
-                      controlId="validationFormik103"
-                      className="position-relative"
-                    >
-                      <Form.Label>Phone</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="phone"
-                        value={values.phone}
-                        onChange={handleChange}
-                        isValid={touched.phone && !errors.phone}
-                      />
-                    </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="8"
-                      controlId="validationFormik104"
-                      className="position-relative"
-                    >
-                      <Form.Label>Description</Form.Label>
-                      <Form.Control
-                        as="textarea"
-                        name="description"
-                        value={values.description}
-                        onChange={handleChange}
-                        isValid={touched.description && !errors.description}
-                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.image}
+                      </Form.Control.Feedback>
                     </Form.Group>
                   </Row>
                   <Button type="submit">Save</Button>
@@ -133,9 +102,5 @@ const AddAuthors = () => {
     </Fragment>
   );
 };
-
-AddAuthors.propTypes = {};
-
-AddAuthors.defaultProps = {};
 
 export default AddAuthors;

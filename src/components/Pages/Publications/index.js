@@ -15,19 +15,19 @@ import {
   Modal,
 } from "react-bootstrap";
 import Searchable from "react-searchable-dropdown";
-import EditeAuthors from "./Edit/index";
+import EditePublications from "./Edit/index";
 import CircularProgress from "@mui/material/CircularProgress";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 import DropdownItem from "react-bootstrap/esm/DropdownItem";
 import user1 from "../../../assets/img/users/1.jpg";
-import { useAuthors } from "../../../Api/Authors/index";
+import { usePublications } from "../../../Api/Publications/index";
 import { Link } from "react-router-dom";
-import { useDeleteAuthor, useEditAuthor } from "../../../Api/Authors";
+import { useDeletePublication, useEditPublication } from "../../../Api/Publications";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const Authors = () => {
-  const { mutate } = useDeleteAuthor();
-  const { mutate: mutateEdite } = useEditAuthor();
+const Publications = () => {
+  const { mutate } = useDeletePublication();
+  const { mutate: mutateEdite } = useEditPublication();
 
   const [Basic, setShow1] = useState(false);
   const [id, setId] = useState();
@@ -63,24 +63,24 @@ const Authors = () => {
     }
   };
 
-  const { data, error, isLoading } = useAuthors();
+  const { data, error, isLoading } = usePublications();
 
-console.log(data);
+  console.log(data);
 
   return (
     <Fragment>
       {/* <!-- Page Header --> */}
       <div className="page-header">
         <div>
-          <h2 className="main-content-title tx-24 mg-b-5">Authors Page</h2>
+          <h2 className="main-content-title tx-24 mg-b-5">Publications Page</h2>
           <Breadcrumb>
             <Breadcrumb.Item href="#"> Pages </Breadcrumb.Item>
-            <Breadcrumb.Item active>Authors Page</Breadcrumb.Item>
+            <Breadcrumb.Item active>Publications Page</Breadcrumb.Item>
           </Breadcrumb>
         </div>
         <div className="d-flex">
           <div className="justify-content-center">
-            <Link to={"/spruha/preview/pages/Authors/create"}>
+            <Link to={"/spruha/preview/pages/Publications/create"}>
               <Button
                 variant="primary"
                 type="button"
@@ -101,7 +101,7 @@ console.log(data);
             <Card.Body>
               <Card.Header className="card-header border-bottom-0 pt-0 ps-0 pe-0 d-flex">
                 <div>
-                  <label className="main-content-label mb-2">Authors</label>
+                  <label className="main-content-label mb-2">Publications</label>
                 </div>
               </Card.Header>
               <div className=" tasks">
@@ -113,8 +113,11 @@ border hover"
                 >
                   <thead>
                     <tr>
-                      <th className="wd-lg-10p">name</th>
-                      <th className="wd-lg-20p">image</th>
+                      <th className="wd-lg-10p">first_name</th>
+                      <th className="wd-lg-20p">last_name</th>
+                      <th className="wd-lg-20p ">email</th>
+                      <th className="wd-lg-20p ">phone</th>
+                      <th className="wd-lg-20p ">description</th>
 
                       <th className="wd-lg-20p">Actions</th>
                     </tr>
@@ -125,23 +128,38 @@ border hover"
                         <tr key={index} data-index={index}>
                           <td className="font-weight-semibold">
                             <div className="d-flex">
-                              <span className="mt-1">{item.name}</span>
+                              <span className="mt-1">{item.first_name}</span>
                             </div>
                           </td>
                           <td className="font-weight-semibold">
                             <div className="d-flex">
-                              <span className="mt-1">{item.image}</span>
+                              <span className="mt-1">{item.last_name}</span>
                             </div>
                           </td>{" "}
+                          <td className="font-weight-semibold">
+                            <div className="d-flex">
+                              <span className="mt-1">
+                                {item.email}
+                              </span>
+                            </div>
+                          </td>
+                          <td className="font-weight-semibold">
+                            <div className="d-flex">
+                              <span className="mt-1">{item.phone}</span>
+                            </div>
+                          </td>
+                          <td className="font-weight-semibold">
+                            <div className="d-flex">
+                              <span className="mt-1">{item.description}</span>
+                            </div>
+                          </td>
                           <td className="font-weight-semibold">
                             <div className="d-flex">
                               <Button
                                 type="submit"
                                 onClick={() => {
                                   return (
-                                    setId(item?.id),
-                                    viewDemoShow("show10"),
-                                    setItemData(item)
+                                    setId(item?.id), viewDemoShow("show10"), setItemData(item)
                                   );
                                 }}
                               >
@@ -212,11 +230,7 @@ border hover"
                       </Modal.Header>
                       <Modal.Body>
                         <Modal.Title>Edit categorie</Modal.Title>
-                        <EditeAuthors
-                          id={id}
-                          itemData={itemData}
-                          viewDemoClose={viewDemoClose}
-                        />
+                        <EditePublications id={id} itemData={itemData} viewDemoClose={viewDemoClose} />
                       </Modal.Body>
                       {/* <Modal.Footer>
                         <Button
@@ -285,8 +299,8 @@ border hover"
   );
 };
 
-Authors.propTypes = {};
+Publications.propTypes = {};
 
-Authors.defaultProps = {};
+Publications.defaultProps = {};
 
-export default Authors;
+export default Publications;

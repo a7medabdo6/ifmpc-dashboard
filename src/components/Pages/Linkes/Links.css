@@ -1,0 +1,8 @@
+.avatar-circle {
+    width: 50px;
+    /* Adjust size as needed */
+    height: 50px;
+    /* Adjust size as needed */
+    border-radius: 50%;
+    object-fit: cover;
+}

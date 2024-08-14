@@ -2,12 +2,12 @@ import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import axiosInstance from "../axiosConfig";
 
 const fetchAuthors = async () => {
-  const response = await axiosInstance.get("/authors");
+  const response = await axiosInstance.get("/users/authors");
   return response.data;
 };
 
 export const createAuthors = async (data) => {
-  const response = await axiosInstance.post("/authors/", data);
+  const response = await axiosInstance.post("/users/authors/", data);
   return response.data;
 };
 
@@ -20,7 +20,7 @@ export const deleteAuthors = async (id) => {
 export const editAuthors = async (data) => {
   console.log(data);
 
-  const response = await axiosInstance.put(`/authors/${data.id}/`, data?.data);
+  const response = await axiosInstance.put(`/users/authors/${data.id}/`, data?.data);
   return response.data;
 };
 export const useAuthors = () => {

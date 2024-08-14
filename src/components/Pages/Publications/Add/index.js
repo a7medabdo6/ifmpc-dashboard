@@ -1,11 +1,10 @@
 import React, { Fragment } from "react";
 import { Breadcrumb, Button, Col, Row, Card } from "react-bootstrap";
-import { Formik, FieldArray } from "formik";
+import { Formik } from "formik";
 import { Form } from "react-bootstrap";
 import * as yup from "yup";
-import { useCreateProject } from "../../../../Api/Projects";
+import { useCreatePublication } from "../../../../Api/Publications";
 import Select from "react-select";
-import makeAnimated from "react-select/animated";
 import { useTags } from "../../../../Api/Tags";
 import { useUsers } from "../../../../Api/User";
 import { useCategories } from "../../../../Api/Categories/index";
@@ -32,28 +31,10 @@ const schema = yup.object().shape({
       url: yup.string().url().required(),
     })
   ),
-  images: yup.array().of(
-    yup.object().shape({
-      image: yup.mixed().required(),
-      project: yup.number().required(),
-    })
-  ),
 });
 
-const authors = [
-  { value: 1, label: "Author 1" },
-  { value: 2, label: "Author 2" },
-  { value: 3, label: "Author 3" },
-];
-
-const projectOptions = [
-  { value: 1, label: "Project 1" },
-  { value: 2, label: "Project 2" },
-  { value: 3, label: "Project 3" },
-];
-
-const AddProjects = () => {
-  const { mutate, isLoading, error } = useCreateProject();
+const AddPublications = () => {
+  const { mutate, isLoading, error } = useCreatePublication();
   const { data } = useTags();
   const { data: AuthorData } = useUsers();
   const { data: dataOfCategory } = useCategories();
@@ -88,10 +69,10 @@ const AddProjects = () => {
     <Fragment>
       <div className="page-header">
         <div>
-          <h2 className="main-content-title tx-24 mg-b-5">Create Project</h2>
+          <h2 className="main-content-title tx-24 mg-b-5">Create Publication</h2>
           <Breadcrumb>
             <Breadcrumb.Item href="#">Pages</Breadcrumb.Item>
-            <Breadcrumb.Item active>Create Project</Breadcrumb.Item>
+            <Breadcrumb.Item active>Create Publication</Breadcrumb.Item>
           </Breadcrumb>
         </div>
       </div>
@@ -103,8 +84,8 @@ const AddProjects = () => {
               validationSchema={schema}
               onSubmit={(values) => handleSubmit(values)} // تصحيح استدعاء onSubmit
               initialValues={{
-                name: "Default Project Name",
-                name_en: "Default Project Name (English)",
+                name: "Default Publication Name",
+                name_en: "Default Publication Name (English)",
                 name_ar: "اسم المشروع الافتراضي",
                 content: "Default content",
                 content_en: "Default content (English)",
@@ -115,7 +96,6 @@ const AddProjects = () => {
                 author: authorsData?.results.length > 0 ? [authorsData.results[0].id] : [],
                 tags: tagOptions.length > 0 ? [tagOptions[0].value] : [],
                 references: [{ name: "Default Reference", url: "http://default.url" }],
-                images: [{ image: null, project: projectOptions.length > 0 ? projectOptions[0].value : null }],
               }}
             >
               {({
@@ -321,110 +301,30 @@ const AddProjects = () => {
                         isValid={touched.tags && !errors.tags}
                       />
                     </Form.Group>
+                    <Form.Group
+                      as={Col}
+                      md="6"
+                      controlId="validationFormikReferences"
+                    >
+                      <Form.Label>References</Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="references[0].name"
+                        value={values.references[0]?.name || ''}
+                        onChange={handleChange}
+                        isValid={touched.references && !errors.references}
+                      />
+                      <Form.Control
+                        type="url"
+                        name="references[0].url"
+                        value={values.references[0]?.url || ''}
+                        onChange={handleChange}
+                        isValid={touched.references && !errors.references}
+                      />
+                    </Form.Group>
                   </Row>
-                  <FieldArray name="references">
-                    {({ push, remove }) => (
-                      <div>
-                        <h5>References</h5>
-                        {values.references.map((reference, index) => (
-                          <Row key={index}>
-                            <Form.Group as={Col} md="5">
-                              <Form.Label>Reference Name</Form.Label>
-                              <Form.Control
-                                type="text"
-                                name={`references.${index}.name`}
-                                value={reference.name}
-                                onChange={handleChange}
-                              />
-                            </Form.Group>
-                            <Form.Group as={Col} md="5">
-                              <Form.Label>Reference URL</Form.Label>
-                              <Form.Control
-                                type="text"
-                                name={`references.${index}.url`}
-                                value={reference.url}
-                                onChange={handleChange}
-                              />
-                            </Form.Group>
-                            <Col md="2">
-                              <Button
-                                variant="danger"
-                                onClick={() => remove(index)}
-                              >
-                                Remove
-                              </Button>
-                            </Col>
-                          </Row>
-                        ))}
-                        <Button
-                          variant="primary"
-                          onClick={() =>
-                            push({ name: "", url: "" })
-                          }
-                        >
-                          Add Reference
-                        </Button>
-                      </div>
-                    )}
-                  </FieldArray>
-                  <FieldArray name="images">
-                    {({ push, remove }) => (
-                      <div>
-                        <h5>Images</h5>
-                        {values.images.map((image, index) => (
-                          <Row key={index}>
-                            <Form.Group as={Col} md="5">
-                              <Form.Label>Image File</Form.Label>
-                              <Form.Control
-                                type="file"
-                                name={`images.${index}.image`}
-                                onChange={(event) =>
-                                  setFieldValue(
-                                    `images.${index}.image`,
-                                    event.currentTarget.files[0]
-                                  )
-                                }
-                              />
-                            </Form.Group>
-                            <Form.Group as={Col} md="5">
-                              <Form.Label>Project</Form.Label>
-                              <Select
-                                name={`images.${index}.project`}
-                                options={projectOptions}
-                                value={projectOptions.find(
-                                  (option) => option.value === image.project
-                                )}
-                                onChange={(option) =>
-                                  setFieldValue(
-                                    `images.${index}.project`,
-                                    option?.value
-                                  )
-                                }
-                              />
-                            </Form.Group>
-                            <Col md="2">
-                              <Button
-                                variant="danger"
-                                onClick={() => remove(index)}
-                              >
-                                Remove
-                              </Button>
-                            </Col>
-                          </Row>
-                        ))}
-                        <Button
-                          variant="primary"
-                          onClick={() =>
-                            push({ image: null, project: projectOptions[0].value })
-                          }
-                        >
-                          Add Image
-                        </Button>
-                      </div>
-                    )}
-                  </FieldArray>
-                  <Button type="submit" variant="primary">
-                    {isLoading ? "Submitting..." : "Submit"}
+                  <Button type="submit" disabled={isLoading}>
+                    Submit
                   </Button>
                 </Form>
               )}
@@ -436,4 +336,4 @@ const AddProjects = () => {
   );
 };
 
-export default AddProjects;
+export default AddPublications;

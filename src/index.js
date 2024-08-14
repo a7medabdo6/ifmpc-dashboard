@@ -18,6 +18,15 @@ import ProtectedRoute from "./ProtectedRoute";
 import AuthRedirect from "./AuthRedirect"; // Import AuthRedirect
 import Authors from "./components/Pages/Authors";
 import AddAuthors from "./components/Pages/Authors/Add";
+import Publications from "./components/Pages/Publications";
+import AddPublications from "./components/Pages/Publications/Add";
+import OurPartners from "./components/Pages/OurPartners";
+import AddOurPartners from "./components/Pages/OurPartners/Add";
+import AddLinks from "./components/Pages/Linkes/Add";
+import Links from "./components/Pages/Linkes";
+import ContactUs from "./components/Pages/ContactUs";
+import AddContactUs from "./components/Pages/ContactUs/Add";
+import Users from "./components/Pages/Users";
 
 // Dashboard
 const Landingpageapp = React.lazy(() => import("./components/Landingpageapp"));
@@ -806,12 +815,49 @@ const Root = () => {
                   element={<Contacts />}
                 />
                 <Route
+                  path={`${process.env.PUBLIC_URL}/pages/ourpartners`}
+                  element={<OurPartners />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/pages/linkes`}
+                  element={<Links />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/pages/contactus`}
+                  element={<ContactUs />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/pages/users`}
+                  element={<Users />}
+                />
+                <Route
                   path={`${process.env.PUBLIC_URL}/pages/projects`}
                   element={<Projects />}
                 />
                 <Route
+                  path={`${process.env.PUBLIC_URL}/pages/publications`}
+                  element={<Publications />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/pages/ourpartners/create`}
+                  element={<AddOurPartners />}
+                />
+                
+                <Route
+                  path={`${process.env.PUBLIC_URL}/pages/links/create`}
+                  element={<AddLinks />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/pages/contactus/create`}
+                  element={<AddContactUs />}
+                />
+                <Route
                   path={`${process.env.PUBLIC_URL}/pages/contacts/create`}
                   element={<AddContacts />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/pages/publications/create`}
+                  element={<AddPublications />}
                 />
                 <Route
                   path={`${process.env.PUBLIC_URL}/pages/authors`}

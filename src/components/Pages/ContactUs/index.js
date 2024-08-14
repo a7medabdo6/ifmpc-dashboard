@@ -15,19 +15,19 @@ import {
   Modal,
 } from "react-bootstrap";
 import Searchable from "react-searchable-dropdown";
-import EditeAuthors from "./Edit/index";
+import EditeContactUs from "./Edit/index";
 import CircularProgress from "@mui/material/CircularProgress";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 import DropdownItem from "react-bootstrap/esm/DropdownItem";
 import user1 from "../../../assets/img/users/1.jpg";
-import { useAuthors } from "../../../Api/Authors/index";
+import { useContactUs } from "../../../Api/ContactUs/index";
 import { Link } from "react-router-dom";
-import { useDeleteAuthor, useEditAuthor } from "../../../Api/Authors";
+import { useDeleteContactUs, useEditContactUs } from "../../../Api/ContactUs";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const Authors = () => {
-  const { mutate } = useDeleteAuthor();
-  const { mutate: mutateEdite } = useEditAuthor();
+const ContactUs = () => {
+  const { mutate } = useDeleteContactUs();
+  const { mutate: mutateEdite } = useEditContactUs();
 
   const [Basic, setShow1] = useState(false);
   const [id, setId] = useState();
@@ -63,24 +63,24 @@ const Authors = () => {
     }
   };
 
-  const { data, error, isLoading } = useAuthors();
+  const { data, error, isLoading } = useContactUs();
 
-console.log(data);
+  console.log(data);
 
   return (
     <Fragment>
       {/* <!-- Page Header --> */}
       <div className="page-header">
         <div>
-          <h2 className="main-content-title tx-24 mg-b-5">Authors Page</h2>
+          <h2 className="main-content-title tx-24 mg-b-5">ContactUs Page</h2>
           <Breadcrumb>
             <Breadcrumb.Item href="#"> Pages </Breadcrumb.Item>
-            <Breadcrumb.Item active>Authors Page</Breadcrumb.Item>
+            <Breadcrumb.Item active>ContactUs Page</Breadcrumb.Item>
           </Breadcrumb>
         </div>
         <div className="d-flex">
           <div className="justify-content-center">
-            <Link to={"/spruha/preview/pages/Authors/create"}>
+            <Link to={"/spruha/preview/pages/ContactUs/create"}>
               <Button
                 variant="primary"
                 type="button"
@@ -101,7 +101,7 @@ console.log(data);
             <Card.Body>
               <Card.Header className="card-header border-bottom-0 pt-0 ps-0 pe-0 d-flex">
                 <div>
-                  <label className="main-content-label mb-2">Authors</label>
+                  <label className="main-content-label mb-2">ContactUs</label>
                 </div>
               </Card.Header>
               <div className=" tasks">
@@ -113,35 +113,76 @@ border hover"
                 >
                   <thead>
                     <tr>
-                      <th className="wd-lg-10p">name</th>
-                      <th className="wd-lg-20p">image</th>
+                      <th className="wd-lg-10p">location</th>
+                      <th className="wd-lg-20p">location_en</th>
+                      <th className="wd-lg-20p ">location_ar</th>
+                      <th className="wd-lg-20p ">phone</th>
+                      <th className="wd-lg-20p ">email</th>
+                      <th className="wd-lg-20p ">map_link</th>
+                      <th className="wd-lg-20p ">latitude</th>
+                      <th className="wd-lg-20p ">longitude</th>
 
                       <th className="wd-lg-20p">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
                     {data?.results.map((item, index) => {
+                      const truncateText = (text, length) => {
+                        return text.length > length ? text.substring(0, length) + '...' : text;
+                      };
                       return (
                         <tr key={index} data-index={index}>
                           <td className="font-weight-semibold">
                             <div className="d-flex">
-                              <span className="mt-1">{item.name}</span>
+                              <span className="mt-1">{item.location}</span>
                             </div>
                           </td>
                           <td className="font-weight-semibold">
                             <div className="d-flex">
-                              <span className="mt-1">{item.image}</span>
+                              <span className="mt-1">{item.location_en}</span>
                             </div>
                           </td>{" "}
+                          <td className="font-weight-semibold">
+                            <div className="d-flex">
+                              <span className="mt-1">
+                                {item.location_ar}
+                              </span>
+                            </div>
+                          </td>
+                          <td className="font-weight-semibold">
+                            <div className="d-flex">
+                              <span className="mt-1">{item.phone}</span>
+                            </div>
+                          </td>
+                          <td className="font-weight-semibold">
+                            <div className="d-flex">
+                              <span className="mt-1">{item.email}</span>
+                            </div>
+                          </td>
+                      
+                          <td className="font-weight-semibold">
+                            <div className="d-flex">
+                              <span className="mt-1">{truncateText(item.map_link, 35)}</span>
+                            </div>
+                          </td>
+                          <td className="font-weight-semibold">
+                            <div className="d-flex">
+                              <span className="mt-1">{item.latitude}</span>
+                            </div>
+                          </td>
+                          <td className="font-weight-semibold">
+                            <div className="d-flex">
+                              <span className="mt-1">{item.longitude}</span>
+                            </div>
+                          </td>
+
                           <td className="font-weight-semibold">
                             <div className="d-flex">
                               <Button
                                 type="submit"
                                 onClick={() => {
                                   return (
-                                    setId(item?.id),
-                                    viewDemoShow("show10"),
-                                    setItemData(item)
+                                    setId(item?.id), viewDemoShow("show10"), setItemData(item)
                                   );
                                 }}
                               >
@@ -212,11 +253,7 @@ border hover"
                       </Modal.Header>
                       <Modal.Body>
                         <Modal.Title>Edit categorie</Modal.Title>
-                        <EditeAuthors
-                          id={id}
-                          itemData={itemData}
-                          viewDemoClose={viewDemoClose}
-                        />
+                        <EditeContactUs id={id} itemData={itemData} viewDemoClose={viewDemoClose} />
                       </Modal.Body>
                       {/* <Modal.Footer>
                         <Button
@@ -285,8 +322,8 @@ border hover"
   );
 };
 
-Authors.propTypes = {};
+ContactUs.propTypes = {};
 
-Authors.defaultProps = {};
+ContactUs.defaultProps = {};
 
-export default Authors;
+export default ContactUs;

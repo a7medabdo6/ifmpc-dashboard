@@ -3,18 +3,18 @@ import { Breadcrumb, Button, Col, Row, Card } from "react-bootstrap";
 import { Formik } from "formik";
 import { Form } from "react-bootstrap";
 import * as yup from "yup";
-import { useEditAuthor } from "../../../../Api/Authors";
+import { useEditUser } from "../../../../Api/User";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const schema = yup.object().shape({
-  name: yup.string().required("Name is required"),
-  image: yup.mixed().required("An image is required"),
+  username: yup.string().required(),
+  name: yup.string().required(),
+  url: yup.string().required(), // Updated validation schema for URL as a string
 });
 
-const EditeAuthors = ({ id, itemData, viewDemoClose }) => {
-  const { mutate, data } = useEditAuthor();
-  console.log(data);
+const EditeUsers = ({ username, itemData, viewDemoClose }) => {
+  const { mutate, data } = useEditUser();
 
   useEffect(() => {
     if (data !== undefined) {
@@ -29,22 +29,23 @@ const EditeAuthors = ({ id, itemData, viewDemoClose }) => {
           <div className="card-body">
             <Formik
               validationSchema={schema}
-              onSubmit={(values) => {
-                const formData = new FormData();
-                formData.append("name", values.name);
-                formData.append("image", values.image);
-
-                mutate({ data: formData, id });
-              }}
+              onSubmit={(data) =>
+                mutate(
+                  (data = {
+                    data,
+                    username,
+                  })
+                )
+              }
               initialValues={{
-                name: itemData?.name || "",
-                image: itemData?.image || null,
+                username: itemData?.username,
+                name: itemData?.name,
+                url: itemData?.url, // Set initial value for URL as an empty string
               }}
             >
               {({
                 handleSubmit,
                 handleChange,
-                setFieldValue,
                 values,
                 touched,
                 errors,
@@ -53,8 +54,23 @@ const EditeAuthors = ({ id, itemData, viewDemoClose }) => {
                   <Row className="mb-3">
                     <Form.Group
                       as={Col}
-                      md="6"
-                      controlId="validationFormikName"
+                      md="4"
+                      controlId="validationFormik101"
+                      className="position-relative"
+                    >
+                      <Form.Label>Username</Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="username"
+                        value={values.username}
+                        onChange={handleChange}
+                        isValid={touched.username && !errors.username}
+                      />
+                    </Form.Group>
+                    <Form.Group
+                      as={Col}
+                      md="4"
+                      controlId="validationFormik102"
                       className="position-relative"
                     >
                       <Form.Label>Name</Form.Label>
@@ -64,33 +80,22 @@ const EditeAuthors = ({ id, itemData, viewDemoClose }) => {
                         value={values.name}
                         onChange={handleChange}
                         isValid={touched.name && !errors.name}
-                        isInvalid={touched.name && !!errors.name}
                       />
-                      <Form.Control.Feedback type="invalid">
-                        {errors.name}
-                      </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group
                       as={Col}
-                      md="6"
-                      controlId="validationFormikImage"
+                      md="4"
+                      controlId="validationFormikUrl"
                       className="position-relative"
                     >
-                      <Form.Label>Image</Form.Label>
+                      <Form.Label>URL</Form.Label>
                       <Form.Control
-                        type="file"
-                        name="image"
-                        onChange={(event) => {
-                          const file = event.currentTarget.files[0];
-                          setFieldValue("image", file);
-                          console.log(file); // Print image details to the console
-                        }}
-                        isValid={touched.image && !errors.image}
-                        isInvalid={touched.image && !!errors.image}
+                        type="text" // Changed input type to text
+                        name="url"
+                        value={values.url}
+                        onChange={handleChange}
+                        isValid={touched.url && !errors.url}
                       />
-                      <Form.Control.Feedback type="invalid">
-                        {errors.image}
-                      </Form.Control.Feedback>
                     </Form.Group>
                   </Row>
                   <div className="d-flex flex-row-reverse">
@@ -114,8 +119,4 @@ const EditeAuthors = ({ id, itemData, viewDemoClose }) => {
   );
 };
 
-EditeAuthors.propTypes = {};
-
-EditeAuthors.defaultProps = {};
-
-export default EditeAuthors;
+export default EditeUsers;
