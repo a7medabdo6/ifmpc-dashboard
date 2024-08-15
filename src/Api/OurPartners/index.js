@@ -17,6 +17,7 @@ export const deleteOurPartners = async (id) => {
 };
 
 // Edit a data
+
 export const editOurPartners = async (data) => {
   console.log(data);
 
@@ -26,6 +27,7 @@ export const editOurPartners = async (data) => {
   );
   return response.data;
 };
+
 export const useOurPartners = () => {
   return useQuery({
     queryKey: ["OurPartners"],

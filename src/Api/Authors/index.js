@@ -13,14 +13,17 @@ export const createAuthors = async (data) => {
 
 // Delete a Authors
 export const deleteAuthors = async (id) => {
-  await axiosInstance.delete(`/authors/${id}`);
+  await axiosInstance.delete(`/users/authors/${id}`);
 };
 
 // Edit a data
 export const editAuthors = async (data) => {
   console.log(data);
 
-  const response = await axiosInstance.put(`/users/authors/${data.id}/`, data?.data);
+  const response = await axiosInstance.put(
+    `/users/authors/${data.id}/`,
+    data?.data
+  );
   return response.data;
 };
 export const useAuthors = () => {

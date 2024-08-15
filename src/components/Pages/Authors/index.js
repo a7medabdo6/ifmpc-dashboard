@@ -1,30 +1,24 @@
 /* eslint-disable default-case */
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useState } from "react";
 import {
   Breadcrumb,
   BreadcrumbItem,
-  Dropdown,
-  ProgressBar,
-  Alert,
-  Row,
-  Col,
-  Table,
-  Card,
-  Container,
   Button,
+  Card,
+  Col,
+  Container,
   Modal,
+  Row,
+  Table,
+  Image,
 } from "react-bootstrap";
-import Searchable from "react-searchable-dropdown";
 import EditeAuthors from "./Edit/index";
-import CircularProgress from "@mui/material/CircularProgress";
-import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
-import DropdownItem from "react-bootstrap/esm/DropdownItem";
-import user1 from "../../../assets/img/users/1.jpg";
 import { useAuthors } from "../../../Api/Authors/index";
 import { Link } from "react-router-dom";
 import { useDeleteAuthor, useEditAuthor } from "../../../Api/Authors";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 const Authors = () => {
   const { mutate } = useDeleteAuthor();
   const { mutate: mutateEdite } = useEditAuthor();
@@ -37,14 +31,14 @@ const Authors = () => {
     mutate(id);
     toast.success("This item has been successfully deleted.");
   };
+
   const [show10, setShow10] = useState(false);
+
   let viewDemoShow = (modal) => {
-    //  [eslint]
     switch (modal) {
       case "Basic":
         setShow1(true);
         break;
-
       case "show10":
         setShow10(true);
         break;
@@ -56,7 +50,6 @@ const Authors = () => {
       case "Basic":
         setShow1(false);
         break;
-
       case "show10":
         setShow10(false);
         break;
@@ -65,7 +58,7 @@ const Authors = () => {
 
   const { data, error, isLoading } = useAuthors();
 
-console.log(data);
+  console.log(data);
 
   return (
     <Fragment>
@@ -95,7 +88,7 @@ console.log(data);
       {/* <!-- End Page Header --> */}
 
       {/* <!-- Row --> */}
-      <Row className=" sidemenu-height">
+      <Row className="sidemenu-height">
         <Col lg={12}>
           <Card className="custom-card mg-b-20">
             <Card.Body>
@@ -104,65 +97,64 @@ console.log(data);
                   <label className="main-content-label mb-2">Authors</label>
                 </div>
               </Card.Header>
-              <div className=" tasks">
+              <div className="tasks">
                 <Table
                   responsive
                   hover
-                  className="card-table table-vcenter text-nowrap mb-0
-border hover"
+                  className="card-table table-vcenter text-nowrap mb-0 border hover"
                 >
                   <thead>
                     <tr>
-                      <th className="wd-lg-10p">name</th>
-                      <th className="wd-lg-20p">image</th>
-
+                      <th className="wd-lg-10p">Name</th>
+                      <th className="wd-lg-20p">Image</th>
                       <th className="wd-lg-20p">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {data?.results.map((item, index) => {
-                      return (
-                        <tr key={index} data-index={index}>
-                          <td className="font-weight-semibold">
-                            <div className="d-flex">
-                              <span className="mt-1">{item.name}</span>
-                            </div>
-                          </td>
-                          <td className="font-weight-semibold">
-                            <div className="d-flex">
-                              <span className="mt-1">{item.image}</span>
-                            </div>
-                          </td>{" "}
-                          <td className="font-weight-semibold">
-                            <div className="d-flex">
-                              <Button
-                                type="submit"
-                                onClick={() => {
-                                  return (
-                                    setId(item?.id),
-                                    viewDemoShow("show10"),
-                                    setItemData(item)
-                                  );
-                                }}
-                              >
-                                Edit
-                              </Button>
-                              <Button
-                                onClick={() => {
-                                  return setId(item?.id), viewDemoShow("Basic");
-                                }}
-                                type="submit"
-                                style={{ marginInline: "5px" }}
-                                className="mr-1 ml-1"
-                                variant="danger"
-                              >
-                                Delete
-                              </Button>
-                            </div>
-                          </td>
-                        </tr>
-                      );
-                    })}
+                    {data?.results.map((item, index) => (
+                      <tr key={index} data-index={index}>
+                        <td className="font-weight-semibold">
+                          <div className="d-flex">
+                            <span className="mt-1">{item.name}</span>
+                          </div>
+                        </td>
+                        <td className="font-weight-semibold">
+                          <div className="d-flex">
+                            <Image
+                              src={item.image}
+                              roundedCircle
+                              style={{ width: "40px", height: "40px" }}
+                            />
+                          </div>
+                        </td>
+                        <td className="font-weight-semibold">
+                          <div className="d-flex">
+                            <Button
+                              type="submit"
+                              onClick={() => {
+                                setId(item?.id);
+                                viewDemoShow("show10");
+                                setItemData(item);
+                              }}
+                            >
+                              Edit
+                            </Button>
+                            <Button
+                              onClick={() => {
+                                setId(item?.id);
+                                viewDemoShow("Basic");
+                              }}
+                              type="submit"
+                              style={{ marginInline: "5px" }}
+                              className="mr-1 ml-1"
+                              variant="danger"
+                            >
+                              Delete
+                            </Button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
 
                     <Modal show={Basic} size="large">
                       <Modal.Header
@@ -174,7 +166,6 @@ border hover"
                         <h6>Confirm Deletion</h6>
                       </Modal.Header>
                       <Modal.Body>
-                        {/* <h6>Modal Body</h6> */}
                         Are you sure you want to delete this item?
                         <br />
                       </Modal.Body>
@@ -211,66 +202,14 @@ border hover"
                         <Modal.Title>Confirm Editing</Modal.Title>
                       </Modal.Header>
                       <Modal.Body>
-                        <Modal.Title>Edit categorie</Modal.Title>
+                        <Modal.Title>Edit Author</Modal.Title>
                         <EditeAuthors
                           id={id}
                           itemData={itemData}
                           viewDemoClose={viewDemoClose}
                         />
                       </Modal.Body>
-                      {/* <Modal.Footer>
-                        <Button
-                          variant="primary"
-                          onClick={() => viewDemoClose("show10")}
-                        >
-                          Save Changes
-                        </Button>
-                        <Button
-                          variant="secondary"
-                          onClick={() => viewDemoClose("show10")}
-                        >
-                          Close
-                        </Button>
-                      </Modal.Footer> */}
                     </Modal>
-
-                    {/* {TASKS.map((items, index) => (
-                      <tr key={index} data-index={index}>
-                        <td className="font-weight-semibold">
-                          <div className="d-flex">
-                            <label className="ckbox my-auto me-4">
-                              <input readOnly="" type="checkbox" />
-                              <span></span>
-                            </label>
-                            <span className="mt-1">{items.Task}</span>
-                          </div>
-                        </td>
-                        <td className="text-nowrap">
-                          <div className="demo-avatar-group my-auto float-start">
-                            <div className="main-img-user avatar-sm">
-                              <img
-                                alt="avatar"
-                                className="rounded-circle"
-                                src={items.TeamMember1}
-                              />
-                            </div>
-                          </div>
-                        </td>
-                        <td className="text-center">
-                          37<i className=""></i>
-                        </td>
-                        <td className={`text-${items.Profittext}`}>
-                          {items.TaskProfit}
-                        </td>
-                        <td>
-                          <span
-                            className={`badge bg-pill bg-${items.Statustext}-light`}
-                          >
-                            {items.Status}
-                          </span>
-                        </td>
-                      </tr>
-                    ))} */}
                   </tbody>
                 </Table>
               </div>
@@ -278,9 +217,7 @@ border hover"
           </Card>
         </Col>
       </Row>
-      {/* <button onClick={notify}>Notify!</button> */}
       <ToastContainer />
-      {/* <!-- End Row --> */}
     </Fragment>
   );
 };

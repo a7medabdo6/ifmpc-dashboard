@@ -1,56 +1,51 @@
 import React, { Fragment } from "react";
-import { Breadcrumb, Button, Col, Row, Card } from "react-bootstrap";
+import { Breadcrumb, Button, Col, Row } from "react-bootstrap";
 import { Formik, FieldArray } from "formik";
 import { Form } from "react-bootstrap";
 import * as yup from "yup";
 import { useCreateProject } from "../../../../Api/Projects";
 import Select from "react-select";
-import makeAnimated from "react-select/animated";
 import { useTags } from "../../../../Api/Tags";
 import { useUsers } from "../../../../Api/User";
 import { useCategories } from "../../../../Api/Categories/index";
 import { useAuthors } from "../../../../Api/Authors/index";
-import ReactQuill from 'react-quill'; // Import ReactQuill
-import 'react-quill/dist/quill.snow.css'; // Import Quill styles
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
-// Define validation schema using yup
+// Validation schema
 const schema = yup.object().shape({
-  name: yup.string().required(),
-  name_en: yup.string().required(),
-  name_ar: yup.string().required(),
-  content: yup.string().required(),
-  content_en: yup.string().required(),
-  content_ar: yup.string().required(),
-  image: yup.mixed().required(),
-  popularity_count: yup.number().integer().required(),
-  category: yup.number().required(),
-  author: yup.array().of(yup.number()).required(),
-  tags: yup.array().of(yup.number()).required(),
+  name: yup.string().required("Name is required"),
+  name_en: yup.string().required("English name is required"),
+  name_ar: yup.string().required("Arabic name is required"),
+  content: yup.string().required("Content is required"),
+  content_en: yup.string().required("English content is required"),
+  content_ar: yup.string().required("Arabic content is required"),
+  image: yup.mixed().required("Image is required"),
+  popularity_count: yup
+    .number()
+    .integer()
+    .required("Popularity count is required"),
+  category: yup.number().required("Category is required"),
+  author: yup
+    .array()
+    .of(yup.number())
+    .required("At least one author is required"),
+  tags: yup.array().of(yup.number()).required("At least one tag is required"),
   references: yup.array().of(
     yup.object().shape({
-      name: yup.string().required(),
-      url: yup.string().url().required(),
+      name: yup.string().required("Reference name is required"),
+      url: yup
+        .string()
+        .url("Invalid URL")
+        .required("Reference URL is required"),
     })
   ),
   images: yup.array().of(
     yup.object().shape({
-      image: yup.mixed().required(),
-      project: yup.number().required(),
+      image: yup.mixed().required("Image is required"),
     })
   ),
 });
-
-const authors = [
-  { value: 1, label: "Author 1" },
-  { value: 2, label: "Author 2" },
-  { value: 3, label: "Author 3" },
-];
-
-const projectOptions = [
-  { value: 1, label: "Project 1" },
-  { value: 2, label: "Project 2" },
-  { value: 3, label: "Project 3" },
-];
 
 const AddProjects = () => {
   const { mutate, isLoading, error } = useCreateProject();
@@ -59,28 +54,48 @@ const AddProjects = () => {
   const { data: dataOfCategory } = useCategories();
   const { data: authorsData } = useAuthors();
 
-  // Convert tags data to options for Select
   const tagOptions =
     data?.results.map((tag) => ({ value: tag.id, label: tag.name })) || [];
-
-  // Convert categories data to options for Select
   const categoryOptions =
     dataOfCategory?.results.map((category) => ({
       value: category.id,
       label: category.name,
     })) || [];
-
   const AuthorsOptions =
     authorsData?.results.map((AUTH) => ({
       label: AUTH.name,
-      value: AUTH.id
+      value: AUTH.id,
     })) || [];
 
-  const handleSubmit = (data) => {
-    console.log('Submitting data:', data); // للتحقق من البيانات
-    mutate(data, {
-      onSuccess: () => console.log('Data submitted successfully'),
-      onError: (error) => console.log('Error submitting data:', error),
+  const handleSubmit = (values) => {
+    const formData = new FormData();
+    formData.append("name", values.name);
+    formData.append("name_en", values.name_en);
+    formData.append("name_ar", values.name_ar);
+    formData.append("content", values.content);
+    formData.append("content_en", values.content_en);
+    formData.append("content_ar", values.content_ar);
+    formData.append("image", values.image); // Upload file
+    formData.append("popularity_count", values.popularity_count);
+    formData.append("category", values.category);
+
+    values.author.forEach((author) => formData.append("author[]", author));
+    values.tags.forEach((tag) => formData.append("tags[]", tag));
+
+    values.references.forEach((reference, index) => {
+      formData.append(`references.${index}.name`, reference.name);
+      formData.append(`references[${index}][url]`, reference.url);
+    });
+
+    values.images.forEach((imageObj, index) => {
+      if (imageObj.image) {
+        formData.append(`images.${index}.image`, imageObj.image); // Upload files
+      }
+    });
+
+    mutate(formData, {
+      onSuccess: () => console.log("Data submitted successfully"),
+      onError: (error) => console.log("Error submitting data:", error),
     });
   };
 
@@ -101,7 +116,7 @@ const AddProjects = () => {
           <div className="card-body">
             <Formik
               validationSchema={schema}
-              onSubmit={(values) => handleSubmit(values)} // تصحيح استدعاء onSubmit
+              onSubmit={(values) => handleSubmit(values)}
               initialValues={{
                 name: "Default Project Name",
                 name_en: "Default Project Name (English)",
@@ -109,13 +124,19 @@ const AddProjects = () => {
                 content: "Default content",
                 content_en: "Default content (English)",
                 content_ar: "محتوى افتراضي",
-                image: null,
+                image: null, // Default image
                 popularity_count: 10,
-                category: categoryOptions.length > 0 ? categoryOptions[0].value : null,
-                author: authorsData?.results.length > 0 ? [authorsData.results[0].id] : [],
+                category:
+                  categoryOptions.length > 0 ? categoryOptions[0].value : null,
+                author:
+                  authorsData?.results.length > 0
+                    ? [authorsData.results[0].id]
+                    : [],
                 tags: tagOptions.length > 0 ? [tagOptions[0].value] : [],
-                references: [{ name: "Default Reference", url: "http://default.url" }],
-                images: [{ image: null, project: projectOptions.length > 0 ? projectOptions[0].value : null }],
+                references: [
+                  { name: "Default Reference", url: "http://default.url" },
+                ],
+                images: [{ image: null }], // Default images
               }}
             >
               {({
@@ -127,7 +148,6 @@ const AddProjects = () => {
                 errors,
               }) => (
                 <Form noValidate onSubmit={handleSubmit}>
-                  {/* Existing fields */}
                   <Row className="mb-3">
                     <Form.Group
                       as={Col}
@@ -142,6 +162,9 @@ const AddProjects = () => {
                         onChange={handleChange}
                         isValid={touched.name && !errors.name}
                       />
+                      {touched.name && errors.name && (
+                        <div className="invalid-feedback">{errors.name}</div>
+                      )}
                     </Form.Group>
                     <Form.Group
                       as={Col}
@@ -202,12 +225,14 @@ const AddProjects = () => {
                       <Form.Label>Content (English)</Form.Label>
                       <ReactQuill
                         value={values.content_en}
-                        onChange={(value) => setFieldValue('content_en', value)}
+                        onChange={(value) => setFieldValue("content_en", value)}
                         theme="snow"
                         modules={{ toolbar: true }}
                       />
                       {touched.content_en && errors.content_en && (
-                        <div className="invalid-feedback">{errors.content_en}</div>
+                        <div className="invalid-feedback">
+                          {errors.content_en}
+                        </div>
                       )}
                     </Form.Group>
                     <Form.Group
@@ -218,12 +243,14 @@ const AddProjects = () => {
                       <Form.Label>Content (Arabic)</Form.Label>
                       <ReactQuill
                         value={values.content_ar}
-                        onChange={(value) => setFieldValue('content_ar', value)}
+                        onChange={(value) => setFieldValue("content_ar", value)}
                         theme="snow"
                         modules={{ toolbar: true }}
                       />
                       {touched.content_ar && errors.content_ar && (
-                        <div className="invalid-feedback">{errors.content_ar}</div>
+                        <div className="invalid-feedback">
+                          {errors.content_ar}
+                        </div>
                       )}
                     </Form.Group>
                   </Row>
@@ -242,11 +269,14 @@ const AddProjects = () => {
                         }
                         isValid={touched.image && !errors.image}
                       />
+                      {touched.image && errors.image && (
+                        <div className="invalid-feedback">{errors.image}</div>
+                      )}
                     </Form.Group>
                     <Form.Group
                       as={Col}
                       md="6"
-                      controlId="validationFormikPopularityCount"
+                      controlId="validationFormikPopularity"
                     >
                       <Form.Label>Popularity Count</Form.Label>
                       <Form.Control
@@ -258,6 +288,11 @@ const AddProjects = () => {
                           touched.popularity_count && !errors.popularity_count
                         }
                       />
+                      {touched.popularity_count && errors.popularity_count && (
+                        <div className="invalid-feedback">
+                          {errors.popularity_count}
+                        </div>
+                      )}
                     </Form.Group>
                     <Form.Group
                       as={Col}
@@ -266,16 +301,19 @@ const AddProjects = () => {
                     >
                       <Form.Label>Category</Form.Label>
                       <Select
-                        name="category"
                         options={categoryOptions}
-                        value={categoryOptions.find(
-                          (option) => option.value === values.category
-                        )}
                         onChange={(option) =>
                           setFieldValue("category", option?.value)
                         }
-                        isValid={touched.category && !errors.category}
+                        value={categoryOptions.find(
+                          (opt) => opt.value === values.category
+                        )}
                       />
+                      {touched.category && errors.category && (
+                        <div className="invalid-feedback">
+                          {errors.category}
+                        </div>
+                      )}
                     </Form.Group>
                     <Form.Group
                       as={Col}
@@ -284,20 +322,21 @@ const AddProjects = () => {
                     >
                       <Form.Label>Authors</Form.Label>
                       <Select
-                        isMulti
-                        name="author"
                         options={AuthorsOptions}
-                        value={AuthorsOptions.filter((option) =>
-                          values.author.includes(option.value)
-                        )}
+                        isMulti
                         onChange={(options) =>
                           setFieldValue(
                             "author",
-                            options.map((option) => option.value)
+                            options.map((opt) => opt.value)
                           )
                         }
-                        isValid={touched.author && !errors.author}
+                        value={AuthorsOptions.filter((opt) =>
+                          values.author.includes(opt.value)
+                        )}
                       />
+                      {touched.author && errors.author && (
+                        <div className="invalid-feedback">{errors.author}</div>
+                      )}
                     </Form.Group>
                     <Form.Group
                       as={Col}
@@ -306,125 +345,146 @@ const AddProjects = () => {
                     >
                       <Form.Label>Tags</Form.Label>
                       <Select
-                        isMulti
-                        name="tags"
                         options={tagOptions}
-                        value={tagOptions.filter((option) =>
-                          values.tags.includes(option.value)
-                        )}
+                        isMulti
                         onChange={(options) =>
                           setFieldValue(
                             "tags",
-                            options.map((option) => option.value)
+                            options.map((opt) => opt.value)
                           )
                         }
-                        isValid={touched.tags && !errors.tags}
+                        value={tagOptions.filter((opt) =>
+                          values.tags.includes(opt.value)
+                        )}
                       />
+                      {touched.tags && errors.tags && (
+                        <div className="invalid-feedback">{errors.tags}</div>
+                      )}
                     </Form.Group>
+                    <FieldArray name="references">
+                      {({ remove, push }) => (
+                        <div>
+                          {values.references.map((reference, index) => (
+                            <Row key={index} className="mb-3">
+                              <Form.Group
+                                as={Col}
+                                md="6"
+                                controlId={`validationFormikReferenceName_${index}`}
+                              >
+                                <Form.Label>Reference Name</Form.Label>
+                                <Form.Control
+                                  type="text"
+                                  name={`references.${index}.name`}
+                                  value={reference.name}
+                                  onChange={handleChange}
+                                  isValid={
+                                    touched.references?.[index]?.name &&
+                                    !errors.references?.[index]?.name
+                                  }
+                                />
+                                {touched.references?.[index]?.name &&
+                                  errors.references?.[index]?.name && (
+                                    <div className="invalid-feedback">
+                                      {errors.references[index].name}
+                                    </div>
+                                  )}
+                              </Form.Group>
+                              <Form.Group
+                                as={Col}
+                                md="6"
+                                controlId={`validationFormikReferenceUrl_${index}`}
+                              >
+                                <Form.Label>Reference URL</Form.Label>
+                                <Form.Control
+                                  type="text"
+                                  name={`references[${index}].url`}
+                                  value={reference.url}
+                                  onChange={handleChange}
+                                  isValid={
+                                    touched.references?.[index]?.url &&
+                                    !errors.references?.[index]?.url
+                                  }
+                                />
+                                {touched.references?.[index]?.url &&
+                                  errors.references?.[index]?.url && (
+                                    <div className="invalid-feedback">
+                                      {errors.references[index].url}
+                                    </div>
+                                  )}
+                              </Form.Group>
+                              <Button
+                                type="button"
+                                variant="danger"
+                                onClick={() => remove(index)}
+                              >
+                                Remove Reference
+                              </Button>
+                            </Row>
+                          ))}
+                          <Button
+                            type="button"
+                            variant="secondary"
+                            onClick={() => push({ name: "", url: "" })}
+                          >
+                            Add Reference
+                          </Button>
+                        </div>
+                      )}
+                    </FieldArray>
+                    <FieldArray name="images">
+                      {({ remove, push }) => (
+                        <div>
+                          {values.images.map((imageObj, index) => (
+                            <Row key={index} className="mb-3">
+                              <Form.Group
+                                as={Col}
+                                md="6"
+                                controlId={`validationFormikImage_${index}`}
+                              >
+                                <Form.Label>Image {index + 1}</Form.Label>
+                                <Form.Control
+                                  type="file"
+                                  name={`images[${index}].image`}
+                                  onChange={(event) =>
+                                    setFieldValue(
+                                      `images[${index}].image`,
+                                      event.currentTarget.files[0]
+                                    )
+                                  }
+                                  isValid={
+                                    touched.images?.[index]?.image &&
+                                    !errors.images?.[index]?.image
+                                  }
+                                />
+                                {touched.images?.[index]?.image &&
+                                  errors.images?.[index]?.image && (
+                                    <div className="invalid-feedback">
+                                      {errors.images[index].image}
+                                    </div>
+                                  )}
+                              </Form.Group>
+                              <Button
+                                type="button"
+                                variant="danger"
+                                onClick={() => remove(index)}
+                              >
+                                Remove Image
+                              </Button>
+                            </Row>
+                          ))}
+                          <Button
+                            type="button"
+                            variant="secondary"
+                            onClick={() => push({ image: null })}
+                          >
+                            Add Image
+                          </Button>
+                        </div>
+                      )}
+                    </FieldArray>
                   </Row>
-                  <FieldArray name="references">
-                    {({ push, remove }) => (
-                      <div>
-                        <h5>References</h5>
-                        {values.references.map((reference, index) => (
-                          <Row key={index}>
-                            <Form.Group as={Col} md="5">
-                              <Form.Label>Reference Name</Form.Label>
-                              <Form.Control
-                                type="text"
-                                name={`references.${index}.name`}
-                                value={reference.name}
-                                onChange={handleChange}
-                              />
-                            </Form.Group>
-                            <Form.Group as={Col} md="5">
-                              <Form.Label>Reference URL</Form.Label>
-                              <Form.Control
-                                type="text"
-                                name={`references.${index}.url`}
-                                value={reference.url}
-                                onChange={handleChange}
-                              />
-                            </Form.Group>
-                            <Col md="2">
-                              <Button
-                                variant="danger"
-                                onClick={() => remove(index)}
-                              >
-                                Remove
-                              </Button>
-                            </Col>
-                          </Row>
-                        ))}
-                        <Button
-                          variant="primary"
-                          onClick={() =>
-                            push({ name: "", url: "" })
-                          }
-                        >
-                          Add Reference
-                        </Button>
-                      </div>
-                    )}
-                  </FieldArray>
-                  <FieldArray name="images">
-                    {({ push, remove }) => (
-                      <div>
-                        <h5>Images</h5>
-                        {values.images.map((image, index) => (
-                          <Row key={index}>
-                            <Form.Group as={Col} md="5">
-                              <Form.Label>Image File</Form.Label>
-                              <Form.Control
-                                type="file"
-                                name={`images.${index}.image`}
-                                onChange={(event) =>
-                                  setFieldValue(
-                                    `images.${index}.image`,
-                                    event.currentTarget.files[0]
-                                  )
-                                }
-                              />
-                            </Form.Group>
-                            <Form.Group as={Col} md="5">
-                              <Form.Label>Project</Form.Label>
-                              <Select
-                                name={`images.${index}.project`}
-                                options={projectOptions}
-                                value={projectOptions.find(
-                                  (option) => option.value === image.project
-                                )}
-                                onChange={(option) =>
-                                  setFieldValue(
-                                    `images.${index}.project`,
-                                    option?.value
-                                  )
-                                }
-                              />
-                            </Form.Group>
-                            <Col md="2">
-                              <Button
-                                variant="danger"
-                                onClick={() => remove(index)}
-                              >
-                                Remove
-                              </Button>
-                            </Col>
-                          </Row>
-                        ))}
-                        <Button
-                          variant="primary"
-                          onClick={() =>
-                            push({ image: null, project: projectOptions[0].value })
-                          }
-                        >
-                          Add Image
-                        </Button>
-                      </div>
-                    )}
-                  </FieldArray>
-                  <Button type="submit" variant="primary">
-                    {isLoading ? "Submitting..." : "Submit"}
+                  <Button type="submit" disabled={isLoading}>
+                    Submit
                   </Button>
                 </Form>
               )}

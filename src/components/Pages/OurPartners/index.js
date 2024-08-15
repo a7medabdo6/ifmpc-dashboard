@@ -22,7 +22,10 @@ import DropdownItem from "react-bootstrap/esm/DropdownItem";
 import user1 from "../../../assets/img/users/1.jpg";
 import { useOurPartners } from "../../../Api/OurPartners/index";
 import { Link } from "react-router-dom";
-import { useDeleteOurPartner, useEditOurPartner } from "../../../Api/OurPartners";
+import {
+  useDeleteOurPartner,
+  useEditOurPartner,
+} from "../../../Api/OurPartners";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const OurPartners = () => {
@@ -113,11 +116,10 @@ border hover"
                 >
                   <thead>
                     <tr>
-                      <th className="wd-lg-10p">first_name</th>
-                      <th className="wd-lg-20p">last_name</th>
-                      <th className="wd-lg-20p ">email</th>
-                      <th className="wd-lg-20p ">phone</th>
-                      <th className="wd-lg-20p ">description</th>
+                      <th className="wd-lg-10p">name</th>
+                      <th className="wd-lg-20p">name_en</th>
+                      <th className="wd-lg-20p ">name_ar</th>
+                      <th className="wd-lg-20p ">image</th>
 
                       <th className="wd-lg-20p">Actions</th>
                     </tr>
@@ -128,29 +130,32 @@ border hover"
                         <tr key={index} data-index={index}>
                           <td className="font-weight-semibold">
                             <div className="d-flex">
-                              <span className="mt-1">{item.first_name}</span>
+                              <span className="mt-1">{item.name}</span>
                             </div>
                           </td>
                           <td className="font-weight-semibold">
                             <div className="d-flex">
-                              <span className="mt-1">{item.last_name}</span>
+                              <span className="mt-1">{item.name_en}</span>
                             </div>
                           </td>{" "}
                           <td className="font-weight-semibold">
                             <div className="d-flex">
-                              <span className="mt-1">
-                                {item.email}
-                              </span>
+                              <span className="mt-1">{item.name_ar}</span>
                             </div>
                           </td>
                           <td className="font-weight-semibold">
-                            <div className="d-flex">
-                              <span className="mt-1">{item.phone}</span>
-                            </div>
-                          </td>
-                          <td className="font-weight-semibold">
-                            <div className="d-flex">
-                              <span className="mt-1">{item.description}</span>
+                            <div className="d-flex align-items-center">
+                              <img
+                                src={item.image}
+                                alt={item.name}
+                                className="rounded-circle"
+                                width="40"
+                                height="40"
+                                style={{
+                                  objectFit: "cover",
+                                  marginRight: "10px",
+                                }}
+                              />
                             </div>
                           </td>
                           <td className="font-weight-semibold">
@@ -159,7 +164,9 @@ border hover"
                                 type="submit"
                                 onClick={() => {
                                   return (
-                                    setId(item?.id), viewDemoShow("show10"), setItemData(item)
+                                    setId(item?.id),
+                                    viewDemoShow("show10"),
+                                    setItemData(item)
                                   );
                                 }}
                               >
@@ -230,7 +237,11 @@ border hover"
                       </Modal.Header>
                       <Modal.Body>
                         <Modal.Title>Edit categorie</Modal.Title>
-                        <EditeOurPartners id={id} itemData={itemData} viewDemoClose={viewDemoClose} />
+                        <EditeOurPartners
+                          id={id}
+                          itemData={itemData}
+                          viewDemoClose={viewDemoClose}
+                        />
                       </Modal.Body>
                       {/* <Modal.Footer>
                         <Button
