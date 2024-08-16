@@ -238,6 +238,7 @@ border hover"
                       <Modal.Body>
                         <Modal.Title>Edit categorie</Modal.Title>
                         <EditeOurPartners
+                          setShow10={setShow10}
                           id={id}
                           itemData={itemData}
                           viewDemoClose={viewDemoClose}

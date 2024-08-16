@@ -12,13 +12,16 @@ const schema = yup.object().shape({
   image: yup.mixed().required("An image is required"),
 });
 
-const EditeAuthors = ({ id, itemData, viewDemoClose }) => {
+const EditeAuthors = ({ id, itemData, viewDemoClose, setShow10 }) => {
   const { mutate, data } = useEditAuthor();
   console.log(data);
 
   useEffect(() => {
     if (data !== undefined) {
       toast.success("This item has been successfully edited.");
+      setTimeout(() => {
+        setShow10(false)
+      }, 2000); // يمكنك ضبط الوقت حسب الحاجة
     }
   }, [data]);
 

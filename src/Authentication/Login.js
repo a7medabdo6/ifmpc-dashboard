@@ -236,6 +236,7 @@ const SignIn = () => {
   useEffect(() => {
     if (DataLoginResponse?.access) {
       dispatch(login({ access: DataLoginResponse?.access }));
+      localStorage.setItem('accessToken', DataLoginResponse.access);
 
       routeChange()
     }

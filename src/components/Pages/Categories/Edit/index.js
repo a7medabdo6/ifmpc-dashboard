@@ -6,6 +6,7 @@ import * as yup from "yup";
 import { useEditCategory } from "../../../../Api/Categories";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from 'react-router-dom';
 
 const schema = yup.object().shape({
   name: yup.string().required(),
@@ -15,13 +16,17 @@ const schema = yup.object().shape({
   project_count: yup.string().required(),
 });
 
-const Editcategories = ({ id, itemData, viewDemoClose }) => {
+const Editcategories = ({ id, itemData, viewDemoClose, setShow10 }) => {
   const { mutate, data } = useEditCategory();
-  console.log(data);
+  const navigate = useNavigate(); // Initialize navigate function
   
   useEffect(() => {
     if (data !== undefined) {
       toast.success("This item has been successfully edited.");
+      // تأخير الانتقال لمدة 2 ثانية (2000 مللي ثانية)
+      setTimeout(() => {
+        setShow10(false)  
+          }, 2000); // يمكنك ضبط الوقت حسب الحاجة
     }
   }, [data]);
 

@@ -207,6 +207,7 @@ const Authors = () => {
                           id={id}
                           itemData={itemData}
                           viewDemoClose={viewDemoClose}
+                          setShow10={setShow10}
                         />
                       </Modal.Body>
                     </Modal>

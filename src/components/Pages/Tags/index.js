@@ -223,7 +223,8 @@ border hover"
                       </Modal.Header>
                       <Modal.Body>
                         <Modal.Title>Edit categorie</Modal.Title>
-                        <EditTags id={id} itemData={itemData} viewDemoClose={viewDemoClose} />
+                        <EditTags setShow10={setShow10}
+ id={id} itemData={itemData} viewDemoClose={viewDemoClose} />
                       </Modal.Body>
                       {/* <Modal.Footer>
                         <Button

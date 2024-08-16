@@ -1,9 +1,11 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { Breadcrumb, Button, Col, Row, Form } from "react-bootstrap";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { useEditOurPartner } from "../../../../Api/OurPartners";
-
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const schema = yup.object().shape({
   image: yup.mixed().required("Image is required"),
   name: yup.string().required("Name is required"),
@@ -11,9 +13,20 @@ const schema = yup.object().shape({
   name_ar: yup.string().required("Arabic name is required"),
 });
 
-const EditeOurPartners = ({ id }) => {
-  const { mutate } = useEditOurPartner();
+const EditeOurPartners = ({ id, setShow10 }) => {
+  const { mutate, data } = useEditOurPartner();
+  const navigate = useNavigate(); // Initialize navigate function
 
+  useEffect(() => {
+    if (data) {
+      toast.success("This item has been successfully Editing.");
+
+      // تأخير الانتقال لمدة 2 ثانية (2000 مللي ثانية)
+      setTimeout(() => {
+        setShow10(false)
+      }, 2000); // يمكنك ضبط الوقت حسب الحاجة
+    }
+  }, [data, navigate]);
   return (
     <Fragment>
       <div className="page-header">

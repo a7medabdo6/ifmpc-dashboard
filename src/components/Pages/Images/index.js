@@ -15,19 +15,19 @@ import {
   Modal,
 } from "react-bootstrap";
 import Searchable from "react-searchable-dropdown";
-import EditeContactUs from "./Edit/index";
+import EditeImages from "./Edit/index";
 import CircularProgress from "@mui/material/CircularProgress";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 import DropdownItem from "react-bootstrap/esm/DropdownItem";
 import user1 from "../../../assets/img/users/1.jpg";
-import { useContactUs } from "../../../Api/ContactUs/index";
+import { useImages } from "../../../Api/Images/index";
 import { Link } from "react-router-dom";
-import { useDeleteContactUs, useEditContactUs } from "../../../Api/ContactUs";
+import { useDeleteImage, useEditImage } from "../../../Api/Images";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const ContactUs = () => {
-  const { mutate } = useDeleteContactUs();
-  const { mutate: mutateEdite } = useEditContactUs();
+const Images = () => {
+  const { mutate } = useDeleteImage();
+  const { mutate: mutateEdite } = useEditImage();
 
   const [Basic, setShow1] = useState(false);
   const [id, setId] = useState();
@@ -63,7 +63,7 @@ const ContactUs = () => {
     }
   };
 
-  const { data, error, isLoading } = useContactUs();
+  const { data, error, isLoading } = useImages();
 
   console.log(data);
 
@@ -72,15 +72,15 @@ const ContactUs = () => {
       {/* <!-- Page Header --> */}
       <div className="page-header">
         <div>
-          <h2 className="main-content-title tx-24 mg-b-5">ContactUs Page</h2>
+          <h2 className="main-content-title tx-24 mg-b-5">Images Page</h2>
           <Breadcrumb>
             <Breadcrumb.Item href="#"> Pages </Breadcrumb.Item>
-            <Breadcrumb.Item active>ContactUs Page</Breadcrumb.Item>
+            <Breadcrumb.Item active>Images Page</Breadcrumb.Item>
           </Breadcrumb>
         </div>
         <div className="d-flex">
           <div className="justify-content-center">
-            <Link to={"/spruha/preview/pages/ContactUs/create"}>
+            <Link to={"/spruha/preview/pages/Images/create"}>
               <Button
                 variant="primary"
                 type="button"
@@ -101,7 +101,7 @@ const ContactUs = () => {
             <Card.Body>
               <Card.Header className="card-header border-bottom-0 pt-0 ps-0 pe-0 d-flex">
                 <div>
-                  <label className="main-content-label mb-2">ContactUs</label>
+                  <label className="main-content-label mb-2">Images</label>
                 </div>
               </Card.Header>
               <div className=" tasks">
@@ -113,39 +113,33 @@ border hover"
                 >
                   <thead>
                     <tr>
-                      <th className="wd-lg-10p">location</th>
-                      <th className="wd-lg-20p">location_en</th>
-                      <th className="wd-lg-20p ">location_ar</th>
-                      <th className="wd-lg-20p ">phone</th>
+                      <th className="wd-lg-10p">first_name</th>
+                      <th className="wd-lg-20p">last_name</th>
                       <th className="wd-lg-20p ">email</th>
-                      <th className="wd-lg-20p ">map_link</th>
-                      <th className="wd-lg-20p ">latitude</th>
-                      <th className="wd-lg-20p ">longitude</th>
+                      <th className="wd-lg-20p ">phone</th>
+                      <th className="wd-lg-20p ">description</th>
 
                       <th className="wd-lg-20p">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
                     {data?.results.map((item, index) => {
-                      const truncateText = (text, length) => {
-                        return text.length > length ? text.substring(0, length) + '...' : text;
-                      };
                       return (
                         <tr key={index} data-index={index}>
                           <td className="font-weight-semibold">
                             <div className="d-flex">
-                              <span className="mt-1">{item.location}</span>
+                              <span className="mt-1">{item.first_name}</span>
                             </div>
                           </td>
                           <td className="font-weight-semibold">
                             <div className="d-flex">
-                              <span className="mt-1">{item.location_en}</span>
+                              <span className="mt-1">{item.last_name}</span>
                             </div>
                           </td>{" "}
                           <td className="font-weight-semibold">
                             <div className="d-flex">
                               <span className="mt-1">
-                                {item.location_ar}
+                                {item.email}
                               </span>
                             </div>
                           </td>
@@ -156,26 +150,9 @@ border hover"
                           </td>
                           <td className="font-weight-semibold">
                             <div className="d-flex">
-                              <span className="mt-1">{item.email}</span>
+                              <span className="mt-1">{item.description}</span>
                             </div>
                           </td>
-                      
-                          <td className="font-weight-semibold">
-                            <div className="d-flex">
-                              <span className="mt-1">{truncateText(item.map_link, 35)}</span>
-                            </div>
-                          </td>
-                          <td className="font-weight-semibold">
-                            <div className="d-flex">
-                              <span className="mt-1">{item.latitude}</span>
-                            </div>
-                          </td>
-                          <td className="font-weight-semibold">
-                            <div className="d-flex">
-                              <span className="mt-1">{item.longitude}</span>
-                            </div>
-                          </td>
-
                           <td className="font-weight-semibold">
                             <div className="d-flex">
                               <Button
@@ -253,7 +230,7 @@ border hover"
                       </Modal.Header>
                       <Modal.Body>
                         <Modal.Title>Edit categorie</Modal.Title>
-                        <EditeContactUs setShow10={setShow10} id={id} itemData={itemData} viewDemoClose={viewDemoClose} />
+                        <EditeImages id={id} itemData={itemData} viewDemoClose={viewDemoClose} />
                       </Modal.Body>
                       {/* <Modal.Footer>
                         <Button
@@ -322,8 +299,8 @@ border hover"
   );
 };
 
-ContactUs.propTypes = {};
+Images.propTypes = {};
 
-ContactUs.defaultProps = {};
+Images.defaultProps = {};
 
-export default ContactUs;
+export default Images;

@@ -1,10 +1,12 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { Breadcrumb, Button, Col, Row, Card } from "react-bootstrap";
 import { Formik } from "formik";
 import { Form } from "react-bootstrap";
 import * as yup from "yup";
 import { useEditTage } from "../../../../Api/Tags";
-
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const schema = yup.object().shape({
   name: yup.string().required(),
   name_en: yup.string().required(),
@@ -12,9 +14,19 @@ const schema = yup.object().shape({
   post_count: yup.number().required(),
 });
 
-const EditTags = ({ itemData, id }) => {
-  const { mutate } = useEditTage();
+const EditTags = ({ itemData, id, setShow10 }) => {
+  const { mutate,data } = useEditTage();
 
+  useEffect(() => {
+    if (data) {
+      toast.success("This item has been successfully Editing.");
+
+      // تأخير الانتقال لمدة 2 ثانية (2000 مللي ثانية)
+      setTimeout(() => {
+        setShow10(false)
+      }, 2000); // يمكنك ضبط الوقت حسب الحاجة
+    }
+  }, [data]);
   return (
     <Fragment>
       <div className="page-header">

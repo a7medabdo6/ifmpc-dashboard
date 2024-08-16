@@ -14,13 +14,16 @@ const schema = yup.object().shape({
   url: yup.string().url().required(),
 });
 
-const EditeLinks = ({ itemData, id }) => {
+const EditeLinks = ({ itemData, id, setShow10 }) => {
   const { mutate, data } = useEditLink();
   const fileInputRef = useRef(null); // Create a ref for the file input
 
   useEffect(() => {
     if (data !== undefined) {
       toast.success("This item has been successfully edited.");
+      setTimeout(() => {
+        setShow10(false)
+      }, 2000); // يمكنك ضبط الوقت حسب الحاجة
     }
   }, [data]);
 

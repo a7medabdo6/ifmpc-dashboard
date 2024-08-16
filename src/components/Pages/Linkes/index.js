@@ -224,7 +224,7 @@ const Links = () => {
         </Modal.Header>
         <Modal.Body>
           <Modal.Title>Edit Link</Modal.Title>
-          <EditeLinks id={id} itemData={itemData} viewDemoClose={viewDemoClose} />
+          <EditeLinks id={id} itemData={itemData} viewDemoClose={viewDemoClose} setShow10={setShow10} />
         </Modal.Body>
       </Modal>
 

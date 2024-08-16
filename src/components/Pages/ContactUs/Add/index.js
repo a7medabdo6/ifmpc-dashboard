@@ -1,4 +1,4 @@
-import React, { Fragment, useRef } from "react";
+import React, { Fragment, useRef, useEffect } from "react";
 import { Breadcrumb, Button, Col, Row, Form } from "react-bootstrap";
 import { Formik } from "formik";
 import * as yup from "yup";
@@ -8,7 +8,9 @@ import { useCreateContactUs } from "../../../../Api/ContactUs";
 import L from "leaflet";
 import 'leaflet/dist/leaflet.css';
 import markir from '../../../../assets/img/markir.png';
-
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // تعريف الأيقونة المخصصة
 const customIcon = new L.Icon({
   iconUrl: markir, // المسار إلى صورة الأيقونة
@@ -29,7 +31,7 @@ const schema = yup.object().shape({
 });
 
 const AddContactUs = () => {
-  const { mutate } = useCreateContactUs();
+  const { mutate ,data} = useCreateContactUs();
   const mapRef = useRef();
   const provider = new OpenStreetMapProvider();
 
@@ -76,7 +78,18 @@ const AddContactUs = () => {
       updateFormFields(lat, lng, setFieldValue);
     });
   };
+  const navigate = useNavigate(); // Initialize navigate function
 
+  useEffect(() => {
+    if (data) {
+      toast.success("This item has been successfully Created.");
+
+      // تأخير الانتقال لمدة 2 ثانية (2000 مللي ثانية)
+      setTimeout(() => {
+        navigate("/spruha/preview/pages/contactus/");
+      }, 2000); // يمكنك ضبط الوقت حسب الحاجة
+    }
+  }, [data, navigate]);
   return (
     <Fragment>
       <div className="page-header">

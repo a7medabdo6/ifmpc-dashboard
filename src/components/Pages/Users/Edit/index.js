@@ -13,12 +13,13 @@ const schema = yup.object().shape({
   url: yup.string().required(), // Updated validation schema for URL as a string
 });
 
-const EditeUsers = ({ username, itemData, viewDemoClose }) => {
+const EditeUsers = ({ username, itemData, viewDemoClose, setShow10 }) => {
   const { mutate, data } = useEditUser();
 
   useEffect(() => {
     if (data !== undefined) {
       toast.success("This item has been successfully edited.");
+      setShow10(false)
     }
   }, [data]);
 

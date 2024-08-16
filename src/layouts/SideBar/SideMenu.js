@@ -19,6 +19,15 @@ export const MENUITEMS = [
         selected: false,
         title: "Categories",
       },
+      // {
+      //   path: `${process.env.PUBLIC_URL}/pages/images`,
+      //   type: "link",
+      //   icon: "ti-list",
+
+      //   active: false,
+      //   selected: false,
+      //   title: "Images",
+      // },
       {
         path: `${process.env.PUBLIC_URL}/pages/projects`,
         type: "link",

@@ -27,6 +27,10 @@ import Links from "./components/Pages/Linkes";
 import ContactUs from "./components/Pages/ContactUs";
 import AddContactUs from "./components/Pages/ContactUs/Add";
 import Users from "./components/Pages/Users";
+import Images from "./components/Pages/Images";
+import AddImages from "./components/Pages/Images/Add";
+import EditeProjects from "./components/Pages/Projects/Edit";
+import EditePublications from "./components/Pages/Publications/Edit";
 
 // Dashboard
 const Landingpageapp = React.lazy(() => import("./components/Landingpageapp"));
@@ -807,6 +811,16 @@ const Root = () => {
                   element={<AddProjects />}
                 />
                 <Route
+                  path={`${process.env.PUBLIC_URL}/pages/projects/edite`}
+                  element={<EditeProjects />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/pages/publication/edit`}
+                  element={<EditePublications />}
+                />
+
+                
+                <Route
                   path={`${process.env.PUBLIC_URL}/pages/categories/edit/:id`}
                   element={<AddEditcategories />}
                 />
@@ -831,12 +845,20 @@ const Root = () => {
                   element={<Users />}
                 />
                 <Route
+                  path={`${process.env.PUBLIC_URL}/pages/images`}
+                  element={<Images />}
+                />
+                <Route
                   path={`${process.env.PUBLIC_URL}/pages/projects`}
                   element={<Projects />}
                 />
                 <Route
                   path={`${process.env.PUBLIC_URL}/pages/publications`}
                   element={<Publications />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/pages/images/create`}
+                  element={<AddImages />}
                 />
                 <Route
                   path={`${process.env.PUBLIC_URL}/pages/ourpartners/create`}

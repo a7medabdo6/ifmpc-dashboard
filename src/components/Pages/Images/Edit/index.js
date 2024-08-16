@@ -3,7 +3,7 @@ import { Breadcrumb, Button, Col, Row, Card } from "react-bootstrap";
 import { Formik } from "formik";
 import { Form, InputGroup } from "react-bootstrap";
 import * as yup from "yup";
-import { useEditContact } from "../../../../Api/Contacts";
+import { useEditImage } from "../../../../Api/Images";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -15,16 +15,13 @@ const schema = yup.object().shape({
   description: yup.string().required(),
 });
 
-const EditeContacts = ({ id, itemData, viewDemoClose, setShow10 }) => {
-  const { mutate, data } = useEditContact();
+const EditeImages = ({ id, itemData, viewDemoClose }) => {
+  const { mutate, data } = useEditImage();
   console.log(data);
 
   useEffect(() => {
     if (data !== undefined) {
       toast.success("This item has been successfully edited.");
-      setTimeout(() => {
-        setShow10(false)
-      }, 2000); // يمكنك ضبط الوقت حسب الحاجة
     }
   }, [data]);
 
@@ -159,8 +156,8 @@ const EditeContacts = ({ id, itemData, viewDemoClose, setShow10 }) => {
   );
 };
 
-EditeContacts.propTypes = {};
+EditeImages.propTypes = {};
 
-EditeContacts.defaultProps = {};
+EditeImages.defaultProps = {};
 
-export default EditeContacts;
+export default EditeImages;
