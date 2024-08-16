@@ -12,7 +12,7 @@ const schema = yup.object().shape({
   image: yup.mixed().required("An image is required"),
 });
 
-const EditeAuthors = ({ id, itemData, viewDemoClose, setShow10 }) => {
+const EditAuthors = ({ id, itemData, viewDemoClose, setShow10 }) => {
   const { mutate, data } = useEditAuthor();
   console.log(data);
 
@@ -117,8 +117,8 @@ const EditeAuthors = ({ id, itemData, viewDemoClose, setShow10 }) => {
   );
 };
 
-EditeAuthors.propTypes = {};
+EditAuthors.propTypes = {};
 
-EditeAuthors.defaultProps = {};
+EditAuthors.defaultProps = {};
 
-export default EditeAuthors;
+export default EditAuthors;

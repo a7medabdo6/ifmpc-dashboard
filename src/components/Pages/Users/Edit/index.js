@@ -13,7 +13,7 @@ const schema = yup.object().shape({
   url: yup.string().required(), // Updated validation schema for URL as a string
 });
 
-const EditeUsers = ({ username, itemData, viewDemoClose, setShow10 }) => {
+const EditUsers = ({ username, itemData, viewDemoClose, setShow10 }) => {
   const { mutate, data } = useEditUser();
 
   useEffect(() => {
@@ -120,4 +120,4 @@ const EditeUsers = ({ username, itemData, viewDemoClose, setShow10 }) => {
   );
 };
 
-export default EditeUsers;
+export default EditUsers;

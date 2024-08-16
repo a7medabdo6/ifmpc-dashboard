@@ -30,7 +30,7 @@ const schema = yup.object().shape({
   longitude: yup.number().required(),
 });
 
-const EditeContactUs = ({ id, setShow10 }) => {
+const EditContactUs = ({ id, setShow10 }) => {
   const { mutate,data } = useEditContactUs();
   const mapRef = useRef();
   const provider = new OpenStreetMapProvider();
@@ -305,4 +305,4 @@ const EditeContactUs = ({ id, setShow10 }) => {
 
 
 
-export default EditeContactUs;
+export default EditContactUs;

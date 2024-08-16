@@ -31,10 +31,10 @@ const EditTags = ({ itemData, id, setShow10 }) => {
     <Fragment>
       <div className="page-header">
         <div>
-          <h2 className="main-content-title tx-24 mg-b-5">Create Tags</h2>
+          <h2 className="main-content-title tx-24 mg-b-5">Edit Tags</h2>
           <Breadcrumb>
             <Breadcrumb.Item href="#">Pages</Breadcrumb.Item>
-            <Breadcrumb.Item active>Create Tags</Breadcrumb.Item>
+            <Breadcrumb.Item active>Edit Tags</Breadcrumb.Item>
           </Breadcrumb>
         </div>
       </div>

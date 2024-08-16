@@ -15,7 +15,7 @@ import {
   Modal,
 } from "react-bootstrap";
 import Searchable from "react-searchable-dropdown";
-import EditeImages from "./Edit/index";
+import EditImages from "./Edit/index";
 import CircularProgress from "@mui/material/CircularProgress";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 import DropdownItem from "react-bootstrap/esm/DropdownItem";
@@ -27,7 +27,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const Images = () => {
   const { mutate } = useDeleteImage();
-  const { mutate: mutateEdite } = useEditImage();
+  const { mutate: mutateEdit } = useEditImage();
 
   const [Basic, setShow1] = useState(false);
   const [id, setId] = useState();
@@ -230,7 +230,7 @@ border hover"
                       </Modal.Header>
                       <Modal.Body>
                         <Modal.Title>Edit categorie</Modal.Title>
-                        <EditeImages id={id} itemData={itemData} viewDemoClose={viewDemoClose} />
+                        <EditImages id={id} itemData={itemData} viewDemoClose={viewDemoClose} />
                       </Modal.Body>
                       {/* <Modal.Footer>
                         <Button

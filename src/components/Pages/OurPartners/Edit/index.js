@@ -13,7 +13,7 @@ const schema = yup.object().shape({
   name_ar: yup.string().required("Arabic name is required"),
 });
 
-const EditeOurPartners = ({ id, setShow10 }) => {
+const EditOurPartners = ({ id, setShow10 }) => {
   const { mutate, data } = useEditOurPartner();
   const navigate = useNavigate(); // Initialize navigate function
 
@@ -31,10 +31,10 @@ const EditeOurPartners = ({ id, setShow10 }) => {
     <Fragment>
       <div className="page-header">
         <div>
-          <h2 className="main-content-title tx-24 mg-b-5">Create OurPartner</h2>
+          <h2 className="main-content-title tx-24 mg-b-5">Edit OurPartner</h2>
           <Breadcrumb>
             <Breadcrumb.Item href="#"> Pages </Breadcrumb.Item>
-            <Breadcrumb.Item active>Create OurPartner</Breadcrumb.Item>
+            <Breadcrumb.Item active>Edit OurPartner</Breadcrumb.Item>
           </Breadcrumb>
         </div>
       </div>
@@ -147,8 +147,8 @@ const EditeOurPartners = ({ id, setShow10 }) => {
   );
 };
 
-EditeOurPartners.propTypes = {};
+EditOurPartners.propTypes = {};
 
-EditeOurPartners.defaultProps = {};
+EditOurPartners.defaultProps = {};
 
-export default EditeOurPartners;
+export default EditOurPartners;

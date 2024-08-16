@@ -17,7 +17,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 import Searchable from "react-searchable-dropdown";
-import EditePublications from "./Edit/index";
+import EditPublications from "./Edit/index";
 import CircularProgress from "@mui/material/CircularProgress";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 import DropdownItem from "react-bootstrap/esm/DropdownItem";
@@ -31,7 +31,7 @@ const Publications = () => {
   const navigate = useNavigate(); // Initialize navigate function
 
   const { mutate } = useDeletePublication();
-  const { mutate: mutateEdite } = useEditPublication();
+  const { mutate: mutateEdit } = useEditPublication();
 
   const [Basic, setShow1] = useState(false);
   const [id, setId] = useState();
@@ -233,7 +233,7 @@ border hover"
                       </Modal.Header>
                       <Modal.Body>
                         <Modal.Title>Edit categorie</Modal.Title>
-                        <EditePublications id={id} itemData={itemData} viewDemoClose={viewDemoClose} />
+                        <Publications id={id} itemData={itemData} viewDemoClose={viewDemoClose} />
                       </Modal.Body>
                       {/* <Modal.Footer>
                         <Button

@@ -15,7 +15,7 @@ import {
   Modal,
 } from "react-bootstrap";
 import Searchable from "react-searchable-dropdown";
-import EditeContacts from "./Edit/index";
+import EditContacts from "./Edit/index";
 import CircularProgress from "@mui/material/CircularProgress";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 import DropdownItem from "react-bootstrap/esm/DropdownItem";
@@ -27,7 +27,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const Contacts = () => {
   const { mutate } = useDeleteContact();
-  const { mutate: mutateEdite } = useEditContact();
+  const { mutate: mutateEdit } = useEditContact();
 
   const [Basic, setShow1] = useState(false);
   const [id, setId] = useState();
@@ -230,7 +230,7 @@ border hover"
                       </Modal.Header>
                       <Modal.Body>
                         <Modal.Title>Edit categorie</Modal.Title>
-                        <EditeContacts setShow10={setShow10} id={id} itemData={itemData} viewDemoClose={viewDemoClose} />
+                        <EditContacts setShow10={setShow10} id={id} itemData={itemData} viewDemoClose={viewDemoClose} />
                       </Modal.Body>
                       {/* <Modal.Footer>
                         <Button

@@ -29,8 +29,8 @@ import AddContactUs from "./components/Pages/ContactUs/Add";
 import Users from "./components/Pages/Users";
 import Images from "./components/Pages/Images";
 import AddImages from "./components/Pages/Images/Add";
-import EditeProjects from "./components/Pages/Projects/Edit";
-import EditePublications from "./components/Pages/Publications/Edit";
+import EditProjects from "./components/Pages/Projects/Edit";
+import EditPublications from "./components/Pages/Publications/Edit";
 
 // Dashboard
 const Landingpageapp = React.lazy(() => import("./components/Landingpageapp"));
@@ -811,12 +811,12 @@ const Root = () => {
                   element={<AddProjects />}
                 />
                 <Route
-                  path={`${process.env.PUBLIC_URL}/pages/projects/edite`}
-                  element={<EditeProjects />}
+                  path={`${process.env.PUBLIC_URL}/pages/projects/edit`}
+                  element={<EditProjects />}
                 />
                 <Route
                   path={`${process.env.PUBLIC_URL}/pages/publication/edit`}
-                  element={<EditePublications />}
+                  element={<EditPublications />}
                 />
 
                 

@@ -17,12 +17,12 @@ import { useDeleteProject, useEditProject } from "../../../Api/Projects";
 import { useProjects } from "../../../Api/Projects/index";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import EditeProjects from "./Edit/index";
+import EditProjects from "./Edit/index";
 
 const Projects = () => {
   const navigate = useNavigate(); // Initialize navigate function
   const { mutate } = useDeleteProject();
-  const { mutate: mutateEdite } = useEditProject();
+  const { mutate: mutateEdit } = useEditProject();
   const [Basic, setShow1] = useState(false);
   const [id, setId] = useState();
   const [itemData, setItemData] = useState();
@@ -30,7 +30,7 @@ const Projects = () => {
   const [title, setTitle] = useState(false);
 useEffect(()=>{
   if(title && id){
-    navigate("/spruha/preview/pages/Projects/edite", {
+    navigate("/spruha/preview/pages/Projects/edit", {
       state: { id: id }
     });
   }
@@ -165,7 +165,7 @@ useEffect(()=>{
                                 setId(item?.id);
                                 setTitle(true)
                                 if(id){
-                                  navigate("/spruha/preview/pages/Projects/edite", {
+                                  navigate("/spruha/preview/pages/Projects/edit", {
                                     state: { id: item?.id }
                                   });
                                 }

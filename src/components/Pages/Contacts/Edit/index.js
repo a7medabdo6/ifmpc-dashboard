@@ -15,7 +15,7 @@ const schema = yup.object().shape({
   description: yup.string().required(),
 });
 
-const EditeContacts = ({ id, itemData, viewDemoClose, setShow10 }) => {
+const EditContacts = ({ id, itemData, viewDemoClose, setShow10 }) => {
   const { mutate, data } = useEditContact();
   console.log(data);
 
@@ -159,8 +159,8 @@ const EditeContacts = ({ id, itemData, viewDemoClose, setShow10 }) => {
   );
 };
 
-EditeContacts.propTypes = {};
+EditContacts.propTypes = {};
 
-EditeContacts.defaultProps = {};
+EditContacts.defaultProps = {};
 
-export default EditeContacts;
+export default EditContacts;

@@ -27,7 +27,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const Categories = () => {
   const { mutate } = useDeleteCategory();
-  const { mutate: mutateEdite } = useEditCategory();
+  const { mutate: mutateEdit } = useEditCategory();
 
   const [Basic, setShow1] = useState(false);
   const [id, setId] = useState();

@@ -12,7 +12,7 @@ import {
   Table,
   Image,
 } from "react-bootstrap";
-import EditeAuthors from "./Edit/index";
+import EditAuthors from "./Edit/index";
 import { useAuthors } from "../../../Api/Authors/index";
 import { Link } from "react-router-dom";
 import { useDeleteAuthor, useEditAuthor } from "../../../Api/Authors";
@@ -21,7 +21,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Authors = () => {
   const { mutate } = useDeleteAuthor();
-  const { mutate: mutateEdite } = useEditAuthor();
+  const { mutate: mutateEdit } = useEditAuthor();
 
   const [Basic, setShow1] = useState(false);
   const [id, setId] = useState();
@@ -203,7 +203,7 @@ const Authors = () => {
                       </Modal.Header>
                       <Modal.Body>
                         <Modal.Title>Edit Author</Modal.Title>
-                        <EditeAuthors
+                        <EditAuthors
                           id={id}
                           itemData={itemData}
                           viewDemoClose={viewDemoClose}

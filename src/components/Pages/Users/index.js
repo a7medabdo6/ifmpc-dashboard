@@ -15,7 +15,7 @@ import {
   Modal,
 } from "react-bootstrap";
 import Searchable from "react-searchable-dropdown";
-import EditeUsers from "./Edit/index";
+import EditUsers from "./Edit/index";
 import CircularProgress from "@mui/material/CircularProgress";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 import DropdownItem from "react-bootstrap/esm/DropdownItem";
@@ -28,7 +28,7 @@ import "react-toastify/dist/ReactToastify.css";
 import OneUser from './OneUser/index'
 const Users = () => {
   const { mutate } = useDeleteUser();
-  const { mutate: mutateEdite } = useEditUser();
+  const { mutate: mutateEdit } = useEditUser();
 
   const [Basic, setShow1] = useState(false);
   const [id, setId] = useState();
@@ -223,7 +223,7 @@ border hover"
                       </Modal.Header>
                       <Modal.Body>
                         <Modal.Title>Edit categorie</Modal.Title>
-                        <EditeUsers setShow10={setShow10} username={itemData?.username} itemData={itemData} viewDemoClose={viewDemoClose} />
+                        <EditUsers setShow10={setShow10} username={itemData?.username} itemData={itemData} viewDemoClose={viewDemoClose} />
                       </Modal.Body>
                       {/* <Modal.Footer>
                         <Button

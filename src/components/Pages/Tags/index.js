@@ -27,7 +27,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const Tags = () => {
   const { mutate } = useDeleteTage();
-  const { mutate: mutateEdite } = useEditTage();
+  const { mutate: mutateEdit } = useEditTage();
 
   const [Basic, setShow1] = useState(false);
   const [id, setId] = useState();

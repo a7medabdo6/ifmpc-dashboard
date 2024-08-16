@@ -15,7 +15,7 @@ const schema = yup.object().shape({
   description: yup.string().required(),
 });
 
-const EditeImages = ({ id, itemData, viewDemoClose }) => {
+const EditImages = ({ id, itemData, viewDemoClose }) => {
   const { mutate, data } = useEditImage();
   console.log(data);
 
@@ -156,8 +156,8 @@ const EditeImages = ({ id, itemData, viewDemoClose }) => {
   );
 };
 
-EditeImages.propTypes = {};
+EditImages.propTypes = {};
 
-EditeImages.defaultProps = {};
+EditImages.defaultProps = {};
 
-export default EditeImages;
+export default EditImages;

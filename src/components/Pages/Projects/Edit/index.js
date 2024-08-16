@@ -47,7 +47,7 @@ const schema = yup.object().shape({
 
 });
 
-const EditeProjects = () => {
+const EditProjects = () => {
   const location = useLocation();
   const id = location.state?.id;
   const { mutate, isLoading, error,data:dataEdit } = useEditProject();
@@ -158,10 +158,10 @@ const EditeProjects = () => {
     <Fragment>
       <div className="page-header">
         <div>
-          <h2 className="main-content-title tx-24 mg-b-5">Create Project</h2>
+          <h2 className="main-content-title tx-24 mg-b-5">Edit Project</h2>
           <Breadcrumb>
             <Breadcrumb.Item href="#">Pages</Breadcrumb.Item>
-            <Breadcrumb.Item active>Create Project</Breadcrumb.Item>
+            <Breadcrumb.Item active>Edit Project</Breadcrumb.Item>
           </Breadcrumb>
         </div>
       </div>
@@ -543,4 +543,4 @@ const EditeProjects = () => {
 };
 
 
-export default EditeProjects;
+export default EditProjects;
