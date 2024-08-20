@@ -31,6 +31,7 @@ import Images from "./components/Pages/Images";
 import AddImages from "./components/Pages/Images/Add";
 import EditProjects from "./components/Pages/Projects/Edit";
 import EditPublications from "./components/Pages/Publications/Edit";
+import Sliders from "./components/Pages/Slider";
 
 // Dashboard
 const Landingpageapp = React.lazy(() => import("./components/Landingpageapp"));
@@ -665,6 +666,7 @@ const Root = () => {
                   path={`${process.env.PUBLIC_URL}/elements/tabs`}
                   element={<Tabs />}
                 />
+                
                 <Route
                   path={`${process.env.PUBLIC_URL}/elements/typographys`}
                   element={<Typographys />}
@@ -827,6 +829,10 @@ const Root = () => {
                 <Route
                   path={`${process.env.PUBLIC_URL}/pages/contacts`}
                   element={<Contacts />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/pages/settingspage`}
+                  element={<Sliders />}
                 />
                 <Route
                   path={`${process.env.PUBLIC_URL}/pages/ourpartners`}
