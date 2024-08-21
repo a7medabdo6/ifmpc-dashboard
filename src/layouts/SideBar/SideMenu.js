@@ -20,6 +20,15 @@ export const MENUITEMS = [
         title: "Categories",
       },
       {
+        path: `${process.env.PUBLIC_URL}/pages/training`,
+        type: "link",
+        icon: "ti-list",
+
+        active: false,
+        selected: false,
+        title: "Trainings",
+      },
+      {
         path: `${process.env.PUBLIC_URL}/pages/settingspage`,
         type: "link",
         icon: "ti-list",
@@ -92,8 +101,6 @@ export const MENUITEMS = [
         title: "Users",
       },
 
-
-      
       {
         path: `${process.env.PUBLIC_URL}/pages/authors`,
         type: "link",
