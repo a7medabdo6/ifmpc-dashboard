@@ -15,19 +15,19 @@ import {
   Modal,
 } from "react-bootstrap";
 import Searchable from "react-searchable-dropdown";
-import EditContacts from "./Edit/index";
+import EditImages from "./Edit/index";
 import CircularProgress from "@mui/material/CircularProgress";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 import DropdownItem from "react-bootstrap/esm/DropdownItem";
 import user1 from "../../../assets/img/users/1.jpg";
-import { useContacts } from "../../../Api/Contacts/index";
+import { useImages } from "../../../Api/Images/index";
 import { Link } from "react-router-dom";
-import { useDeleteContact, useEditContact } from "../../../Api/Contacts";
+import { useDeleteImage, useEditImage } from "../../../Api/Images";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const Contacts = () => {
-  const { mutate } = useDeleteContact();
-  const { mutate: mutateEdit } = useEditContact();
+const Images = () => {
+  const { mutate } = useDeleteImage();
+  const { mutate: mutateEdit } = useEditImage();
 
   const [Basic, setShow1] = useState(false);
   const [id, setId] = useState();
@@ -63,7 +63,7 @@ const Contacts = () => {
     }
   };
 
-  const { data, error, isLoading } = useContacts();
+  const { data, error, isLoading } = useImages();
 
   console.log(data);
 
@@ -72,15 +72,15 @@ const Contacts = () => {
       {/* <!-- Page Header --> */}
       <div className="page-header">
         <div>
-          <h2 className="main-content-title tx-24 mg-b-5">Contacts Page</h2>
+          <h2 className="main-content-title tx-24 mg-b-5">Images Page</h2>
           <Breadcrumb>
             <Breadcrumb.Item href="#"> Pages </Breadcrumb.Item>
-            <Breadcrumb.Item active>Contacts Page</Breadcrumb.Item>
+            <Breadcrumb.Item active>Images Page</Breadcrumb.Item>
           </Breadcrumb>
         </div>
         <div className="d-flex">
           <div className="justify-content-center">
-            <Link to={"/spruha/preview/pages/contacts/create"}>
+            <Link to={"/spruha/preview/pages/Images/create"}>
               <Button
                 variant="primary"
                 type="button"
@@ -101,7 +101,7 @@ const Contacts = () => {
             <Card.Body>
               <Card.Header className="card-header border-bottom-0 pt-0 ps-0 pe-0 d-flex">
                 <div>
-                  <label className="main-content-label mb-2">Contacts</label>
+                  <label className="main-content-label mb-2">Images</label>
                 </div>
               </Card.Header>
               <div className=" tasks">
@@ -230,7 +230,7 @@ border hover"
                       </Modal.Header>
                       <Modal.Body>
                         <Modal.Title>Edit categorie</Modal.Title>
-                        <EditContacts setShow10={setShow10} id={id} itemData={itemData} viewDemoClose={viewDemoClose} />
+                        <EditImages id={id} itemData={itemData} viewDemoClose={viewDemoClose} />
                       </Modal.Body>
                       {/* <Modal.Footer>
                         <Button
@@ -299,8 +299,8 @@ border hover"
   );
 };
 
-Contacts.propTypes = {};
+Images.propTypes = {};
 
-Contacts.defaultProps = {};
+Images.defaultProps = {};
 
-export default Contacts;
+export default Images;

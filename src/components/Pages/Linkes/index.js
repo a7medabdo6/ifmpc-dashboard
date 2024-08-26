@@ -11,7 +11,7 @@ import {
   Table,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import EditeLinks from "./Edit/index";
+import EditLinks from "./Edit/index";
 import { useLinks } from "../../../Api/Links/index";
 import { useDeleteLink } from "../../../Api/Links";
 import { ToastContainer, toast } from "react-toastify";
@@ -224,7 +224,7 @@ const Links = () => {
         </Modal.Header>
         <Modal.Body>
           <Modal.Title>Edit Link</Modal.Title>
-          <EditeLinks id={id} itemData={itemData} viewDemoClose={viewDemoClose} />
+          <EditLinks id={id} itemData={itemData} viewDemoClose={viewDemoClose} setShow10={setShow10} />
         </Modal.Body>
       </Modal>
 

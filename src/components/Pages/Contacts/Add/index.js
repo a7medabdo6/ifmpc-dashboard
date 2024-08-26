@@ -1,10 +1,12 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { Breadcrumb, Button, Col, Row, Card } from "react-bootstrap";
 import { Formik } from "formik";
 import { Form, InputGroup } from "react-bootstrap";
 import * as yup from "yup";
 import { useCreateContact } from "../../../../Api/Contacts";
-
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const schema = yup.object().shape({
   first_name: yup.string().required(),
   last_name: yup.string().required(),
@@ -14,8 +16,19 @@ const schema = yup.object().shape({
 });
 
 const AddContacts = () => {
-  const { mutate } = useCreateContact();
+  const { mutate,data } = useCreateContact();
+  const navigate = useNavigate(); // Initialize navigate function
 
+  useEffect(() => {
+    if (data) {
+      toast.success("This item has been successfully Created.");
+
+      // تأخير الانتقال لمدة 2 ثانية (2000 مللي ثانية)
+      setTimeout(() => {
+        navigate("/spruha/preview/pages/contacts/");
+      }, 2000); // يمكنك ضبط الوقت حسب الحاجة
+    }
+  }, [data, navigate]);
   return (
     <Fragment>
       <div className="page-header">

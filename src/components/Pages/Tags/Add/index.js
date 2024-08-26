@@ -1,10 +1,12 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { Breadcrumb, Button, Col, Row, Card } from "react-bootstrap";
 import { Formik } from "formik";
 import { Form } from "react-bootstrap";
 import * as yup from "yup";
 import { useCreateTage } from "../../../../Api/Tags";
-
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const schema = yup.object().shape({
   name: yup.string().required(),
   name_en: yup.string().required(),
@@ -13,8 +15,19 @@ const schema = yup.object().shape({
 });
 
 const AddTags = () => {
-  const { mutate } = useCreateTage();
+  const { mutate,data } = useCreateTage();
+  const navigate = useNavigate(); // Initialize navigate function
 
+  useEffect(() => {
+    if (data) {
+      toast.success("This item has been successfully Created.");
+
+      // تأخير الانتقال لمدة 2 ثانية (2000 مللي ثانية)
+      setTimeout(() => {
+        navigate("/spruha/preview/pages/tages/");
+      }, 2000); // يمكنك ضبط الوقت حسب الحاجة
+    }
+  }, [data, navigate]);
   return (
     <Fragment>
       {/* <!-- Page Header --> */}

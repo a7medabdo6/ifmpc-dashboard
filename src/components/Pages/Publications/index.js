@@ -14,8 +14,10 @@ import {
   Button,
   Modal,
 } from "react-bootstrap";
+import { useNavigate } from 'react-router-dom';
+
 import Searchable from "react-searchable-dropdown";
-import EditePublications from "./Edit/index";
+import EditPublications from "./Edit/index";
 import CircularProgress from "@mui/material/CircularProgress";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 import DropdownItem from "react-bootstrap/esm/DropdownItem";
@@ -26,17 +28,27 @@ import { useDeletePublication, useEditPublication } from "../../../Api/Publicati
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const Publications = () => {
+  const navigate = useNavigate(); // Initialize navigate function
+
   const { mutate } = useDeletePublication();
-  const { mutate: mutateEdite } = useEditPublication();
+  const { mutate: mutateEdit } = useEditPublication();
 
   const [Basic, setShow1] = useState(false);
   const [id, setId] = useState();
   const [itemData, setItemData] = useState();
-
+  const [title, setTitle] = useState(false);
+  useEffect(() => {
+    if (title && id) {
+      navigate("/spruha/preview/pages/publication/edit", {
+        state: { id: id }
+      });
+    }
+  }, [title, id, navigate])
   const handleDelete = () => {
     mutate(id);
     toast.success("This item has been successfully deleted.");
   };
+
   const [show10, setShow10] = useState(false);
   let viewDemoShow = (modal) => {
     //  [eslint]
@@ -113,11 +125,10 @@ border hover"
                 >
                   <thead>
                     <tr>
-                      <th className="wd-lg-10p">first_name</th>
-                      <th className="wd-lg-20p">last_name</th>
-                      <th className="wd-lg-20p ">email</th>
-                      <th className="wd-lg-20p ">phone</th>
-                      <th className="wd-lg-20p ">description</th>
+                      <th className="wd-lg-10p">name</th>
+                      <th className="wd-lg-20p">content</th>
+                      <th className="wd-lg-20p ">category</th>
+
 
                       <th className="wd-lg-20p">Actions</th>
                     </tr>
@@ -128,38 +139,30 @@ border hover"
                         <tr key={index} data-index={index}>
                           <td className="font-weight-semibold">
                             <div className="d-flex">
-                              <span className="mt-1">{item.first_name}</span>
+                              <span className="mt-1">{item.name}</span>
                             </div>
                           </td>
                           <td className="font-weight-semibold">
                             <div className="d-flex">
-                              <span className="mt-1">{item.last_name}</span>
+                              <span className="mt-1">{item.content}</span>
                             </div>
                           </td>{" "}
                           <td className="font-weight-semibold">
                             <div className="d-flex">
                               <span className="mt-1">
-                                {item.email}
+                                {item.category?.name}
                               </span>
                             </div>
                           </td>
-                          <td className="font-weight-semibold">
-                            <div className="d-flex">
-                              <span className="mt-1">{item.phone}</span>
-                            </div>
-                          </td>
-                          <td className="font-weight-semibold">
-                            <div className="d-flex">
-                              <span className="mt-1">{item.description}</span>
-                            </div>
-                          </td>
+
                           <td className="font-weight-semibold">
                             <div className="d-flex">
                               <Button
                                 type="submit"
                                 onClick={() => {
                                   return (
-                                    setId(item?.id), viewDemoShow("show10"), setItemData(item)
+                                    setId(item?.id),
+                                    setTitle(true), setItemData(item)
                                   );
                                 }}
                               >
@@ -230,7 +233,7 @@ border hover"
                       </Modal.Header>
                       <Modal.Body>
                         <Modal.Title>Edit categorie</Modal.Title>
-                        <EditePublications id={id} itemData={itemData} viewDemoClose={viewDemoClose} />
+                        <Publications id={id} itemData={itemData} viewDemoClose={viewDemoClose} />
                       </Modal.Body>
                       {/* <Modal.Footer>
                         <Button

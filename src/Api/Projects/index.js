@@ -2,7 +2,7 @@ import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import axiosInstance from "../axiosConfig";
 
 const fetchProjects = async () => {
-  const response = await axiosInstance.get("/projects");
+  const response = await axiosInstance.get("/projects/");
   return response.data;
 };
 
@@ -11,6 +11,10 @@ export const createProjects = async (data) => {
   return response.data;
 };
 
+export const createProjectsImage = async (data) => {
+  const response = await axiosInstance.post("/upload/", data);
+  return response.data;
+};
 // Delete a Projects
 export const deleteProjects = async (id) => {
   await axiosInstance.delete(`/projects/${id}`);
@@ -22,7 +26,7 @@ export const editProjects = async (data) => {
 
   const response = await axiosInstance.put(
     `/projects/${data.id}/`,
-    data?.data
+    data?.jsonData
   );
   return response.data;
 };
@@ -37,6 +41,15 @@ export const useCreateProject = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: createProjects,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["Projects"]);
+    },
+  });
+};
+export const useCreateProjectImage = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: createProjectsImage,
     onSuccess: () => {
       queryClient.invalidateQueries(["Projects"]);
     },

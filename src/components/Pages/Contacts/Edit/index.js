@@ -15,13 +15,16 @@ const schema = yup.object().shape({
   description: yup.string().required(),
 });
 
-const EditeContacts = ({ id, itemData, viewDemoClose }) => {
+const EditContacts = ({ id, itemData, viewDemoClose, setShow10 }) => {
   const { mutate, data } = useEditContact();
   console.log(data);
 
   useEffect(() => {
     if (data !== undefined) {
       toast.success("This item has been successfully edited.");
+      setTimeout(() => {
+        setShow10(false)
+      }, 2000); // يمكنك ضبط الوقت حسب الحاجة
     }
   }, [data]);
 
@@ -156,8 +159,8 @@ const EditeContacts = ({ id, itemData, viewDemoClose }) => {
   );
 };
 
-EditeContacts.propTypes = {};
+EditContacts.propTypes = {};
 
-EditeContacts.defaultProps = {};
+EditContacts.defaultProps = {};
 
-export default EditeContacts;
+export default EditContacts;

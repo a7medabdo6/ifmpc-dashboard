@@ -20,6 +20,33 @@ export const MENUITEMS = [
         title: "Categories",
       },
       {
+        path: `${process.env.PUBLIC_URL}/pages/training`,
+        type: "link",
+        icon: "ti-list",
+
+        active: false,
+        selected: false,
+        title: "Trainings",
+      },
+      {
+        path: `${process.env.PUBLIC_URL}/pages/settingspage`,
+        type: "link",
+        icon: "ti-list",
+
+        active: false,
+        selected: false,
+        title: "Settings",
+      },
+      // {
+      //   path: `${process.env.PUBLIC_URL}/pages/images`,
+      //   type: "link",
+      //   icon: "ti-list",
+
+      //   active: false,
+      //   selected: false,
+      //   title: "Images",
+      // },
+      {
         path: `${process.env.PUBLIC_URL}/pages/projects`,
         type: "link",
         icon: "ti-list",
@@ -74,8 +101,6 @@ export const MENUITEMS = [
         title: "Users",
       },
 
-
-      
       {
         path: `${process.env.PUBLIC_URL}/pages/authors`,
         type: "link",

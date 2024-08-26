@@ -27,7 +27,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const Categories = () => {
   const { mutate } = useDeleteCategory();
-  const { mutate: mutateEdite } = useEditCategory();
+  const { mutate: mutateEdit } = useEditCategory();
 
   const [Basic, setShow1] = useState(false);
   const [id, setId] = useState();
@@ -231,7 +231,7 @@ border hover"
                       </Modal.Header>
                       <Modal.Body>
                         <Modal.Title>Edit categorie</Modal.Title>
-                        <Editcategories id={id} itemData={itemData} viewDemoClose={viewDemoClose} />
+                        <Editcategories setShow10={setShow10} id={id} itemData={itemData} viewDemoClose={viewDemoClose} />
                       </Modal.Body>
                       {/* <Modal.Footer>
                         <Button

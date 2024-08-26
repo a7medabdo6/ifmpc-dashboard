@@ -3,30 +3,25 @@ import { Breadcrumb, Button, Col, Row, Card } from "react-bootstrap";
 import { Formik } from "formik";
 import { Form, InputGroup } from "react-bootstrap";
 import * as yup from "yup";
-import { useEditCategory } from "../../../../Api/Categories";
+import { useEditImage } from "../../../../Api/Images";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from 'react-router-dom';
 
 const schema = yup.object().shape({
-  name: yup.string().required(),
-  name_en: yup.string().required(),
-  name_ar: yup.string().required(),
-  publication_count: yup.string().required(),
-  project_count: yup.string().required(),
+  first_name: yup.string().required(),
+  last_name: yup.string().required(),
+  email: yup.string().email().required(),
+  phone: yup.string().required(),
+  description: yup.string().required(),
 });
 
-const Editcategories = ({ id, itemData, viewDemoClose, setShow10 }) => {
-  const { mutate, data } = useEditCategory();
-  const navigate = useNavigate(); // Initialize navigate function
-  
+const EditImages = ({ id, itemData, viewDemoClose }) => {
+  const { mutate, data } = useEditImage();
+  console.log(data);
+
   useEffect(() => {
     if (data !== undefined) {
       toast.success("This item has been successfully edited.");
-      // تأخير الانتقال لمدة 2 ثانية (2000 مللي ثانية)
-      setTimeout(() => {
-        setShow10(false)  
-          }, 2000); // يمكنك ضبط الوقت حسب الحاجة
     }
   }, [data]);
 
@@ -46,11 +41,11 @@ const Editcategories = ({ id, itemData, viewDemoClose, setShow10 }) => {
                 )
               }
               initialValues={{
-                name: itemData?.name,
-                name_en: itemData?.name_en || "",
-                name_ar: itemData?.name_ar || "",
-                publication_count: itemData?.publication_count,
-                project_count: itemData?.project_count,
+                first_name: itemData?.first_name || "",
+                last_name: itemData?.last_name || "",
+                email: itemData?.email || "user@example.com",
+                phone: itemData?.phone || "",
+                description: itemData?.description || "",
               }}
             >
               {({
@@ -65,92 +60,81 @@ const Editcategories = ({ id, itemData, viewDemoClose, setShow10 }) => {
                     <Form.Group
                       as={Col}
                       md="4"
-                      controlid="validationFormik101"
+                      controlId="validationFormik101"
                       className="position-relative"
                     >
-                      <Form.Label> Name</Form.Label>
+                      <Form.Label>First Name</Form.Label>
                       <Form.Control
                         type="text"
-                        name="name"
-                        value={values.name}
+                        name="first_name"
+                        value={values.first_name}
                         onChange={handleChange}
-                        isValid={touched.name && !errors.name}
+                        isValid={touched.first_name && !errors.first_name}
                       />
                     </Form.Group>
-                    
                     <Form.Group
                       as={Col}
                       md="4"
-                      controlid="validationFormik102"
+                      controlId="validationFormik102"
                       className="position-relative"
                     >
-                      <Form.Label>Name (English)</Form.Label>
+                      <Form.Label>Last Name</Form.Label>
                       <Form.Control
                         type="text"
-                        name="name_en"
-                        value={values.name_en}
+                        name="last_name"
+                        value={values.last_name}
                         onChange={handleChange}
-                        isValid={touched.name_en && !errors.name_en}
+                        isValid={touched.last_name && !errors.last_name}
                       />
                     </Form.Group>
-
                     <Form.Group
                       as={Col}
                       md="4"
-                      controlid="validationFormik103"
+                      controlId="validationFormikEmail"
                       className="position-relative"
                     >
-                      <Form.Label>Name (Arabic)</Form.Label>
+                      <Form.Label>Email</Form.Label>
                       <Form.Control
-                        type="text"
-                        name="name_ar"
-                        value={values.name_ar}
+                        type="email"
+                        name="email"
+                        value={values.email}
                         onChange={handleChange}
-                        isValid={touched.name_ar && !errors.name_ar}
+                        isValid={touched.email && !errors.email}
                       />
                     </Form.Group>
                   </Row>
-
                   <Row className="mb-3">
                     <Form.Group
                       as={Col}
                       md="4"
-                      controlid="validationFormik104"
+                      controlId="validationFormik103"
                       className="position-relative"
                     >
-                      <Form.Label>Publication Count</Form.Label>
+                      <Form.Label>Phone</Form.Label>
                       <Form.Control
-                        type="number"
-                        name="publication_count"
-                        value={values.publication_count}
+                        type="text"
+                        name="phone"
+                        value={values.phone}
                         onChange={handleChange}
-                        isValid={
-                          touched.publication_count && !errors.publication_count
-                        }
+                        isValid={touched.phone && !errors.phone}
                       />
                     </Form.Group>
-                    
                     <Form.Group
                       as={Col}
-                      md="4"
-                      controlid="validationFormik105"
+                      md="8"
+                      controlId="validationFormik104"
                       className="position-relative"
                     >
-                      <Form.Label>Project Count</Form.Label>
-                      <InputGroup hasValidation>
-                        <Form.Control
-                          type="number"
-                          name="project_count"
-                          value={values.project_count}
-                          onChange={handleChange}
-                          isValid={
-                            touched.project_count && !errors.project_count
-                          }
-                        />
-                      </InputGroup>
+                      <Form.Label>Description</Form.Label>
+                      <Form.Control
+                        as="textarea"
+                        name="description"
+                        value={values.description}
+                        onChange={handleChange}
+                        isValid={touched.description && !errors.description}
+                      />
                     </Form.Group>
                   </Row>
-
                   <div className="d-flex flex-row-reverse">
                     <Button
                       className="ms-3"
@@ -172,4 +156,8 @@ const Editcategories = ({ id, itemData, viewDemoClose, setShow10 }) => {
   );
 };
 
-export default Editcategories;
+EditImages.propTypes = {};
+
+EditImages.defaultProps = {};
+
+export default EditImages;

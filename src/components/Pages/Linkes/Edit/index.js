@@ -14,13 +14,16 @@ const schema = yup.object().shape({
   url: yup.string().url().required(),
 });
 
-const EditeLinks = ({ itemData, id }) => {
+const EditLinks = ({ itemData, id, setShow10 }) => {
   const { mutate, data } = useEditLink();
   const fileInputRef = useRef(null); // Create a ref for the file input
 
   useEffect(() => {
     if (data !== undefined) {
       toast.success("This item has been successfully edited.");
+      setTimeout(() => {
+        setShow10(false)
+      }, 2000); // يمكنك ضبط الوقت حسب الحاجة
     }
   }, [data]);
 
@@ -28,10 +31,10 @@ const EditeLinks = ({ itemData, id }) => {
     <Fragment>
       <div className="page-header">
         <div>
-          <h2 className="main-content-title tx-24 mg-b-5">Create Link</h2>
+          <h2 className="main-content-title tx-24 mg-b-5">Edit Link</h2>
           <Breadcrumb>
             <Breadcrumb.Item href="#">Pages</Breadcrumb.Item>
-            <Breadcrumb.Item active>Create Link</Breadcrumb.Item>
+            <Breadcrumb.Item active>Edit Link</Breadcrumb.Item>
           </Breadcrumb>
         </div>
       </div>
@@ -218,4 +221,4 @@ const EditeLinks = ({ itemData, id }) => {
   );
 };
 
-export default EditeLinks;
+export default EditLinks;

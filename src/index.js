@@ -27,6 +27,11 @@ import Links from "./components/Pages/Linkes";
 import ContactUs from "./components/Pages/ContactUs";
 import AddContactUs from "./components/Pages/ContactUs/Add";
 import Users from "./components/Pages/Users";
+import Images from "./components/Pages/Images";
+import AddImages from "./components/Pages/Images/Add";
+import EditProjects from "./components/Pages/Projects/Edit";
+import EditPublications from "./components/Pages/Publications/Edit";
+import Sliders from "./components/Pages/Slider";
 
 // Dashboard
 const Landingpageapp = React.lazy(() => import("./components/Landingpageapp"));
@@ -43,6 +48,10 @@ const Chat = React.lazy(() => import("./components/AdvanceUI/Chat/Chat"));
 //   import("./components/AdvanceUI/Contacts/Contacts")
 // );
 const Contacts = React.lazy(() => import("./components/Pages/Contacts"));
+
+const Trainings = React.lazy(() => import("./components/Pages/Training"));
+const AddTraining = React.lazy(() => import("./components/Pages/Training/Add"));
+
 const Carousels = React.lazy(() =>
   import("./components/AdvanceUI/Carousels/Carousels")
 );
@@ -661,6 +670,7 @@ const Root = () => {
                   path={`${process.env.PUBLIC_URL}/elements/tabs`}
                   element={<Tabs />}
                 />
+
                 <Route
                   path={`${process.env.PUBLIC_URL}/elements/typographys`}
                   element={<Typographys />}
@@ -807,12 +817,29 @@ const Root = () => {
                   element={<AddProjects />}
                 />
                 <Route
+                  path={`${process.env.PUBLIC_URL}/pages/projects/edit`}
+                  element={<EditProjects />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/pages/publication/edit`}
+                  element={<EditPublications />}
+                />
+
+                <Route
                   path={`${process.env.PUBLIC_URL}/pages/categories/edit/:id`}
                   element={<AddEditcategories />}
                 />
                 <Route
                   path={`${process.env.PUBLIC_URL}/pages/contacts`}
                   element={<Contacts />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/pages/training`}
+                  element={<Trainings />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/pages/settingspage`}
+                  element={<Sliders />}
                 />
                 <Route
                   path={`${process.env.PUBLIC_URL}/pages/ourpartners`}
@@ -831,6 +858,10 @@ const Root = () => {
                   element={<Users />}
                 />
                 <Route
+                  path={`${process.env.PUBLIC_URL}/pages/images`}
+                  element={<Images />}
+                />
+                <Route
                   path={`${process.env.PUBLIC_URL}/pages/projects`}
                   element={<Projects />}
                 />
@@ -839,10 +870,14 @@ const Root = () => {
                   element={<Publications />}
                 />
                 <Route
+                  path={`${process.env.PUBLIC_URL}/pages/images/create`}
+                  element={<AddImages />}
+                />
+                <Route
                   path={`${process.env.PUBLIC_URL}/pages/ourpartners/create`}
                   element={<AddOurPartners />}
                 />
-                
+
                 <Route
                   path={`${process.env.PUBLIC_URL}/pages/links/create`}
                   element={<AddLinks />}
@@ -854,6 +889,10 @@ const Root = () => {
                 <Route
                   path={`${process.env.PUBLIC_URL}/pages/contacts/create`}
                   element={<AddContacts />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/pages/training/create`}
+                  element={<AddTraining />}
                 />
                 <Route
                   path={`${process.env.PUBLIC_URL}/pages/publications/create`}
