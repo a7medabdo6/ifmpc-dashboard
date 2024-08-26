@@ -1,0 +1,10 @@
+version: "3"
+services:
+  react-dashboard:
+    build:
+      context: ./
+    ports:
+      - "4000:4000"
+    environment:
+      - REACT_APP_ENV=production
+    restart: always
