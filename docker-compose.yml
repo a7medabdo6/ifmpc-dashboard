@@ -1,10 +1,31 @@
+# version: "3"
+# services:
+#   reactDashboard:
+#     build:
+#       context: ./
+#     ports:
+#       - "4000:4000"
+#     environment:
+#       - REACT_APP_ENV=production
+#     restart: always
+
 version: "3"
 services:
-  react-dashboard:
-    build:
-      context: ./
+  reactDashboard:
+    build: ./
+    container_name: ifmpc_dashboard
+    image: a7medabdo6/ifmpc_dashboard
     ports:
-      - "4000:4000"
-    environment:
-      - REACT_APP_ENV=production
+      - "3000:3000"
+
+  watchtower:
+    image: containrrr/watchtower
     restart: always
+    environment:
+      # WATCHTOWER_SCHEDULE: "0 0 1 * * *"
+      TZ: America/Chicago
+      WATCHTOWER_CLEANUP: "true"
+      WATCHTOWER_DEBUG: "true"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 60 ifmpc_dashboard ifmpc_dashboard
