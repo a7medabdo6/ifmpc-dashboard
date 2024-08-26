@@ -16,7 +16,7 @@ services:
     container_name: ifmpc_dashboard
     image: a7medabdo6/ifmpc_dashboard
     ports:
-      - "3000:3000"
+      - "4000:4000"
 
   watchtower:
     image: containrrr/watchtower
