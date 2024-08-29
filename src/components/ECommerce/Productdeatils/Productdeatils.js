@@ -1,58 +1,58 @@
-
 import React, { Fragment, useState } from "react";
 import watch2 from "../../../assets/img/pngs/shirt-2.png";
 import watch3 from "../../../assets/img/pngs/shirt-3.png";
 import watch4 from "../../../assets/img/pngs/shirt-4.png";
 import watch5 from "../../../assets/img/pngs/shirt-5.png";
-import { Breadcrumb, Button, Card, Col, Form, Row, Table, } from "react-bootstrap";
+import {
+  Breadcrumb,
+  Button,
+  Card,
+  Col,
+  Form,
+  Row,
+  Table,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Searchable from "react-searchable-dropdown";
 
-
 const Productdeatils = () => {
-  const QuantitySelect=[
+  const QuantitySelect = [
     {
-        value: "",
-        label: "1"
-
+      value: "",
+      label: "1",
     },
     {
-        value: "it projects",
-        label: "2"
+      value: "it projects",
+      label: "2",
     },
     {
-        value: "business case",
-        label: "3"
+      value: "business case",
+      label: "3",
     },
     {
-        value: "microsoft project",
-        label: "4"
+      value: "microsoft project",
+      label: "4",
     },
     {
-        value: "risk ]management",
-        label: "5"
+      value: "risk ]management",
+      label: "5",
     },
-
-
-]
+  ];
 
   let [img, setimg] = useState(watch4);
 
   let click = (id) => {
     // console.log(id)
-    if ((id) === "watch3") {
-      setimg(watch3)
+    if (id === "watch3") {
+      setimg(watch3);
+    } else if (id === "watch2") {
+      setimg(watch2);
+    } else if (id === "watch4") {
+      setimg(watch4);
+    } else if (id === "watch5") {
+      setimg(watch5);
     }
-    else if ((id) === "watch2") {
-      setimg(watch2)
-    }
-    else if ((id) === "watch4") {
-      setimg(watch4)
-    }
-    else if ((id) === "watch5") {
-      setimg(watch5)
-    }
-  }
+  };
 
   return (
     <Fragment>
@@ -67,19 +67,25 @@ const Productdeatils = () => {
         </div>
         <div className="d-flex">
           <div className="justify-content-center">
-            <Button variant="white"
+            <Button
+              variant="white"
               type="button"
               className="btn-icon-text my-2 me-2"
             >
               <i className="fe fe-download me-2"></i> Import
             </Button>
-            <Button variant="white"
+            <Button
+              variant="white"
               type="button"
               className="btn-icon-text my-2 me-2"
             >
               <i className="fe fe-filter me-2"></i> Filter
             </Button>
-            <Button variant="primary" type="button" className="my-2 btn-icon-text">
+            <Button
+              variant="primary"
+              type="button"
+              className="my-2 btn-icon-text"
+            >
               <i className="fe fe-download-cloud me-2"></i> Download Report
             </Button>
           </div>
@@ -100,33 +106,41 @@ const Productdeatils = () => {
                         <div className="carousel slide">
                           <div className="carousel-inner">
                             <div>
-                              <div
-
-                                className="thumb my-2"
-                              >
-                                <img src={require("../../../assets/img/pngs/shirt-2.png")} alt="img" onClick={() => { click("watch2") }} />
-
+                              <div className="thumb my-2">
+                                <img
+                                  src={require("../../../assets/img/pngs/shirt-2.png")}
+                                  alt="img"
+                                  onClick={() => {
+                                    click("watch2");
+                                  }}
+                                />
                               </div>
-                              <div
-                                data-bs-slide-to="1"
-                                className="thumb my-2"
-                              >
-
-                                <img src={require("../../../assets/img/pngs/shirt-3.png")} alt="img" onClick={() => { click("watch3") }} />
-
+                              <div data-bs-slide-to="1" className="thumb my-2">
+                                <img
+                                  src={require("../../../assets/img/pngs/shirt-3.png")}
+                                  alt="img"
+                                  onClick={() => {
+                                    click("watch3");
+                                  }}
+                                />
                               </div>
-                              <div
-                                data-bs-slide-to="2"
-                                className="thumb my-2"
-                              >
-                                <img src={require("../../../assets/img/pngs/shirt-4.png")} alt="img" onClick={() => { click("watch4") }} />
+                              <div data-bs-slide-to="2" className="thumb my-2">
+                                <img
+                                  src={require("../../../assets/img/pngs/shirt-4.png")}
+                                  alt="img"
+                                  onClick={() => {
+                                    click("watch4");
+                                  }}
+                                />
                               </div>
-                              <div
-                                data-bs-slide-to="3"
-                                className="thumb my-2"
-                              >
-                                <img src={require("../../../assets/img/pngs/shirt-5.png")} alt="img" onClick={() => { click("watch5") }} />
-
+                              <div data-bs-slide-to="3" className="thumb my-2">
+                                <img
+                                  src={require("../../../assets/img/pngs/shirt-5.png")}
+                                  alt="img"
+                                  onClick={() => {
+                                    click("watch5");
+                                  }}
+                                />
                               </div>
                             </div>
                           </div>
@@ -149,7 +163,6 @@ const Productdeatils = () => {
                               />
                             </div>
                             <div className="carousel-item">
-
                               <img
                                 src={require("../../../assets/img/pngs/shirt-5.png")}
                                 alt="img"
@@ -157,7 +170,6 @@ const Productdeatils = () => {
                               />
                             </div>
                             <div className="carousel-item">
-
                               <img
                                 src={require("../../../assets/img/pngs/shirt-4.png")}
                                 alt="img"
@@ -165,7 +177,6 @@ const Productdeatils = () => {
                               />
                             </div>
                             <div className="carousel-item">
-
                               <img
                                 src={require("../../../assets/img/pngs/shirt-2.png")}
                                 alt="img"
@@ -175,10 +186,11 @@ const Productdeatils = () => {
                           </div>
                           <div className="text-center mt-4 mb-4 btn-list">
                             <Link
-                              to={`${process.env.PUBLIC_URL}/ecommerce/eccart/`}
+                              to={`/ecommerce/eccart/`}
                               className="btn ripple btn-primary"
                             >
-                              <i className="fe fe-shopping-cart"> </i> Add to cart
+                              <i className="fe fe-shopping-cart"> </i> Add to
+                              cart
                             </Link>
                             <Link to="#" className="btn ripple btn-secondary">
                               <i className="fe fe-credit-card"> </i> Buy Now
@@ -207,7 +219,7 @@ const Productdeatils = () => {
                     <h5 className="mb-2">
                       Price :
                       <span className="text-muted me-2">
-                        <del>  $499 USD </del>
+                        <del> $499 USD </del>
                       </span>
                       <b>$299 USD</b>
                     </h5>
@@ -219,9 +231,9 @@ const Productdeatils = () => {
                       At vero eos et accusamus et iusto odio dignissimos ducimus
                       qui blanditiis praesentium voluptatum deleniti atque
                       corrupti quos dolores et quas molestias excepturi sint
-                      occaecati cupiditate non provident, similique sunt in culpa
-                      qui officia deserunt mollitia animi, id est laborum et
-                      dolorum fuga.
+                      occaecati cupiditate non provident, similique sunt in
+                      culpa qui officia deserunt mollitia animi, id est laborum
+                      et dolorum fuga.
                     </p>
                     <p>
                       On the other hand, we denounce with righteous indignation
@@ -237,17 +249,18 @@ const Productdeatils = () => {
                     <div className="mt-2 sizes">Quantity:</div>
                     <div className="d-flex ms-2">
                       <Form.Group>
-                      <Searchable className="form-control select2"
-                value="test"
-                placeholder="Choose one" // by default "Search"
-                notFoundText="No result found" // by default "No result found"
-                noInput
-                options={QuantitySelect}
-                onSelect={(value) => {
-                    console.log(value);
-                }}
-                listMaxHeight={140} //by default 140
-            />
+                        <Searchable
+                          className="form-control select2"
+                          value="test"
+                          placeholder="Choose one" // by default "Search"
+                          notFoundText="No result found" // by default "No result found"
+                          noInput
+                          options={QuantitySelect}
+                          onSelect={(value) => {
+                            console.log(value);
+                          }}
+                          listMaxHeight={140} //by default 140
+                        />
                       </Form.Group>
                     </div>
                   </div>
@@ -260,7 +273,8 @@ const Productdeatils = () => {
                             name="color"
                             type="radio"
                             defaultValue="azure"
-                            className="colorinput-input" defaultChecked
+                            className="colorinput-input"
+                            defaultChecked
                           />
                           <span className="colorinput-color bg-dark"></span>
                         </label>
@@ -351,7 +365,8 @@ const Productdeatils = () => {
                             <h5 className="float-start main-content-label mb-0 mt-2">
                               All Ratings and Reviews
                             </h5>
-                            <Link to="#"
+                            <Link
+                              to="#"
                               href="#"
                               className="btn btn-outline-primary btn-sm float-end ms-auto"
                             >
@@ -371,7 +386,6 @@ const Productdeatils = () => {
                             <div className="media-body">
                               <h5 className="mt-0 mb-1 font-weight-semibold tx-16">
                                 Bruce Tran
-
                               </h5>
                               <span className="text-muted tx-13">
                                 Tue, 20 Mar 2020
@@ -386,12 +400,15 @@ const Productdeatils = () => {
                               <p className="font-13  mb-2 mt-2">
                                 Lorem Ipsum available, quis Neque porro quisquam
                                 est, qui dolorem ipsum quia dolor sit amet,
-                                consectetur, adipisci velit, sed quia non numquam
-                                eius modi tempora incidunt ut labore et nostrud
-                                exercitation ullamco laboris commodo consequat.
+                                consectetur, adipisci velit, sed quia non
+                                numquam eius modi tempora incidunt ut labore et
+                                nostrud exercitation ullamco laboris commodo
+                                consequat.
                               </p>
                               <Link to="#" className="me-2">
-                                <span className="badge bg-primary">Helpful</span>
+                                <span className="badge bg-primary">
+                                  Helpful
+                                </span>
                               </Link>
                               <Link to="#" className="me-2">
                                 <span>Comment</span>
@@ -420,9 +437,7 @@ const Productdeatils = () => {
                                   data-bs-placement="top"
                                   title=""
                                   data-bs-original-title="verified"
-                                >
-                                  
-                                </span>
+                                ></span>
                               </h5>
                               <span className="text-muted tx-13">
                                 Tue, 20 Mar 2020
@@ -437,12 +452,15 @@ const Productdeatils = () => {
                               <p className="font-13  mb-2 mt-2">
                                 Lorem Ipsum available, quis Neque porro quisquam
                                 est, qui dolorem ipsum quia dolor sit amet,
-                                consectetur, adipisci velit, sed quia non numquam
-                                eius modi tempora incidunt ut labore et nostrud
-                                exercitation ullamco laboris commodo consequat.
+                                consectetur, adipisci velit, sed quia non
+                                numquam eius modi tempora incidunt ut labore et
+                                nostrud exercitation ullamco laboris commodo
+                                consequat.
                               </p>
                               <Link to="#" className="me-2">
-                                <span className="badge bg-primary">Helpful</span>
+                                <span className="badge bg-primary">
+                                  Helpful
+                                </span>
                               </Link>
                               <Link to="#" className="me-2">
                                 <span>Comment</span>
@@ -465,11 +483,7 @@ const Productdeatils = () => {
                             <div className="media-body">
                               <h5 className="mt-0 mb-1 font-weight-semibold tx-16">
                                 Maria Quinn
-                                <span
-                                  className="fs-14 ms-0"
-
-                                >
-                                </span>
+                                <span className="fs-14 ms-0"></span>
                               </h5>
                               <span className="text-muted tx-13">
                                 Tue, 20 Mar 2020
@@ -484,12 +498,15 @@ const Productdeatils = () => {
                               <p className="font-13  mb-2 mt-2">
                                 Lorem Ipsum available, quis Neque porro quisquam
                                 est, qui dolorem ipsum quia dolor sit amet,
-                                consectetur, adipisci velit, sed quia non numquam
-                                eius modi tempora incidunt ut labore et nostrud
-                                exercitation ullamco laboris commodo consequat.
+                                consectetur, adipisci velit, sed quia non
+                                numquam eius modi tempora incidunt ut labore et
+                                nostrud exercitation ullamco laboris commodo
+                                consequat.
                               </p>
                               <Link to="#" className="me-2">
-                                <span className="badge bg-primary">Helpful</span>
+                                <span className="badge bg-primary">
+                                  Helpful
+                                </span>
                               </Link>
                               <Link to="#" className="me-2">
                                 <span>Comment</span>
@@ -499,9 +516,9 @@ const Productdeatils = () => {
                               </Link>
                             </div>
                           </div>
-                          <Link to="#"
+                          <Link
+                            to="#"
                             className="text-center w-100 d-block p-3 font-weight-bold"
-
                           >
                             See All Reviews
                           </Link>
@@ -554,10 +571,14 @@ const Productdeatils = () => {
                               <div className="mb-3 font-weight-semibold">
                                 Your Comment
                               </div>
-                              <Form.Control as="textarea" aria-label="With textarea"></Form.Control>
+                              <Form.Control
+                                as="textarea"
+                                aria-label="With textarea"
+                              ></Form.Control>
                             </Form.Group>
                             <Form.Group className="mb-3">
-                              <Button variant="primary"
+                              <Button
+                                variant="primary"
                                 className=" mt-3 mb-0"
                                 type="button"
                               >
@@ -576,9 +597,9 @@ const Productdeatils = () => {
         </Col>
       </Row>
       {/* <!-- End Row --> */}
-    </Fragment >
-  )
-}
+    </Fragment>
+  );
+};
 
 Productdeatils.propTypes = {};
 

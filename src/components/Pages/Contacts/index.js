@@ -80,7 +80,7 @@ const Contacts = () => {
         </div>
         <div className="d-flex">
           <div className="justify-content-center">
-            <Link to={"/spruha/preview/pages/contacts/create"}>
+            <Link to={"/pages/contacts/create"}>
               <Button
                 variant="primary"
                 type="button"
@@ -138,9 +138,7 @@ border hover"
                           </td>{" "}
                           <td className="font-weight-semibold">
                             <div className="d-flex">
-                              <span className="mt-1">
-                                {item.email}
-                              </span>
+                              <span className="mt-1">{item.email}</span>
                             </div>
                           </td>
                           <td className="font-weight-semibold">
@@ -159,7 +157,9 @@ border hover"
                                 type="submit"
                                 onClick={() => {
                                   return (
-                                    setId(item?.id), viewDemoShow("show10"), setItemData(item)
+                                    setId(item?.id),
+                                    viewDemoShow("show10"),
+                                    setItemData(item)
                                   );
                                 }}
                               >
@@ -230,7 +230,12 @@ border hover"
                       </Modal.Header>
                       <Modal.Body>
                         <Modal.Title>Edit categorie</Modal.Title>
-                        <EditContacts setShow10={setShow10} id={id} itemData={itemData} viewDemoClose={viewDemoClose} />
+                        <EditContacts
+                          setShow10={setShow10}
+                          id={id}
+                          itemData={itemData}
+                          viewDemoClose={viewDemoClose}
+                        />
                       </Modal.Body>
                       {/* <Modal.Footer>
                         <Button

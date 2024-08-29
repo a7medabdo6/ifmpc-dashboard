@@ -4,7 +4,7 @@ import { Formik } from "formik";
 import { Form, InputGroup } from "react-bootstrap";
 import * as yup from "yup";
 import { useCreateContact } from "../../../../Api/Contacts";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const schema = yup.object().shape({
@@ -16,7 +16,7 @@ const schema = yup.object().shape({
 });
 
 const AddContacts = () => {
-  const { mutate,data } = useCreateContact();
+  const { mutate, data } = useCreateContact();
   const navigate = useNavigate(); // Initialize navigate function
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const AddContacts = () => {
 
       // تأخير الانتقال لمدة 2 ثانية (2000 مللي ثانية)
       setTimeout(() => {
-        navigate("/spruha/preview/pages/contacts/");
+        navigate("/pages/contacts/");
       }, 2000); // يمكنك ضبط الوقت حسب الحاجة
     }
   }, [data, navigate]);
@@ -33,9 +33,7 @@ const AddContacts = () => {
     <Fragment>
       <div className="page-header">
         <div>
-          <h2 className="main-content-title tx-24 mg-b-5">
-            Create Contact
-          </h2>
+          <h2 className="main-content-title tx-24 mg-b-5">Create Contact</h2>
           <Breadcrumb>
             <Breadcrumb.Item href="#"> Pages </Breadcrumb.Item>
             <Breadcrumb.Item active>Create Contact</Breadcrumb.Item>
@@ -57,13 +55,7 @@ const AddContacts = () => {
                 description: "",
               }}
             >
-              {({
-                handleSubmit,
-                handleChange,
-                values,
-                touched,
-                errors,
-              }) => (
+              {({ handleSubmit, handleChange, values, touched, errors }) => (
                 <Form noValidate onSubmit={handleSubmit}>
                   <Row className="mb-3">
                     <Form.Group

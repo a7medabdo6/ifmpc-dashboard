@@ -8,24 +8,84 @@ import png19 from "../../../assets/img/pngs/19.png";
 import { Link } from "react-router-dom";
 import { Breadcrumb, Button, Card, Col, Row, Table } from "react-bootstrap";
 let Shoppingcart = [
-  { Id: 1, Product: png14, ProductName: "COLLEGE BAG", Color: "Color:", Colorpicker: "Black color", Qty: "Out of stock", Qtytext: "danger", Quantity: 1, Price: "$26.00", },
-  { Id: 2, Product: png15, ProductName: "PARTY WEAR SHOES", Color: "Color:", Colorpicker: "Pick", Qty: "In stock", Qtytext: "success", Quantity: 2, Price: "$23.00", },
-  { Id: 3, Product: png19, ProductName: "SAMSUNG A2", Color: "Color:", Colorpicker: "Black color", Qty: "Out of stock", Qtytext: "danger", Quantity: 3, Price: "$56.00", },
-  { Id: 4, Product: png16, ProductName: "FLOWER POT", Color: "Color:", Colorpicker: " Green and Black color", Qty: "Out of stock", Qtytext: "success", Quantity: 4, Price: "$36.00", },
-  { Id: 5, Product: png17, ProductName: "CHAIR", Color: "Color:", Colorpicker: "Green and Black color", Qty: "Out of stock", Qtytext: "success", Quantity: 6, Price: "$24.00", },
-  { Id: 6, Product: png18, ProductName: "WATCH", Color: "Color:", Colorpicker: "Green and Black color", Qty: "Out of stock", Qtytext: "danger", Quantity: 7, Price: "$34.00", },];
+  {
+    Id: 1,
+    Product: png14,
+    ProductName: "COLLEGE BAG",
+    Color: "Color:",
+    Colorpicker: "Black color",
+    Qty: "Out of stock",
+    Qtytext: "danger",
+    Quantity: 1,
+    Price: "$26.00",
+  },
+  {
+    Id: 2,
+    Product: png15,
+    ProductName: "PARTY WEAR SHOES",
+    Color: "Color:",
+    Colorpicker: "Pick",
+    Qty: "In stock",
+    Qtytext: "success",
+    Quantity: 2,
+    Price: "$23.00",
+  },
+  {
+    Id: 3,
+    Product: png19,
+    ProductName: "SAMSUNG A2",
+    Color: "Color:",
+    Colorpicker: "Black color",
+    Qty: "Out of stock",
+    Qtytext: "danger",
+    Quantity: 3,
+    Price: "$56.00",
+  },
+  {
+    Id: 4,
+    Product: png16,
+    ProductName: "FLOWER POT",
+    Color: "Color:",
+    Colorpicker: " Green and Black color",
+    Qty: "Out of stock",
+    Qtytext: "success",
+    Quantity: 4,
+    Price: "$36.00",
+  },
+  {
+    Id: 5,
+    Product: png17,
+    ProductName: "CHAIR",
+    Color: "Color:",
+    Colorpicker: "Green and Black color",
+    Qty: "Out of stock",
+    Qtytext: "success",
+    Quantity: 6,
+    Price: "$24.00",
+  },
+  {
+    Id: 6,
+    Product: png18,
+    ProductName: "WATCH",
+    Color: "Color:",
+    Colorpicker: "Green and Black color",
+    Qty: "Out of stock",
+    Qtytext: "danger",
+    Quantity: 7,
+    Price: "$34.00",
+  },
+];
 function ECCart() {
   var Delete = (id1) => {
     let ee = Shoppingcart.filter((e, i) => {
-      return e.Id !== id1
-    })
-    Shoppingcart = ee
-    setdata(ee)
-
-  }
-  const [data, setdata] = useState(Shoppingcart)
+      return e.Id !== id1;
+    });
+    Shoppingcart = ee;
+    setdata(ee);
+  };
+  const [data, setdata] = useState(Shoppingcart);
   function dec(el) {
-    let unit = Number(el.target.parentElement.querySelector("input").value)
+    let unit = Number(el.target.parentElement.querySelector("input").value);
 
     // if (
     //   (unit) === 0) {
@@ -34,7 +94,7 @@ function ECCart() {
     //   el.target.parentElement.querySelector("input").value--;
     // }
     if (unit > 0) {
-      el.target.parentElement.querySelector("input").value--
+      el.target.parentElement.querySelector("input").value--;
     }
   }
   function inc(el) {
@@ -87,7 +147,10 @@ function ECCart() {
             </Card.Header>
             <Card.Body>
               <div className="table-responsive">
-                <Table bordered className="text-nowrap table-shopping-cart mb-0">
+                <Table
+                  bordered
+                  className="text-nowrap table-shopping-cart mb-0"
+                >
                   <thead className="text-muted">
                     <tr className="small text-uppercase">
                       <th scope="col">Product</th>
@@ -144,10 +207,7 @@ function ECCart() {
                             >
                               -
                             </Button>
-                            <input
-                              type="text"
-                              defaultValue={0}
-                            />
+                            <input type="text" defaultValue={0} />
                             <Button
                               variant="light"
                               className="counter-plus "
@@ -165,7 +225,8 @@ function ECCart() {
                           </div>
                         </td>
                         <td className="text-center">
-                          <Link to="#"
+                          <Link
+                            to="#"
                             onClick={function () {
                               Delete(list.Id);
                             }}
@@ -196,8 +257,7 @@ function ECCart() {
                       placeholder="Coupon code"
                     />
                     <span className="">
-                      <Button
-                        variant="primary" className=" btn-apply coupon">
+                      <Button variant="primary" className=" btn-apply coupon">
                         Apply
                       </Button>
                     </span>
@@ -234,7 +294,7 @@ function ECCart() {
               </dl>
               <div className="step-footer">
                 <Link
-                  to={`${process.env.PUBLIC_URL}/ecommerce/products/`}
+                  to={`/ecommerce/products/`}
                   className="btn btn-success btn-block"
                   href="ecommerce-products.html"
                 >

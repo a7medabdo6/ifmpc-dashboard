@@ -66,7 +66,6 @@ const Categories = () => {
   const { data, error, isLoading } = useCategories();
   console.log(data);
 
-
   return (
     <Fragment>
       {/* <!-- Page Header --> */}
@@ -80,7 +79,7 @@ const Categories = () => {
         </div>
         <div className="d-flex">
           <div className="justify-content-center">
-            <Link to={"/spruha/preview/pages/categories/create"}>
+            <Link to={"/pages/categories/create"}>
               <Button
                 variant="primary"
                 type="button"
@@ -160,7 +159,9 @@ border hover"
                                 type="submit"
                                 onClick={() => {
                                   return (
-                                    setId(item?.id), viewDemoShow("show10"), setItemData(item)
+                                    setId(item?.id),
+                                    viewDemoShow("show10"),
+                                    setItemData(item)
                                   );
                                 }}
                               >
@@ -231,7 +232,12 @@ border hover"
                       </Modal.Header>
                       <Modal.Body>
                         <Modal.Title>Edit categorie</Modal.Title>
-                        <Editcategories setShow10={setShow10} id={id} itemData={itemData} viewDemoClose={viewDemoClose} />
+                        <Editcategories
+                          setShow10={setShow10}
+                          id={id}
+                          itemData={itemData}
+                          viewDemoClose={viewDemoClose}
+                        />
                       </Modal.Body>
                       {/* <Modal.Footer>
                         <Button

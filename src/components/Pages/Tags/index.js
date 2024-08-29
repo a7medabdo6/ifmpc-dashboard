@@ -66,7 +66,6 @@ const Tags = () => {
   const { data, error, isLoading } = useTags();
   console.log(data);
 
-
   return (
     <Fragment>
       {/* <!-- Page Header --> */}
@@ -80,7 +79,7 @@ const Tags = () => {
         </div>
         <div className="d-flex">
           <div className="justify-content-center">
-            <Link to={"/spruha/preview/pages/Tags/create"}>
+            <Link to={"/pages/Tags/create"}>
               <Button
                 variant="primary"
                 type="button"
@@ -145,14 +144,15 @@ border hover"
                               <span className="mt-1">{item.post_count}</span>
                             </div>
                           </td>{" "}
-
                           <td className="font-weight-semibold">
                             <div className="d-flex">
                               <Button
                                 type="submit"
                                 onClick={() => {
                                   return (
-                                    setId(item?.id), viewDemoShow("show10"), setItemData(item)
+                                    setId(item?.id),
+                                    viewDemoShow("show10"),
+                                    setItemData(item)
                                   );
                                 }}
                               >
@@ -223,8 +223,12 @@ border hover"
                       </Modal.Header>
                       <Modal.Body>
                         <Modal.Title>Edit categorie</Modal.Title>
-                        <EditTags setShow10={setShow10}
- id={id} itemData={itemData} viewDemoClose={viewDemoClose} />
+                        <EditTags
+                          setShow10={setShow10}
+                          id={id}
+                          itemData={itemData}
+                          viewDemoClose={viewDemoClose}
+                        />
                       </Modal.Body>
                       {/* <Modal.Footer>
                         <Button

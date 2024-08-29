@@ -1,5 +1,16 @@
 import React, { Fragment } from "react";
-import { Row, Col, Tab, Nav, Breadcrumb, Card, Button, ListGroup, Form, Table } from "react-bootstrap";
+import {
+  Row,
+  Col,
+  Tab,
+  Nav,
+  Breadcrumb,
+  Card,
+  Button,
+  ListGroup,
+  Form,
+  Table,
+} from "react-bootstrap";
 import Searchable from "react-searchable-dropdown";
 import { Link } from "react-router-dom";
 import png14 from "../../../assets/img/pngs/14.png";
@@ -8,57 +19,51 @@ import png19 from "../../../assets/img/pngs/19.png";
 import user1 from "../../../assets/img/users/1.jpg";
 import { AllOrder } from "../../../data/ecommerce/account";
 function Account() {
-  const Countryoptions= [
-
+  const Countryoptions = [
     {
       value: "india",
-      label: "India"
+      label: "India",
     },
     {
       value: "usa",
-      label: "USA"
+      label: "USA",
     },
     {
       value: "uk",
-      label: "UK"
+      label: "UK",
     },
     {
       value: "uae",
-      label: "UAE"
+      label: "UAE",
     },
-  ]
-  const Languageoptions=[
-  
+  ];
+  const Languageoptions = [
     {
       value: "english",
-      label: "English"
+      label: "English",
     },
     {
       value: "english(united state)",
-      label: "English (United State)"
+      label: "English (United State)",
     },
     {
       value: "engish UK",
-      label: "Emglish UK"
+      label: "Emglish UK",
     },
     {
       value: "arabic",
-      label: "Arabic"
+      label: "Arabic",
     },
-  ]
+  ];
   return (
     <Fragment>
       {/* <!-- Page Header --> */}
       <div className="page-header">
         <div>
           <h2 className="main-content-title tx-24 mg-b-5">Account</h2>
-          <Breadcrumb >
-            <Breadcrumb.Item href="#" >
-              Ecommerce
-            </Breadcrumb.Item>
-            <Breadcrumb.Item >
-              Account
-            </Breadcrumb.Item>
+          <Breadcrumb>
+            <Breadcrumb.Item href="#">Ecommerce</Breadcrumb.Item>
+            <Breadcrumb.Item>Account</Breadcrumb.Item>
           </Breadcrumb>
         </div>
         <div className="d-flex">
@@ -91,7 +96,7 @@ function Account() {
       {/* <!-- Row --> */}
       <Tab.Container defaultActiveKey="orders">
         <Row className="row row-sm">
-          <Col xl={3} lg={12} md={12} >
+          <Col xl={3} lg={12} md={12}>
             <Card className=" custom-card">
               <Card.Header>
                 <h3 className="main-content-Form.Label">My Account</h3>
@@ -99,10 +104,7 @@ function Account() {
               <Card.Body className=" text-center item-user">
                 <div className="profile-pic">
                   <div className="profile-pic-img">
-                    <span
-                      className="bg-success dots"
-                      title="online"
-                    ></span>
+                    <span className="bg-success dots" title="online"></span>
                     <img src={user1} className="rounded-circle" alt="user" />
                   </div>
                   <div className="text-dark">
@@ -144,7 +146,7 @@ function Account() {
                   </Nav.Link>
                 </Nav.Item>
                 <Nav.Item as="li">
-                  <Nav.Link href={`${process.env.PUBLIC_URL}/custompages/signup`} >
+                  <Nav.Link href={`/custompages/signup`}>
                     <i className="ti-power-off icon1"></i> Logout
                   </Nav.Link>
                 </Nav.Item>
@@ -166,8 +168,7 @@ function Account() {
                         All orders
                       </Form.Label>
                       <h6 className="mb-0 ms-auto">
-                        <Button
-                          variant="success" className="float-end">
+                        <Button variant="success" className="float-end">
                           <i className=""></i>Invoice
                         </Button>
                       </h6>
@@ -227,7 +228,8 @@ function Account() {
                         <Card className="card custom-card border mb-xl-0">
                           <Card.Header className=" pb-3">
                             <h6 className="mb-0">
-                              <i className="ti-home me-2 d-inline-block"></i>Default Address
+                              <i className="ti-home me-2 d-inline-block"></i>
+                              Default Address
                             </h6>
                           </Card.Header>
                           <Card.Body>
@@ -266,7 +268,8 @@ function Account() {
                         <Card className="custom-card border mb-0">
                           <Card.Header className=" pb-3">
                             <h6 className="mb-0">
-                              <i className="ti-home me-2 d-inline-block"></i>Office Address
+                              <i className="ti-home me-2 d-inline-block"></i>
+                              Office Address
                             </h6>
                           </Card.Header>
                           <Card.Body>
@@ -353,13 +356,11 @@ function Account() {
                           <i className="fa fa-truck"></i>
                         </span>
                         <span className="text d-none d-md-block">
-
                           On the way
                         </span>
                       </div>
                       <div className="step">
                         <span className="icon">
-
                           <i className="fa fa-cube"></i>
                         </span>
                         <span className="text d-none d-md-block">
@@ -458,9 +459,7 @@ function Account() {
                               />
                             </td>
                             <td>Regular waterproof (24 L) Backpack</td>
-                            <td>
-                             1
-                            </td>
+                            <td>1</td>
                             <td>$10</td>
                             <td>$500</td>
                             <td>
@@ -469,15 +468,16 @@ function Account() {
                                 type="button"
                                 className=" mb-1 me-1"
                               >
-                                <i className="ti-shopping-cart me-2 d-inline-block"></i>Move to
-                                cart
+                                <i className="ti-shopping-cart me-2 d-inline-block"></i>
+                                Move to cart
                               </Button>
                               <Button
                                 variant="danger"
                                 type="button"
                                 className="mb-1"
                               >
-                                <i className="ti-trash me-2 d-inline-block"></i>Remove
+                                <i className="ti-trash me-2 d-inline-block"></i>
+                                Remove
                               </Button>
                             </td>
                           </tr>
@@ -491,9 +491,7 @@ function Account() {
                               />
                             </td>
                             <td>Designer Hand Decorative flower Pot</td>
-                            <td>
-                              3
-                            </td>
+                            <td>3</td>
                             <td>$20</td>
                             <td>$200</td>
                             <td>
@@ -502,15 +500,16 @@ function Account() {
                                 type="button"
                                 className=" mb-1 me-1"
                               >
-                                <i className="ti-shopping-cart me-2 d-inline-block"></i>Move to
-                                cart
+                                <i className="ti-shopping-cart me-2 d-inline-block"></i>
+                                Move to cart
                               </Button>
                               <Button
                                 variant="danger"
                                 type="button"
                                 className="mb-1"
                               >
-                                <i className="ti-trash me-2 d-inline-block"></i>Remove
+                                <i className="ti-trash me-2 d-inline-block"></i>
+                                Remove
                               </Button>
                             </td>
                           </tr>
@@ -524,9 +523,7 @@ function Account() {
                               />
                             </td>
                             <td>Apple iPhone(Black, 128 GB) 8GB RAM</td>
-                            <td>
-                              2
-                            </td>
+                            <td>2</td>
                             <td>$30</td>
                             <td>$300</td>
                             <td>
@@ -535,15 +532,16 @@ function Account() {
                                 type="button"
                                 className=" mb-1 me-1"
                               >
-                                <i className="ti-shopping-cart me-2 d-inline-block"></i>Move to
-                                cart
+                                <i className="ti-shopping-cart me-2 d-inline-block"></i>
+                                Move to cart
                               </Button>
                               <Button
                                 variant="danger"
                                 type="button"
                                 className="mb-1"
                               >
-                                <i className="ti-trash me-2 d-inline-block"></i>Remove
+                                <i className="ti-trash me-2 d-inline-block"></i>
+                                Remove
                               </Button>
                             </td>
                           </tr>
@@ -643,7 +641,9 @@ function Account() {
                         </p>
 
                         <Button
-                          variant="default" className="btn button border btn-sm">
+                          variant="default"
+                          className="btn button border btn-sm"
+                        >
                           <b>Upload</b>
                         </Button>
                       </div>
@@ -652,17 +652,11 @@ function Account() {
                       <div className="row py-2">
                         <div className="col-md-6 pb-3">
                           <Form.Label id="firstname">First Name</Form.Label>
-                          <Form.Control
-                            type="text"
-                            placeholder="Steve"
-                          />
+                          <Form.Control type="text" placeholder="Steve" />
                         </div>
                         <div className="col-md-6 pb-3">
                           <Form.Label id="last-name">Last Name</Form.Label>
-                          <Form.Control
-                            type="text"
-                            placeholder="Smith"
-                          />
+                          <Form.Control type="text" placeholder="Smith" />
                         </div>
                       </div>
                       <div className="row py-2">
@@ -684,28 +678,30 @@ function Account() {
                       <div className="row py-2">
                         <div className="col-md-6 pb-3">
                           <Form.Label htmlFor="country">Country</Form.Label>
-                          <Searchable className="form-control"
-        value="test"
-        placeholder="india" // by default "Search"
-       options={Countryoptions}
-        onSelect={(value) => {
-          console.log(value);
-        }}
-        listMaxHeight={140} //by default 140
-      />
+                          <Searchable
+                            className="form-control"
+                            value="test"
+                            placeholder="india" // by default "Search"
+                            options={Countryoptions}
+                            onSelect={(value) => {
+                              console.log(value);
+                            }}
+                            listMaxHeight={140} //by default 140
+                          />
                         </div>
                         <div className="col-md-6 pb-3" id="lang">
                           <Form.Label htmlFor="language">Language</Form.Label>
                           <div className="arrow">
-                          <Searchable className="form-control select2"
-        value="test"
-        placeholder="English" // by default "Search"
-        options={Languageoptions}
-        onSelect={(value) => {
-          console.log(value);
-        }}
-        listMaxHeight={140} //by default 140
-      />
+                            <Searchable
+                              className="form-control select2"
+                              value="test"
+                              placeholder="English" // by default "Search"
+                              options={Languageoptions}
+                              onSelect={(value) => {
+                                console.log(value);
+                              }}
+                              listMaxHeight={140} //by default 140
+                            />
                           </div>
                         </div>
                       </div>

@@ -1,10 +1,23 @@
 import { Fragment, useState } from "react";
-import icon from '../../assets/img/brand/icon.png';
-import iconlight from '../../assets/img/brand/icon-light.png';
+import icon from "../../assets/img/brand/icon.png";
+import iconlight from "../../assets/img/brand/icon-light.png";
 import { Link } from "react-router-dom";
 import CountUp from "react-countup";
-import { Button, Card, Col, Container, Form, Nav, Navbar, Row, Tab } from "react-bootstrap";
-import { Slicksider, Slicksiderwithdata } from "../../data/Landingpagedata/landingpagedata";
+import {
+  Button,
+  Card,
+  Col,
+  Container,
+  Form,
+  Nav,
+  Navbar,
+  Row,
+  Tab,
+} from "react-bootstrap";
+import {
+  Slicksider,
+  Slicksiderwithdata,
+} from "../../data/Landingpagedata/landingpagedata";
 import Navbar1 from "../../data/Landingpagedata/Navbar";
 const Landingpage = () => {
   let [isFirstCollapsed, setisFirstCollapsed] = useState(false);
@@ -20,147 +33,168 @@ const Landingpage = () => {
   let [is11Collapsed, setis11Collapsed] = useState(false);
   //// Template Highlights collapse
   let Firstcollapse = (a) => {
-
     if (a === "primary") {
       if (isFirstCollapsed === false) {
-        setisFirstCollapsed(true)
+        setisFirstCollapsed(true);
+      } else if (isFirstCollapsed === true) {
+        setisFirstCollapsed(false);
       }
-      else if (isFirstCollapsed === true) {
-        setisFirstCollapsed(false)
-      }
-    }
-    else if (a === "success") {
+    } else if (a === "success") {
       if (is2Collapsed === false) {
-        setis2Collapsed(true)
+        setis2Collapsed(true);
+      } else if (is2Collapsed === true) {
+        setis2Collapsed(false);
       }
-      else if (is2Collapsed === true) {
-        setis2Collapsed(false)
-      }
-    }
-    else if (a === "info") {
+    } else if (a === "info") {
       if (is3tCollapsed === false) {
-        setis3Collapsed(true)
+        setis3Collapsed(true);
+      } else if (is3tCollapsed === true) {
+        setis3Collapsed(false);
       }
-      else if (is3tCollapsed === true) {
-        setis3Collapsed(false)
-      }
-    }
-    else if (a === "secondary") {
+    } else if (a === "secondary") {
       if (is4Collapsed === false) {
-        setis4Collapsed(true)
+        setis4Collapsed(true);
+      } else if (is4Collapsed === true) {
+        setis4Collapsed(false);
       }
-      else if (is4Collapsed === true) {
-        setis4Collapsed(false)
-      }
-    }
-    else if (a === "warning") {
+    } else if (a === "warning") {
       if (is5Collapsed === false) {
-        setis5Collapsed(true)
+        setis5Collapsed(true);
+      } else if (is5Collapsed === true) {
+        setis5Collapsed(false);
       }
-      else if (is5Collapsed === true) {
-        setis5Collapsed(false)
-      }
-    }
-    else if (a === "danger") {
+    } else if (a === "danger") {
       if (is6Collapsed === false) {
-        setis6Collapsed(true)
-      }
-      else if (is6Collapsed === true) {
-        setis6Collapsed(false)
+        setis6Collapsed(true);
+      } else if (is6Collapsed === true) {
+        setis6Collapsed(false);
       }
     }
-  }
+  };
   //FAQ'S
   let Secondcollpase = (a) => {
-
     if (a === "primary") {
       if (is7Collapsed === false) {
-        setis7Collapsed(true)
+        setis7Collapsed(true);
+      } else if (is7Collapsed === true) {
+        setis7Collapsed(false);
       }
-      else if (is7Collapsed === true) {
-        setis7Collapsed(false)
-      }
-    }
-    else if (a === "success") {
+    } else if (a === "success") {
       if (is8Collapsed === false) {
-        setis8Collapsed(true)
+        setis8Collapsed(true);
+      } else if (is8Collapsed === true) {
+        setis8Collapsed(false);
       }
-      else if (is8Collapsed === true) {
-        setis8Collapsed(false)
-      }
-    }
-    else if (a === "secondary") {
+    } else if (a === "secondary") {
       if (is9Collapsed === false) {
-        setis9Collapsed(true)
+        setis9Collapsed(true);
+      } else if (is9Collapsed === true) {
+        setis9Collapsed(false);
       }
-      else if (is9Collapsed === true) {
-        setis9Collapsed(false)
-      }
-    }
-    else if (a === "warning") {
+    } else if (a === "warning") {
       if (is10Collapsed === false) {
-        setis10Collapsed(true)
+        setis10Collapsed(true);
+      } else if (is10Collapsed === true) {
+        setis10Collapsed(false);
       }
-      else if (is10Collapsed === true) {
-        setis10Collapsed(false)
-      }
-    }
-    else if (a === "danger") {
+    } else if (a === "danger") {
       if (is11Collapsed === false) {
-        setis11Collapsed(true)
-      }
-      else if (is11Collapsed === true) {
-        setis11Collapsed(false)
+        setis11Collapsed(true);
+      } else if (is11Collapsed === true) {
+        setis11Collapsed(false);
       }
     }
-  }
+  };
   const Sidebartoggled = () => {
     document.querySelector(".landing-page").classList.toggle("sidenav-toggled");
-  }
+  };
   return (
     <Fragment>
       <div className="horizontalMenucontainer">
         <div className="page">
           <div className="page-main">
-            <Navbar expand="lg" className="main-header side-header hor-header" style={{ marginBottom: "-64px" }}>
+            <Navbar
+              expand="lg"
+              className="main-header side-header hor-header"
+              style={{ marginBottom: "-64px" }}
+            >
               <Container fluid className="main-container">
                 <div className="main-header-left">
-                  <Link to="#" className="main-header-menu-icon" onClick={() => Sidebartoggled()}
-                    id="mainSidebarToggle"><span></span></Link>
+                  <Link
+                    to="#"
+                    className="main-header-menu-icon"
+                    onClick={() => Sidebartoggled()}
+                    id="mainSidebarToggle"
+                  >
+                    <span></span>
+                  </Link>
                   <div className="hor-logo">
-                    <Link to="#" className="main-logo" >
-                      <img src={require("../../assets/img/brand/icon.png").default} className="header-brand-img desktop-logo"
-                        alt="logo" />
-                      <img src={iconlight} className="header-brand-img desktop-logo-dark"
-                        alt="logo" />
+                    <Link to="#" className="main-logo">
+                      <img
+                        src={require("../../assets/img/brand/icon.png").default}
+                        className="header-brand-img desktop-logo"
+                        alt="logo"
+                      />
+                      <img
+                        src={iconlight}
+                        className="header-brand-img desktop-logo-dark"
+                        alt="logo"
+                      />
                     </Link>
                   </div>
                 </div>
-                <img src={icon} className="header-brand-img desktop-logo"
-                  alt="logo" />
+                <img
+                  src={icon}
+                  className="header-brand-img desktop-logo"
+                  alt="logo"
+                />
                 <div className="main-header-center">
                   <div className="responsive-logo">
-                    <Link to={`${process.env.PUBLIC_URL}/Dashboard`}><img src={require("../../assets/img/brand/logo.png")} className="mobile-logo"
-                      alt="lo/o" /></Link>
-                    <Link to={`${process.env.PUBLIC_URL}/Dashboard`}><img src={require("../../assets/img/brand/logo-light.png")} className="mobile-logo-dark"
-                      alt="logo" /></Link>
+                    <Link to={`/Dashboard`}>
+                      <img
+                        src={require("../../assets/img/brand/logo.png")}
+                        className="mobile-logo"
+                        alt="lo/o"
+                      />
+                    </Link>
+                    <Link to={`/Dashboard`}>
+                      <img
+                        src={require("../../assets/img/brand/logo-light.png")}
+                        className="mobile-logo-dark"
+                        alt="logo"
+                      />
+                    </Link>
                   </div>
                 </div>
                 <div className="main-header-right">
-                  <Navbar.Toggle className="navresponsive-toggler" type="button"
-                    data-bs-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4"
+                  <Navbar.Toggle
+                    className="navresponsive-toggler"
+                    type="button"
+                    data-bs-target="#navbarSupportedContent-4"
+                    aria-controls="navbarSupportedContent-4"
                   >
                     <i className="fe fe-more-vertical header-icons navbar-toggler-icon"></i>
                   </Navbar.Toggle>
                   <div className="navbar navbar-expand-lg  nav nav-item  navbar-nav-right responsive-navbar navbar-dark  ">
-                    <Navbar.Collapse className="collapse navbar-collapse" id="navbarSupportedContent-4">
+                    <Navbar.Collapse
+                      className="collapse navbar-collapse"
+                      id="navbarSupportedContent-4"
+                    >
                       <div className="d-flex order-lg-2 ms-auto">
                         <div className="header-nav-right p-3">
-                          <Link to="#" className="btn ripple btn-min w-sm btn-outline-primary me-2"
-                            target="_blank">New User
+                          <Link
+                            to="#"
+                            className="btn ripple btn-min w-sm btn-outline-primary me-2"
+                            target="_blank"
+                          >
+                            New User
                           </Link>
-                          <Link to="#" className="btn ripple btn-min w-sm btn-primary me-2"
-                            target="_blank">Login
+                          <Link
+                            to="#"
+                            className="btn ripple btn-min w-sm btn-primary me-2"
+                            target="_blank"
+                          >
+                            Login
                           </Link>
                         </div>
                       </div>
@@ -171,72 +205,111 @@ const Landingpage = () => {
             </Navbar>
             <div className="landing-top-header overflow-hidden">
               <div className="top sticky">
-                <div className="app-sidebar__overlay" data-bs-toggle="sidebar"></div>
+                <div
+                  className="app-sidebar__overlay"
+                  data-bs-toggle="sidebar"
+                ></div>
                 <div className="app-sidebar bg-transparent">
                   <Container>
                     <Row>
-
-
-
                       <div className="navbar main-sidemenu px-0">
-                        <Link className="main-logo" to={`${process.env.PUBLIC_URL}/Dashboard`}>
-                          <img src={require("../../assets/img/brand/logo.png")} className="header-brand-img desktop-logo"
-                            alt="logo" />
-                          <img src={require("../../assets/img/brand/logo-light.png")}
-                            className="header-brand-img desktop-logo-dark" alt="logo" />
+                        <Link className="main-logo" to={`/Dashboard`}>
+                          <img
+                            src={require("../../assets/img/brand/logo.png")}
+                            className="header-brand-img desktop-logo"
+                            alt="logo"
+                          />
+                          <img
+                            src={require("../../assets/img/brand/logo-light.png")}
+                            className="header-brand-img desktop-logo-dark"
+                            alt="logo"
+                          />
                         </Link>
-                        <div className="slide-left disabled" id="slide-left"><svg
-                          xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24"
-                          viewBox="0 0 24 24">
-                          <path
-                            d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z" />
-                        </svg></div>
-
+                        <div className="slide-left disabled" id="slide-left">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="#7b8191"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                          >
+                            <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z" />
+                          </svg>
+                        </div>
 
                         <Navbar1 />
 
-                        <div className="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg"
-                          fill="#7b8191" width="24" height="24" viewBox="0 0 24 24">
-                          <path
-                            d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z" />
-                        </svg></div>
+                        <div className="slide-right" id="slide-right">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="#7b8191"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                          >
+                            <path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z" />
+                          </svg>
+                        </div>
                         <div className="header-nav-right d-none d-lg-block">
-                          <Link to="#" className="btn ripple btn-min w-sm btn-secondary me-2"
-                            target="_blank">New User
+                          <Link
+                            to="#"
+                            className="btn ripple btn-min w-sm btn-secondary me-2"
+                            target="_blank"
+                          >
+                            New User
                           </Link>
-                          <Link to="#" className="btn ripple btn-min w-sm btn-info me-2"
-                            target="_blank">Login
+                          <Link
+                            to="#"
+                            className="btn ripple btn-min w-sm btn-info me-2"
+                            target="_blank"
+                          >
+                            Login
                           </Link>
                         </div>
-  </div>
+                      </div>
                     </Row>
                   </Container>
                 </div>
               </div>
-              <div className="demo-screen-headline main-demo main-demo-1 spacing-top overflow-hidden reveal" id="home">
+              <div
+                className="demo-screen-headline main-demo main-demo-1 spacing-top overflow-hidden reveal"
+                id="home"
+              >
                 <Container className="px-sm-0">
                   <Row>
                     <Col xl={6} lg={6} className="animation-zidex pos-relative">
                       <h4 className="fw-semibold mt-7">Manage Your Business</h4>
-                      <h1 className="text-start fw-bold">We Help to Build Your Dream Project with Spruha !</h1>
+                      <h1 className="text-start fw-bold">
+                        We Help to Build Your Dream Project with Spruha !
+                      </h1>
                       <h6 className="pb-3">
-                        Spruha - Now you can use this admin template to design stunning dashboards
-                        that will wow your target viewers or users to no end. To create a good and
-                        well-structured dashboard,
-                        you need to start from scratch with HTML, SCSS, CSS, and JS and with lots of coding,
-                        but by using this Spruha-Admin template.</h6>
+                        Spruha - Now you can use this admin template to design
+                        stunning dashboards that will wow your target viewers or
+                        users to no end. To create a good and well-structured
+                        dashboard, you need to start from scratch with HTML,
+                        SCSS, CSS, and JS and with lots of coding, but by using
+                        this Spruha-Admin template.
+                      </h6>
 
-                      <Link to="https://themeforest.net/item/dashlead-bootstrap-5-admin-dashboard-template/35183671"
-                        target="_blank" className="btn ripple btn-min w-lg mb-3 me-2 btn-light"><i
-                          className="fe fe-play me-2"></i> Get Started
+                      <Link
+                        to="https://themeforest.net/item/dashlead-bootstrap-5-admin-dashboard-template/35183671"
+                        target="_blank"
+                        className="btn ripple btn-min w-lg mb-3 me-2 btn-light"
+                      >
+                        <i className="fe fe-play me-2"></i> Get Started
                       </Link>
-                      <Link to="https://themeforest.net/user/spruko/portfolio"
-                        className="btn ripple btn-min w-lg btn-outline-light mb-3 me-2"><i
-                          className="fe fe-eye me-2"></i> Discover More
+                      <Link
+                        to="https://themeforest.net/user/spruko/portfolio"
+                        className="btn ripple btn-min w-lg btn-outline-light mb-3 me-2"
+                      >
+                        <i className="fe fe-eye me-2"></i> Discover More
                       </Link>
                     </Col>
                     <Col xl={6} lg={6} className="my-auto">
-                      <img src={require("../../assets/landing/images/market3.png")} alt="market" />
+                      <img
+                        src={require("../../assets/landing/images/market3.png")}
+                        alt="market"
+                      />
                     </Col>
                   </Row>
                 </Container>
@@ -247,16 +320,24 @@ const Landingpage = () => {
                 <div className="sptb section bg-white" id="Features">
                   <Container>
                     <Row>
-                      <h4 className="text-center fw-semibold landing-card-header">Features</h4>
+                      <h4 className="text-center fw-semibold landing-card-header">
+                        Features
+                      </h4>
                       <span className="landing-title"></span>
-                      <h2 className="fw-semibold text-center">Spruha Main Features</h2>
-                      <p className="text-default mb-5 text-center">The Spruha admin template comes with
-                        ready-to-use features that are completely easy-to-use for any user, even for
-                        a beginner.</p>
+                      <h2 className="fw-semibold text-center">
+                        Spruha Main Features
+                      </h2>
+                      <p className="text-default mb-5 text-center">
+                        The Spruha admin template comes with ready-to-use
+                        features that are completely easy-to-use for any user,
+                        even for a beginner.
+                      </p>
                       <Row className="mt-7">
                         <Col lg={3} md={12}>
-                          <Card className="features main-features main-features-1 wow fadeInUp reveal revealleft"
-                            data-wow-delay="0.1s">
+                          <Card
+                            className="features main-features main-features-1 wow fadeInUp reveal revealleft"
+                            data-wow-delay="0.1s"
+                          >
                             <Card.Body>
                               <div className="counter-body-2">
                                 <div className="bg-img mb-2 text-left hexagon-wrapper">
@@ -267,15 +348,20 @@ const Landingpage = () => {
                               </div>
                               <div className="text-left counter-body">
                                 <h4 className="fw-bold">Unique Design</h4>
-                                <p className="mb-0">Spruha has a unique design that you cannot compare
-                                  with any other templates. It has unique Design</p>
+                                <p className="mb-0">
+                                  Spruha has a unique design that you cannot
+                                  compare with any other templates. It has
+                                  unique Design
+                                </p>
                               </div>
                             </Card.Body>
                           </Card>
                         </Col>
                         <Col lg={3} md={12}>
-                          <Card className=" features main-features main-features-2 wow fadeInUp reveal revealleft"
-                            data-wow-delay="0.1s">
+                          <Card
+                            className=" features main-features main-features-2 wow fadeInUp reveal revealleft"
+                            data-wow-delay="0.1s"
+                          >
                             <Card.Body>
                               <div className="counter-body-2">
                                 <div className="bg-img mb-2 text-left hexagon-wrapper">
@@ -285,17 +371,23 @@ const Landingpage = () => {
                                 </div>
                               </div>
                               <div className="text-left counter-body">
-                                <h4 className="fw-bold">Quality &amp; Clean Code</h4>
-                                <p className="mb-0">The Spruha admin code is maintained very cleanly and
-                                  well-structured with proper
-                                  comments.</p>
+                                <h4 className="fw-bold">
+                                  Quality &amp; Clean Code
+                                </h4>
+                                <p className="mb-0">
+                                  The Spruha admin code is maintained very
+                                  cleanly and well-structured with proper
+                                  comments.
+                                </p>
                               </div>
                             </Card.Body>
                           </Card>
                         </Col>
                         <Col lg={3} md={12}>
-                          <Card className="features main-features main-features-3 wow fadeInUp reveal revealleft"
-                            data-wow-delay="0.1s">
+                          <Card
+                            className="features main-features main-features-3 wow fadeInUp reveal revealleft"
+                            data-wow-delay="0.1s"
+                          >
                             <Card.Body>
                               <div className="counter-body-2">
                                 <div className="bg-img mb-2 text-left hexagon-wrapper">
@@ -307,16 +399,19 @@ const Landingpage = () => {
                               <div className="text-left counter-body">
                                 <h4 className="fw-bold">Multiple Demos</h4>
                                 <p className="mb-0">
-                                  We included multiple demos, preview video, and screen shots to
-                                  give a quick overview of our Dashlead admin template.
+                                  We included multiple demos, preview video, and
+                                  screen shots to give a quick overview of our
+                                  Dashlead admin template.
                                 </p>
                               </div>
                             </Card.Body>
                           </Card>
                         </Col>
                         <Col lg={3} md={12}>
-                          <Card className="features main-features main-features-4 wow fadeInUp reveal revealleft"
-                            data-wow-delay="0.1s">
+                          <Card
+                            className="features main-features main-features-4 wow fadeInUp reveal revealleft"
+                            data-wow-delay="0.1s"
+                          >
                             <Card.Body>
                               <div className="counter-body-2">
                                 <div className="bg-img mb-2 text-left hexagon-wrapper">
@@ -328,17 +423,19 @@ const Landingpage = () => {
                               <div className="text-left counter-body">
                                 <h4 className="fw-bold">Well Documentation</h4>
                                 <p className="mb-0">
-                                  The documentation provides clear-cut material and is instructed
-                                  with such a way
-                                  that every user can understand.
+                                  The documentation provides clear-cut material
+                                  and is instructed with such a way that every
+                                  user can understand.
                                 </p>
                               </div>
                             </Card.Body>
                           </Card>
                         </Col>
                         <Col lg={3} md={12}>
-                          <Card className="features main-features main-features-5 wow fadeInUp reveal revealleft"
-                            data-wow-delay="0.1s">
+                          <Card
+                            className="features main-features main-features-5 wow fadeInUp reveal revealleft"
+                            data-wow-delay="0.1s"
+                          >
                             <Card.Body>
                               <div className="counter-body-2">
                                 <div className="bg-img mb-2 text-left hexagon-wrapper">
@@ -350,17 +447,19 @@ const Landingpage = () => {
                               <div className="text-left counter-body">
                                 <h4 className="fw-bold">User Pages</h4>
                                 <p className="mb-0">
-                                  The most advanced "User Pages" are included in this template,
-                                  like registration,
-                                  profile, and log-in pages, etc.
+                                  The most advanced "User Pages" are included in
+                                  this template, like registration, profile, and
+                                  log-in pages, etc.
                                 </p>
                               </div>
                             </Card.Body>
                           </Card>
                         </Col>
                         <Col lg={3} md={12}>
-                          <Card className="features main-features main-features-6 wow fadeInUp reveal revealleft"
-                            data-wow-delay="0.1s">
+                          <Card
+                            className="features main-features main-features-6 wow fadeInUp reveal revealleft"
+                            data-wow-delay="0.1s"
+                          >
                             <Card.Body>
                               <div className="counter-body-2">
                                 <div className="bg-img mb-2 text-left hexagon-wrapper">
@@ -372,17 +471,19 @@ const Landingpage = () => {
                               <div className="text-left counter-body">
                                 <h4 className="fw-bold">Modern UI Widgets</h4>
                                 <p className="mb-0">
-                                  Modern widgets are included in this template. Please check out
-                                  the best option
-                                  that suits for your projects.
+                                  Modern widgets are included in this template.
+                                  Please check out the best option that suits
+                                  for your projects.
                                 </p>
                               </div>
                             </Card.Body>
                           </Card>
                         </Col>
                         <Col lg={3} md={12}>
-                          <Card className="features main-features main-features-7 wow fadeInUp reveal revealleft"
-                            data-wow-delay="0.1s">
+                          <Card
+                            className="features main-features main-features-7 wow fadeInUp reveal revealleft"
+                            data-wow-delay="0.1s"
+                          >
                             <Card.Body>
                               <div className="counter-body-2">
                                 <div className="bg-img mb-2 text-left hexagon-wrapper">
@@ -394,16 +495,19 @@ const Landingpage = () => {
                               <div className="text-left counter-body">
                                 <h4 className="fw-bold">100+ UI Components</h4>
                                 <p className="mb-0">
-                                  Tempor accusam magna ipsum ea et. Sanctus aliquyam ea duo sit
-                                  consetetur Labore stet sed.. Labore stet sed.
+                                  Tempor accusam magna ipsum ea et. Sanctus
+                                  aliquyam ea duo sit consetetur Labore stet
+                                  sed.. Labore stet sed.
                                 </p>
                               </div>
                             </Card.Body>
                           </Card>
                         </Col>
                         <Col lg={3} md={12}>
-                          <Card className="features main-features main-features-8 wow fadeInUp reveal revealleft"
-                            data-wow-delay="0.1s">
+                          <Card
+                            className="features main-features main-features-8 wow fadeInUp reveal revealleft"
+                            data-wow-delay="0.1s"
+                          >
                             <Card.Body>
                               <div className="counter-body-2">
                                 <div className="bg-img mb-2 text-left hexagon-wrapper">
@@ -415,8 +519,9 @@ const Landingpage = () => {
                               <div className="text-left counter-body">
                                 <h4 className="fw-bold">Validating Forms</h4>
                                 <p className="mb-0">
-                                  Tempor accusam magna ipsum ea et. Sanctus aliquyam ea duo sit
-                                  consetetur. Labore stet sed. Labore stet sed.
+                                  Tempor accusam magna ipsum ea et. Sanctus
+                                  aliquyam ea duo sit consetetur. Labore stet
+                                  sed. Labore stet sed.
                                 </p>
                               </div>
                             </Card.Body>
@@ -430,11 +535,14 @@ const Landingpage = () => {
                   <Container>
                     <Row>
                       <Card className=" bg-transparent mb-0">
-                        <div className="demo-screen-skin code-quality" id="dependencies">
+                        <div
+                          className="demo-screen-skin code-quality"
+                          id="dependencies"
+                        >
                           <div className="text-center p-0">
                             <Row className="justify-content-center">
                               <Row className="text-center services-statistics landing-statistics">
-                                <Col xl={12} >
+                                <Col xl={12}>
                                   <Container>
                                     <Row>
                                       <Col lg={12}>
@@ -446,22 +554,21 @@ const Landingpage = () => {
                                                   <div className="counter-icon">
                                                     <i className="fe fe-code"></i>
                                                   </div>
-                                                  <div
-                                                    className="test-body text-center">
+                                                  <div className="test-body text-center">
                                                     <h1 className=" mb-0">
-                                                      <span
-                                                        className="counter fw-semibold counter">
+                                                      <span className="counter fw-semibold counter">
                                                         <CountUp
                                                           end={100}
                                                           start={0}
                                                           duration={4.94}
-                                                        /></span>
+                                                        />
+                                                      </span>
                                                       <span>+</span>
                                                     </h1>
                                                     <div className="counter-text">
-                                                      <h5
-                                                        className="font-weight-normal mb-0">
-                                                        HTML Pages</h5>
+                                                      <h5 className="font-weight-normal mb-0">
+                                                        HTML Pages
+                                                      </h5>
                                                     </div>
                                                   </div>
                                                 </div>
@@ -473,24 +580,23 @@ const Landingpage = () => {
                                               <div className="bg-transparent">
                                                 <div className="counter-status">
                                                   <div className="counter-icon">
-                                                    <i
-                                                      className="fe fe-aperture"></i>
+                                                    <i className="fe fe-aperture"></i>
                                                   </div>
-                                                  <div
-                                                    className="test-body text-center">
+                                                  <div className="test-body text-center">
                                                     <h1 className=" mb-0">
-                                                      <span
-                                                        className="counter fw-semibold counter"><CountUp
+                                                      <span className="counter fw-semibold counter">
+                                                        <CountUp
                                                           end={60}
                                                           start={0}
                                                           duration={4.94}
-                                                        /></span>
+                                                        />
+                                                      </span>
                                                       <span>+</span>
                                                     </h1>
                                                     <div className="counter-text">
-                                                      <h5
-                                                        className="font-weight-normal mb-0">
-                                                        Plugins</h5>
+                                                      <h5 className="font-weight-normal mb-0">
+                                                        Plugins
+                                                      </h5>
                                                     </div>
                                                   </div>
                                                 </div>
@@ -502,24 +608,23 @@ const Landingpage = () => {
                                               <div className="bg-transparent">
                                                 <div className="counter-status">
                                                   <div className="counter-icon">
-                                                    <i
-                                                      className="fe fe-file-text"></i>
+                                                    <i className="fe fe-file-text"></i>
                                                   </div>
-                                                  <div
-                                                    className="test-body text-center">
+                                                  <div className="test-body text-center">
                                                     <h1 className=" mb-0">
-                                                      <span
-                                                        className="counter fw-semibold counter"><CountUp
+                                                      <span className="counter fw-semibold counter">
+                                                        <CountUp
                                                           end={10}
                                                           start={0}
                                                           duration={5.94}
-                                                        /></span>
+                                                        />
+                                                      </span>
                                                       <span>+</span>
                                                     </h1>
                                                     <div className="counter-text">
-                                                      <h5
-                                                        className="font-weight-normal mb-0">
-                                                        Form Elements</h5>
+                                                      <h5 className="font-weight-normal mb-0">
+                                                        Form Elements
+                                                      </h5>
                                                     </div>
                                                   </div>
                                                 </div>
@@ -533,21 +638,21 @@ const Landingpage = () => {
                                                   <div className="counter-icon">
                                                     <i className="fe fe-layers"></i>
                                                   </div>
-                                                  <div
-                                                    className="test-body text-center">
+                                                  <div className="test-body text-center">
                                                     <h1 className=" mb-0">
-                                                      <span
-                                                        className="counter fw-semibold counter"><CountUp
+                                                      <span className="counter fw-semibold counter">
+                                                        <CountUp
                                                           end={30}
                                                           start={0}
                                                           duration={4.94}
-                                                        /></span>
+                                                        />
+                                                      </span>
                                                       <span>+</span>
                                                     </h1>
                                                     <div className="counter-text">
-                                                      <h5
-                                                        className="font-weight-normal mb-0">
-                                                        Widgets</h5>
+                                                      <h5 className="font-weight-normal mb-0">
+                                                        Widgets
+                                                      </h5>
                                                     </div>
                                                   </div>
                                                 </div>
@@ -567,13 +672,19 @@ const Landingpage = () => {
                     </Row>
                   </Container>
                 </div>
-                <div className="section bg-landing working-section pb-0" id="About">
+                <div
+                  className="section bg-landing working-section pb-0"
+                  id="About"
+                >
                   <Container>
                     <Row>
-                      <h4 className="text-center fw-semibold landing-card-header">Our Mission</h4>
+                      <h4 className="text-center fw-semibold landing-card-header">
+                        Our Mission
+                      </h4>
                       <span className="landing-title"></span>
                       <div className="text-center">
-                        <h2 className="text-center fw-semibold">Our mission is to make work meaningful.
+                        <h2 className="text-center fw-semibold">
+                          Our mission is to make work meaningful.
                         </h2>
                       </div>
                       <div className="reveal">
@@ -581,291 +692,797 @@ const Landingpage = () => {
                           <Row className="align-items-center">
                             <Col xl={4} lg={6} md={6} sm={12}>
                               <div className="working-svg-container svg-container-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700">
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 900 700"
+                                >
                                   <g data-name="Web Design and Development">
-                                    <path fill="#cbe4f7"
-                                      d="M159.32272,249.93143c-9.6618,25.4912-10.2589,53.7036-6.0773,80.6418a238.52852,238.52852,0,0,0,21.1622,67.6114,125.68176,125.68176,0,0,0,10.907,18.8015c10.1072,13.9806,24.144,24.5189,36.6147,36.4392s23.9301,26.3226,26.3443,43.4043c5.6095-17.4429,10.0254-36.3306,4.9257-53.9293a88.70782,88.70782,0,0,0-6.4571-15.405,254.02872,254.02872,0,0,0-24.8516-39.4029c-4.7909-6.2426-9.8702-12.2601-14.6412-18.5179C181.16142,335.35613,163.96142,292.70953,159.32272,249.93143Z" />
-                                    <path fill="#96c2e0"
-                                      d="M160.70752,260.35263a135.4018,135.4018,0,0,0-1.9912,15.7709q-.5817,7.93485-.5054,15.9078c.0691,5.3092.3746,10.6162.887,15.9045.5005,5.2901,1.2638,10.5573,2.256,15.782.459,2.6205,1.0768,5.2088,1.6442,7.8087.6732,2.574,1.2976,5.1626,2.0951,7.7029.3949,1.2711.7284,2.5613,1.174,3.8162l1.2779,3.784c.4239,1.2621.9322,2.4941,1.3944,3.7429.4715,1.2453.9343,2.4945,1.4755,3.712l1.5651,3.6766c.5488,1.2136,1.1365,2.4098,1.7031,3.6155l.8574,1.8053c.2922.5984.617,1.1809.9239,1.7722l1.8675,3.535a137.16053,137.16053,0,0,0,8.5799,13.4899c1.5436,2.1831,3.1772,4.2678,4.7962,6.3674l4.902,6.2647q4.9392,6.23535,9.9876,12.3797c6.7333,8.1892,13.5805,16.279,20.3189,24.4319,3.3485,4.0926,6.6278,8.2386,9.6795,12.5422a94.99234,94.99234,0,0,1,8.1455,13.523,66.03925,66.03925,0,0,1,3.0471,7.282c.4626,1.2347.8191,2.5036,1.2048,3.7645.1961.6296.334,1.2751.504,1.9122.1556.641.3428,1.275.4632,1.9239a89.48662,89.48662,0,0,1,1.8953,15.7305,82.91288,82.91288,0,0,0-1.4146-15.8308c-.1044-.657-.2756-1.2999-.4156-1.9498-.1544-.6463-.2768-1.3014-.4577-1.9414-.3552-1.2815-.6821-2.5732-1.1163-3.8322a66.82,66.82,0,0,0-2.889-7.4467,94.84759,94.84759,0,0,0-8.006-13.8033c-3.0071-4.3881-6.2373-8.6088-9.5303-12.7679-3.2911-4.1617-6.6574-8.256-10.0389-12.3329q-5.0631-6.123-10.084-12.2719-5.00025-6.16635-9.9021-12.408l-4.8573-6.2758c-1.6059-2.1024-3.2236-4.2002-4.7334-6.3467a135.31765,135.31765,0,0,1-8.5353-13.2644l-1.862-3.4808c-.3062-.5822-.6303-1.1552-.9219-1.7452l-.8561-1.7787c-.5658-1.1881-1.153-2.3667-1.7016-3.5631l-1.5659-3.6257c-.5417-1.2006-1.0055-2.4332-1.4782-3.6623-.4634-1.2326-.973-2.448-1.3988-3.6945l-1.2839-3.7371c-.4479-1.2394-.7842-2.5149-1.1819-3.771-.8082-2.5091-1.4227-5.0741-2.1267-7.6142-.6025-2.5659-1.2564-5.1218-1.7527-7.7129a184.121,184.121,0,0,1-3.6322-31.4323A177.20494,177.20494,0,0,1,160.70752,260.35263Z" />
-                                    <path fill="#def"
-                                      d="M259.05492,480.16363c-18.6398,2.5411-37.4399,5.0695-56.2056,3.7488s-37.7334-6.787-52.3195-18.6673c-23.6742-19.2824-31.7944-51.2319-40.4256-80.5197s-21.6125-60.9317-49.3124-73.7765c25.6346-3.8811,51.6752,2.1392,72.3572,17.7743,26.8488,20.2971,41.1851,52.5776,56.2137,82.6936S228.30892,466.47,259.05492,480.16363Z" />
-                                    <path fill="#a5c9eb"
-                                      d="M73.70422,313.04583c1.1685.24,2.3463.4611,3.5177.719,1.1474.3379,2.3138.636,3.4557,1.01,1.1189.4327,2.2655.813,3.3655,1.3003l1.6424.7532c.5482.2509,1.1015.4939,1.6237.7944a64.36166,64.36166,0,0,1,11.9254,8.1656c7.3389,6.2996,13.5416,13.7682,19.3125,21.4141,5.8185,7.6196,11.2716,15.5155,16.5109,23.5486,5.2142,8.051,10.1046,16.3104,14.7475,24.7052,4.6432,8.4125,8.6987,17.085,13.5338,25.1774a112.63475,112.63475,0,0,0,7.9804,11.6301c1.492,1.8198,2.9572,3.6648,4.5656,5.3873,1.5319,1.7924,3.2158,3.4427,4.8613,5.1329a115.60328,115.60328,0,0,0,48.6784,28.3577,106.474,106.474,0,0,1-50.6143-26.3307,109.20213,109.20213,0,0,1-9.944-10.5764,115.90647,115.90647,0,0,1-8.436-11.8381c-5.0568-8.2692-9.1292-16.9292-13.7729-25.2146q-6.81585-12.53865-14.4586-24.6069c-5.036-8.076-10.3866-15.9534-15.9012-23.7178-2.7565-3.8816-5.607-7.6746-8.6012-11.348a105.64906,105.64906,0,0,0-9.6308-10.4127,65.41715,65.41715,0,0,0-11.2376-8.6083A47.16393,47.16393,0,0,0,73.70422,313.04583Z" />
-                                    <path fill="#cbe4f7"
-                                      d="M246.99292,489.66063c-10.258,19.8495-34.2959,31.5272-56.24,27.3217a76.51384,76.51384,0,0,1-17.5733-6.0197c-29.3914-13.589-54.8322-39.4036-60.2203-71.3329a70.99666,70.99666,0,0,0,47.1095,26.6866c7.6177.9223,15.3313.5923,22.9838,1.1578C205.32962,469.12023,230.72322,474.35473,246.99292,489.66063Z" />
-                                    <path fill="#6988d8"
-                                      d="M114.70642,442.29313a90.35941,90.35941,0,0,0,12.2894,16.5018,92.53969,92.53969,0,0,0,15.5293,13.3736,95.949,95.949,0,0,0,18.0013,9.7016,86.45269,86.45269,0,0,0,19.6616,5.4938c3.3742.4725,6.7511.903,10.1778,1.0389,3.4225.1787,6.8716.235,10.332.4599a138.77862,138.77862,0,0,1,20.5742,2.8251c3.3909.7012,6.7376,1.5934,10.0674,2.5271,1.6523.5122,3.3187.9754,4.9531,1.5416l2.4593.8214,2.4365.8864c1.6251.5871,3.2146,1.2699,4.8193,1.9057,1.5798.6993,3.1818,1.3435,4.7376,2.093,3.1513,1.4092,6.2021,3.0291,9.2232,4.6846a155.07728,155.07728,0,0,0-19.0836-7.8273c-3.2468-1.1219-6.5468-2.0772-9.8576-2.9775-3.3259-.8444-6.6627-1.6468-10.0374-2.258a151.9344,151.9344,0,0,0-20.3912-2.4707c-3.4183-.183-6.8611-.2428-10.3209-.403a103.56935,103.56935,0,0,1-10.3791-1.0182,89.57415,89.57415,0,0,1-38.1888-15.8634,92.84956,92.84956,0,0,1-15.3843-13.9298A84.82885,84.82885,0,0,1,114.70642,442.29313Z" />
-                                    <ellipse cx="519.505" cy="604.567" fill="#f2f2f2"
-                                      rx="273.55" ry="10.277" />
-                                    <path fill="#7cb3e2"
-                                      d="M815.17332,145.35653v331.1299H223.83322V145.35653a18.6886,18.6886,0,0,1,18.68-18.6802h553.99A18.67381,18.67381,0,0,1,815.17332,145.35653Z" />
-                                    <path fill="#e2e0e1"
-                                      d="M223.83412,476.48883V525.944a18.67323,18.67323,0,0,0,18.6788,18.6697h553.9937a18.66546,18.66546,0,0,0,18.67-18.6697v-49.4552Z" />
-                                    <path fill="#486bb4"
-                                      d="M242.508,143.934h553.9944a3.0386,3.0386,0,0,1,3.0386,3.0386v309.3729a3.0381,3.0381,0,0,1-3.0381,3.0381H242.50772a3.0381,3.0381,0,0,1-3.0381-3.0381V146.97243A3.0384,3.0384,0,0,1,242.508,143.934Z" />
-                                    <rect width="131.404" height="35.287" x="453.803"
-                                      y="544.617" fill="#b5b5b5" />
-                                    <path fill="#e2e0e1"
-                                      d="M618.00912,579.90483H421.00152a23.00926,23.00926,0,0,0-23.0093,23.0092h243.0262A23.00926,23.00926,0,0,0,618.00912,579.90483Z" />
-                                    <circle cx="519.505" cy="510.551" r="10.509"
-                                      fill="#f2f2f2" />
-                                    <rect width="284.437" height="119.889" x="494.852"
-                                      y="160.041" fill="#f2f2f2" />
-                                    <rect width="199.868" height="10.486" x="515.722"
-                                      y="176.711" fill="#6fcece" />
-                                    <rect width="147.067" height="6.941" x="515.722" y="197.03"
-                                      fill="#cccacb" />
-                                    <rect width="70.814" height="7.475" x="515.722" y="232.804"
-                                      fill="#cccacb" />
-                                    <rect width="70.814" height="7.475" x="689.19" y="232.804"
-                                      fill="#cccacb" />
-                                    <rect width="40.071" height="7.475" x="515.722" y="250.562"
-                                      fill="#cccacb" />
-                                    <rect width="70.814" height="7.475" x="602.456" y="232.804"
-                                      fill="#cccacb" />
-                                    <rect width="40.071" height="7.475" x="602.456" y="250.562"
-                                      fill="#cccacb" />
-                                    <rect width="70.814" height="7.475" x="309.877" y="421.881"
-                                      fill="#cccacb" />
-                                    <rect width="40.071" height="7.475" x="309.877" y="439.639"
-                                      fill="#cccacb" />
-                                    <rect width="70.814" height="7.475" x="445.929" y="421.881"
-                                      fill="#cccacb" />
-                                    <rect width="40.071" height="7.475" x="445.929" y="439.639"
-                                      fill="#cccacb" />
-                                    <rect width="70.814" height="7.475" x="581.981" y="421.881"
-                                      fill="#cccacb" />
-                                    <rect width="40.071" height="7.475" x="581.981" y="439.639"
-                                      fill="#cccacb" />
-                                    <rect width="40.071" height="7.475" x="689.19" y="250.562"
-                                      fill="#cccacb" />
+                                    <path
+                                      fill="#cbe4f7"
+                                      d="M159.32272,249.93143c-9.6618,25.4912-10.2589,53.7036-6.0773,80.6418a238.52852,238.52852,0,0,0,21.1622,67.6114,125.68176,125.68176,0,0,0,10.907,18.8015c10.1072,13.9806,24.144,24.5189,36.6147,36.4392s23.9301,26.3226,26.3443,43.4043c5.6095-17.4429,10.0254-36.3306,4.9257-53.9293a88.70782,88.70782,0,0,0-6.4571-15.405,254.02872,254.02872,0,0,0-24.8516-39.4029c-4.7909-6.2426-9.8702-12.2601-14.6412-18.5179C181.16142,335.35613,163.96142,292.70953,159.32272,249.93143Z"
+                                    />
+                                    <path
+                                      fill="#96c2e0"
+                                      d="M160.70752,260.35263a135.4018,135.4018,0,0,0-1.9912,15.7709q-.5817,7.93485-.5054,15.9078c.0691,5.3092.3746,10.6162.887,15.9045.5005,5.2901,1.2638,10.5573,2.256,15.782.459,2.6205,1.0768,5.2088,1.6442,7.8087.6732,2.574,1.2976,5.1626,2.0951,7.7029.3949,1.2711.7284,2.5613,1.174,3.8162l1.2779,3.784c.4239,1.2621.9322,2.4941,1.3944,3.7429.4715,1.2453.9343,2.4945,1.4755,3.712l1.5651,3.6766c.5488,1.2136,1.1365,2.4098,1.7031,3.6155l.8574,1.8053c.2922.5984.617,1.1809.9239,1.7722l1.8675,3.535a137.16053,137.16053,0,0,0,8.5799,13.4899c1.5436,2.1831,3.1772,4.2678,4.7962,6.3674l4.902,6.2647q4.9392,6.23535,9.9876,12.3797c6.7333,8.1892,13.5805,16.279,20.3189,24.4319,3.3485,4.0926,6.6278,8.2386,9.6795,12.5422a94.99234,94.99234,0,0,1,8.1455,13.523,66.03925,66.03925,0,0,1,3.0471,7.282c.4626,1.2347.8191,2.5036,1.2048,3.7645.1961.6296.334,1.2751.504,1.9122.1556.641.3428,1.275.4632,1.9239a89.48662,89.48662,0,0,1,1.8953,15.7305,82.91288,82.91288,0,0,0-1.4146-15.8308c-.1044-.657-.2756-1.2999-.4156-1.9498-.1544-.6463-.2768-1.3014-.4577-1.9414-.3552-1.2815-.6821-2.5732-1.1163-3.8322a66.82,66.82,0,0,0-2.889-7.4467,94.84759,94.84759,0,0,0-8.006-13.8033c-3.0071-4.3881-6.2373-8.6088-9.5303-12.7679-3.2911-4.1617-6.6574-8.256-10.0389-12.3329q-5.0631-6.123-10.084-12.2719-5.00025-6.16635-9.9021-12.408l-4.8573-6.2758c-1.6059-2.1024-3.2236-4.2002-4.7334-6.3467a135.31765,135.31765,0,0,1-8.5353-13.2644l-1.862-3.4808c-.3062-.5822-.6303-1.1552-.9219-1.7452l-.8561-1.7787c-.5658-1.1881-1.153-2.3667-1.7016-3.5631l-1.5659-3.6257c-.5417-1.2006-1.0055-2.4332-1.4782-3.6623-.4634-1.2326-.973-2.448-1.3988-3.6945l-1.2839-3.7371c-.4479-1.2394-.7842-2.5149-1.1819-3.771-.8082-2.5091-1.4227-5.0741-2.1267-7.6142-.6025-2.5659-1.2564-5.1218-1.7527-7.7129a184.121,184.121,0,0,1-3.6322-31.4323A177.20494,177.20494,0,0,1,160.70752,260.35263Z"
+                                    />
+                                    <path
+                                      fill="#def"
+                                      d="M259.05492,480.16363c-18.6398,2.5411-37.4399,5.0695-56.2056,3.7488s-37.7334-6.787-52.3195-18.6673c-23.6742-19.2824-31.7944-51.2319-40.4256-80.5197s-21.6125-60.9317-49.3124-73.7765c25.6346-3.8811,51.6752,2.1392,72.3572,17.7743,26.8488,20.2971,41.1851,52.5776,56.2137,82.6936S228.30892,466.47,259.05492,480.16363Z"
+                                    />
+                                    <path
+                                      fill="#a5c9eb"
+                                      d="M73.70422,313.04583c1.1685.24,2.3463.4611,3.5177.719,1.1474.3379,2.3138.636,3.4557,1.01,1.1189.4327,2.2655.813,3.3655,1.3003l1.6424.7532c.5482.2509,1.1015.4939,1.6237.7944a64.36166,64.36166,0,0,1,11.9254,8.1656c7.3389,6.2996,13.5416,13.7682,19.3125,21.4141,5.8185,7.6196,11.2716,15.5155,16.5109,23.5486,5.2142,8.051,10.1046,16.3104,14.7475,24.7052,4.6432,8.4125,8.6987,17.085,13.5338,25.1774a112.63475,112.63475,0,0,0,7.9804,11.6301c1.492,1.8198,2.9572,3.6648,4.5656,5.3873,1.5319,1.7924,3.2158,3.4427,4.8613,5.1329a115.60328,115.60328,0,0,0,48.6784,28.3577,106.474,106.474,0,0,1-50.6143-26.3307,109.20213,109.20213,0,0,1-9.944-10.5764,115.90647,115.90647,0,0,1-8.436-11.8381c-5.0568-8.2692-9.1292-16.9292-13.7729-25.2146q-6.81585-12.53865-14.4586-24.6069c-5.036-8.076-10.3866-15.9534-15.9012-23.7178-2.7565-3.8816-5.607-7.6746-8.6012-11.348a105.64906,105.64906,0,0,0-9.6308-10.4127,65.41715,65.41715,0,0,0-11.2376-8.6083A47.16393,47.16393,0,0,0,73.70422,313.04583Z"
+                                    />
+                                    <path
+                                      fill="#cbe4f7"
+                                      d="M246.99292,489.66063c-10.258,19.8495-34.2959,31.5272-56.24,27.3217a76.51384,76.51384,0,0,1-17.5733-6.0197c-29.3914-13.589-54.8322-39.4036-60.2203-71.3329a70.99666,70.99666,0,0,0,47.1095,26.6866c7.6177.9223,15.3313.5923,22.9838,1.1578C205.32962,469.12023,230.72322,474.35473,246.99292,489.66063Z"
+                                    />
+                                    <path
+                                      fill="#6988d8"
+                                      d="M114.70642,442.29313a90.35941,90.35941,0,0,0,12.2894,16.5018,92.53969,92.53969,0,0,0,15.5293,13.3736,95.949,95.949,0,0,0,18.0013,9.7016,86.45269,86.45269,0,0,0,19.6616,5.4938c3.3742.4725,6.7511.903,10.1778,1.0389,3.4225.1787,6.8716.235,10.332.4599a138.77862,138.77862,0,0,1,20.5742,2.8251c3.3909.7012,6.7376,1.5934,10.0674,2.5271,1.6523.5122,3.3187.9754,4.9531,1.5416l2.4593.8214,2.4365.8864c1.6251.5871,3.2146,1.2699,4.8193,1.9057,1.5798.6993,3.1818,1.3435,4.7376,2.093,3.1513,1.4092,6.2021,3.0291,9.2232,4.6846a155.07728,155.07728,0,0,0-19.0836-7.8273c-3.2468-1.1219-6.5468-2.0772-9.8576-2.9775-3.3259-.8444-6.6627-1.6468-10.0374-2.258a151.9344,151.9344,0,0,0-20.3912-2.4707c-3.4183-.183-6.8611-.2428-10.3209-.403a103.56935,103.56935,0,0,1-10.3791-1.0182,89.57415,89.57415,0,0,1-38.1888-15.8634,92.84956,92.84956,0,0,1-15.3843-13.9298A84.82885,84.82885,0,0,1,114.70642,442.29313Z"
+                                    />
+                                    <ellipse
+                                      cx="519.505"
+                                      cy="604.567"
+                                      fill="#f2f2f2"
+                                      rx="273.55"
+                                      ry="10.277"
+                                    />
+                                    <path
+                                      fill="#7cb3e2"
+                                      d="M815.17332,145.35653v331.1299H223.83322V145.35653a18.6886,18.6886,0,0,1,18.68-18.6802h553.99A18.67381,18.67381,0,0,1,815.17332,145.35653Z"
+                                    />
+                                    <path
+                                      fill="#e2e0e1"
+                                      d="M223.83412,476.48883V525.944a18.67323,18.67323,0,0,0,18.6788,18.6697h553.9937a18.66546,18.66546,0,0,0,18.67-18.6697v-49.4552Z"
+                                    />
+                                    <path
+                                      fill="#486bb4"
+                                      d="M242.508,143.934h553.9944a3.0386,3.0386,0,0,1,3.0386,3.0386v309.3729a3.0381,3.0381,0,0,1-3.0381,3.0381H242.50772a3.0381,3.0381,0,0,1-3.0381-3.0381V146.97243A3.0384,3.0384,0,0,1,242.508,143.934Z"
+                                    />
+                                    <rect
+                                      width="131.404"
+                                      height="35.287"
+                                      x="453.803"
+                                      y="544.617"
+                                      fill="#b5b5b5"
+                                    />
+                                    <path
+                                      fill="#e2e0e1"
+                                      d="M618.00912,579.90483H421.00152a23.00926,23.00926,0,0,0-23.0093,23.0092h243.0262A23.00926,23.00926,0,0,0,618.00912,579.90483Z"
+                                    />
+                                    <circle
+                                      cx="519.505"
+                                      cy="510.551"
+                                      r="10.509"
+                                      fill="#f2f2f2"
+                                    />
+                                    <rect
+                                      width="284.437"
+                                      height="119.889"
+                                      x="494.852"
+                                      y="160.041"
+                                      fill="#f2f2f2"
+                                    />
+                                    <rect
+                                      width="199.868"
+                                      height="10.486"
+                                      x="515.722"
+                                      y="176.711"
+                                      fill="#6fcece"
+                                    />
+                                    <rect
+                                      width="147.067"
+                                      height="6.941"
+                                      x="515.722"
+                                      y="197.03"
+                                      fill="#cccacb"
+                                    />
+                                    <rect
+                                      width="70.814"
+                                      height="7.475"
+                                      x="515.722"
+                                      y="232.804"
+                                      fill="#cccacb"
+                                    />
+                                    <rect
+                                      width="70.814"
+                                      height="7.475"
+                                      x="689.19"
+                                      y="232.804"
+                                      fill="#cccacb"
+                                    />
+                                    <rect
+                                      width="40.071"
+                                      height="7.475"
+                                      x="515.722"
+                                      y="250.562"
+                                      fill="#cccacb"
+                                    />
+                                    <rect
+                                      width="70.814"
+                                      height="7.475"
+                                      x="602.456"
+                                      y="232.804"
+                                      fill="#cccacb"
+                                    />
+                                    <rect
+                                      width="40.071"
+                                      height="7.475"
+                                      x="602.456"
+                                      y="250.562"
+                                      fill="#cccacb"
+                                    />
+                                    <rect
+                                      width="70.814"
+                                      height="7.475"
+                                      x="309.877"
+                                      y="421.881"
+                                      fill="#cccacb"
+                                    />
+                                    <rect
+                                      width="40.071"
+                                      height="7.475"
+                                      x="309.877"
+                                      y="439.639"
+                                      fill="#cccacb"
+                                    />
+                                    <rect
+                                      width="70.814"
+                                      height="7.475"
+                                      x="445.929"
+                                      y="421.881"
+                                      fill="#cccacb"
+                                    />
+                                    <rect
+                                      width="40.071"
+                                      height="7.475"
+                                      x="445.929"
+                                      y="439.639"
+                                      fill="#cccacb"
+                                    />
+                                    <rect
+                                      width="70.814"
+                                      height="7.475"
+                                      x="581.981"
+                                      y="421.881"
+                                      fill="#cccacb"
+                                    />
+                                    <rect
+                                      width="40.071"
+                                      height="7.475"
+                                      x="581.981"
+                                      y="439.639"
+                                      fill="#cccacb"
+                                    />
+                                    <rect
+                                      width="40.071"
+                                      height="7.475"
+                                      x="689.19"
+                                      y="250.562"
+                                      fill="#cccacb"
+                                    />
                                     <path
                                       d="M604.60322,126.67633v245.1499a22.76013,22.76013,0,0,1-22.76,22.7603h-358.01v-249.23a18.6886,18.6886,0,0,1,18.68-18.6802Z"
-                                    // style="mix-blend-mode:multiply" fill="#e2e0e1"
+                                      // style="mix-blend-mode:multiply" fill="#e2e0e1"
                                     />
-                                    <path fill="#f2f2f2"
-                                      d="M120.04562,68.60983h462.2397a10.8001,10.8001,0,0,1,10.8001,10.8001v290.88a10.8003,10.8003,0,0,1-10.8003,10.8003H120.04532a10.8,10.8,0,0,1-10.8-10.8V79.41013A10.8003,10.8003,0,0,1,120.04562,68.60983Z" />
-                                    <path fill="#7463cd"
-                                      d="M563.96462,91.71053H138.36622a10.1333,10.1333,0,1,0,0,20.2666h425.5984a10.1333,10.1333,0,1,0,0-20.2666Z" />
+                                    <path
+                                      fill="#f2f2f2"
+                                      d="M120.04562,68.60983h462.2397a10.8001,10.8001,0,0,1,10.8001,10.8001v290.88a10.8003,10.8003,0,0,1-10.8003,10.8003H120.04532a10.8,10.8,0,0,1-10.8-10.8V79.41013A10.8003,10.8003,0,0,1,120.04562,68.60983Z"
+                                    />
+                                    <path
+                                      fill="#7463cd"
+                                      d="M563.96462,91.71053H138.36622a10.1333,10.1333,0,1,0,0,20.2666h425.5984a10.1333,10.1333,0,1,0,0-20.2666Z"
+                                    />
                                     <path
                                       d="M138.40882,137.71023h122.208a7.2954,7.2954,0,0,1,7.2954,7.2954v195.6753a7.2954,7.2954,0,0,1-7.2954,7.2954H138.40832a7.2954,7.2954,0,0,1-7.2954-7.2954V145.00613A7.2959,7.2959,0,0,1,138.40882,137.71023Z"
-                                    // style="mix-blend-mode:multiply" fill="#e2e0e1"
+                                      // style="mix-blend-mode:multiply" fill="#e2e0e1"
                                     />
-                                    <path fill="#cde7fe"
-                                      d="M135.52882,134.83023h122.208a7.2954,7.2954,0,0,1,7.2954,7.2954v195.6753a7.2954,7.2954,0,0,1-7.2954,7.2954H135.52832a7.2954,7.2954,0,0,1-7.2954-7.2954V142.12613A7.2959,7.2959,0,0,1,135.52882,134.83023Z" />
-                                    <path fill="#6988d8"
-                                      d="M223.64332,188.53653a27.01,27.01,0,1,1-27.01-27.0102A26.96715,26.96715,0,0,1,223.64332,188.53653Z" />
-                                    <circle cx="196.633" cy="175.771" r="10.296" fill="#a5c9eb"
-                                      transform="rotate(-76.718 196.633 175.771)" />
-                                    <path fill="#a5c9eb"
-                                      d="M214.89332,206.29633a19.12333,19.12333,0,0,1-.1401,2.2803,27.00994,27.00994,0,0,1-36.24,0,19.14433,19.14433,0,0,1-.1399-2.2803,18.26,18.26,0,0,1,36.52,0Z" />
-                                    <rect width="98.346" height="16.29" x="147.46" y="236.238"
-                                      fill="#a5c9eb" />
-                                    <rect width="98.346" height="16.291" x="147.46" y="268.517"
-                                      fill="#a5c9eb" />
-                                    <path fill="#ff8e00"
-                                      d="M226.98142,308.08173H208.404a5.77025,5.77025,0,0,0,0,11.5405h18.5774a5.77025,5.77025,0,0,0,0-11.5405Z" />
-                                    <rect width="290.928" height="40.941" x="283.17" y="134.83"
-                                      fill="#a5c9eb" />
-                                    <rect width="153.228" height="71.328" x="314.224" y="217.75"
-                                    // style="mix-blend-mode:multiply" fill="#e2e0e1"
+                                    <path
+                                      fill="#cde7fe"
+                                      d="M135.52882,134.83023h122.208a7.2954,7.2954,0,0,1,7.2954,7.2954v195.6753a7.2954,7.2954,0,0,1-7.2954,7.2954H135.52832a7.2954,7.2954,0,0,1-7.2954-7.2954V142.12613A7.2959,7.2959,0,0,1,135.52882,134.83023Z"
                                     />
-                                    <rect width="153.228" height="71.328" x="311.458" y="214.87"
-                                      fill="#6fcece" />
-                                    <rect width="49.898" height="9.852" x="385.148" y="234.369"
-                                      fill="#0e9b9b" />
-                                    <rect width="71.55" height="7.014" x="385.148" y="250.296"
-                                      fill="#0e9b9b" />
-                                    <rect width="71.55" height="7.014" x="385.148" y="261.634"
-                                      fill="#0e9b9b" />
-                                    <rect width="59.53" height="7.014" x="385.148" y="272.971"
-                                      fill="#0e9b9b" />
-                                    <polygon fill="#f2f2f2"
-                                      points="360.299 246.426 345.974 261.339 336.465 251.441 324.927 263.454 324.927 273.99 369.988 273.99 369.988 256.513 360.299 246.426" />
-                                    <path fill="#f2f2f2"
-                                      d="M319.16842,221.08253V279.985h56.5771v-58.9025Zm52.1099,35.7728v18.4785h-47.6422v-49.6001h47.6422Z" />
-                                    <path fill="#f2f2f2"
-                                      d="M349.68692,236.96863a4.588,4.588,0,1,1-4.5843-4.7726A4.68136,4.68136,0,0,1,349.68692,236.96863Z" />
+                                    <path
+                                      fill="#6988d8"
+                                      d="M223.64332,188.53653a27.01,27.01,0,1,1-27.01-27.0102A26.96715,26.96715,0,0,1,223.64332,188.53653Z"
+                                    />
+                                    <circle
+                                      cx="196.633"
+                                      cy="175.771"
+                                      r="10.296"
+                                      fill="#a5c9eb"
+                                      transform="rotate(-76.718 196.633 175.771)"
+                                    />
+                                    <path
+                                      fill="#a5c9eb"
+                                      d="M214.89332,206.29633a19.12333,19.12333,0,0,1-.1401,2.2803,27.00994,27.00994,0,0,1-36.24,0,19.14433,19.14433,0,0,1-.1399-2.2803,18.26,18.26,0,0,1,36.52,0Z"
+                                    />
+                                    <rect
+                                      width="98.346"
+                                      height="16.29"
+                                      x="147.46"
+                                      y="236.238"
+                                      fill="#a5c9eb"
+                                    />
+                                    <rect
+                                      width="98.346"
+                                      height="16.291"
+                                      x="147.46"
+                                      y="268.517"
+                                      fill="#a5c9eb"
+                                    />
+                                    <path
+                                      fill="#ff8e00"
+                                      d="M226.98142,308.08173H208.404a5.77025,5.77025,0,0,0,0,11.5405h18.5774a5.77025,5.77025,0,0,0,0-11.5405Z"
+                                    />
+                                    <rect
+                                      width="290.928"
+                                      height="40.941"
+                                      x="283.17"
+                                      y="134.83"
+                                      fill="#a5c9eb"
+                                    />
+                                    <rect
+                                      width="153.228"
+                                      height="71.328"
+                                      x="314.224"
+                                      y="217.75"
+                                      // style="mix-blend-mode:multiply" fill="#e2e0e1"
+                                    />
+                                    <rect
+                                      width="153.228"
+                                      height="71.328"
+                                      x="311.458"
+                                      y="214.87"
+                                      fill="#6fcece"
+                                    />
+                                    <rect
+                                      width="49.898"
+                                      height="9.852"
+                                      x="385.148"
+                                      y="234.369"
+                                      fill="#0e9b9b"
+                                    />
+                                    <rect
+                                      width="71.55"
+                                      height="7.014"
+                                      x="385.148"
+                                      y="250.296"
+                                      fill="#0e9b9b"
+                                    />
+                                    <rect
+                                      width="71.55"
+                                      height="7.014"
+                                      x="385.148"
+                                      y="261.634"
+                                      fill="#0e9b9b"
+                                    />
+                                    <rect
+                                      width="59.53"
+                                      height="7.014"
+                                      x="385.148"
+                                      y="272.971"
+                                      fill="#0e9b9b"
+                                    />
+                                    <polygon
+                                      fill="#f2f2f2"
+                                      points="360.299 246.426 345.974 261.339 336.465 251.441 324.927 263.454 324.927 273.99 369.988 273.99 369.988 256.513 360.299 246.426"
+                                    />
+                                    <path
+                                      fill="#f2f2f2"
+                                      d="M319.16842,221.08253V279.985h56.5771v-58.9025Zm52.1099,35.7728v18.4785h-47.6422v-49.6001h47.6422Z"
+                                    />
+                                    <path
+                                      fill="#f2f2f2"
+                                      d="M349.68692,236.96863a4.588,4.588,0,1,1-4.5843-4.7726A4.68136,4.68136,0,0,1,349.68692,236.96863Z"
+                                    />
                                     <path
                                       d="M568.72842,188.04323h-81.0867c-4.5562,0-8.2495,4.3292-8.2495,9.6697v163.6585c0,5.3405,3.6933,9.6697,8.2495,9.6697h81.0867c4.556,0,8.2495-4.3292,8.2495-9.6697V197.71293C576.97792,192.37243,573.28442,188.04323,568.72842,188.04323Z"
-                                    // style="mix-blend-mode:multiply" fill="#e2e0e1"
+                                      // style="mix-blend-mode:multiply" fill="#e2e0e1"
                                     />
-                                    <path fill="#8d7de0"
-                                      d="M565.84842,185.16323h-81.0867c-4.5562,0-8.2495,4.3292-8.2495,9.6697v163.6585c0,5.3405,3.6933,9.6697,8.2495,9.6697h81.0867c4.556,0,8.2495-4.3292,8.2495-9.6697V194.83293C574.09792,189.49243,570.40442,185.16323,565.84842,185.16323Z" />
-                                    <rect width="45.058" height="5.688" x="483.112" y="196.01"
-                                      fill="#5a48b4" />
-                                    <rect width="68.164" height="3.478" x="499.333" y="208.42"
-                                      fill="#fc0" />
-                                    <rect width="39.409" height="3.478" x="522.189" y="216.508"
-                                      fill="#7463cd" />
-                                    <rect width="19.667" height="3.478" x="499.333" y="216.508"
-                                      fill="#b29bee" />
-                                    <rect width="11.287" height="3.478" x="547.09" y="224.596"
-                                      fill="#7463cd" />
-                                    <rect width="19.756" height="3.478" x="524.774" y="224.596"
-                                      fill="#c1b3f4" />
-                                    <rect width="22.452" height="3.478" x="499.333" y="224.596"
-                                      fill="#7463cd" />
-                                    <rect width="42.022" height="3.478" x="499.333" y="232.684"
-                                      fill="#b29bee" />
-                                    <rect width="12.233" height="3.477" x="499.333" y="240.772"
-                                      fill="#7463cd" />
-                                    <rect width="22.807" height="3.478" x="544.691" y="232.684"
-                                      fill="#7463cd" />
-                                    <rect width="11.157" height="3.477" x="540.377" y="240.772"
-                                      fill="#b29bee" />
-                                    <rect width="22.807" height="3.477" x="515.362" y="240.772"
-                                      fill="#7463cd" />
-                                    <rect width="45.058" height="5.688" x="483.112" y="252.543"
-                                      fill="#5a48b4" />
-                                    <rect width="68.164" height="3.478" x="499.333" y="264.952"
-                                      fill="#fc0" />
-                                    <rect width="39.409" height="3.478" x="522.189" y="273.04"
-                                      fill="#7463cd" />
-                                    <rect width="19.667" height="3.478" x="499.333" y="273.04"
-                                      fill="#b29bee" />
-                                    <rect width="11.287" height="3.478" x="547.09" y="281.128"
-                                      fill="#7463cd" />
-                                    <rect width="19.756" height="3.478" x="524.774" y="281.128"
-                                      fill="#c1b3f4" />
-                                    <rect width="22.452" height="3.478" x="499.333" y="281.128"
-                                      fill="#7463cd" />
-                                    <rect width="42.022" height="3.477" x="499.333" y="289.216"
-                                      fill="#b29bee" />
-                                    <rect width="12.233" height="3.478" x="499.333" y="297.304"
-                                      fill="#7463cd" />
-                                    <rect width="22.807" height="3.477" x="544.691" y="289.216"
-                                      fill="#7463cd" />
-                                    <rect width="11.157" height="3.478" x="540.377" y="297.304"
-                                      fill="#b29bee" />
-                                    <rect width="22.807" height="3.478" x="515.362" y="297.304"
-                                      fill="#7463cd" />
-                                    <rect width="45.058" height="5.688" x="483.112" y="309.075"
-                                      fill="#5a48b4" />
-                                    <rect width="68.164" height="3.478" x="499.333" y="321.485"
-                                      fill="#fc0" />
-                                    <rect width="39.409" height="3.478" x="522.189" y="329.573"
-                                      fill="#7463cd" />
-                                    <rect width="19.667" height="3.478" x="499.333" y="329.573"
-                                      fill="#b29bee" />
-                                    <rect width="11.287" height="3.478" x="547.09" y="337.661"
-                                      fill="#7463cd" />
-                                    <rect width="19.756" height="3.478" x="524.774" y="337.661"
-                                      fill="#c1b3f4" />
-                                    <rect width="22.452" height="3.478" x="499.333" y="337.661"
-                                      fill="#7463cd" />
-                                    <rect width="42.022" height="3.477" x="499.333" y="345.749"
-                                      fill="#b29bee" />
-                                    <rect width="12.233" height="3.478" x="499.333" y="353.837"
-                                      fill="#7463cd" />
-                                    <rect width="22.807" height="3.477" x="544.691" y="345.749"
-                                      fill="#7463cd" />
-                                    <rect width="11.157" height="3.478" x="540.377" y="353.837"
-                                      fill="#b29bee" />
-                                    <rect width="22.807" height="3.478" x="515.362" y="353.837"
-                                      fill="#7463cd" />
-                                    <rect width="44.074" height="44.074" x="259.547" y="403.04"
-                                      fill="#7cb3e2" rx="4.821" />
-                                    <rect width="44.074" height="44.074" x="395.337" y="403.04"
-                                      fill="#7cb3e2" rx="4.821" />
-                                    <rect width="44.074" height="44.074" x="531.126" y="403.04"
-                                      fill="#7cb3e2" rx="4.821" />
-                                    <ellipse cx="137.702" cy="611.964" fill="#f2f2f2"
-                                      rx="44.517" ry="7.541" />
-                                    <path fill="#397c77"
-                                      d="M148.11392,517.563c-.123,1.2541-.3074,2.6254-.5718,4.1438-3.0065,17.1479-7.2182,36.0971-7.2182,36.0971s-8.1219-18.9492-9.0257-36.6996c-.9038-17.744-12.9362-24.6609-9.0197-37.2958a258.20986,258.20986,0,0,0,6.5973-29.1677c.0122-.0616.0184-.0984.0184-.0984s14.4363,19.9391,14.4363,35.5804C143.33052,504.38083,149.32512,504.64523,148.11392,517.563Z" />
-                                    <path fill="#49908c"
-                                      d="M148.11392,517.563a108.1743,108.1743,0,0,1-9.782,11.8233c4.6728-6.8248,3.234-16.4776-1.4387-23.3024-3.5046-5.1154-8.786-9.5053-9.6407-15.6413-.4611-3.2956.4611-6.5972,1.1498-9.8497,1.7891-8.4601,2.9205-17.861.4735-25.9521.0122-.0616.0184-.0984.0184-.0984s14.4363,19.9391,14.4363,35.5804C143.33052,504.38083,149.32512,504.64523,148.11392,517.563Z" />
-                                    <path fill="#397c77"
-                                      d="M170.07932,529.42123c-.0062.0062-.0062.0062-.0062.0123a24.92857,24.92857,0,0,1-.873,4.9679c-4.5129,15.4016-30.379,33.0289-30.379,33.0289a.108.108,0,0,1,.0061-.0307c2.7114-28.2517,23.1547-37.8738,19.8469-58.3663-3.2587-20.2096,10.1447-36.2076,10.5198-36.6441C162.154,485.68193,171.48722,512.91293,170.07932,529.42123Z" />
-                                    <path fill="#2d726d"
-                                      d="M170.07312,529.43353a24.92857,24.92857,0,0,1-.873,4.9679c-4.5129,15.4016-30.379,33.0289-30.379,33.0289a.108.108,0,0,1,.0061-.0307c.1045-.6702,1.9982-11.5528,15.6967-21.3225C166.45792,537.56163,169.43372,531.21043,170.07312,529.43353Z" />
-                                    <path fill="#5db3ab"
-                                      d="M111.74722,437.18223s-16.8451,49.3323,0,80.0145,23.7638,50.2347,23.7638,50.2347,3.6096-24.0645-6.9186-46.3242S112.95052,457.33623,111.74722,437.18223Z" />
-                                    <path fill="#49908c"
-                                      d="M163.78682,516.29433s-17.146,7.821-15.3412,33.0887-1.8048,31.5847-1.8048,31.5847l-8.1218-17.4468s-7.2193-22.2596,6.317-40.9097Z" />
-                                    <path fill="#5bb1a8"
-                                      d="M193.26582,454.629s-12.0322,3.9105-12.9347,20.4548.9025,32.7879-16.5443,41.2105-31.8855,18.65-25.2678,47.2266c0,0-8.7234-20.154,6.0162-47.2266s10.0707-19.5524,20.0756-28.2758S180.93272,452.82413,193.26582,454.629Z" />
-                                    <path fill="#49908c"
-                                      d="M104.71112,472.38923s-8.0057,27.5814,1.4144,43.9051,19.4897,41.1219,21.4387,51.136,5.1972,3.1927,5.1972,3.1927,11.5077-14.338-8.999-37.9202C100.76662,506.25823,104.71112,472.38923,104.71112,472.38923Z" />
-                                    <path fill="#e6a562"
-                                      d="M107.92212,554.50253v40.4527a20.60527,20.60527,0,0,0,20.6052,20.6053h18.3492a20.60529,20.60529,0,0,0,20.6053-20.6053v-40.4527Z" />
-                                    <rect width="153.228" height="71.328" x="285.936"
+                                    <path
+                                      fill="#8d7de0"
+                                      d="M565.84842,185.16323h-81.0867c-4.5562,0-8.2495,4.3292-8.2495,9.6697v163.6585c0,5.3405,3.6933,9.6697,8.2495,9.6697h81.0867c4.556,0,8.2495-4.3292,8.2495-9.6697V194.83293C574.09792,189.49243,570.40442,185.16323,565.84842,185.16323Z"
+                                    />
+                                    <rect
+                                      width="45.058"
+                                      height="5.688"
+                                      x="483.112"
+                                      y="196.01"
+                                      fill="#5a48b4"
+                                    />
+                                    <rect
+                                      width="68.164"
+                                      height="3.478"
+                                      x="499.333"
+                                      y="208.42"
+                                      fill="#fc0"
+                                    />
+                                    <rect
+                                      width="39.409"
+                                      height="3.478"
+                                      x="522.189"
+                                      y="216.508"
+                                      fill="#7463cd"
+                                    />
+                                    <rect
+                                      width="19.667"
+                                      height="3.478"
+                                      x="499.333"
+                                      y="216.508"
+                                      fill="#b29bee"
+                                    />
+                                    <rect
+                                      width="11.287"
+                                      height="3.478"
+                                      x="547.09"
+                                      y="224.596"
+                                      fill="#7463cd"
+                                    />
+                                    <rect
+                                      width="19.756"
+                                      height="3.478"
+                                      x="524.774"
+                                      y="224.596"
+                                      fill="#c1b3f4"
+                                    />
+                                    <rect
+                                      width="22.452"
+                                      height="3.478"
+                                      x="499.333"
+                                      y="224.596"
+                                      fill="#7463cd"
+                                    />
+                                    <rect
+                                      width="42.022"
+                                      height="3.478"
+                                      x="499.333"
+                                      y="232.684"
+                                      fill="#b29bee"
+                                    />
+                                    <rect
+                                      width="12.233"
+                                      height="3.477"
+                                      x="499.333"
+                                      y="240.772"
+                                      fill="#7463cd"
+                                    />
+                                    <rect
+                                      width="22.807"
+                                      height="3.478"
+                                      x="544.691"
+                                      y="232.684"
+                                      fill="#7463cd"
+                                    />
+                                    <rect
+                                      width="11.157"
+                                      height="3.477"
+                                      x="540.377"
+                                      y="240.772"
+                                      fill="#b29bee"
+                                    />
+                                    <rect
+                                      width="22.807"
+                                      height="3.477"
+                                      x="515.362"
+                                      y="240.772"
+                                      fill="#7463cd"
+                                    />
+                                    <rect
+                                      width="45.058"
+                                      height="5.688"
+                                      x="483.112"
+                                      y="252.543"
+                                      fill="#5a48b4"
+                                    />
+                                    <rect
+                                      width="68.164"
+                                      height="3.478"
+                                      x="499.333"
+                                      y="264.952"
+                                      fill="#fc0"
+                                    />
+                                    <rect
+                                      width="39.409"
+                                      height="3.478"
+                                      x="522.189"
+                                      y="273.04"
+                                      fill="#7463cd"
+                                    />
+                                    <rect
+                                      width="19.667"
+                                      height="3.478"
+                                      x="499.333"
+                                      y="273.04"
+                                      fill="#b29bee"
+                                    />
+                                    <rect
+                                      width="11.287"
+                                      height="3.478"
+                                      x="547.09"
+                                      y="281.128"
+                                      fill="#7463cd"
+                                    />
+                                    <rect
+                                      width="19.756"
+                                      height="3.478"
+                                      x="524.774"
+                                      y="281.128"
+                                      fill="#c1b3f4"
+                                    />
+                                    <rect
+                                      width="22.452"
+                                      height="3.478"
+                                      x="499.333"
+                                      y="281.128"
+                                      fill="#7463cd"
+                                    />
+                                    <rect
+                                      width="42.022"
+                                      height="3.477"
+                                      x="499.333"
+                                      y="289.216"
+                                      fill="#b29bee"
+                                    />
+                                    <rect
+                                      width="12.233"
+                                      height="3.478"
+                                      x="499.333"
+                                      y="297.304"
+                                      fill="#7463cd"
+                                    />
+                                    <rect
+                                      width="22.807"
+                                      height="3.477"
+                                      x="544.691"
+                                      y="289.216"
+                                      fill="#7463cd"
+                                    />
+                                    <rect
+                                      width="11.157"
+                                      height="3.478"
+                                      x="540.377"
+                                      y="297.304"
+                                      fill="#b29bee"
+                                    />
+                                    <rect
+                                      width="22.807"
+                                      height="3.478"
+                                      x="515.362"
+                                      y="297.304"
+                                      fill="#7463cd"
+                                    />
+                                    <rect
+                                      width="45.058"
+                                      height="5.688"
+                                      x="483.112"
+                                      y="309.075"
+                                      fill="#5a48b4"
+                                    />
+                                    <rect
+                                      width="68.164"
+                                      height="3.478"
+                                      x="499.333"
+                                      y="321.485"
+                                      fill="#fc0"
+                                    />
+                                    <rect
+                                      width="39.409"
+                                      height="3.478"
+                                      x="522.189"
+                                      y="329.573"
+                                      fill="#7463cd"
+                                    />
+                                    <rect
+                                      width="19.667"
+                                      height="3.478"
+                                      x="499.333"
+                                      y="329.573"
+                                      fill="#b29bee"
+                                    />
+                                    <rect
+                                      width="11.287"
+                                      height="3.478"
+                                      x="547.09"
+                                      y="337.661"
+                                      fill="#7463cd"
+                                    />
+                                    <rect
+                                      width="19.756"
+                                      height="3.478"
+                                      x="524.774"
+                                      y="337.661"
+                                      fill="#c1b3f4"
+                                    />
+                                    <rect
+                                      width="22.452"
+                                      height="3.478"
+                                      x="499.333"
+                                      y="337.661"
+                                      fill="#7463cd"
+                                    />
+                                    <rect
+                                      width="42.022"
+                                      height="3.477"
+                                      x="499.333"
+                                      y="345.749"
+                                      fill="#b29bee"
+                                    />
+                                    <rect
+                                      width="12.233"
+                                      height="3.478"
+                                      x="499.333"
+                                      y="353.837"
+                                      fill="#7463cd"
+                                    />
+                                    <rect
+                                      width="22.807"
+                                      height="3.477"
+                                      x="544.691"
+                                      y="345.749"
+                                      fill="#7463cd"
+                                    />
+                                    <rect
+                                      width="11.157"
+                                      height="3.478"
+                                      x="540.377"
+                                      y="353.837"
+                                      fill="#b29bee"
+                                    />
+                                    <rect
+                                      width="22.807"
+                                      height="3.478"
+                                      x="515.362"
+                                      y="353.837"
+                                      fill="#7463cd"
+                                    />
+                                    <rect
+                                      width="44.074"
+                                      height="44.074"
+                                      x="259.547"
+                                      y="403.04"
+                                      fill="#7cb3e2"
+                                      rx="4.821"
+                                    />
+                                    <rect
+                                      width="44.074"
+                                      height="44.074"
+                                      x="395.337"
+                                      y="403.04"
+                                      fill="#7cb3e2"
+                                      rx="4.821"
+                                    />
+                                    <rect
+                                      width="44.074"
+                                      height="44.074"
+                                      x="531.126"
+                                      y="403.04"
+                                      fill="#7cb3e2"
+                                      rx="4.821"
+                                    />
+                                    <ellipse
+                                      cx="137.702"
+                                      cy="611.964"
+                                      fill="#f2f2f2"
+                                      rx="44.517"
+                                      ry="7.541"
+                                    />
+                                    <path
+                                      fill="#397c77"
+                                      d="M148.11392,517.563c-.123,1.2541-.3074,2.6254-.5718,4.1438-3.0065,17.1479-7.2182,36.0971-7.2182,36.0971s-8.1219-18.9492-9.0257-36.6996c-.9038-17.744-12.9362-24.6609-9.0197-37.2958a258.20986,258.20986,0,0,0,6.5973-29.1677c.0122-.0616.0184-.0984.0184-.0984s14.4363,19.9391,14.4363,35.5804C143.33052,504.38083,149.32512,504.64523,148.11392,517.563Z"
+                                    />
+                                    <path
+                                      fill="#49908c"
+                                      d="M148.11392,517.563a108.1743,108.1743,0,0,1-9.782,11.8233c4.6728-6.8248,3.234-16.4776-1.4387-23.3024-3.5046-5.1154-8.786-9.5053-9.6407-15.6413-.4611-3.2956.4611-6.5972,1.1498-9.8497,1.7891-8.4601,2.9205-17.861.4735-25.9521.0122-.0616.0184-.0984.0184-.0984s14.4363,19.9391,14.4363,35.5804C143.33052,504.38083,149.32512,504.64523,148.11392,517.563Z"
+                                    />
+                                    <path
+                                      fill="#397c77"
+                                      d="M170.07932,529.42123c-.0062.0062-.0062.0062-.0062.0123a24.92857,24.92857,0,0,1-.873,4.9679c-4.5129,15.4016-30.379,33.0289-30.379,33.0289a.108.108,0,0,1,.0061-.0307c2.7114-28.2517,23.1547-37.8738,19.8469-58.3663-3.2587-20.2096,10.1447-36.2076,10.5198-36.6441C162.154,485.68193,171.48722,512.91293,170.07932,529.42123Z"
+                                    />
+                                    <path
+                                      fill="#2d726d"
+                                      d="M170.07312,529.43353a24.92857,24.92857,0,0,1-.873,4.9679c-4.5129,15.4016-30.379,33.0289-30.379,33.0289a.108.108,0,0,1,.0061-.0307c.1045-.6702,1.9982-11.5528,15.6967-21.3225C166.45792,537.56163,169.43372,531.21043,170.07312,529.43353Z"
+                                    />
+                                    <path
+                                      fill="#5db3ab"
+                                      d="M111.74722,437.18223s-16.8451,49.3323,0,80.0145,23.7638,50.2347,23.7638,50.2347,3.6096-24.0645-6.9186-46.3242S112.95052,457.33623,111.74722,437.18223Z"
+                                    />
+                                    <path
+                                      fill="#49908c"
+                                      d="M163.78682,516.29433s-17.146,7.821-15.3412,33.0887-1.8048,31.5847-1.8048,31.5847l-8.1218-17.4468s-7.2193-22.2596,6.317-40.9097Z"
+                                    />
+                                    <path
+                                      fill="#5bb1a8"
+                                      d="M193.26582,454.629s-12.0322,3.9105-12.9347,20.4548.9025,32.7879-16.5443,41.2105-31.8855,18.65-25.2678,47.2266c0,0-8.7234-20.154,6.0162-47.2266s10.0707-19.5524,20.0756-28.2758S180.93272,452.82413,193.26582,454.629Z"
+                                    />
+                                    <path
+                                      fill="#49908c"
+                                      d="M104.71112,472.38923s-8.0057,27.5814,1.4144,43.9051,19.4897,41.1219,21.4387,51.136,5.1972,3.1927,5.1972,3.1927,11.5077-14.338-8.999-37.9202C100.76662,506.25823,104.71112,472.38923,104.71112,472.38923Z"
+                                    />
+                                    <path
+                                      fill="#e6a562"
+                                      d="M107.92212,554.50253v40.4527a20.60527,20.60527,0,0,0,20.6052,20.6053h18.3492a20.60529,20.60529,0,0,0,20.6053-20.6053v-40.4527Z"
+                                    />
+                                    <rect
+                                      width="153.228"
+                                      height="71.328"
+                                      x="285.936"
                                       // y="188.299" style="mix-blend-mode:multiply"
-                                      fill="#8d7de0" opacity=".5" />
-                                    <rect width="153.228" height="71.328" x="283.17" y="185.419"
-                                      fill="#8d7de0" />
-                                    <rect width="49.898" height="9.852" x="354.99" y="204.918"
-                                      fill="#5a48b4" />
-                                    <rect width="71.55" height="7.014" x="354.99" y="220.845"
-                                      fill="#7463cd" />
-                                    <rect width="71.55" height="7.014" x="354.99" y="232.182"
-                                      fill="#7463cd" />
-                                    <rect width="59.53" height="7.014" x="354.99" y="243.52"
-                                      fill="#7463cd" />
-                                    <polygon fill="#f2f2f2"
-                                      points="330.267 216.974 315.942 231.888 306.434 221.989 294.895 234.002 294.895 244.539 339.956 244.539 339.956 227.062 330.267 216.974" />
-                                    <path fill="#f2f2f2"
-                                      d="M289.13692,191.63143v58.9024H345.714v-58.9024Zm52.1099,35.7727v18.4786h-47.6421v-49.6002h47.6421Z" />
-                                    <path fill="#f2f2f2"
-                                      d="M319.65542,207.51753a4.588,4.588,0,1,1-4.5842-4.7727A4.68126,4.68126,0,0,1,319.65542,207.51753Z" />
-                                    <polygon fill="#ee9089"
-                                      points="771.757 564.406 767.591 572.371 764.951 573.538 762.022 584.996 786.661 581.722 786.661 571.901 771.757 564.406" />
-                                    <path fill="#14293e"
-                                      d="M788.21162,573.45153s.8615,13.2671-.6031,14.1286-13.4394.6892-16.2824,2.2399-24.7251,6.8658-28.2573,4.5959-3.446-3.0452-3.5321-4.8543.6892-4.1352,1.8953-4.4798,10.0796-2.2399,14.904-6.2029,6.452-7.8396,7.5766-7.7535,4.7713,2.4122,5.1017,5.0829-3.1156,5.9444-3.1156,5.9444,1.8953-2.1538,7.9258-2.4123,12.1472,0,12.2333-5.4274Z" />
-                                    <path fill="#2d3355"
-                                      d="M824.34262,614.35793c-2.4862,5.3505-19.8666,18.0211-28.8696,16.9707-9.0029-1.042-11.8751-2.3472-10.3077-7.829,1.5674-5.49,11.1032-13.319,13.5816-16.4535.5405-.6801,1.0887-1.367,1.6291-2.0698h.0077a.20489.20489,0,0,1,.0309-.0535,31.985,31.985,0,0,0,2.2468-3.1971,18.73617,18.73617,0,0,0,2.3319-5.6521c1.0656-4.7021,18.2993,2.0932,18.2993,2.0932s.3397,1.0345.7258,2.6247C824.89852,604.34373,826.05672,610.65943,824.34262,614.35793Z" />
-                                    <path fill="#ee9089"
-                                      d="M812.77632,614.36543c.1466-.3401,4.0227-9.1184,3.7524-11.0645-.2856-1.9846-8.5859-2.9105-10.9332-3.2657-.9651-.147-2.0305.6711-2.9341,1.6905a18.73617,18.73617,0,0,0,2.3319-5.6521c1.0656-4.7021,18.2993,2.0932,18.2993,2.0932s.3397,1.0345.7258,2.6247C820.11142,606.21973,813.062,614.04873,812.77632,614.36543Z" />
-                                    <path fill="#481e74"
-                                      d="M749.606,427.43513s-2.9036,13.2276,0,33.2303,10.3239,39.6827,12.5823,48.3935,8.7108,52.9104,4.8394,62.9117c0,0,11.8049,9.0335,22.3563,2.9036,0,0,.7405-14.8407,0-29.6814s-.55-40.6506,0-48.0709-2.9989-77.1071-2.9989-77.1071Z" />
-                                    <path fill="#5a2b95"
-                                      d="M816.06652,429.04823s3.5488,11.6145-1.9358,23.2289c0,0-1.129,38.7149,1.5326,51.2972s17.1796,62.4358,8.7914,97.1098l-20.9705-3.2262s3.5488-24.1968-2.581-49.6841-7.0978-21.2932-10.324-30.004-11.7346-60.9595-15.0928-68.7337c-3.7136-8.5973-11.5738-20.7197-11.5738-20.7197S807.67832,415.82063,816.06652,429.04823Z" />
-                                    <path fill="#ffaca3"
-                                      d="M742.66792,315.20823s-5.4469,3.0439-8.9713,3.0439-13.2968-1.2816-19.865-4.8061-12.656-7.2091-14.0978-8.8111-5.4469-6.5683-8.3305-8.3305-11.2141-3.6846-12.656-5.9275-2.8836,4.9663,1.2817,7.3693c0,0-7.5295-3.5244-9.7723-1.9224s10.5733,23.8701,17.1415,23.7099,6.2479-1.1197,8.1703.0008,8.1703,7.0481,18.2631,15.0582,21.7874,8.3304,23.5496,7.4493,17.6222-8.0902,17.6222-8.0902Z" />
-                                    <path fill="#ff8e00"
-                                      d="M766.77892,295.103a85.84635,85.84635,0,0,0-13.7724,11.2972c-4.9383,4.8481-13.1488,8.2837-13.1488,8.2837s-.7889,17.2249,6.4429,24.1938l11.4394-3.5502Z" />
-                                    <path fill="#f9b40f"
-                                      d="M836.70422,329.63923c-.278-1.166-3.6521-14.1993-15.9519-12.7942-12.8791,1.467-16.6314,22.4917-16.1374,29.6647.4866,7.173,5.0497,16.6239,5.0497,16.6239a107.73011,107.73011,0,0,0,1.9535,30.159c3.4282,15.4809,8.1536,40.5826,6.2001,42.0496-1.9612,1.4669-15.6508-1.467-23.9666-2.7643-8.308-1.3048-7.8216,2.9339-27.1939,6.6788-19.3726,3.7524-17.6276-2.1154-19.0945-7.9836-1.4671-5.8682,11.7362-21.519,9.9448-31.9502-1.7991-10.4315-1.6291-48.8983-2.7718-54.6044s-.1621-23.6344,1.6291-33.2549a25.43619,25.43619,0,0,1,4.8025-10.277,38.39687,38.39687,0,0,1,10.8483-9.9293c4.4011-2.448,13.8518-1.1431,13.8518-1.1431l12.1299-9.0645.7414-.5482a.95182.95182,0,0,0-.2085.6176c-.1004,1.5058,1.4902,6.2078,16.8398,18.9402,1.6679,1.3822,3.2044,2.7409,4.6252,4.0767C834.828,318.01113,836.573,328.59683,836.70422,329.63923Z" />
-                                    <path fill="#481e74"
-                                      d="M771.45742,236.94953a13.75081,13.75081,0,0,1,7.8892-9.2865,20.72622,20.72622,0,0,1,12.3896-1.144c2.0541.3918,4.0566,1.0136,6.0905,1.4995,4.8106,1.1494,9.9355,1.5896,14.168,4.1486a21.29262,21.29262,0,0,1,7.5714,8.5887,32.29316,32.29316,0,0,1-1.0313,31.0291,39.3085,39.3085,0,0,1-6.7448,8.1488,22.84878,22.84878,0,0,1-4.1467,3.2257,19.612,19.612,0,0,1-9.8538,2.3334,8.71648,8.71648,0,0,1-4.0982-.7757,9.82438,9.82438,0,0,1-3.5304-4.0307,113.98788,113.98788,0,0,1-10.6615-24.6894c-.4933-1.6573-.9497-3.3273-1.5307-4.957-.419-1.1752-.7802-2.5288-1.9229-3.1889a9.50439,9.50439,0,0,1-4.5062-6.1656A10.75251,10.75251,0,0,1,771.45742,236.94953Z" />
-                                    <path fill="#fc0"
-                                      d="M819.64252,316.16533c6.1746-1.794,14.0527.6771,17.0802,13.5573a78.07338,78.07338,0,0,1,2.2265,23.4535c0,4.1652.5122,13.4569.0959,20.3456h-31.3353s-3.7574-29.3563-3.6996-30.1577S802.61,321.11393,819.64252,316.16533Z" />
-                                    <path fill="#ff8e00"
-                                      d="M819.99572,304.136a15.17319,15.17319,0,0,0-8.2232-2.5249,7.21976,7.21976,0,0,0-3.1194.6873,12.3143,12.3143,0,0,0-2.9496,2.463,24.52329,24.52329,0,0,1-13.7822,7.196c-5.2349.6719-10.8869-1.042-14.3228-5.0417a15.06736,15.06736,0,0,1-3.4822-8.7403,4.65685,4.65685,0,0,0-.4864-2.2315,2.69678,2.69678,0,0,0-2.6562-.9885,7.34748,7.34748,0,0,0-2.7179,1.2045c-.2006.1237-.4013.2473-.6021.3785-1.606,1.0191-3.1657,2.1079-4.6868,3.2506-.61.4555-1.2045.9188-1.7991,1.3976a38.39687,38.39687,0,0,1,10.8483-9.9293c4.4011-2.448,13.8518-1.1431,13.8518-1.1431l12.1299-9.0645q.2664.0345.5329.0694c-.1004,1.5058,1.4902,6.2078,16.8398,18.9402C817.03842,301.44153,818.57492,302.80023,819.99572,304.136Z" />
-                                    <path fill="#ffaca3"
-                                      d="M775.35632,244.85713a19.84585,19.84585,0,0,1,6.4519-2.9856,13.57368,13.57368,0,0,1,5.2514.1454,21.98627,21.98627,0,0,1,16.6971,16.2988,14.71815,14.71815,0,0,0,1.3138,4.3755c.7819,1.3154,2.3854,2.3111,3.8317,1.8112,1.288-.4452,2.0304-1.8941,3.3235-2.3242,1.7951-.5971,3.6661,1.2266,3.8213,3.112s-.8571,3.6558-1.9231,5.2187a14.47711,14.47711,0,0,1-3.4669,3.8268,6.33726,6.33726,0,0,1-4.9856,1.2443c-1.296,3.4678-.2234,7.3024.3311,10.9627.7277,4.804.4509,9.9954-2.1466,14.1015a20.16993,20.16993,0,0,1-5.8345,5.6855,13.3063,13.3063,0,0,1-2.8142,1.5479,16.35043,16.35043,0,0,1-6.0956.6333,18.27665,18.27665,0,0,1-5.9934-.806,10.06882,10.06882,0,0,1-6.1491-7.5079c-.6292-3.3227.7309-6.9488,2.5848-9.7771a13.94811,13.94811,0,0,0,2.2623-7.1656c.0551-1.7543-.4603-3.829-2.099-4.4576a7.732,7.732,0,0,0-2.2278-.2669,7.41014,7.41014,0,0,1-5.8682-3.802,13.05147,13.05147,0,0,1-1.1725-6.0621,60.30725,60.30725,0,0,1,4.3046-23.1825A3.232,3.232,0,0,1,775.35632,244.85713Z" />
+                                      fill="#8d7de0"
+                                      opacity=".5"
+                                    />
+                                    <rect
+                                      width="153.228"
+                                      height="71.328"
+                                      x="283.17"
+                                      y="185.419"
+                                      fill="#8d7de0"
+                                    />
+                                    <rect
+                                      width="49.898"
+                                      height="9.852"
+                                      x="354.99"
+                                      y="204.918"
+                                      fill="#5a48b4"
+                                    />
+                                    <rect
+                                      width="71.55"
+                                      height="7.014"
+                                      x="354.99"
+                                      y="220.845"
+                                      fill="#7463cd"
+                                    />
+                                    <rect
+                                      width="71.55"
+                                      height="7.014"
+                                      x="354.99"
+                                      y="232.182"
+                                      fill="#7463cd"
+                                    />
+                                    <rect
+                                      width="59.53"
+                                      height="7.014"
+                                      x="354.99"
+                                      y="243.52"
+                                      fill="#7463cd"
+                                    />
+                                    <polygon
+                                      fill="#f2f2f2"
+                                      points="330.267 216.974 315.942 231.888 306.434 221.989 294.895 234.002 294.895 244.539 339.956 244.539 339.956 227.062 330.267 216.974"
+                                    />
+                                    <path
+                                      fill="#f2f2f2"
+                                      d="M289.13692,191.63143v58.9024H345.714v-58.9024Zm52.1099,35.7727v18.4786h-47.6421v-49.6002h47.6421Z"
+                                    />
+                                    <path
+                                      fill="#f2f2f2"
+                                      d="M319.65542,207.51753a4.588,4.588,0,1,1-4.5842-4.7727A4.68126,4.68126,0,0,1,319.65542,207.51753Z"
+                                    />
+                                    <polygon
+                                      fill="#ee9089"
+                                      points="771.757 564.406 767.591 572.371 764.951 573.538 762.022 584.996 786.661 581.722 786.661 571.901 771.757 564.406"
+                                    />
+                                    <path
+                                      fill="#14293e"
+                                      d="M788.21162,573.45153s.8615,13.2671-.6031,14.1286-13.4394.6892-16.2824,2.2399-24.7251,6.8658-28.2573,4.5959-3.446-3.0452-3.5321-4.8543.6892-4.1352,1.8953-4.4798,10.0796-2.2399,14.904-6.2029,6.452-7.8396,7.5766-7.7535,4.7713,2.4122,5.1017,5.0829-3.1156,5.9444-3.1156,5.9444,1.8953-2.1538,7.9258-2.4123,12.1472,0,12.2333-5.4274Z"
+                                    />
+                                    <path
+                                      fill="#2d3355"
+                                      d="M824.34262,614.35793c-2.4862,5.3505-19.8666,18.0211-28.8696,16.9707-9.0029-1.042-11.8751-2.3472-10.3077-7.829,1.5674-5.49,11.1032-13.319,13.5816-16.4535.5405-.6801,1.0887-1.367,1.6291-2.0698h.0077a.20489.20489,0,0,1,.0309-.0535,31.985,31.985,0,0,0,2.2468-3.1971,18.73617,18.73617,0,0,0,2.3319-5.6521c1.0656-4.7021,18.2993,2.0932,18.2993,2.0932s.3397,1.0345.7258,2.6247C824.89852,604.34373,826.05672,610.65943,824.34262,614.35793Z"
+                                    />
+                                    <path
+                                      fill="#ee9089"
+                                      d="M812.77632,614.36543c.1466-.3401,4.0227-9.1184,3.7524-11.0645-.2856-1.9846-8.5859-2.9105-10.9332-3.2657-.9651-.147-2.0305.6711-2.9341,1.6905a18.73617,18.73617,0,0,0,2.3319-5.6521c1.0656-4.7021,18.2993,2.0932,18.2993,2.0932s.3397,1.0345.7258,2.6247C820.11142,606.21973,813.062,614.04873,812.77632,614.36543Z"
+                                    />
+                                    <path
+                                      fill="#481e74"
+                                      d="M749.606,427.43513s-2.9036,13.2276,0,33.2303,10.3239,39.6827,12.5823,48.3935,8.7108,52.9104,4.8394,62.9117c0,0,11.8049,9.0335,22.3563,2.9036,0,0,.7405-14.8407,0-29.6814s-.55-40.6506,0-48.0709-2.9989-77.1071-2.9989-77.1071Z"
+                                    />
+                                    <path
+                                      fill="#5a2b95"
+                                      d="M816.06652,429.04823s3.5488,11.6145-1.9358,23.2289c0,0-1.129,38.7149,1.5326,51.2972s17.1796,62.4358,8.7914,97.1098l-20.9705-3.2262s3.5488-24.1968-2.581-49.6841-7.0978-21.2932-10.324-30.004-11.7346-60.9595-15.0928-68.7337c-3.7136-8.5973-11.5738-20.7197-11.5738-20.7197S807.67832,415.82063,816.06652,429.04823Z"
+                                    />
+                                    <path
+                                      fill="#ffaca3"
+                                      d="M742.66792,315.20823s-5.4469,3.0439-8.9713,3.0439-13.2968-1.2816-19.865-4.8061-12.656-7.2091-14.0978-8.8111-5.4469-6.5683-8.3305-8.3305-11.2141-3.6846-12.656-5.9275-2.8836,4.9663,1.2817,7.3693c0,0-7.5295-3.5244-9.7723-1.9224s10.5733,23.8701,17.1415,23.7099,6.2479-1.1197,8.1703.0008,8.1703,7.0481,18.2631,15.0582,21.7874,8.3304,23.5496,7.4493,17.6222-8.0902,17.6222-8.0902Z"
+                                    />
+                                    <path
+                                      fill="#ff8e00"
+                                      d="M766.77892,295.103a85.84635,85.84635,0,0,0-13.7724,11.2972c-4.9383,4.8481-13.1488,8.2837-13.1488,8.2837s-.7889,17.2249,6.4429,24.1938l11.4394-3.5502Z"
+                                    />
+                                    <path
+                                      fill="#f9b40f"
+                                      d="M836.70422,329.63923c-.278-1.166-3.6521-14.1993-15.9519-12.7942-12.8791,1.467-16.6314,22.4917-16.1374,29.6647.4866,7.173,5.0497,16.6239,5.0497,16.6239a107.73011,107.73011,0,0,0,1.9535,30.159c3.4282,15.4809,8.1536,40.5826,6.2001,42.0496-1.9612,1.4669-15.6508-1.467-23.9666-2.7643-8.308-1.3048-7.8216,2.9339-27.1939,6.6788-19.3726,3.7524-17.6276-2.1154-19.0945-7.9836-1.4671-5.8682,11.7362-21.519,9.9448-31.9502-1.7991-10.4315-1.6291-48.8983-2.7718-54.6044s-.1621-23.6344,1.6291-33.2549a25.43619,25.43619,0,0,1,4.8025-10.277,38.39687,38.39687,0,0,1,10.8483-9.9293c4.4011-2.448,13.8518-1.1431,13.8518-1.1431l12.1299-9.0645.7414-.5482a.95182.95182,0,0,0-.2085.6176c-.1004,1.5058,1.4902,6.2078,16.8398,18.9402,1.6679,1.3822,3.2044,2.7409,4.6252,4.0767C834.828,318.01113,836.573,328.59683,836.70422,329.63923Z"
+                                    />
+                                    <path
+                                      fill="#481e74"
+                                      d="M771.45742,236.94953a13.75081,13.75081,0,0,1,7.8892-9.2865,20.72622,20.72622,0,0,1,12.3896-1.144c2.0541.3918,4.0566,1.0136,6.0905,1.4995,4.8106,1.1494,9.9355,1.5896,14.168,4.1486a21.29262,21.29262,0,0,1,7.5714,8.5887,32.29316,32.29316,0,0,1-1.0313,31.0291,39.3085,39.3085,0,0,1-6.7448,8.1488,22.84878,22.84878,0,0,1-4.1467,3.2257,19.612,19.612,0,0,1-9.8538,2.3334,8.71648,8.71648,0,0,1-4.0982-.7757,9.82438,9.82438,0,0,1-3.5304-4.0307,113.98788,113.98788,0,0,1-10.6615-24.6894c-.4933-1.6573-.9497-3.3273-1.5307-4.957-.419-1.1752-.7802-2.5288-1.9229-3.1889a9.50439,9.50439,0,0,1-4.5062-6.1656A10.75251,10.75251,0,0,1,771.45742,236.94953Z"
+                                    />
+                                    <path
+                                      fill="#fc0"
+                                      d="M819.64252,316.16533c6.1746-1.794,14.0527.6771,17.0802,13.5573a78.07338,78.07338,0,0,1,2.2265,23.4535c0,4.1652.5122,13.4569.0959,20.3456h-31.3353s-3.7574-29.3563-3.6996-30.1577S802.61,321.11393,819.64252,316.16533Z"
+                                    />
+                                    <path
+                                      fill="#ff8e00"
+                                      d="M819.99572,304.136a15.17319,15.17319,0,0,0-8.2232-2.5249,7.21976,7.21976,0,0,0-3.1194.6873,12.3143,12.3143,0,0,0-2.9496,2.463,24.52329,24.52329,0,0,1-13.7822,7.196c-5.2349.6719-10.8869-1.042-14.3228-5.0417a15.06736,15.06736,0,0,1-3.4822-8.7403,4.65685,4.65685,0,0,0-.4864-2.2315,2.69678,2.69678,0,0,0-2.6562-.9885,7.34748,7.34748,0,0,0-2.7179,1.2045c-.2006.1237-.4013.2473-.6021.3785-1.606,1.0191-3.1657,2.1079-4.6868,3.2506-.61.4555-1.2045.9188-1.7991,1.3976a38.39687,38.39687,0,0,1,10.8483-9.9293c4.4011-2.448,13.8518-1.1431,13.8518-1.1431l12.1299-9.0645q.2664.0345.5329.0694c-.1004,1.5058,1.4902,6.2078,16.8398,18.9402C817.03842,301.44153,818.57492,302.80023,819.99572,304.136Z"
+                                    />
+                                    <path
+                                      fill="#ffaca3"
+                                      d="M775.35632,244.85713a19.84585,19.84585,0,0,1,6.4519-2.9856,13.57368,13.57368,0,0,1,5.2514.1454,21.98627,21.98627,0,0,1,16.6971,16.2988,14.71815,14.71815,0,0,0,1.3138,4.3755c.7819,1.3154,2.3854,2.3111,3.8317,1.8112,1.288-.4452,2.0304-1.8941,3.3235-2.3242,1.7951-.5971,3.6661,1.2266,3.8213,3.112s-.8571,3.6558-1.9231,5.2187a14.47711,14.47711,0,0,1-3.4669,3.8268,6.33726,6.33726,0,0,1-4.9856,1.2443c-1.296,3.4678-.2234,7.3024.3311,10.9627.7277,4.804.4509,9.9954-2.1466,14.1015a20.16993,20.16993,0,0,1-5.8345,5.6855,13.3063,13.3063,0,0,1-2.8142,1.5479,16.35043,16.35043,0,0,1-6.0956.6333,18.27665,18.27665,0,0,1-5.9934-.806,10.06882,10.06882,0,0,1-6.1491-7.5079c-.6292-3.3227.7309-6.9488,2.5848-9.7771a13.94811,13.94811,0,0,0,2.2623-7.1656c.0551-1.7543-.4603-3.829-2.099-4.4576a7.732,7.732,0,0,0-2.2278-.2669,7.41014,7.41014,0,0,1-5.8682-3.802,13.05147,13.05147,0,0,1-1.1725-6.0621,60.30725,60.30725,0,0,1,4.3046-23.1825A3.232,3.232,0,0,1,775.35632,244.85713Z"
+                                    />
                                     <path
                                       d="M290.225,278.61883h86.29a4.1755,4.1755,0,0,1,4.1755,4.1755v86.2903a4.1752,4.1752,0,0,1-4.1752,4.1752h-86.2906a4.1752,4.1752,0,0,1-4.1752-4.1752v-86.2903A4.1755,4.1755,0,0,1,290.225,278.61883Z"
-                                    // style="mix-blend-mode:multiply" fill="#e2e0e1"
+                                      // style="mix-blend-mode:multiply" fill="#e2e0e1"
                                     />
-                                    <path fill="#caddfe"
-                                      d="M287.345,275.73883h86.29a4.1755,4.1755,0,0,1,4.1755,4.1755v86.2903a4.1752,4.1752,0,0,1-4.1752,4.1752h-86.2906a4.1752,4.1752,0,0,1-4.1752-4.1752v-86.2903A4.1755,4.1755,0,0,1,287.345,275.73883Z" />
-                                    <circle cx="293.424" cy="286.029" r="2.681"
-                                      fill="#31c9ce" />
-                                    <circle cx="302.667" cy="286.029" r="2.681" fill="#fc0" />
-                                    <circle cx="311.911" cy="286.029" r="2.681"
-                                      fill="#e74445" />
-                                    <rect width="79.494" height="68.032" x="290.743" y="295.078"
-                                      fill="#f9b40f" rx="4.437" />
-                                    <path fill="#fff"
-                                      d="M350.29032,333.69243h5.9679l-.0002-9.1968h-5.9677a20.20678,20.20678,0,0,0-2.5477-6.1511l4.2196-4.2197-6.503-6.5032-4.2199,4.2198a20.20573,20.20573,0,0,0-6.1511-2.5479V303.326h-9.1968v5.9676a20.20484,20.20484,0,0,0-6.1512,2.5477l-4.2196-4.2197-6.5027,6.5033,4.2193,4.2194a20.20353,20.20353,0,0,0-2.548,6.1513h-5.9674l.0003,9.1968h5.9671a20.20291,20.20291,0,0,0,2.5477,6.1513l-4.2196,4.2196,6.5033,6.5031,4.2194-4.2196a20.20389,20.20389,0,0,0,6.1514,2.5479v5.9676h9.1968v-5.9675a20.20618,20.20618,0,0,0,6.1514-2.548l4.2198,4.2198,6.5031-6.5033-4.2199-4.2197A20.19985,20.19985,0,0,0,350.29032,333.69243Zm-29.7843-4.5982a9.98375,9.98375,0,1,1,9.9839,9.9836A9.9838,9.9838,0,0,1,320.506,329.09423Z" />
-                                    <polygon fill="#e2e0e1"
-                                      points="637.897 284.03 609.562 373.762 603.702 392.317 599.618 405.252 759.163 455.632 766.38 432.778 772.239 414.223 797.442 334.409 637.897 284.03" />
-                                    <polygon fill="#83c0ed"
-                                      points="701.828 394.512 743.079 373.06 764.821 414.869 788.81 338.898 642.386 292.662 615.264 378.551 676.868 346.515 701.828 394.512" />
-                                    <polygon fill="#fff"
-                                      points="723.401 397.353 737.115 387.735 738.745 409.421 744.426 391.432 749.79 398.312 748.161 389.548 756.418 398.711 743.079 373.06 716.505 386.879 729.12 385.211 723.401 397.353" />
-                                    <polygon fill="#434a6b"
-                                      points="756.418 398.711 748.161 389.548 749.79 398.312 744.426 391.432 738.745 409.421 737.115 387.735 723.401 397.353 729.12 385.211 716.505 386.879 701.828 394.512 693.114 377.755 677.186 361.721 665.569 389.56 668.965 362.893 655.485 372.768 662.398 360.819 642.28 364.502 615.264 378.551 608.25 400.764 754.674 447 764.821 414.869 756.418 398.711" />
-                                    <polygon fill="#fff"
-                                      points="655.485 372.768 668.965 362.893 665.569 389.56 677.186 361.721 693.114 377.755 676.868 346.515 642.28 364.502 662.398 360.819 655.485 372.768" />
-                                    <circle cx="718.519" cy="345.227" r="11.653" fill="#fff"
-                                      transform="rotate(-63.205 718.52 345.227)" />
-                                    <path fill="#ffaca3"
-                                      d="M837.66762,371.11873s.1602,25.7925-1.7623,28.5159-19.3844,14.5784-38.7688,20.0252-22.7487,7.0489-25.9527,9.7723-12.8161,7.5295-16.1804,6.7285-17.3018-14.8988-13.1365-16.8212,12.7585-6.5062,13.214-7.6316-14.1752-2.4611-10.3304-9.6702c0,0,9.1315,3.5245,13.457,3.5245,0,0,6.5682,7.8499,10.5733,7.8499s16.8212-7.6897,24.6711-12.8162,16.5008-11.3743,18.1028-12.6559-2.1936-18.1092-2.1936-18.1092Z" />
-                                    <path fill="#ffaca3"
-                                      d="M758.32172,420.01483l-3.2408-8.307s-21.4606,12.8945-30.4819,12.6797,16.2465,19.7252,34.543,11.2587,2.4017-21.9985,2.4017-21.9985Z" />
+                                    <path
+                                      fill="#caddfe"
+                                      d="M287.345,275.73883h86.29a4.1755,4.1755,0,0,1,4.1755,4.1755v86.2903a4.1752,4.1752,0,0,1-4.1752,4.1752h-86.2906a4.1752,4.1752,0,0,1-4.1752-4.1752v-86.2903A4.1755,4.1755,0,0,1,287.345,275.73883Z"
+                                    />
+                                    <circle
+                                      cx="293.424"
+                                      cy="286.029"
+                                      r="2.681"
+                                      fill="#31c9ce"
+                                    />
+                                    <circle
+                                      cx="302.667"
+                                      cy="286.029"
+                                      r="2.681"
+                                      fill="#fc0"
+                                    />
+                                    <circle
+                                      cx="311.911"
+                                      cy="286.029"
+                                      r="2.681"
+                                      fill="#e74445"
+                                    />
+                                    <rect
+                                      width="79.494"
+                                      height="68.032"
+                                      x="290.743"
+                                      y="295.078"
+                                      fill="#f9b40f"
+                                      rx="4.437"
+                                    />
+                                    <path
+                                      fill="#fff"
+                                      d="M350.29032,333.69243h5.9679l-.0002-9.1968h-5.9677a20.20678,20.20678,0,0,0-2.5477-6.1511l4.2196-4.2197-6.503-6.5032-4.2199,4.2198a20.20573,20.20573,0,0,0-6.1511-2.5479V303.326h-9.1968v5.9676a20.20484,20.20484,0,0,0-6.1512,2.5477l-4.2196-4.2197-6.5027,6.5033,4.2193,4.2194a20.20353,20.20353,0,0,0-2.548,6.1513h-5.9674l.0003,9.1968h5.9671a20.20291,20.20291,0,0,0,2.5477,6.1513l-4.2196,4.2196,6.5033,6.5031,4.2194-4.2196a20.20389,20.20389,0,0,0,6.1514,2.5479v5.9676h9.1968v-5.9675a20.20618,20.20618,0,0,0,6.1514-2.548l4.2198,4.2198,6.5031-6.5033-4.2199-4.2197A20.19985,20.19985,0,0,0,350.29032,333.69243Zm-29.7843-4.5982a9.98375,9.98375,0,1,1,9.9839,9.9836A9.9838,9.9838,0,0,1,320.506,329.09423Z"
+                                    />
+                                    <polygon
+                                      fill="#e2e0e1"
+                                      points="637.897 284.03 609.562 373.762 603.702 392.317 599.618 405.252 759.163 455.632 766.38 432.778 772.239 414.223 797.442 334.409 637.897 284.03"
+                                    />
+                                    <polygon
+                                      fill="#83c0ed"
+                                      points="701.828 394.512 743.079 373.06 764.821 414.869 788.81 338.898 642.386 292.662 615.264 378.551 676.868 346.515 701.828 394.512"
+                                    />
+                                    <polygon
+                                      fill="#fff"
+                                      points="723.401 397.353 737.115 387.735 738.745 409.421 744.426 391.432 749.79 398.312 748.161 389.548 756.418 398.711 743.079 373.06 716.505 386.879 729.12 385.211 723.401 397.353"
+                                    />
+                                    <polygon
+                                      fill="#434a6b"
+                                      points="756.418 398.711 748.161 389.548 749.79 398.312 744.426 391.432 738.745 409.421 737.115 387.735 723.401 397.353 729.12 385.211 716.505 386.879 701.828 394.512 693.114 377.755 677.186 361.721 665.569 389.56 668.965 362.893 655.485 372.768 662.398 360.819 642.28 364.502 615.264 378.551 608.25 400.764 754.674 447 764.821 414.869 756.418 398.711"
+                                    />
+                                    <polygon
+                                      fill="#fff"
+                                      points="655.485 372.768 668.965 362.893 665.569 389.56 677.186 361.721 693.114 377.755 676.868 346.515 642.28 364.502 662.398 360.819 655.485 372.768"
+                                    />
+                                    <circle
+                                      cx="718.519"
+                                      cy="345.227"
+                                      r="11.653"
+                                      fill="#fff"
+                                      transform="rotate(-63.205 718.52 345.227)"
+                                    />
+                                    <path
+                                      fill="#ffaca3"
+                                      d="M837.66762,371.11873s.1602,25.7925-1.7623,28.5159-19.3844,14.5784-38.7688,20.0252-22.7487,7.0489-25.9527,9.7723-12.8161,7.5295-16.1804,6.7285-17.3018-14.8988-13.1365-16.8212,12.7585-6.5062,13.214-7.6316-14.1752-2.4611-10.3304-9.6702c0,0,9.1315,3.5245,13.457,3.5245,0,0,6.5682,7.8499,10.5733,7.8499s16.8212-7.6897,24.6711-12.8162,16.5008-11.3743,18.1028-12.6559-2.1936-18.1092-2.1936-18.1092Z"
+                                    />
+                                    <path
+                                      fill="#ffaca3"
+                                      d="M758.32172,420.01483l-3.2408-8.307s-21.4606,12.8945-30.4819,12.6797,16.2465,19.7252,34.543,11.2587,2.4017-21.9985,2.4017-21.9985Z"
+                                    />
                                   </g>
                                 </svg>
                               </div>
@@ -873,32 +1490,54 @@ const Landingpage = () => {
                             <Col xl={8} lg={6} md={6} sm={12}>
                               <div className="working-content content-1">
                                 <h4 className="mb-3">Design Quality </h4>
-                                <p className="title-desc text-muted">No ipsum rebum est invidunt eos
-                                  dolore. Sed sea ipsum vero invidunt rebum et erat, tempor
-                                  consetetur sadipscing no ipsum,.</p>
-                                <p className="title-desc text-muted mb-0">Ut dolor sed aliquyam at lorem
-                                  ipsum labore diam eos. Tempor labore dolor justo nonumy stet,
-                                  sanctus amet sed accusam elitr amet eirmod. No ea gubergren
-                                  dolores elitr labore ipsum..</p>
+                                <p className="title-desc text-muted">
+                                  No ipsum rebum est invidunt eos dolore. Sed
+                                  sea ipsum vero invidunt rebum et erat, tempor
+                                  consetetur sadipscing no ipsum,.
+                                </p>
+                                <p className="title-desc text-muted mb-0">
+                                  Ut dolor sed aliquyam at lorem ipsum labore
+                                  diam eos. Tempor labore dolor justo nonumy
+                                  stet, sanctus amet sed accusam elitr amet
+                                  eirmod. No ea gubergren dolores elitr labore
+                                  ipsum..
+                                </p>
                               </div>
                             </Col>
                           </Row>
                         </div>
                         <div className="working-container">
                           <Row className="align-items-center">
-                            <Col xl={8} lg={6} md={6} sm={12} className=" myorder-2">
+                            <Col
+                              xl={8}
+                              lg={6}
+                              md={6}
+                              sm={12}
+                              className=" myorder-2"
+                            >
                               <div className="working-content content-2">
                                 <h4 className="mb-3">Documentation</h4>
-                                <p className="title-desc text-muted">Dolore voluptua sed kasd labore
-                                  erat sed ipsum rebum sit, sanctus invidunt est sed sanctus.
-                                  Dolor clita invidunt elitr dolore.</p>
-                                <p className="title-desc text-muted mb-0">Lorem dolores labore stet
-                                  rebum invidunt voluptua at dolores lorem, amet dolor dolore
-                                  dolor ut sadipscing, dolore sanctus accusam diam sanctus kasd
-                                  gubergren, ipsum dolor lorem amet stet, aliquyam takimata.</p>
+                                <p className="title-desc text-muted">
+                                  Dolore voluptua sed kasd labore erat sed ipsum
+                                  rebum sit, sanctus invidunt est sed sanctus.
+                                  Dolor clita invidunt elitr dolore.
+                                </p>
+                                <p className="title-desc text-muted mb-0">
+                                  Lorem dolores labore stet rebum invidunt
+                                  voluptua at dolores lorem, amet dolor dolore
+                                  dolor ut sadipscing, dolore sanctus accusam
+                                  diam sanctus kasd gubergren, ipsum dolor lorem
+                                  amet stet, aliquyam takimata.
+                                </p>
                               </div>
                             </Col>
-                            <Col xl={4} lg={6} md={6} sm={12} className=" myorder-1">
+                            <Col
+                              xl={4}
+                              lg={6}
+                              md={6}
+                              sm={12}
+                              className=" myorder-1"
+                            >
                               <div className="working-svg-container svg-container-2">
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
@@ -908,7 +1547,7 @@ const Landingpage = () => {
                                   enableBackground="new 0 0 300 300"
                                   version="1.1"
                                   viewBox="0 0 300 300"
-                                // xml:space="preserve"
+                                  // xml:space="preserve"
                                 >
                                   <g id="Website_Blog">
                                     <path
@@ -1476,7 +2115,7 @@ c-0.6137161,4.8149414-1.0946579,9.651413-1.4447937,14.4860229L43.0290565,232.100
                                   enableBackground="new 0 0 750 700"
                                   version="1.1"
                                   viewBox="0 0 750 700"
-                                // xml:space="preserve"
+                                  // xml:space="preserve"
                                 >
                                   <g id="_x37_">
                                     <path
@@ -1742,7 +2381,10 @@ c-0.6137161,4.8149414-1.0946579,9.651413-1.4447937,14.4860229L43.0290565,232.100
                                         gradientUnits="userSpaceOnUse"
                                       >
                                         <stop offset="0" stopColor="#ececec" />
-                                        <stop offset=".987" stopColor="#e0e0e0" />
+                                        <stop
+                                          offset=".987"
+                                          stopColor="#e0e0e0"
+                                        />
                                       </linearGradient>
                                       <polygon
                                         fill="url(#SVGID_2_)"
@@ -1796,7 +2438,10 @@ c-0.6137161,4.8149414-1.0946579,9.651413-1.4447937,14.4860229L43.0290565,232.100
                                         gradientUnits="userSpaceOnUse"
                                       >
                                         <stop offset="0" stopColor="#ececec" />
-                                        <stop offset=".987" stopColor="#e0e0e0" />
+                                        <stop
+                                          offset=".987"
+                                          stopColor="#e0e0e0"
+                                        />
                                       </linearGradient>
                                       <polygon
                                         fill="url(#SVGID_3_)"
@@ -1866,7 +2511,10 @@ c-0.6137161,4.8149414-1.0946579,9.651413-1.4447937,14.4860229L43.0290565,232.100
                                         gradientUnits="userSpaceOnUse"
                                       >
                                         <stop offset="0" stopColor="#8283d0" />
-                                        <stop offset=".993" stopColor="#6969ad" />
+                                        <stop
+                                          offset=".993"
+                                          stopColor="#6969ad"
+                                        />
                                       </linearGradient>
                                       <path
                                         fill="url(#SVGID_4_)"
@@ -1896,7 +2544,10 @@ c-0.6137161,4.8149414-1.0946579,9.651413-1.4447937,14.4860229L43.0290565,232.100
                                         gradientUnits="userSpaceOnUse"
                                       >
                                         <stop offset="0" stopColor="#30355c" />
-                                        <stop offset=".997" stopColor="#262c51" />
+                                        <stop
+                                          offset=".997"
+                                          stopColor="#262c51"
+                                        />
                                       </linearGradient>
                                       <path
                                         fill="url(#SVGID_5_)"
@@ -1937,7 +2588,10 @@ c-0.6137161,4.8149414-1.0946579,9.651413-1.4447937,14.4860229L43.0290565,232.100
                                         gradientUnits="userSpaceOnUse"
                                       >
                                         <stop offset="0" stopColor="#30355c" />
-                                        <stop offset=".997" stopColor="#262c51" />
+                                        <stop
+                                          offset=".997"
+                                          stopColor="#262c51"
+                                        />
                                       </linearGradient>
                                       <path
                                         fill="url(#SVGID_6_)"
@@ -2008,7 +2662,10 @@ c-0.6137161,4.8149414-1.0946579,9.651413-1.4447937,14.4860229L43.0290565,232.100
                                         gradientUnits="userSpaceOnUse"
                                       >
                                         <stop offset="0" stopColor="#30355c" />
-                                        <stop offset=".997" stopColor="#1d2344" />
+                                        <stop
+                                          offset=".997"
+                                          stopColor="#1d2344"
+                                        />
                                       </linearGradient>
                                       <path
                                         fill="url(#SVGID_8_)"
@@ -2025,7 +2682,10 @@ c-0.6137161,4.8149414-1.0946579,9.651413-1.4447937,14.4860229L43.0290565,232.100
                                         gradientUnits="userSpaceOnUse"
                                       >
                                         <stop offset="0" stopColor="#30355c" />
-                                        <stop offset=".997" stopColor="#262c51" />
+                                        <stop
+                                          offset=".997"
+                                          stopColor="#262c51"
+                                        />
                                       </linearGradient>
                                       <path
                                         fill="url(#SVGID_9_)"
@@ -2162,9 +2822,7 @@ c-0.6137161,4.8149414-1.0946579,9.651413-1.4447937,14.4860229L43.0290565,232.100
                                                                             c-0.2167053,0.0263062-0.4705505,0.3713074-0.5554199,0.8239136c-0.0977325,0.4417114-0.0192413,1.0166931,0.1394196,1.5479431
                                                                             C152.1790924,278.9263306,153.0597382,279.9528809,154.3036041,280.5336304z"
                                       />
-                                      <path
-                                        d="M192.6241913 273.0128174c.0247345 1.4786987-.7142944 2.7680969-1.6532745 2.8840332-.9389343.1159363-1.7179565-.9860535-1.7427063-2.4647217-.0245667-1.4693298.714447-2.758728 1.6533813-2.8746643C191.8205872 270.4415283 192.5996094 271.5435181 192.6241913 273.0128174zM186.8742065 267.3951111c.218338.0814209.4745331.0319214.6480103-.1461792 1.9641266-2.0277405 4.6092377-.5753784 6.4830627 1.0033569.2551117.2156677.638916.1834106.8544006-.0734558.2159576-.2558594.1834259-.638916-.0734406-.8544006-3.1585541-2.6596069-6.1243134-2.9964905-8.1361542-.9199524-.2331696.2409973-.2268982.6243896.0138245.8582764C186.726059 267.3221741 186.7979736 267.3666992 186.8742065 267.3951111zM176.9199219 271.7337341c.0247345 1.4786987-.7142792 2.7680969-1.6532745 2.8840332-.9389343.1159363-1.7179565-.9860535-1.742691-2.4647217-.0245819-1.4693298.714447-2.758728 1.6533813-2.8746643C176.1163177 269.1624451 176.89534 270.2644043 176.9199219 271.7337341zM170.9482422 268.1105042c.2198181.0819397.4762726.0317383.6495667-.1481323 2.3870697-2.4837646 5.1175385-3.1821594 7.7017059-1.9371338.3167267.1408386.6647644.0168762.8093414-.2849731.1448517-.3026123.0168762-.6647644-.2849731-.8093262-3.0944061-1.4841614-6.3224792-.7015381-9.1013336 2.1908569-.2316895.2415466-.2239532.6254883.017334.8579102C170.8012848 268.0388489 170.8727417 268.0823669 170.9482422 268.1105042z"
-                                      />
+                                      <path d="M192.6241913 273.0128174c.0247345 1.4786987-.7142944 2.7680969-1.6532745 2.8840332-.9389343.1159363-1.7179565-.9860535-1.7427063-2.4647217-.0245667-1.4693298.714447-2.758728 1.6533813-2.8746643C191.8205872 270.4415283 192.5996094 271.5435181 192.6241913 273.0128174zM186.8742065 267.3951111c.218338.0814209.4745331.0319214.6480103-.1461792 1.9641266-2.0277405 4.6092377-.5753784 6.4830627 1.0033569.2551117.2156677.638916.1834106.8544006-.0734558.2159576-.2558594.1834259-.638916-.0734406-.8544006-3.1585541-2.6596069-6.1243134-2.9964905-8.1361542-.9199524-.2331696.2409973-.2268982.6243896.0138245.8582764C186.726059 267.3221741 186.7979736 267.3666992 186.8742065 267.3951111zM176.9199219 271.7337341c.0247345 1.4786987-.7142792 2.7680969-1.6532745 2.8840332-.9389343.1159363-1.7179565-.9860535-1.742691-2.4647217-.0245819-1.4693298.714447-2.758728 1.6533813-2.8746643C176.1163177 269.1624451 176.89534 270.2644043 176.9199219 271.7337341zM170.9482422 268.1105042c.2198181.0819397.4762726.0317383.6495667-.1481323 2.3870697-2.4837646 5.1175385-3.1821594 7.7017059-1.9371338.3167267.1408386.6647644.0168762.8093414-.2849731.1448517-.3026123.0168762-.6647644-.2849731-.8093262-3.0944061-1.4841614-6.3224792-.7015381-9.1013336 2.1908569-.2316895.2415466-.2239532.6254883.017334.8579102C170.8012848 268.0388489 170.8727417 268.0823669 170.9482422 268.1105042z" />
                                       <g>
                                         <path
                                           fill="#f8b7b3"
@@ -2678,175 +3336,390 @@ c-0.6137161,4.8149414-1.0946579,9.651413-1.4447937,14.4860229L43.0290565,232.100
                             <Col xl={8} lg={6} md={6} sm={12}>
                               <div className="working-content content-3">
                                 <h4 className="mb-3">Customization</h4>
-                                <p className="title-desc text-muted">Sea takimata sea sit justo
-                                  consetetur et diam erat erat, dolor vero et sit duo dolor,
-                                  dolores ipsum gubergren stet.</p>
-                                <p className="title-desc text-muted mb-0">Stet sadipscing lorem ipsum
-                                  invidunt takimata ipsum no eos dolor. Sed at dolores et ut dolor
-                                  voluptua sit duo. Ipsum ea kasd nonumy dolor, eos takimata
-                                  eirmod est gubergren eos.</p>
+                                <p className="title-desc text-muted">
+                                  Sea takimata sea sit justo consetetur et diam
+                                  erat erat, dolor vero et sit duo dolor,
+                                  dolores ipsum gubergren stet.
+                                </p>
+                                <p className="title-desc text-muted mb-0">
+                                  Stet sadipscing lorem ipsum invidunt takimata
+                                  ipsum no eos dolor. Sed at dolores et ut dolor
+                                  voluptua sit duo. Ipsum ea kasd nonumy dolor,
+                                  eos takimata eirmod est gubergren eos.
+                                </p>
                               </div>
                             </Col>
                           </Row>
                         </div>
                         <div className="working-container">
                           <Row className="align-items-center">
-                            <Col xl={8} lg={6} md={6} sm={12} className=" myorder-2">
+                            <Col
+                              xl={8}
+                              lg={6}
+                              md={6}
+                              sm={12}
+                              className=" myorder-2"
+                            >
                               <div className="working-content content-4">
                                 <h4 className="mb-3">Life Time Updates</h4>
-                                <p className="title-desc text-muted">Sea takimata sea sit justo
-                                  consetetur et diam erat erat, dolor vero et sit duo dolor,
-                                  dolores ipsum gubergren stet.</p>
-                                <p className="title-desc text-muted mb-0">Stet sadipscing lorem ipsum
-                                  invidunt takimata ipsum no eos dolor. Sed at dolores et ut dolor
-                                  voluptua sit duo. Ipsum ea kasd nonumy dolor, eos takimata
-                                  eirmod est gubergren eos.</p>
+                                <p className="title-desc text-muted">
+                                  Sea takimata sea sit justo consetetur et diam
+                                  erat erat, dolor vero et sit duo dolor,
+                                  dolores ipsum gubergren stet.
+                                </p>
+                                <p className="title-desc text-muted mb-0">
+                                  Stet sadipscing lorem ipsum invidunt takimata
+                                  ipsum no eos dolor. Sed at dolores et ut dolor
+                                  voluptua sit duo. Ipsum ea kasd nonumy dolor,
+                                  eos takimata eirmod est gubergren eos.
+                                </p>
                               </div>
                             </Col>
-                            <Col xl={4} lg={6} md={6} sm={12} className=" myorder-1">
+                            <Col
+                              xl={4}
+                              lg={6}
+                              md={6}
+                              sm={12}
+                              className=" myorder-1"
+                            >
                               <div className="working-svg-container svg-container-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="2000" height="2000"
-                                  enableBackground="new 0 0 2000 2000" viewBox="0 0 2000 2000">
-                                  <path fill="#33B2F2" d="M842.8,1236.5v-90.7l-67.8-14.1c-5.2-19.2-12.8-37.5-22.5-54.4l38-57.9l-64.1-64.1
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="2000"
+                                  height="2000"
+                                  enableBackground="new 0 0 2000 2000"
+                                  viewBox="0 0 2000 2000"
+                                >
+                                  <path
+                                    fill="#33B2F2"
+                                    d="M842.8,1236.5v-90.7l-67.8-14.1c-5.2-19.2-12.8-37.5-22.5-54.4l38-57.9l-64.1-64.1
     l-57.9,38c-16.9-9.7-35.1-17.3-54.4-22.5l-14.1-67.8h-90.7l-14.1,67.8c-19.2,5.2-37.5,12.8-54.4,22.5l-57.9-38l-64.1,64.1
     l38,57.9c-9.7,16.9-17.3,35.1-22.5,54.4l-67.8,14.1v90.7l67.8,14.1c5.2,19.2,12.8,37.5,22.5,54.4l-38,57.9l64.1,64.1l57.9-38
     c16.9,9.7,35.1,17.3,54.4,22.5l14.1,67.8h90.7l14.1-67.8c19.2-5.2,37.5-12.8,54.4-22.5l57.9,38l64.1-64.1l-38-57.9
     c9.7-16.9,17.3-35.1,22.5-54.4L842.8,1236.5z M554.6,1349.4c-87.4,0-158.3-70.9-158.3-158.3s70.9-158.3,158.3-158.3
-    s158.3,70.9,158.3,158.3S642,1349.4,554.6,1349.4z" />
-                                  <path fill="#33B2F2" d="M554.6,1064.4c-70,0-126.7,56.7-126.7,126.7c0,70,56.7,126.7,126.7,126.7
-c70,0,126.7-56.7,126.7-126.7C681.3,1121.1,624.6,1064.4,554.6,1064.4z M554.6,1287.4c-53.2,0-96.3-43.1-96.3-96.3
-s43.1-96.3,96.3-96.3c53.2,0,96.3,43.1,96.3,96.3S607.7,1287.4,554.6,1287.4z" />
-                                  <path fill="#424242" d="M1215.3,1805.1H710.6c-43.1,0-78.1-35-78.1-78.1V747.6c0-43.1,35-78.1,78.1-78.1h504.7
-c43.1,0,78.1,35,78.1,78.1V1727C1293.4,1770.2,1258.5,1805.1,1215.3,1805.1z" />
-                                  <rect width="588.9" height="907.3" x="668.5" y="741.6"
-                                    fill="#E1F5FE" />
-                                  <path fill="#FFF" d="M1033.6,1743.6H892.4c-17.4,0-31.5-14.1-31.5-31.5v0c0-17.4,14.1-31.5,31.5-31.5h141.2
-c17.4,0,31.5,14.1,31.5,31.5v0C1065.1,1729.4,1051,1743.6,1033.6,1743.6z" />
-                                  <ellipse cx="1329.5" cy="482.5" fill="#33B2F2" rx="29"
-                                    ry="17.4" />
-                                  <path fill="#33B2F2" d="M982.5,893.4c-77.1,0-139.7,62.5-139.7,139.7c0,77.1,62.5,139.7,139.7,139.7
-s139.7-62.5,139.7-139.7C1122.1,955.9,1059.6,893.4,982.5,893.4z M982.5,1132.2c-54.8,0-99.2-44.4-99.2-99.2
-c0-54.8,44.4-99.2,99.2-99.2c54.8,0,99.2,44.4,99.2,99.2C1081.7,1087.8,1037.3,1132.2,982.5,1132.2z" />
-                                  <path fill="#B8F1F4" d="M1012.5,1133.8c-9.5,2.8-19.6,4.4-30,4.4c-58,0-105.2-47.2-105.2-105.2
-s47.2-105.2,105.2-105.2c58,0,105.2,47.2,105.2,105.2c0,27.5-10.7,52.5-28,71.2l14,26.3c26.1-24.4,42.4-59.1,42.4-97.5
-c0-73.7-60-133.7-133.6-133.7s-133.7,60-133.7,133.7s60,133.7,133.7,133.7c15.3,0,29.9-2.6,43.6-7.3L1012.5,1133.8z" />
+    s158.3,70.9,158.3,158.3S642,1349.4,554.6,1349.4z"
+                                  />
                                   <path
-                                    d="M965.4 1015.5c0 2-.5 3.7-1.5 5.3-1 1.5-2.3 2.7-4.1 3.7 2 1 3.5 2.3 4.7 3.9 1.2 1.7 1.7 3.6 1.7 5.9 0 3.6-1.2 6.5-3.7 8.6s-5.8 3.1-10 3.1c-4.2 0-7.6-1.1-10.1-3.2-2.5-2.1-3.7-5-3.7-8.6 0-2.3.6-4.2 1.7-5.9 1.2-1.7 2.7-3 4.7-3.9-1.7-.9-3.1-2.1-4.1-3.7-1-1.5-1.5-3.3-1.5-5.3 0-3.5 1.2-6.2 3.5-8.3s5.5-3.1 9.4-3.1c4 0 7.1 1 9.4 3.1C964.2 1009.3 965.4 1012 965.4 1015.5zM958.1 1033.7c0-1.8-.5-3.2-1.5-4.3-1-1.1-2.4-1.6-4.1-1.6-1.7 0-3.1.5-4.1 1.6-1 1.1-1.5 2.5-1.5 4.3 0 1.7.5 3.1 1.5 4.2 1 1.1 2.4 1.6 4.2 1.6 1.8 0 3.1-.5 4.1-1.5C957.6 1036.9 958.1 1035.5 958.1 1033.7zM957.3 1015.9c0-1.6-.4-2.9-1.3-3.8-.8-1-2-1.4-3.6-1.4-1.5 0-2.7.5-3.5 1.4-.8.9-1.3 2.2-1.3 3.9 0 1.6.4 2.9 1.3 3.9.8 1 2 1.5 3.6 1.5 1.5 0 2.7-.5 3.5-1.5C956.9 1018.9 957.3 1017.5 957.3 1015.9zM999.1 1028.6c0 5.6-1.2 9.9-3.5 12.9-2.3 3-5.7 4.5-10.2 4.5-4.4 0-7.8-1.5-10.2-4.4-2.3-2.9-3.6-7.1-3.6-12.6v-7.5c0-5.7 1.2-10 3.5-12.9 2.4-2.9 5.8-4.4 10.2-4.4s7.8 1.5 10.2 4.4c2.3 2.9 3.6 7.1 3.6 12.6V1028.6zM991 1020.4c0-3.4-.5-5.8-1.4-7.4-.9-1.5-2.4-2.3-4.3-2.3-1.9 0-3.3.7-4.2 2.2-.9 1.5-1.4 3.8-1.4 6.9v9.9c0 3.3.5 5.8 1.4 7.4.9 1.6 2.4 2.4 4.3 2.4 2 0 3.4-.8 4.3-2.3.9-1.5 1.3-3.9 1.4-7.1V1020.4zM1004.4 1012.5c0-2.5.8-4.5 2.4-6.1 1.6-1.6 3.7-2.3 6.4-2.3 2.7 0 4.8.8 6.4 2.3 1.6 1.5 2.4 3.6 2.4 6.2v2c0 2.5-.8 4.5-2.4 6.1-1.6 1.5-3.7 2.3-6.4 2.3-2.6 0-4.8-.8-6.4-2.3-1.6-1.5-2.4-3.6-2.4-6.2V1012.5zM1009.8 1014.7c0 1.1.3 2 1 2.7.6.7 1.5 1 2.5 1s1.9-.3 2.5-1c.6-.7.9-1.6.9-2.8v-2.1c0-1.1-.3-2-.9-2.7-.6-.7-1.5-1-2.5-1-1 0-1.9.3-2.5 1-.6.7-1 1.6-1 2.8V1014.7zM1014.9 1042.4l-3.9-2.1 19.9-31.8 3.9 2.1L1014.9 1042.4zM1023.9 1035.4c0-2.5.8-4.5 2.5-6.1 1.6-1.5 3.8-2.3 6.4-2.3 2.6 0 4.8.8 6.4 2.3 1.6 1.5 2.4 3.6 2.4 6.3v2c0 2.5-.8 4.5-2.4 6.1-1.6 1.5-3.7 2.3-6.4 2.3-2.7 0-4.8-.8-6.5-2.3-1.6-1.5-2.4-3.6-2.4-6.2V1035.4zM1029.3 1037.6c0 1 .3 1.9 1 2.6.7.7 1.5 1.1 2.5 1.1 2.3 0 3.4-1.3 3.4-3.8v-2.1c0-1.1-.3-2-1-2.7-.6-.7-1.5-1-2.5-1-1 0-1.9.3-2.5 1-.6.7-1 1.6-1 2.8V1037.6z" />
-                                  <path fill="#FBC02D" d="M1180.3,1262.4c0,6.9-2.8,13.2-7.3,17.7c-4.6,4.5-10.8,7.3-17.7,7.3H800.7
+                                    fill="#33B2F2"
+                                    d="M554.6,1064.4c-70,0-126.7,56.7-126.7,126.7c0,70,56.7,126.7,126.7,126.7
+c70,0,126.7-56.7,126.7-126.7C681.3,1121.1,624.6,1064.4,554.6,1064.4z M554.6,1287.4c-53.2,0-96.3-43.1-96.3-96.3
+s43.1-96.3,96.3-96.3c53.2,0,96.3,43.1,96.3,96.3S607.7,1287.4,554.6,1287.4z"
+                                  />
+                                  <path
+                                    fill="#424242"
+                                    d="M1215.3,1805.1H710.6c-43.1,0-78.1-35-78.1-78.1V747.6c0-43.1,35-78.1,78.1-78.1h504.7
+c43.1,0,78.1,35,78.1,78.1V1727C1293.4,1770.2,1258.5,1805.1,1215.3,1805.1z"
+                                  />
+                                  <rect
+                                    width="588.9"
+                                    height="907.3"
+                                    x="668.5"
+                                    y="741.6"
+                                    fill="#E1F5FE"
+                                  />
+                                  <path
+                                    fill="#FFF"
+                                    d="M1033.6,1743.6H892.4c-17.4,0-31.5-14.1-31.5-31.5v0c0-17.4,14.1-31.5,31.5-31.5h141.2
+c17.4,0,31.5,14.1,31.5,31.5v0C1065.1,1729.4,1051,1743.6,1033.6,1743.6z"
+                                  />
+                                  <ellipse
+                                    cx="1329.5"
+                                    cy="482.5"
+                                    fill="#33B2F2"
+                                    rx="29"
+                                    ry="17.4"
+                                  />
+                                  <path
+                                    fill="#33B2F2"
+                                    d="M982.5,893.4c-77.1,0-139.7,62.5-139.7,139.7c0,77.1,62.5,139.7,139.7,139.7
+s139.7-62.5,139.7-139.7C1122.1,955.9,1059.6,893.4,982.5,893.4z M982.5,1132.2c-54.8,0-99.2-44.4-99.2-99.2
+c0-54.8,44.4-99.2,99.2-99.2c54.8,0,99.2,44.4,99.2,99.2C1081.7,1087.8,1037.3,1132.2,982.5,1132.2z"
+                                  />
+                                  <path
+                                    fill="#B8F1F4"
+                                    d="M1012.5,1133.8c-9.5,2.8-19.6,4.4-30,4.4c-58,0-105.2-47.2-105.2-105.2
+s47.2-105.2,105.2-105.2c58,0,105.2,47.2,105.2,105.2c0,27.5-10.7,52.5-28,71.2l14,26.3c26.1-24.4,42.4-59.1,42.4-97.5
+c0-73.7-60-133.7-133.6-133.7s-133.7,60-133.7,133.7s60,133.7,133.7,133.7c15.3,0,29.9-2.6,43.6-7.3L1012.5,1133.8z"
+                                  />
+                                  <path d="M965.4 1015.5c0 2-.5 3.7-1.5 5.3-1 1.5-2.3 2.7-4.1 3.7 2 1 3.5 2.3 4.7 3.9 1.2 1.7 1.7 3.6 1.7 5.9 0 3.6-1.2 6.5-3.7 8.6s-5.8 3.1-10 3.1c-4.2 0-7.6-1.1-10.1-3.2-2.5-2.1-3.7-5-3.7-8.6 0-2.3.6-4.2 1.7-5.9 1.2-1.7 2.7-3 4.7-3.9-1.7-.9-3.1-2.1-4.1-3.7-1-1.5-1.5-3.3-1.5-5.3 0-3.5 1.2-6.2 3.5-8.3s5.5-3.1 9.4-3.1c4 0 7.1 1 9.4 3.1C964.2 1009.3 965.4 1012 965.4 1015.5zM958.1 1033.7c0-1.8-.5-3.2-1.5-4.3-1-1.1-2.4-1.6-4.1-1.6-1.7 0-3.1.5-4.1 1.6-1 1.1-1.5 2.5-1.5 4.3 0 1.7.5 3.1 1.5 4.2 1 1.1 2.4 1.6 4.2 1.6 1.8 0 3.1-.5 4.1-1.5C957.6 1036.9 958.1 1035.5 958.1 1033.7zM957.3 1015.9c0-1.6-.4-2.9-1.3-3.8-.8-1-2-1.4-3.6-1.4-1.5 0-2.7.5-3.5 1.4-.8.9-1.3 2.2-1.3 3.9 0 1.6.4 2.9 1.3 3.9.8 1 2 1.5 3.6 1.5 1.5 0 2.7-.5 3.5-1.5C956.9 1018.9 957.3 1017.5 957.3 1015.9zM999.1 1028.6c0 5.6-1.2 9.9-3.5 12.9-2.3 3-5.7 4.5-10.2 4.5-4.4 0-7.8-1.5-10.2-4.4-2.3-2.9-3.6-7.1-3.6-12.6v-7.5c0-5.7 1.2-10 3.5-12.9 2.4-2.9 5.8-4.4 10.2-4.4s7.8 1.5 10.2 4.4c2.3 2.9 3.6 7.1 3.6 12.6V1028.6zM991 1020.4c0-3.4-.5-5.8-1.4-7.4-.9-1.5-2.4-2.3-4.3-2.3-1.9 0-3.3.7-4.2 2.2-.9 1.5-1.4 3.8-1.4 6.9v9.9c0 3.3.5 5.8 1.4 7.4.9 1.6 2.4 2.4 4.3 2.4 2 0 3.4-.8 4.3-2.3.9-1.5 1.3-3.9 1.4-7.1V1020.4zM1004.4 1012.5c0-2.5.8-4.5 2.4-6.1 1.6-1.6 3.7-2.3 6.4-2.3 2.7 0 4.8.8 6.4 2.3 1.6 1.5 2.4 3.6 2.4 6.2v2c0 2.5-.8 4.5-2.4 6.1-1.6 1.5-3.7 2.3-6.4 2.3-2.6 0-4.8-.8-6.4-2.3-1.6-1.5-2.4-3.6-2.4-6.2V1012.5zM1009.8 1014.7c0 1.1.3 2 1 2.7.6.7 1.5 1 2.5 1s1.9-.3 2.5-1c.6-.7.9-1.6.9-2.8v-2.1c0-1.1-.3-2-.9-2.7-.6-.7-1.5-1-2.5-1-1 0-1.9.3-2.5 1-.6.7-1 1.6-1 2.8V1014.7zM1014.9 1042.4l-3.9-2.1 19.9-31.8 3.9 2.1L1014.9 1042.4zM1023.9 1035.4c0-2.5.8-4.5 2.5-6.1 1.6-1.5 3.8-2.3 6.4-2.3 2.6 0 4.8.8 6.4 2.3 1.6 1.5 2.4 3.6 2.4 6.3v2c0 2.5-.8 4.5-2.4 6.1-1.6 1.5-3.7 2.3-6.4 2.3-2.7 0-4.8-.8-6.5-2.3-1.6-1.5-2.4-3.6-2.4-6.2V1035.4zM1029.3 1037.6c0 1 .3 1.9 1 2.6.7.7 1.5 1.1 2.5 1.1 2.3 0 3.4-1.3 3.4-3.8v-2.1c0-1.1-.3-2-1-2.7-.6-.7-1.5-1-2.5-1-1 0-1.9.3-2.5 1-.6.7-1 1.6-1 2.8V1037.6z" />
+                                  <path
+                                    fill="#FBC02D"
+                                    d="M1180.3,1262.4c0,6.9-2.8,13.2-7.3,17.7c-4.6,4.5-10.8,7.3-17.7,7.3H800.7
 c-13.8,0-25.1-11.2-25.1-25c0-6.9,2.8-13.2,7.3-17.7c4.6-4.5,10.8-7.3,17.7-7.3h354.5C1169.1,1237.3,1180.3,1248.6,1180.3,1262.4
-z" />
-                                  <path fill="#33B2F2" d="M1092.6,1243.3H800.7c-5.1,0-9.8,2-13.4,5.5c-3.6,3.7-5.6,8.5-5.6,13.5
-c0,10.5,8.5,19,19,19h291.9V1243.3z" />
+z"
+                                  />
+                                  <path
+                                    fill="#33B2F2"
+                                    d="M1092.6,1243.3H800.7c-5.1,0-9.8,2-13.4,5.5c-3.6,3.7-5.6,8.5-5.6,13.5
+c0,10.5,8.5,19,19,19h291.9V1243.3z"
+                                  />
+                                  <g>
+                                    <path d="M916.4 1313.1v22c0 3-1 5.5-2.9 7.5-1.9 1.9-4.5 3-7.7 3.3l-1.1 0c-3.5 0-6.4-1-8.5-2.9-2.1-1.9-3.2-4.5-3.2-7.9v-22h4.2v21.9c0 2.3.6 4.2 1.9 5.4 1.3 1.3 3.1 1.9 5.5 1.9 2.4 0 4.3-.6 5.5-1.9 1.3-1.3 1.9-3.1 1.9-5.4v-21.9H916.4zM927.4 1332.8v12.6h-4.3v-32.3h11.9c3.5 0 6.3.9 8.3 2.7 2 1.8 3 4.2 3 7.2 0 3.1-1 5.6-2.9 7.2-2 1.7-4.8 2.5-8.4 2.5H927.4zM927.4 1329.3h7.7c2.3 0 4-.5 5.2-1.6 1.2-1.1 1.8-2.6 1.8-4.7 0-1.9-.6-3.5-1.8-4.6-1.2-1.2-2.9-1.8-5-1.8h-7.9V1329.3zM951.8 1345.4v-32.3h9.1c2.8 0 5.3.6 7.5 1.9 2.2 1.2 3.8 3 5 5.3 1.2 2.3 1.8 4.9 1.8 7.9v2.1c0 3-.6 5.7-1.8 8-1.2 2.3-2.9 4-5 5.3-2.2 1.2-4.7 1.9-7.6 1.9H951.8zM956.1 1316.6v25.3h4.5c3.3 0 5.8-1 7.7-3.1 1.8-2 2.7-5 2.7-8.7v-1.9c0-3.7-.9-6.5-2.6-8.6-1.7-2-4.2-3.1-7.3-3.1H956.1zM999 1337h-13.5l-3 8.4H978l12.3-32.3h3.7l12.4 32.3h-4.4L999 1337zM986.7 1333.5h11l-5.5-15.1L986.7 1333.5zM1030.3 1316.6h-10.4v28.8h-4.2v-28.8h-10.4v-3.5h25V1316.6zM1053.3 1330.5h-14v11.4h16.3v3.5H1035v-32.3h20.3v3.5h-16v10.4h14V1330.5zM1060.3 1343.3c0-.7.2-1.3.6-1.8.4-.5 1.1-.7 1.9-.7.8 0 1.5.2 1.9.7.4.5.7 1.1.7 1.8 0 .7-.2 1.2-.7 1.7-.4.5-1.1.7-1.9.7-.8 0-1.5-.2-1.9-.7C1060.5 1344.5 1060.3 1344 1060.3 1343.3zM1072.3 1343.3c0-.7.2-1.3.6-1.8.4-.5 1.1-.7 1.9-.7.8 0 1.5.2 1.9.7.4.5.7 1.1.7 1.8 0 .7-.2 1.2-.7 1.7-.4.5-1.1.7-1.9.7-.8 0-1.5-.2-1.9-.7C1072.5 1344.5 1072.3 1344 1072.3 1343.3z" />
+                                  </g>
                                   <g>
                                     <path
-                                      d="M916.4 1313.1v22c0 3-1 5.5-2.9 7.5-1.9 1.9-4.5 3-7.7 3.3l-1.1 0c-3.5 0-6.4-1-8.5-2.9-2.1-1.9-3.2-4.5-3.2-7.9v-22h4.2v21.9c0 2.3.6 4.2 1.9 5.4 1.3 1.3 3.1 1.9 5.5 1.9 2.4 0 4.3-.6 5.5-1.9 1.3-1.3 1.9-3.1 1.9-5.4v-21.9H916.4zM927.4 1332.8v12.6h-4.3v-32.3h11.9c3.5 0 6.3.9 8.3 2.7 2 1.8 3 4.2 3 7.2 0 3.1-1 5.6-2.9 7.2-2 1.7-4.8 2.5-8.4 2.5H927.4zM927.4 1329.3h7.7c2.3 0 4-.5 5.2-1.6 1.2-1.1 1.8-2.6 1.8-4.7 0-1.9-.6-3.5-1.8-4.6-1.2-1.2-2.9-1.8-5-1.8h-7.9V1329.3zM951.8 1345.4v-32.3h9.1c2.8 0 5.3.6 7.5 1.9 2.2 1.2 3.8 3 5 5.3 1.2 2.3 1.8 4.9 1.8 7.9v2.1c0 3-.6 5.7-1.8 8-1.2 2.3-2.9 4-5 5.3-2.2 1.2-4.7 1.9-7.6 1.9H951.8zM956.1 1316.6v25.3h4.5c3.3 0 5.8-1 7.7-3.1 1.8-2 2.7-5 2.7-8.7v-1.9c0-3.7-.9-6.5-2.6-8.6-1.7-2-4.2-3.1-7.3-3.1H956.1zM999 1337h-13.5l-3 8.4H978l12.3-32.3h3.7l12.4 32.3h-4.4L999 1337zM986.7 1333.5h11l-5.5-15.1L986.7 1333.5zM1030.3 1316.6h-10.4v28.8h-4.2v-28.8h-10.4v-3.5h25V1316.6zM1053.3 1330.5h-14v11.4h16.3v3.5H1035v-32.3h20.3v3.5h-16v10.4h14V1330.5zM1060.3 1343.3c0-.7.2-1.3.6-1.8.4-.5 1.1-.7 1.9-.7.8 0 1.5.2 1.9.7.4.5.7 1.1.7 1.8 0 .7-.2 1.2-.7 1.7-.4.5-1.1.7-1.9.7-.8 0-1.5-.2-1.9-.7C1060.5 1344.5 1060.3 1344 1060.3 1343.3zM1072.3 1343.3c0-.7.2-1.3.6-1.8.4-.5 1.1-.7 1.9-.7.8 0 1.5.2 1.9.7.4.5.7 1.1.7 1.8 0 .7-.2 1.2-.7 1.7-.4.5-1.1.7-1.9.7-.8 0-1.5-.2-1.9-.7C1072.5 1344.5 1072.3 1344 1072.3 1343.3z" />
-                                  </g>
-                                  <g>
-                                    <path fill="#BDBDBD" d="M1344.5,425.6L1344.5,425.6c-13.6,22-42.5,28.8-64.5,15.2l-111.2-68.9
-    c-22-13.6-28.8-42.5-15.2-64.5h0c13.6-22,42.5-28.8,64.5-15.2l111.2,68.9C1351.4,374.7,1358.2,403.6,1344.5,425.6z" />
-                                    <path fill="#B2AFAF" d="M1284.8,430.8l-111.2-68.9c-19-11.7-26.6-34.8-19.7-55c-0.1,0.2-0.2,0.3-0.3,0.5h0
+                                      fill="#BDBDBD"
+                                      d="M1344.5,425.6L1344.5,425.6c-13.6,22-42.5,28.8-64.5,15.2l-111.2-68.9
+    c-22-13.6-28.8-42.5-15.2-64.5h0c13.6-22,42.5-28.8,64.5-15.2l111.2,68.9C1351.4,374.7,1358.2,403.6,1344.5,425.6z"
+                                    />
+                                    <path
+                                      fill="#B2AFAF"
+                                      d="M1284.8,430.8l-111.2-68.9c-19-11.7-26.6-34.8-19.7-55c-0.1,0.2-0.2,0.3-0.3,0.5h0
     c-13.6,22-6.8,50.9,15.2,64.5l111.2,68.9c22,13.6,50.9,6.8,64.5-15.2v0c1.9-3.1,3.4-6.2,4.5-9.5
-    C1335.3,437.7,1306.7,444.3,1284.8,430.8z" />
-                                    <path fill="#CECECE"
-                                      d="M1247.6 324l-36.3-21.6c-1.7-1-2.3-3.2-1.3-4.9l0 0c1-1.7 3.2-2.3 4.9-1.3l36.3 21.6c1.7 1 2.3 3.2 1.3 4.9l0 0C1251.5 324.5 1249.3 325.1 1247.6 324zM1259.4 330.9l-1.8-1.1c-1.7-1-2.3-3.2-1.3-4.9l0 0c1-1.7 3.2-2.3 4.9-1.3l1.8 1.1c1.7 1 2.3 3.2 1.3 4.9v0C1263.3 331.4 1261.1 331.9 1259.4 330.9z" />
-                                    <circle cx="1306.8" cy="403.1" r="51.8" fill="#9D9EA3" />
-                                    <path fill="#FFAB91" d="M1314.9,573.2l-41.6-157.5c-6-22.7,7.5-45.9,30.2-51.9v0c22.7-6,45.9,7.5,51.9,30.2
-l41.6,157.5c6,22.7-7.5,45.9-30.2,51.9h0C1344.1,609.4,1320.9,595.9,1314.9,573.2z" />
-                                    <rect width="88.1" height="51.3" x="1338.7" y="951.1"
-                                      fill="#FFAB91" />
-                                    <path fill="#4F4F4F"
-                                      d="M1448.9,1013.6h-119.3v-19.2c0-6.2,5-11.2,11.2-11.2h108V1013.6z" />
-                                    <path fill="#424242" d="M1466.9,1005.9c0-0.1,0-0.2-0.1-0.2c-4.5-17.9-20.7-31.2-40-31.2
+    C1335.3,437.7,1306.7,444.3,1284.8,430.8z"
+                                    />
+                                    <path
+                                      fill="#CECECE"
+                                      d="M1247.6 324l-36.3-21.6c-1.7-1-2.3-3.2-1.3-4.9l0 0c1-1.7 3.2-2.3 4.9-1.3l36.3 21.6c1.7 1 2.3 3.2 1.3 4.9l0 0C1251.5 324.5 1249.3 325.1 1247.6 324zM1259.4 330.9l-1.8-1.1c-1.7-1-2.3-3.2-1.3-4.9l0 0c1-1.7 3.2-2.3 4.9-1.3l1.8 1.1c1.7 1 2.3 3.2 1.3 4.9v0C1263.3 331.4 1261.1 331.9 1259.4 330.9z"
+                                    />
+                                    <circle
+                                      cx="1306.8"
+                                      cy="403.1"
+                                      r="51.8"
+                                      fill="#9D9EA3"
+                                    />
+                                    <path
+                                      fill="#FFAB91"
+                                      d="M1314.9,573.2l-41.6-157.5c-6-22.7,7.5-45.9,30.2-51.9v0c22.7-6,45.9,7.5,51.9,30.2
+l41.6,157.5c6,22.7-7.5,45.9-30.2,51.9h0C1344.1,609.4,1320.9,595.9,1314.9,573.2z"
+                                    />
+                                    <rect
+                                      width="88.1"
+                                      height="51.3"
+                                      x="1338.7"
+                                      y="951.1"
+                                      fill="#FFAB91"
+                                    />
+                                    <path
+                                      fill="#4F4F4F"
+                                      d="M1448.9,1013.6h-119.3v-19.2c0-6.2,5-11.2,11.2-11.2h108V1013.6z"
+                                    />
+                                    <path
+                                      fill="#424242"
+                                      d="M1466.9,1005.9c0-0.1,0-0.2-0.1-0.2c-4.5-17.9-20.7-31.2-40-31.2
         c-19.2,0-35.3,13.1-39.9,30.8c0,0.1,0,0.2-0.1,0.2h-50c-7.6,0-13.8,6.2-13.8,13.8v0c0,7.6,6.2,13.8,13.8,13.8h126.6
-        c0.3,0,0.6,0,0.9,0c7.2-0.4,12.9-6.4,12.9-13.8v0C1477.3,1012.8,1472.9,1007.4,1466.9,1005.9z" />
-                                    <path fill="#4F4F4F" d="M1466.9,1005.9c0-0.1,0-0.2-0.1-0.2c-4.5-17.9-20.7-31.2-40-31.2
+        c0.3,0,0.6,0,0.9,0c7.2-0.4,12.9-6.4,12.9-13.8v0C1477.3,1012.8,1472.9,1007.4,1466.9,1005.9z"
+                                    />
+                                    <path
+                                      fill="#4F4F4F"
+                                      d="M1466.9,1005.9c0-0.1,0-0.2-0.1-0.2c-4.5-17.9-20.7-31.2-40-31.2
 c-3.6,0-7.1,0.5-10.5,1.3c14.5,3.8,25.9,15.3,29.5,29.8c0,0.1,0,0.2,0.1,0.2c6,1.5,10.4,6.9,10.4,13.4v0
 c0,7.3-5.7,13.3-12.9,13.8c-0.3,0-0.6,0-0.9,0h21c0.3,0,0.6,0,0.9,0c7.2-0.4,12.9-6.4,12.9-13.8v0
-C1477.3,1012.8,1472.9,1007.4,1466.9,1005.9z" />
-                                    <path fill="#3F2724" d="M1385.5,684.1h-199.7c-57.6,0-104.4-46.7-104.4-104.4v0h304.1
-c28.8,0,52.2,23.4,52.2,52.2v0C1437.7,660.7,1414.3,684.1,1385.5,684.1z" />
-                                    <path fill="#422A26" d="M1335.2,963.4V631.9c0-28.8,23.4-52.2,52.2-52.2h0c28.8,0,52.2,23.4,52.2,52.2v331.5
-H1335.2z" />
-                                    <path fill="#333"
-                                      d="M1140.7,185.5L1140.7,185.5c20.4,0,36.9-16.5,36.9-36.9V97.9h-36.9V185.5z" />
-                                    <path fill="#BDBDBD" d="M886.7,470.2L886.7,470.2c-20.7-15.6-24.8-45-9.2-65.6l78.8-104.4
-c15.6-20.7,45-24.8,65.6-9.2l0,0c20.7,15.6,24.8,45,9.2,65.6L952.3,461C936.7,481.6,907.3,485.8,886.7,470.2z" />
-                                    <path fill="#B2AEAD" d="M1035.9,308c1.7,11.9-1.2,24.5-9,34.9l-78.8,104.4c-15.6,20.7-45,24.8-65.6,9.2l0,0
+C1477.3,1012.8,1472.9,1007.4,1466.9,1005.9z"
+                                    />
+                                    <path
+                                      fill="#3F2724"
+                                      d="M1385.5,684.1h-199.7c-57.6,0-104.4-46.7-104.4-104.4v0h304.1
+c28.8,0,52.2,23.4,52.2,52.2v0C1437.7,660.7,1414.3,684.1,1385.5,684.1z"
+                                    />
+                                    <path
+                                      fill="#422A26"
+                                      d="M1335.2,963.4V631.9c0-28.8,23.4-52.2,52.2-52.2h0c28.8,0,52.2,23.4,52.2,52.2v331.5
+H1335.2z"
+                                    />
+                                    <path
+                                      fill="#333"
+                                      d="M1140.7,185.5L1140.7,185.5c20.4,0,36.9-16.5,36.9-36.9V97.9h-36.9V185.5z"
+                                    />
+                                    <path
+                                      fill="#BDBDBD"
+                                      d="M886.7,470.2L886.7,470.2c-20.7-15.6-24.8-45-9.2-65.6l78.8-104.4
+c15.6-20.7,45-24.8,65.6-9.2l0,0c20.7,15.6,24.8,45,9.2,65.6L952.3,461C936.7,481.6,907.3,485.8,886.7,470.2z"
+                                    />
+                                    <path
+                                      fill="#B2AEAD"
+                                      d="M1035.9,308c1.7,11.9-1.2,24.5-9,34.9l-78.8,104.4c-15.6,20.7-45,24.8-65.6,9.2l0,0
 c-6.2-4.6-10.8-10.5-14-17c1.7,11.8,7.9,23,18.2,30.8h0c20.7,15.6,50,11.5,65.6-9.2l78.8-104.4
-C1042.1,342.1,1043.3,323.3,1035.9,308z" />
-                                    <path fill="#BDBDBD" d="M1182.2,355.8h-187c-20.5,0-37.2-16.6-37.2-37.2v0c0-20.5,16.6-37.2,37.2-37.2h187
-c20.5,0,37.2,16.6,37.2,37.2v0C1219.4,339.2,1202.8,355.8,1182.2,355.8z" />
-                                    <path fill="#CECECE" d="M1219.4,546.1H997.3V355.8c0-48.6,39.4-88.1,88.1-88.1h45.9c48.6,0,88.1,39.4,88.1,88.1
-V546.1z" />
-                                    <rect width="64.7" height="70.4" x="1076" y="211.1"
-                                      fill="#FFAB91" />
-                                    <path fill="#F4A28C" d="M1140.7,211.1v40.5c-2.9,0.6-6,0.9-9.1,0.9h-17.9c-14,0-27-4.4-37.7-11.9v-29.4H1140.7z
-" />
-                                    <path fill="#FFAB91" d="M1119.6,243.3h-18c-36.1,0-65.3-29.2-65.3-65.3V87.5H1166v109.3
-C1166,222.5,1145.2,243.3,1119.6,243.3z" />
-                                    <path fill="#BDBDBD" d="M1148.3,299.9h-83.5c-13.4,0-24.2-10.9-24.2-24.2v0c0-13.4,10.9-24.2,24.2-24.2h83.5
-c13.4,0,24.2,10.9,24.2,24.2v0C1172.5,289.1,1161.7,299.9,1148.3,299.9z" />
-                                    <circle cx="1166" cy="363.1" r="23.8" fill="#BDBDBD" />
-                                    <path fill="#4E342E" d="M1108.4,663.4L1108.4,663.4c-61.3,0-111-49.7-111-111v-6.2h222.1v6.2
-C1219.4,613.7,1169.7,663.4,1108.4,663.4z" />
-                                    <rect width="88.1" height="51.3" x="1229.6" y="951.1"
-                                      fill="#FFAB91" />
-                                    <path fill="#4F4F4F"
-                                      d="M1339.8,1013.6h-119.3v-19.2c0-6.2,5-11.2,11.2-11.2h108V1013.6z" />
-                                    <path fill="#424242" d="M1357.8,1005.9c0-0.1,0-0.2-0.1-0.2c-4.5-17.9-20.7-31.2-40-31.2
+C1042.1,342.1,1043.3,323.3,1035.9,308z"
+                                    />
+                                    <path
+                                      fill="#BDBDBD"
+                                      d="M1182.2,355.8h-187c-20.5,0-37.2-16.6-37.2-37.2v0c0-20.5,16.6-37.2,37.2-37.2h187
+c20.5,0,37.2,16.6,37.2,37.2v0C1219.4,339.2,1202.8,355.8,1182.2,355.8z"
+                                    />
+                                    <path
+                                      fill="#CECECE"
+                                      d="M1219.4,546.1H997.3V355.8c0-48.6,39.4-88.1,88.1-88.1h45.9c48.6,0,88.1,39.4,88.1,88.1
+V546.1z"
+                                    />
+                                    <rect
+                                      width="64.7"
+                                      height="70.4"
+                                      x="1076"
+                                      y="211.1"
+                                      fill="#FFAB91"
+                                    />
+                                    <path
+                                      fill="#F4A28C"
+                                      d="M1140.7,211.1v40.5c-2.9,0.6-6,0.9-9.1,0.9h-17.9c-14,0-27-4.4-37.7-11.9v-29.4H1140.7z
+"
+                                    />
+                                    <path
+                                      fill="#FFAB91"
+                                      d="M1119.6,243.3h-18c-36.1,0-65.3-29.2-65.3-65.3V87.5H1166v109.3
+C1166,222.5,1145.2,243.3,1119.6,243.3z"
+                                    />
+                                    <path
+                                      fill="#BDBDBD"
+                                      d="M1148.3,299.9h-83.5c-13.4,0-24.2-10.9-24.2-24.2v0c0-13.4,10.9-24.2,24.2-24.2h83.5
+c13.4,0,24.2,10.9,24.2,24.2v0C1172.5,289.1,1161.7,299.9,1148.3,299.9z"
+                                    />
+                                    <circle
+                                      cx="1166"
+                                      cy="363.1"
+                                      r="23.8"
+                                      fill="#BDBDBD"
+                                    />
+                                    <path
+                                      fill="#4E342E"
+                                      d="M1108.4,663.4L1108.4,663.4c-61.3,0-111-49.7-111-111v-6.2h222.1v6.2
+C1219.4,613.7,1169.7,663.4,1108.4,663.4z"
+                                    />
+                                    <rect
+                                      width="88.1"
+                                      height="51.3"
+                                      x="1229.6"
+                                      y="951.1"
+                                      fill="#FFAB91"
+                                    />
+                                    <path
+                                      fill="#4F4F4F"
+                                      d="M1339.8,1013.6h-119.3v-19.2c0-6.2,5-11.2,11.2-11.2h108V1013.6z"
+                                    />
+                                    <path
+                                      fill="#424242"
+                                      d="M1357.8,1005.9c0-0.1,0-0.2-0.1-0.2c-4.5-17.9-20.7-31.2-40-31.2
         c-19.2,0-35.3,13.1-39.9,30.8c0,0.1,0,0.2-0.1,0.2h-50c-7.6,0-13.8,6.2-13.8,13.8v0c0,7.6,6.2,13.8,13.8,13.8h126.6
-        c0.3,0,0.6,0,0.9,0c7.2-0.4,12.9-6.4,12.9-13.8v0C1368.2,1012.8,1363.8,1007.4,1357.8,1005.9z" />
-                                    <path fill="#4F4F4F" d="M1357.8,1005.9c0-0.1,0-0.2-0.1-0.2c-4.5-17.9-20.7-31.2-40-31.2
+        c0.3,0,0.6,0,0.9,0c7.2-0.4,12.9-6.4,12.9-13.8v0C1368.2,1012.8,1363.8,1007.4,1357.8,1005.9z"
+                                    />
+                                    <path
+                                      fill="#4F4F4F"
+                                      d="M1357.8,1005.9c0-0.1,0-0.2-0.1-0.2c-4.5-17.9-20.7-31.2-40-31.2
 c-3.6,0-7.1,0.5-10.5,1.3c14.5,3.8,25.9,15.3,29.5,29.8c0,0.1,0,0.2,0.1,0.2c6,1.5,10.4,6.9,10.4,13.4v0
 c0,7.3-5.7,13.3-12.9,13.8c-0.3,0-0.6,0-0.9,0h21c0.3,0,0.6,0,0.9,0c7.2-0.4,12.9-6.4,12.9-13.8v0
-C1368.2,1012.8,1363.8,1007.4,1357.8,1005.9z" />
-                                    <circle cx="912.6" cy="434.6" r="51.8" fill="#9D9EA3" />
-                                    <circle cx="1060.2" cy="273.1" r="13.1" fill="#CECECE" />
-                                    <path fill="#333" d="M1022.4,177.7h9.1c20.6,0,37.3-16.7,37.3-37.3V93.3H1045c-12.5,0-22.6,10.1-22.6,22.6
-V177.7z" />
-                                    <circle cx="1038.8" cy="173.7" r="23.4" fill="#FFAB91" />
-                                    <path fill="#ED947C" d="M1043.3,160.7c-9.5,0-17.2,7.7-17.2,17.2c0,1.4,0.2,2.8,0.5,4.1
-c-1.6-2.4-2.6-5.2-2.6-8.3c0-8.2,6.6-14.8,14.8-14.8c2.8,0,5.4,0.8,7.6,2.1C1045.4,160.8,1044.4,160.7,1043.3,160.7z" />
-                                    <path fill="#333" d="M1053.2,131.5h108.4c16.9,0,30.6-13.7,30.6-30.6l0,0c0-16.9-13.7-30.6-30.6-30.6h-108.4
-c-16.9,0-30.6,13.7-30.6,30.6l0,0C1022.6,117.8,1036.3,131.5,1053.2,131.5z" />
-                                    <path fill="#333"
+C1368.2,1012.8,1363.8,1007.4,1357.8,1005.9z"
+                                    />
+                                    <circle
+                                      cx="912.6"
+                                      cy="434.6"
+                                      r="51.8"
+                                      fill="#9D9EA3"
+                                    />
+                                    <circle
+                                      cx="1060.2"
+                                      cy="273.1"
+                                      r="13.1"
+                                      fill="#CECECE"
+                                    />
+                                    <path
+                                      fill="#333"
+                                      d="M1022.4,177.7h9.1c20.6,0,37.3-16.7,37.3-37.3V93.3H1045c-12.5,0-22.6,10.1-22.6,22.6
+V177.7z"
+                                    />
+                                    <circle
+                                      cx="1038.8"
+                                      cy="173.7"
+                                      r="23.4"
+                                      fill="#FFAB91"
+                                    />
+                                    <path
+                                      fill="#ED947C"
+                                      d="M1043.3,160.7c-9.5,0-17.2,7.7-17.2,17.2c0,1.4,0.2,2.8,0.5,4.1
+c-1.6-2.4-2.6-5.2-2.6-8.3c0-8.2,6.6-14.8,14.8-14.8c2.8,0,5.4,0.8,7.6,2.1C1045.4,160.8,1044.4,160.7,1043.3,160.7z"
+                                    />
+                                    <path
+                                      fill="#333"
+                                      d="M1053.2,131.5h108.4c16.9,0,30.6-13.7,30.6-30.6l0,0c0-16.9-13.7-30.6-30.6-30.6h-108.4
+c-16.9,0-30.6,13.7-30.6,30.6l0,0C1022.6,117.8,1036.3,131.5,1053.2,131.5z"
+                                    />
+                                    <path
+                                      fill="#333"
                                       d="M1146.2,142.3c0-12.8-10.3-23.1-23.1-23.1c-2.1,0-4.1,0.3-6.1,0.8
-c4.2-4.7,10.3-7.6,17.1-7.6c12.8,0,23.1,10.3,23.1,23.1c0,10.7-7.2,19.6-17,22.3C1143.9,153.7,1146.2,148.2,1146.2,142.3z" />
-                                    <path fill="#333"
-                                      d="M1123.1 151.4c0-12.8-10.3-23.1-23.1-23.1-2.1 0-4.1.3-6.1.8 4.2-4.7 10.3-7.6 17.1-7.6 12.8 0 23.1 10.3 23.1 23.1 0 10.7-7.2 19.6-17 22.3C1120.8 162.8 1123.1 157.3 1123.1 151.4zM1085.2 118h81.8c15.8 0 28.7-12.8 28.7-28.7v-3.6c0-15.8-12.8-28.7-28.7-28.7h-81.8c-15.8 0-28.7 12.8-28.7 28.7v3.6C1056.5 105.2 1069.4 118 1085.2 118z" />
-                                    <path fill="#3A3A3A"
-                                      d="M1188.1 89.3v-3.6c0-15.8-12.8-28.7-28.7-28.7h7.6c15.8 0 28.7 12.8 28.7 28.7v3.6c0 15.8-12.8 28.7-28.7 28.7h-7.6C1175.3 118 1188.1 105.2 1188.1 89.3zM1103.8 81.6h45.5c5.5 0 9.9-4.4 9.9-9.9l0 0c0-5.5-4.4-9.9-9.9-9.9h-45.5c-5.5 0-9.9 4.4-9.9 9.9l0 0C1093.9 77.2 1098.3 81.6 1103.8 81.6z" />
-                                    <circle cx="1036.4" cy="96.5" r="10.3" fill="#3A3A3A" />
-                                    <path fill="#4E342E" d="M1262.4,684.1h-155.7c-58.6,0-106.1-47.5-106.1-106.1v-5.1c0-1.7,1.4-3.2,3.2-3.2h258.6
-c30.2,0,54.6,24.5,54.6,54.6v5.1C1317.1,659.6,1292.6,684.1,1262.4,684.1z" />
-                                    <path fill="#4E342E" d="M1226.1,963.4V631.9c0-28.8,23.4-52.2,52.2-52.2l0,0c28.8,0,52.2,23.4,52.2,52.2v331.5
-H1226.1z" />
-                                    <rect width="262.3" height="16.8" x="1040.6" y="562.9"
-                                      fill="#058ACC" />
-                                    <path fill="#2AB1F4"
-                                      d="M1407.3,579.7h-245.8l41.5-186.6l230.2-5.1c8.6-0.2,15,7.7,13.2,16.1L1407.3,579.7z" />
-                                    <path fill="#0091EA" d="M1401.6,579.7h-232.1l42.8-192.1H1445c6.7,0,11.7,6.2,10.2,12.7l-36.9,166
-C1416.5,574.1,1409.6,579.7,1401.6,579.7z" />
-                                    <polygon fill="#2AB1F4"
-                                      points="1203 393.1 1212.2 387.6 1208.3 405.5 1200.3 405.5" />
-                                    <path fill="#FFAB91" d="M1016.4,571.4l-131.1-96.8c-18.9-13.9-22.9-40.5-8.9-59.3v0
-c13.9-18.9,40.5-22.9,59.3-8.9l131.1,96.8c18.9,13.9,22.9,40.5,8.9,59.3h0C1061.8,581.3,1035.3,585.3,1016.4,571.4z" />
-                                    <circle cx="1050.1" cy="530.5" r="46.7" fill="#FFAB91" />
-                                    <path fill="#FFAB91" d="M1084.8,524.9l-40.8-13.2c-7.5-2.4-11.6-10.5-9.2-18l0,0c2.4-7.5,10.5-11.6,18-9.2
-l40.8,13.2c7.5,2.4,11.6,10.5,9.2,18l0,0C1100.3,523.3,1092.3,527.4,1084.8,524.9z" />
-                                    <path fill="#FFAB91" d="M1118.7,552.2l-33.4-26.9c-6.1-5-7.1-13.9-2.1-20.1l0,0c5-6.1,13.9-7.1,20.1-2.1
-l33.4,26.9c6.1,5,7.1,13.9,2.1,20.1v0C1133.9,556.2,1124.9,557.2,1118.7,552.2z" />
-                                    <path fill="#604440"
-                                      d="M1247.4 806.9L1247.4 806.9c-6.7 0-12.1-5.4-12.1-12.1v-71.2c0-6.7 5.4-12.1 12.1-12.1l0 0c6.7 0 12.1 5.4 12.1 12.1v71.2C1259.6 801.5 1254.1 806.9 1247.4 806.9zM1247.4 862.6L1247.4 862.6c-6.7 0-12.1-5.4-12.1-12.1v-17.2c0-6.7 5.4-12.1 12.1-12.1l0 0c6.7 0 12.1 5.4 12.1 12.1v17.2C1259.6 857.2 1254.1 862.6 1247.4 862.6z" />
+c4.2-4.7,10.3-7.6,17.1-7.6c12.8,0,23.1,10.3,23.1,23.1c0,10.7-7.2,19.6-17,22.3C1143.9,153.7,1146.2,148.2,1146.2,142.3z"
+                                    />
+                                    <path
+                                      fill="#333"
+                                      d="M1123.1 151.4c0-12.8-10.3-23.1-23.1-23.1-2.1 0-4.1.3-6.1.8 4.2-4.7 10.3-7.6 17.1-7.6 12.8 0 23.1 10.3 23.1 23.1 0 10.7-7.2 19.6-17 22.3C1120.8 162.8 1123.1 157.3 1123.1 151.4zM1085.2 118h81.8c15.8 0 28.7-12.8 28.7-28.7v-3.6c0-15.8-12.8-28.7-28.7-28.7h-81.8c-15.8 0-28.7 12.8-28.7 28.7v3.6C1056.5 105.2 1069.4 118 1085.2 118z"
+                                    />
+                                    <path
+                                      fill="#3A3A3A"
+                                      d="M1188.1 89.3v-3.6c0-15.8-12.8-28.7-28.7-28.7h7.6c15.8 0 28.7 12.8 28.7 28.7v3.6c0 15.8-12.8 28.7-28.7 28.7h-7.6C1175.3 118 1188.1 105.2 1188.1 89.3zM1103.8 81.6h45.5c5.5 0 9.9-4.4 9.9-9.9l0 0c0-5.5-4.4-9.9-9.9-9.9h-45.5c-5.5 0-9.9 4.4-9.9 9.9l0 0C1093.9 77.2 1098.3 81.6 1103.8 81.6z"
+                                    />
+                                    <circle
+                                      cx="1036.4"
+                                      cy="96.5"
+                                      r="10.3"
+                                      fill="#3A3A3A"
+                                    />
+                                    <path
+                                      fill="#4E342E"
+                                      d="M1262.4,684.1h-155.7c-58.6,0-106.1-47.5-106.1-106.1v-5.1c0-1.7,1.4-3.2,3.2-3.2h258.6
+c30.2,0,54.6,24.5,54.6,54.6v5.1C1317.1,659.6,1292.6,684.1,1262.4,684.1z"
+                                    />
+                                    <path
+                                      fill="#4E342E"
+                                      d="M1226.1,963.4V631.9c0-28.8,23.4-52.2,52.2-52.2l0,0c28.8,0,52.2,23.4,52.2,52.2v331.5
+H1226.1z"
+                                    />
+                                    <rect
+                                      width="262.3"
+                                      height="16.8"
+                                      x="1040.6"
+                                      y="562.9"
+                                      fill="#058ACC"
+                                    />
+                                    <path
+                                      fill="#2AB1F4"
+                                      d="M1407.3,579.7h-245.8l41.5-186.6l230.2-5.1c8.6-0.2,15,7.7,13.2,16.1L1407.3,579.7z"
+                                    />
+                                    <path
+                                      fill="#0091EA"
+                                      d="M1401.6,579.7h-232.1l42.8-192.1H1445c6.7,0,11.7,6.2,10.2,12.7l-36.9,166
+C1416.5,574.1,1409.6,579.7,1401.6,579.7z"
+                                    />
+                                    <polygon
+                                      fill="#2AB1F4"
+                                      points="1203 393.1 1212.2 387.6 1208.3 405.5 1200.3 405.5"
+                                    />
+                                    <path
+                                      fill="#FFAB91"
+                                      d="M1016.4,571.4l-131.1-96.8c-18.9-13.9-22.9-40.5-8.9-59.3v0
+c13.9-18.9,40.5-22.9,59.3-8.9l131.1,96.8c18.9,13.9,22.9,40.5,8.9,59.3h0C1061.8,581.3,1035.3,585.3,1016.4,571.4z"
+                                    />
+                                    <circle
+                                      cx="1050.1"
+                                      cy="530.5"
+                                      r="46.7"
+                                      fill="#FFAB91"
+                                    />
+                                    <path
+                                      fill="#FFAB91"
+                                      d="M1084.8,524.9l-40.8-13.2c-7.5-2.4-11.6-10.5-9.2-18l0,0c2.4-7.5,10.5-11.6,18-9.2
+l40.8,13.2c7.5,2.4,11.6,10.5,9.2,18l0,0C1100.3,523.3,1092.3,527.4,1084.8,524.9z"
+                                    />
+                                    <path
+                                      fill="#FFAB91"
+                                      d="M1118.7,552.2l-33.4-26.9c-6.1-5-7.1-13.9-2.1-20.1l0,0c5-6.1,13.9-7.1,20.1-2.1
+l33.4,26.9c6.1,5,7.1,13.9,2.1,20.1v0C1133.9,556.2,1124.9,557.2,1118.7,552.2z"
+                                    />
+                                    <path
+                                      fill="#604440"
+                                      d="M1247.4 806.9L1247.4 806.9c-6.7 0-12.1-5.4-12.1-12.1v-71.2c0-6.7 5.4-12.1 12.1-12.1l0 0c6.7 0 12.1 5.4 12.1 12.1v71.2C1259.6 801.5 1254.1 806.9 1247.4 806.9zM1247.4 862.6L1247.4 862.6c-6.7 0-12.1-5.4-12.1-12.1v-17.2c0-6.7 5.4-12.1 12.1-12.1l0 0c6.7 0 12.1 5.4 12.1 12.1v17.2C1259.6 857.2 1254.1 862.6 1247.4 862.6z"
+                                    />
                                   </g>
                                   <g>
-                                    <path fill="#9A9B9B" d="M612.2,1853.2c8.5-7,16.3-14.7,23.4-23h827v-236.3h-827c-7.1-8.4-14.9-16.1-23.4-23
+                                    <path
+                                      fill="#9A9B9B"
+                                      d="M612.2,1853.2c8.5-7,16.3-14.7,23.4-23h827v-236.3h-827c-7.1-8.4-14.9-16.1-23.4-23
 c-31.5-25.8-71.8-41.3-115.6-41.3c-100.8,0-182.5,81.7-182.5,182.5c0,100.8,81.7,182.5,182.5,182.5
 C540.5,1894.5,580.7,1879,612.2,1853.2z M378.4,1712c0-65.3,52.9-118.2,118.1-118.2c5.7,0,11.2,0.4,16.7,1.2
 c56.6,8,100.3,56.1,101.4,114.7c0,0.8,0,1.5,0,2.3c0,0.8,0,1.5,0,2.3c-1.1,58.5-44.8,106.6-101.4,114.6c-5.5,0.8-11,1.2-16.7,1.2
-C431.3,1830.2,378.4,1777.3,378.4,1712z" />
-                                    <path fill="#AAA"
-                                      d="M780.3 1651.4h415.2c33.5 0 60.6 27.1 60.6 60.6v0c0 33.5-27.1 60.6-60.6 60.6H780.3c-33.5 0-60.6-27.1-60.6-60.6v0C719.7 1678.5 746.8 1651.4 780.3 1651.4zM1733.7 1820h-219.7l-52-108 52-108h219.7c-38.8-73.2-115.7-123-204.2-123-127.6 0-231 103.4-231 231 0 127.6 103.4 231 231 231C1618 1943 1695 1893.2 1733.7 1820z" />
+C431.3,1830.2,378.4,1777.3,378.4,1712z"
+                                    />
+                                    <path
+                                      fill="#AAA"
+                                      d="M780.3 1651.4h415.2c33.5 0 60.6 27.1 60.6 60.6v0c0 33.5-27.1 60.6-60.6 60.6H780.3c-33.5 0-60.6-27.1-60.6-60.6v0C719.7 1678.5 746.8 1651.4 780.3 1651.4zM1733.7 1820h-219.7l-52-108 52-108h219.7c-38.8-73.2-115.7-123-204.2-123-127.6 0-231 103.4-231 231 0 127.6 103.4 231 231 231C1618 1943 1695 1893.2 1733.7 1820z"
+                                    />
                                   </g>
                                 </svg>
                               </div>
@@ -2860,12 +3733,18 @@ C431.3,1830.2,378.4,1777.3,378.4,1712z" />
                     <Container>
                       <Row>
                         <Card className=" bg-transparent mb-0">
-                          <h4 className="text-center fw-semibold text-white landing-card-header">Features</h4>
+                          <h4 className="text-center fw-semibold text-white landing-card-header">
+                            Features
+                          </h4>
                           <span className="landing-title"></span>
-                          <div className="demo-screen-skin code-quality" id="dependencies">
+                          <div
+                            className="demo-screen-skin code-quality"
+                            id="dependencies"
+                          >
                             <div className="text-center p-0">
-                              <h2 className="text-center fw-semibold text-white">Features Used in
-                                Spruha Admin Template</h2>
+                              <h2 className="text-center fw-semibold text-white">
+                                Features Used in Spruha Admin Template
+                              </h2>
                               <Row className="row justify-content-center">
                                 <div className="col-lg-12 px-0">
                                   <div className="feature-logos mt-5">
@@ -2882,131 +3761,181 @@ C431.3,1830.2,378.4,1777.3,378.4,1712z" />
                   <div className="section">
                     <Container>
                       <Row>
-                        <section className="sptb demo-screen-demo" id="highlights">
+                        <section
+                          className="sptb demo-screen-demo"
+                          id="highlights"
+                        >
                           <Container>
                             <Row className="align-items-center">
-                              <h4 className="text-center fw-semibold">Highlights</h4>
+                              <h4 className="text-center fw-semibold">
+                                Highlights
+                              </h4>
                               <span className="landing-title"></span>
-                              <h2 className="text-center fw-semibold">Template Highlights</h2>
+                              <h2 className="text-center fw-semibold">
+                                Template Highlights
+                              </h2>
                               <Col lg={12}>
                                 <Row className="row justify-content-center">
-                                  <Col lg={9} className="text-default sub-text mb-5">
-                                    The Spruha admin template is one of the modern dashboard
-                                    templates.
-                                    It is also a premium admin dashboard with high-end features,
-                                    where users can easily customize
-                                    or change their projects according to their choice. Please take
-                                    a quick look at our template highlights.
+                                  <Col
+                                    lg={9}
+                                    className="text-default sub-text mb-5"
+                                  >
+                                    The Spruha admin template is one of the
+                                    modern dashboard templates. It is also a
+                                    premium admin dashboard with high-end
+                                    features, where users can easily customize
+                                    or change their projects according to their
+                                    choice. Please take a quick look at our
+                                    template highlights.
                                   </Col>
                                 </Row>
                                 {/* collapse */}
                                 <Row id="grid">
                                   <Col lg={6}>
                                     <Col md={12} className="grid-item px-0">
-
                                       <Card className=" bg-primary-transparent bg-transparent border p-0 reveal">
-                                        <Card.Header className="grid-link " onClick={() => { Firstcollapse("primary") }}>
-                                          <Card.Subtitle
-                                            className="card-options h5 fw-bold mb-0 text-primary">
+                                        <Card.Header
+                                          className="grid-link "
+                                          onClick={() => {
+                                            Firstcollapse("primary");
+                                          }}
+                                        >
+                                          <Card.Subtitle className="card-options h5 fw-bold mb-0 text-primary">
                                             <span className="card-controls">
-                                              <span className="expand"><i
-                                                className="fe fe-plus"></i></span>
-                                              <span className="shrink"><i
-                                                className="fe fe-minus"></i></span>
+                                              <span className="expand">
+                                                <i className="fe fe-plus"></i>
+                                              </span>
+                                              <span className="shrink">
+                                                <i className="fe fe-minus"></i>
+                                              </span>
                                             </span>
-                                            Switch Easily From Vertical to Horizontal
-                                            Menu</Card.Subtitle>
+                                            Switch Easily From Vertical to
+                                            Horizontal Menu
+                                          </Card.Subtitle>
                                         </Card.Header>
                                         {isFirstCollapsed ? (
                                           <Card.Body className="pt-0">
                                             <p>
-                                              The Spruha – Bootstrap 5 Admin & Dashboard
-                                              Template is available in both vertical and
-                                              horizontal menus.
-                                              Both menus are managed by single assets. Where
-                                              users can easily switch from vertical to
+                                              The Spruha – Bootstrap 5 Admin &
+                                              Dashboard Template is available in
+                                              both vertical and horizontal
+                                              menus. Both menus are managed by
+                                              single assets. Where users can
+                                              easily switch from vertical to
                                               horizontal menus.
                                             </p>
                                             <p className="mt-2 mb-3">
-                                              <span className="fw-bold">Note: </span>Please Refer
-                                              full Documentation
+                                              <span className="fw-bold">
+                                                Note:{" "}
+                                              </span>
+                                              Please Refer full Documentation
                                               for more details.
                                             </p>
-                                            <Link to="#" target="_blank"
-                                              className="btn btn-outline-primary tx-13">Click
-                                              here</Link>
+                                            <Link
+                                              to="#"
+                                              target="_blank"
+                                              className="btn btn-outline-primary tx-13"
+                                            >
+                                              Click here
+                                            </Link>
                                           </Card.Body>
                                         ) : null}
                                       </Card>
                                     </Col>
                                     <Col md={12} className="grid-item  px-0">
-                                      <Card
-                                        className="bg-success-transparent bg-transparent border p-0 reveal">
-                                        <Card.Header className="grid-link" onClick={() => { Firstcollapse("success") }}
+                                      <Card className="bg-success-transparent bg-transparent border p-0 reveal">
+                                        <Card.Header
+                                          className="grid-link"
+                                          onClick={() => {
+                                            Firstcollapse("success");
+                                          }}
                                         >
-                                          <Card.Subtitle
-                                            className="card-options  h5 fw-bold mb-0 text-success">
+                                          <Card.Subtitle className="card-options  h5 fw-bold mb-0 text-success">
                                             <span className="card-controls">
-                                              <span className="expand"><i
-                                                className="fe fe-plus"></i></span>
-                                              <span className="shrink"><i
-                                                className="fe fe-minus"></i></span>
-                                            </span>Switch
-                                            Easily From LTR to RTL Version</Card.Subtitle>
+                                              <span className="expand">
+                                                <i className="fe fe-plus"></i>
+                                              </span>
+                                              <span className="shrink">
+                                                <i className="fe fe-minus"></i>
+                                              </span>
+                                            </span>
+                                            Switch Easily From LTR to RTL
+                                            Version
+                                          </Card.Subtitle>
                                         </Card.Header>
                                         {is2Collapsed ? (
                                           <Card.Body className="pt-0">
                                             <p className="mb-3">
-                                              The Spruha – Bootstrap 5 Admin & Dashboard
-                                              Template is available in LRT & RTL versions with
-                                              single assets.
-                                              Using those single assets, it’s very easy to
-                                              switch from one version to another version.
+                                              The Spruha – Bootstrap 5 Admin &
+                                              Dashboard Template is available in
+                                              LRT & RTL versions with single
+                                              assets. Using those single assets,
+                                              it’s very easy to switch from one
+                                              version to another version.
                                             </p>
                                             <p className="mt-2 mb-3">
-                                              <span className="fw-bold">Note: </span>Please Refer
-                                              full Documentation
+                                              <span className="fw-bold">
+                                                Note:{" "}
+                                              </span>
+                                              Please Refer full Documentation
                                               for more details.
                                             </p>
-                                            <Link to="#" target="_blank"
-                                              className="btn btn-outline-success tx-13">Click
-                                              here</Link>
+                                            <Link
+                                              to="#"
+                                              target="_blank"
+                                              className="btn btn-outline-success tx-13"
+                                            >
+                                              Click here
+                                            </Link>
                                           </Card.Body>
                                         ) : null}
                                       </Card>
                                     </Col>
                                     <Col md={12} className="grid-item  px-0">
-                                      <Card
-                                        className="bg-info-transparent  bg-transparent border p-0 reveal">
-                                        <Card.Header className="grid-link" onClick={() => { Firstcollapse("info") }}
+                                      <Card className="bg-info-transparent  bg-transparent border p-0 reveal">
+                                        <Card.Header
+                                          className="grid-link"
+                                          onClick={() => {
+                                            Firstcollapse("info");
+                                          }}
                                         >
-                                          <Card.Subtitle
-                                            className="card-options  h5 fw-bold mb-0 text-info">
+                                          <Card.Subtitle className="card-options  h5 fw-bold mb-0 text-info">
                                             <span className="card-controls">
-                                              <span className="expand"><i
-                                                className="fe fe-plus"></i></span>
-                                              <span className="shrink"><i
-                                                className="fe fe-minus"></i></span>
-                                            </span>Switch
-                                            Easily From One Color to Another Color style</Card.Subtitle>
+                                              <span className="expand">
+                                                <i className="fe fe-plus"></i>
+                                              </span>
+                                              <span className="shrink">
+                                                <i className="fe fe-minus"></i>
+                                              </span>
+                                            </span>
+                                            Switch Easily From One Color to
+                                            Another Color style
+                                          </Card.Subtitle>
                                         </Card.Header>
                                         {is3tCollapsed ? (
                                           <Card.Body className="pt-0">
                                             <p className="mb-3">
-                                              The Spruha – Bootstrap 5 Admin & Dashboard
-                                              Template is available in different types of
+                                              The Spruha – Bootstrap 5 Admin &
+                                              Dashboard Template is available in
+                                              different types of color styles.
+                                              Where the users can change their
+                                              template completely with those
                                               color styles.
-                                              Where the users can change their template
-                                              completely with those color styles.
                                             </p>
                                             <p className="mt-2 mb-3">
-                                              <span className="fw-bold">Note: </span>Please Refer
-                                              full Documentation
+                                              <span className="fw-bold">
+                                                Note:{" "}
+                                              </span>
+                                              Please Refer full Documentation
                                               for more details.
                                             </p>
-                                            <Link to="#" target="_blank"
-                                              className="btn btn-outline-info tx-13">Click
-                                              here</Link>
+                                            <Link
+                                              to="#"
+                                              target="_blank"
+                                              className="btn btn-outline-info tx-13"
+                                            >
+                                              Click here
+                                            </Link>
                                           </Card.Body>
                                         ) : null}
                                       </Card>
@@ -3014,112 +3943,153 @@ C431.3,1830.2,378.4,1777.3,378.4,1712z" />
                                   </Col>
                                   <Col lg={6}>
                                     <Col md={12} className="grid-item  px-0">
-                                      <Card
-                                        className=" bg-secondary-transparent bg-transparent border  p-0 reveal">
-                                        <Card.Header className="grid-link" onClick={() => { Firstcollapse("secondary") }}
+                                      <Card className=" bg-secondary-transparent bg-transparent border  p-0 reveal">
+                                        <Card.Header
+                                          className="grid-link"
+                                          onClick={() => {
+                                            Firstcollapse("secondary");
+                                          }}
                                         >
-                                          <Card.Subtitle
-                                            className="card-options  h5 fw-bold  mb-0 text-secondary">
+                                          <Card.Subtitle className="card-options  h5 fw-bold  mb-0 text-secondary">
                                             <span className="card-controls">
-                                              <span className="expand"><i
-                                                className="fe fe-plus"></i></span>
-                                              <span className="shrink"><i
-                                                className="fe fe-minus"></i></span>
-                                            </span>Switch
-                                            Easily From Full Width to Boxed Layout</Card.Subtitle>
+                                              <span className="expand">
+                                                <i className="fe fe-plus"></i>
+                                              </span>
+                                              <span className="shrink">
+                                                <i className="fe fe-minus"></i>
+                                              </span>
+                                            </span>
+                                            Switch Easily From Full Width to
+                                            Boxed Layout
+                                          </Card.Subtitle>
                                         </Card.Header>
                                         {is4Collapsed ? (
                                           <Card.Body className="pt-0">
                                             <p>
-                                              The Spruha – Bootstrap 5 Admin & Dashboard
-                                              Template is also available in two different
-                                              types of layouts
-                                              “Full Width” and “Boxed” Layouts. So that user
-                                              can switch their dashboard from one layout to
-                                              another
-                                              layout effortlessly.
+                                              The Spruha – Bootstrap 5 Admin &
+                                              Dashboard Template is also
+                                              available in two different types
+                                              of layouts “Full Width” and
+                                              “Boxed” Layouts. So that user can
+                                              switch their dashboard from one
+                                              layout to another layout
+                                              effortlessly.
                                             </p>
                                             <p className="mt-2 mb-3">
-                                              <span className="fw-bold">Note: </span>Please Refer
-                                              full Documentation
+                                              <span className="fw-bold">
+                                                Note:{" "}
+                                              </span>
+                                              Please Refer full Documentation
                                               for more details.
                                             </p>
-                                            <Link to="#" target="_blank"
-                                              className="btn btn-outline-secondary tx-13">Click
-                                              here</Link>
+                                            <Link
+                                              to="#"
+                                              target="_blank"
+                                              className="btn btn-outline-secondary tx-13"
+                                            >
+                                              Click here
+                                            </Link>
                                           </Card.Body>
                                         ) : null}
                                       </Card>
                                     </Col>
                                     <Col md={12} className="grid-item  px-0">
-                                      <Card
-                                        className="bg-warning-transparent bg-transparent border  p-0 reveal">
-                                        <Card.Header className="grid-link" onClick={() => { Firstcollapse("warning") }}
+                                      <Card className="bg-warning-transparent bg-transparent border  p-0 reveal">
+                                        <Card.Header
+                                          className="grid-link"
+                                          onClick={() => {
+                                            Firstcollapse("warning");
+                                          }}
                                         >
-                                          <Card.Subtitle to="#"
-                                            className="card-options  h5 fw-bold  mb-0 text-warning">
+                                          <Card.Subtitle
+                                            to="#"
+                                            className="card-options  h5 fw-bold  mb-0 text-warning"
+                                          >
                                             <span className="card-controls">
-                                              <span className="expand"><i
-                                                className="fe fe-plus"></i></span>
-                                              <span className="shrink"><i
-                                                className="fe fe-minus"></i></span>
-                                            </span>Change
-                                            Easily Side Menu Styles</Card.Subtitle>
+                                              <span className="expand">
+                                                <i className="fe fe-plus"></i>
+                                              </span>
+                                              <span className="shrink">
+                                                <i className="fe fe-minus"></i>
+                                              </span>
+                                            </span>
+                                            Change Easily Side Menu Styles
+                                          </Card.Subtitle>
                                         </Card.Header>
                                         {is5Collapsed ? (
                                           <Card.Body className="pt-0">
                                             <p>
-                                              The Spruha – Bootstrap 5 Admin & Dashboard
-                                              Template is also available in different types of
-                                              Side Menu Styles.
-                                              Where the users can change their Side Menu
-                                              styles by using single assets.
+                                              The Spruha – Bootstrap 5 Admin &
+                                              Dashboard Template is also
+                                              available in different types of
+                                              Side Menu Styles. Where the users
+                                              can change their Side Menu styles
+                                              by using single assets.
                                             </p>
                                             <p className="mt-2 mb-3">
-                                              <span className="fw-bold">Note: </span>Please Refer
-                                              full Documentation
+                                              <span className="fw-bold">
+                                                Note:{" "}
+                                              </span>
+                                              Please Refer full Documentation
                                               for more details.
                                             </p>
-                                            <Link to="#" target="_blank"
-                                              className="btn btn-outline-warning tx-13">Click
-                                              here</Link>
+                                            <Link
+                                              to="#"
+                                              target="_blank"
+                                              className="btn btn-outline-warning tx-13"
+                                            >
+                                              Click here
+                                            </Link>
                                           </Card.Body>
                                         ) : null}
                                       </Card>
                                     </Col>
                                     <Col md={12} className="grid-item  px-0">
-                                      <Card
-                                        className="card bg-danger-transparent bg-transparent border  p-0 reveal">
-                                        <Card.Header className="grid-link" onClick={() => { Firstcollapse("danger") }}
+                                      <Card className="card bg-danger-transparent bg-transparent border  p-0 reveal">
+                                        <Card.Header
+                                          className="grid-link"
+                                          onClick={() => {
+                                            Firstcollapse("danger");
+                                          }}
                                         >
-                                          <Card.Subtitle
-                                            className="card-options  h5 fw-bold mb-0 text-danger">
+                                          <Card.Subtitle className="card-options  h5 fw-bold mb-0 text-danger">
                                             <span>
-                                              <span className="expand"><i
-                                                className="fe fe-plus"></i></span>
-                                              <span className="shrink"><i
-                                                className="fe fe-minus"></i></span>
-                                            </span>Switch
-                                            Easily From Fixed to Scrollable Layout</Card.Subtitle>
+                                              <span className="expand">
+                                                <i className="fe fe-plus"></i>
+                                              </span>
+                                              <span className="shrink">
+                                                <i className="fe fe-minus"></i>
+                                              </span>
+                                            </span>
+                                            Switch Easily From Fixed to
+                                            Scrollable Layout
+                                          </Card.Subtitle>
                                         </Card.Header>
                                         {is6Collapsed ? (
                                           <Card.Body className="pt-0">
                                             <p>
-                                              The Spruha – Bootstrap 5 Admin & Dashboard
-                                              Template is also available in two
-                                              different types of layouts "Fixed Layout" and
+                                              The Spruha – Bootstrap 5 Admin &
+                                              Dashboard Template is also
+                                              available in two different types
+                                              of layouts "Fixed Layout" and
                                               "Scrollable Layout". Here users
-                                              can switch their Template from one layout to
-                                              another layout easily.
+                                              can switch their Template from one
+                                              layout to another layout easily.
                                             </p>
                                             <p className="mt-2 mb-3">
-                                              <span className="fw-bold">Note: </span>Please Refer
-                                              full Documentation
+                                              <span className="fw-bold">
+                                                Note:{" "}
+                                              </span>
+                                              Please Refer full Documentation
                                               for more details.
                                             </p>
-                                            <Link to="#" target="_blank"
-                                              className="btn btn-outline-danger tx-13">Click
-                                              here</Link>
+                                            <Link
+                                              to="#"
+                                              target="_blank"
+                                              className="btn btn-outline-danger tx-13"
+                                            >
+                                              Click here
+                                            </Link>
                                           </Card.Body>
                                         ) : null}
                                       </Card>
@@ -3136,22 +4106,35 @@ C431.3,1830.2,378.4,1777.3,378.4,1712z" />
                   <div className="bg-landing section">
                     <Container>
                       <Row>
-                        <h4 className="text-center fw-semibold landing-card-header">Choose a plan </h4>
+                        <h4 className="text-center fw-semibold landing-card-header">
+                          Choose a plan{" "}
+                        </h4>
                         <span className="landing-title"></span>
-                        <h2 className="text-center fw-semibold">Find the <span className="text-primary">Perfect
-                          Plan</span> for your Business.</h2>
+                        <h2 className="text-center fw-semibold">
+                          Find the{" "}
+                          <span className="text-primary">Perfect Plan</span> for
+                          your Business.
+                        </h2>
                         <div className="pricing-tabs text-center">
                           <div className="pri-tabs-heading text-center mt-3">
-
-                            <Tab.Container defaultActiveKey="Annual" className="text-center">
+                            <Tab.Container
+                              defaultActiveKey="Annual"
+                              className="text-center"
+                            >
                               <Row className="">
-                                <Nav className="justify-content-center"
-                                  variant="pills">
+                                <Nav
+                                  className="justify-content-center"
+                                  variant="pills"
+                                >
                                   <Nav.Item>
-                                    <Nav.Link eventKey="Monthly">Monthly</Nav.Link>
+                                    <Nav.Link eventKey="Monthly">
+                                      Monthly
+                                    </Nav.Link>
                                   </Nav.Item>
                                   <Nav.Item>
-                                    <Nav.Link eventKey="Annual">Annual</Nav.Link>
+                                    <Nav.Link eventKey="Annual">
+                                      Annual
+                                    </Nav.Link>
                                   </Nav.Item>
                                 </Nav>
                                 <Tab.Content>
@@ -3160,45 +4143,70 @@ C431.3,1830.2,378.4,1777.3,378.4,1712z" />
                                       <Col lg={4} xl={4} md={8} sm={12}>
                                         <Card className=" p-3 pricing-card">
                                           <Card.Header className="d-block text-justified pt-2">
-                                            <p className="fs-18 fw-semibold mb-1">Basic</p>
-                                            <p className="text-justify fw-semibold mb-1"> <span
-                                              className="fs-30 me-2">$</span><span
-                                                className="fs-30 me-1">39</span><span
-                                                  className="fs-25"><span
-                                                    className="op-0-5 text-muted text-20">/</span>
-                                                month</span></p>
-                                            <p className="fs-13 mb-1">Lorem ipsum dolor sit amet
-                                              consectetur adipisicing elit. Iure quos debitis
-                                              aliquam .</p>
-                                            <p className="fs-13 mb-1 text-secondary">Billed monthly
-                                              on regular basis!</p>
+                                            <p className="fs-18 fw-semibold mb-1">
+                                              Basic
+                                            </p>
+                                            <p className="text-justify fw-semibold mb-1">
+                                              {" "}
+                                              <span className="fs-30 me-2">
+                                                $
+                                              </span>
+                                              <span className="fs-30 me-1">
+                                                39
+                                              </span>
+                                              <span className="fs-25">
+                                                <span className="op-0-5 text-muted text-20">
+                                                  /
+                                                </span>
+                                                month
+                                              </span>
+                                            </p>
+                                            <p className="fs-13 mb-1">
+                                              Lorem ipsum dolor sit amet
+                                              consectetur adipisicing elit. Iure
+                                              quos debitis aliquam .
+                                            </p>
+                                            <p className="fs-13 mb-1 text-secondary">
+                                              Billed monthly on regular basis!
+                                            </p>
                                           </Card.Header>
                                           <Card.Body className="pt-2">
                                             <ul className="text-justify pricing-body ps-0">
-                                              <li><i
-                                                className="mdi mdi-checkbox-marked-circle-outline p-2 fs-16 text-secondary"></i><strong>
-                                                  2 Free</strong> Domain Name</li>
-                                              <li><i
-                                                className="mdi mdi-checkbox-marked-circle-outline p-2 fs-16 text-secondary"></i>
-                                                <strong>3 </strong> One-Click Apps
+                                              <li>
+                                                <i className="mdi mdi-checkbox-marked-circle-outline p-2 fs-16 text-secondary"></i>
+                                                <strong>2 Free</strong> Domain
+                                                Name
                                               </li>
-                                              <li className="text-muted"><i
-                                                className="mdi mdi-close-circle-outline p-2 fs-16 text-gray"></i><strong>
-                                                  1 </strong> Databases</li>
-                                              <li className="text-muted"><i
-                                                className="mdi mdi-close-circle-outline p-2 fs-16 text-gray"></i><strong>
-                                                  Unlimited </strong> Cloud Storage</li>
-                                              <li className="text-muted"><i
-                                                className="mdi mdi-close-circle-outline p-2 fs-16 text-gray"></i><strong>
-                                                  Money </strong> BackGuarantee</li>
-                                              <li className="text-muted"><i
-                                                className="mdi mdi-close-circle-outline p-2 fs-16 text-gray"></i><strong>
-                                                  24/7</strong> support</li>
+                                              <li>
+                                                <i className="mdi mdi-checkbox-marked-circle-outline p-2 fs-16 text-secondary"></i>
+                                                <strong>3 </strong> One-Click
+                                                Apps
+                                              </li>
+                                              <li className="text-muted">
+                                                <i className="mdi mdi-close-circle-outline p-2 fs-16 text-gray"></i>
+                                                <strong>1 </strong> Databases
+                                              </li>
+                                              <li className="text-muted">
+                                                <i className="mdi mdi-close-circle-outline p-2 fs-16 text-gray"></i>
+                                                <strong>Unlimited </strong>{" "}
+                                                Cloud Storage
+                                              </li>
+                                              <li className="text-muted">
+                                                <i className="mdi mdi-close-circle-outline p-2 fs-16 text-gray"></i>
+                                                <strong>Money </strong>{" "}
+                                                BackGuarantee
+                                              </li>
+                                              <li className="text-muted">
+                                                <i className="mdi mdi-close-circle-outline p-2 fs-16 text-gray"></i>
+                                                <strong>24/7</strong> support
+                                              </li>
                                             </ul>
                                           </Card.Body>
                                           <div className="card-footer text-center border-top-0 pt-1">
                                             <button className="btn btn-lg btn-outline-secondary btn-block">
-                                              <span className="ms-4 me-4">Select</span>
+                                              <span className="ms-4 me-4">
+                                                Select
+                                              </span>
                                             </button>
                                           </div>
                                         </Card>
@@ -3206,48 +4214,73 @@ C431.3,1830.2,378.4,1777.3,378.4,1712z" />
                                       <Col lg={4} xl={4} md={8} sm={12}>
                                         <Card className=" p-3 border-primary pricing-card advanced">
                                           <Card.Header className="d-block text-justified pt-2">
-                                            <p className="fs-18 fw-semibold mb-1 pe-0">Advanced<span
-                                              className="tag bg-primary text-white float-end">Limited
-                                              Deal</span></p>
-                                            <p className="text-justify fw-semibold mb-1"> <span
-                                              className="fs-30 me-2">$</span><span
-                                                className="fs-30 me-1">199</span><span
-                                                  className="fs-25"><span
-                                                    className="op-0-5 text-muted text-20">/</span>
-                                                month</span></p>
-                                            <p className="fs-13 mb-2">Lorem ipsum dolor sit amet
-                                              consectetur adipisicing elit. Iure quos debitis
-                                              aliquam .</p>
-                                            <p className="fs-13 mb-1 text-primary">Billed monthly on
-                                              regular basis!</p>
+                                            <p className="fs-18 fw-semibold mb-1 pe-0">
+                                              Advanced
+                                              <span className="tag bg-primary text-white float-end">
+                                                Limited Deal
+                                              </span>
+                                            </p>
+                                            <p className="text-justify fw-semibold mb-1">
+                                              {" "}
+                                              <span className="fs-30 me-2">
+                                                $
+                                              </span>
+                                              <span className="fs-30 me-1">
+                                                199
+                                              </span>
+                                              <span className="fs-25">
+                                                <span className="op-0-5 text-muted text-20">
+                                                  /
+                                                </span>
+                                                month
+                                              </span>
+                                            </p>
+                                            <p className="fs-13 mb-2">
+                                              Lorem ipsum dolor sit amet
+                                              consectetur adipisicing elit. Iure
+                                              quos debitis aliquam .
+                                            </p>
+                                            <p className="fs-13 mb-1 text-primary">
+                                              Billed monthly on regular basis!
+                                            </p>
                                           </Card.Header>
                                           <Card.Body className="pt-2">
                                             <ul className="text-justify pricing-body ps-0">
-                                              <li><i
-                                                className="mdi mdi-checkbox-marked-circle-outline text-primary p-2 fs-16"></i>
-                                                <strong> 5 Free</strong> Domain Name
+                                              <li>
+                                                <i className="mdi mdi-checkbox-marked-circle-outline text-primary p-2 fs-16"></i>
+                                                <strong> 5 Free</strong> Domain
+                                                Name
                                               </li>
-                                              <li><i
-                                                className="mdi mdi-checkbox-marked-circle-outline text-primary p-2 fs-16"></i><strong>5
-                                                </strong> One-Click Apps</li>
-                                              <li><i
-                                                className="mdi mdi-checkbox-marked-circle-outline text-primary p-2 fs-16"></i><strong>
-                                                  3 </strong> Databases</li>
-                                              <li><i
-                                                className="mdi mdi-checkbox-marked-circle-outline text-primary p-2 fs-16"></i><strong>
-                                                  Unlimited </strong> Cloud Storage</li>
-                                              <li><i
-                                                className="mdi mdi-checkbox-marked-circle-outline text-primary p-2 fs-16"></i><strong>
-                                                  Money </strong> BackGuarantee</li>
-                                              <li className="mb-5"><i
-                                                className="mdi mdi-checkbox-marked-circle-outline text-primary p-2 fs-16"></i><strong>
-                                                  24/7</strong> support</li>
+                                              <li>
+                                                <i className="mdi mdi-checkbox-marked-circle-outline text-primary p-2 fs-16"></i>
+                                                <strong>5</strong> One-Click
+                                                Apps
+                                              </li>
+                                              <li>
+                                                <i className="mdi mdi-checkbox-marked-circle-outline text-primary p-2 fs-16"></i>
+                                                <strong>3 </strong> Databases
+                                              </li>
+                                              <li>
+                                                <i className="mdi mdi-checkbox-marked-circle-outline text-primary p-2 fs-16"></i>
+                                                <strong>Unlimited </strong>{" "}
+                                                Cloud Storage
+                                              </li>
+                                              <li>
+                                                <i className="mdi mdi-checkbox-marked-circle-outline text-primary p-2 fs-16"></i>
+                                                <strong>Money </strong>{" "}
+                                                BackGuarantee
+                                              </li>
+                                              <li className="mb-5">
+                                                <i className="mdi mdi-checkbox-marked-circle-outline text-primary p-2 fs-16"></i>
+                                                <strong>24/7</strong> support
+                                              </li>
                                             </ul>
                                           </Card.Body>
                                           <div className="card-footer text-center border-top-0 pt-1">
-                                            <button
-                                              className="btn btn-lg btn-primary-gradient text-white btn-block">
-                                              <span className="ms-4 me-4">Select</span>
+                                            <button className="btn btn-lg btn-primary-gradient text-white btn-block">
+                                              <span className="ms-4 me-4">
+                                                Select
+                                              </span>
                                             </button>
                                           </div>
                                         </Card>
@@ -3255,44 +4288,70 @@ C431.3,1830.2,378.4,1777.3,378.4,1712z" />
                                       <Col lg={4} xl={4} md={8} sm={12}>
                                         <Card className=" p-3 pricing-card">
                                           <Card.Header className="d-block text-justified pt-2">
-                                            <p className="fs-18 fw-semibold mb-1">Regular</p>
-                                            <p className="text-justify fw-semibold mb-1"> <span
-                                              className="fs-30 me-2">$</span><span
-                                                className="fs-30 me-1">69</span><span
-                                                  className="fs-25"><span
-                                                    className="op-0-5 text-muted text-20">/</span>
-                                                month</span></p>
-                                            <p className="fs-13 mb-1">Lorem ipsum dolor sit amet
-                                              consectetur adipisicing elit. Iure quos debitis
-                                              aliquam .</p>
-                                            <p className="fs-13 mb-1  text-danger">Billed monthly on
-                                              regular basis!</p>
+                                            <p className="fs-18 fw-semibold mb-1">
+                                              Regular
+                                            </p>
+                                            <p className="text-justify fw-semibold mb-1">
+                                              {" "}
+                                              <span className="fs-30 me-2">
+                                                $
+                                              </span>
+                                              <span className="fs-30 me-1">
+                                                69
+                                              </span>
+                                              <span className="fs-25">
+                                                <span className="op-0-5 text-muted text-20">
+                                                  /
+                                                </span>
+                                                month
+                                              </span>
+                                            </p>
+                                            <p className="fs-13 mb-1">
+                                              Lorem ipsum dolor sit amet
+                                              consectetur adipisicing elit. Iure
+                                              quos debitis aliquam .
+                                            </p>
+                                            <p className="fs-13 mb-1  text-danger">
+                                              Billed monthly on regular basis!
+                                            </p>
                                           </Card.Header>
                                           <Card.Body className="pt-2">
                                             <ul className="text-justify pricing-body ps-0">
-                                              <li><i
-                                                className="mdi mdi-checkbox-marked-circle-outline text-danger p-2 fs-16"></i><strong>
-                                                  1 Free</strong> Domain Name</li>
-                                              <li><i
-                                                className="mdi mdi-checkbox-marked-circle-outline text-danger p-2 fs-16"></i><strong>4
-                                                </strong> One-Click Apps</li>
-                                              <li><i
-                                                className="mdi mdi-checkbox-marked-circle-outline text-danger p-2 fs-16"></i><strong>
-                                                  2 </strong> Databases</li>
-                                              <li className="text-muted"><i
-                                                className="mdi mdi-close-circle-outline text-gray p-2 fs-16"></i><strong>
-                                                  Unlimited </strong> Cloud Storage</li>
-                                              <li className="text-muted"><i
-                                                className="mdi mdi-close-circle-outline text-gray p-2 fs-16"></i><strong>
-                                                  Money </strong> BackGuarantee</li>
-                                              <li className="text-muted"><i
-                                                className="mdi mdi-close-circle-outline text-gray p-2 fs-16"></i><strong>
-                                                  24/7</strong> support</li>
+                                              <li>
+                                                <i className="mdi mdi-checkbox-marked-circle-outline text-danger p-2 fs-16"></i>
+                                                <strong>1 Free</strong> Domain
+                                                Name
+                                              </li>
+                                              <li>
+                                                <i className="mdi mdi-checkbox-marked-circle-outline text-danger p-2 fs-16"></i>
+                                                <strong>4</strong> One-Click
+                                                Apps
+                                              </li>
+                                              <li>
+                                                <i className="mdi mdi-checkbox-marked-circle-outline text-danger p-2 fs-16"></i>
+                                                <strong>2 </strong> Databases
+                                              </li>
+                                              <li className="text-muted">
+                                                <i className="mdi mdi-close-circle-outline text-gray p-2 fs-16"></i>
+                                                <strong>Unlimited </strong>{" "}
+                                                Cloud Storage
+                                              </li>
+                                              <li className="text-muted">
+                                                <i className="mdi mdi-close-circle-outline text-gray p-2 fs-16"></i>
+                                                <strong>Money </strong>{" "}
+                                                BackGuarantee
+                                              </li>
+                                              <li className="text-muted">
+                                                <i className="mdi mdi-close-circle-outline text-gray p-2 fs-16"></i>
+                                                <strong>24/7</strong> support
+                                              </li>
                                             </ul>
                                           </Card.Body>
                                           <div className="card-footer text-center border-top-0 pt-1">
                                             <button className="btn btn-lg btn-outline-danger btn-block">
-                                              <span className="ms-4 me-4">Select</span>
+                                              <span className="ms-4 me-4">
+                                                Select
+                                              </span>
                                             </button>
                                           </div>
                                         </Card>
@@ -3305,94 +4364,144 @@ C431.3,1830.2,378.4,1777.3,378.4,1712z" />
                                         <Col lg={4} xl={4} md={8} sm={12}>
                                           <Card className=" p-3 pricing-card reveal revealrotate">
                                             <Card.Header className="d-block text-justified pt-2">
-                                              <p className="fs-18 fw-semibold mb-1">Basic</p>
-                                              <p className="text-justify fw-semibold mb-1"> <span
-                                                className="fs-30 me-2">$</span><span
-                                                  className="fs-30 me-1">399</span><span
-                                                    className="fs-25"><span
-                                                      className="op-0-5 text-muted text-20">/</span>
-                                                  year</span></p>
-                                              <p className="fs-13 mb-1">Lorem ipsum dolor sit amet
-                                                consectetur adipisicing elit. Iure quos debitis
-                                                aliquam .</p>
-                                              <p className="fs-13 mb-3 text-secondary">Billed monthly
-                                                on regular basis!</p>
+                                              <p className="fs-18 fw-semibold mb-1">
+                                                Basic
+                                              </p>
+                                              <p className="text-justify fw-semibold mb-1">
+                                                {" "}
+                                                <span className="fs-30 me-2">
+                                                  $
+                                                </span>
+                                                <span className="fs-30 me-1">
+                                                  399
+                                                </span>
+                                                <span className="fs-25">
+                                                  <span className="op-0-5 text-muted text-20">
+                                                    /
+                                                  </span>
+                                                  year
+                                                </span>
+                                              </p>
+                                              <p className="fs-13 mb-1">
+                                                Lorem ipsum dolor sit amet
+                                                consectetur adipisicing elit.
+                                                Iure quos debitis aliquam .
+                                              </p>
+                                              <p className="fs-13 mb-3 text-secondary">
+                                                Billed monthly on regular basis!
+                                              </p>
                                             </Card.Header>
                                             <Card.Body className="py-2">
                                               <ul className="text-justify pricing-body ps-0 mb-0">
-                                                <li><i
-                                                  className="mdi mdi-checkbox-marked-circle-outline p-2 fs-16 text-secondary"></i><strong>
-                                                    2 Free</strong> Domain Name</li>
-                                                <li><i
-                                                  className="mdi mdi-checkbox-marked-circle-outline p-2 fs-16 text-secondary"></i>
-                                                  <strong>3 </strong> One-Click Apps
+                                                <li>
+                                                  <i className="mdi mdi-checkbox-marked-circle-outline p-2 fs-16 text-secondary"></i>
+                                                  <strong>2 Free</strong> Domain
+                                                  Name
                                                 </li>
-                                                <li className="text-muted"><i
-                                                  className="mdi mdi-close-circle-outline p-2 fs-16 text-gray"></i><strong>
-                                                    1 </strong> Databases</li>
-                                                <li className="text-muted"><i
-                                                  className="mdi mdi-close-circle-outline p-2 fs-16 text-gray"></i><strong>
-                                                    Unlimited </strong> Cloud Storage</li>
-                                                <li className="text-muted"><i
-                                                  className="mdi mdi-close-circle-outline p-2 fs-16 text-gray"></i><strong>
-                                                    Money </strong> BackGuarantee</li>
-                                                <li className="text-muted"><i
-                                                  className="mdi mdi-close-circle-outline p-2 fs-16 text-gray"></i><strong>
-                                                    24/7</strong> support</li>
+                                                <li>
+                                                  <i className="mdi mdi-checkbox-marked-circle-outline p-2 fs-16 text-secondary"></i>
+                                                  <strong>3 </strong> One-Click
+                                                  Apps
+                                                </li>
+                                                <li className="text-muted">
+                                                  <i className="mdi mdi-close-circle-outline p-2 fs-16 text-gray"></i>
+                                                  <strong>1 </strong> Databases
+                                                </li>
+                                                <li className="text-muted">
+                                                  <i className="mdi mdi-close-circle-outline p-2 fs-16 text-gray"></i>
+                                                  <strong>Unlimited </strong>{" "}
+                                                  Cloud Storage
+                                                </li>
+                                                <li className="text-muted">
+                                                  <i className="mdi mdi-close-circle-outline p-2 fs-16 text-gray"></i>
+                                                  <strong>Money </strong>{" "}
+                                                  BackGuarantee
+                                                </li>
+                                                <li className="text-muted">
+                                                  <i className="mdi mdi-close-circle-outline p-2 fs-16 text-gray"></i>
+                                                  <strong>24/7</strong> support
+                                                </li>
                                               </ul>
                                             </Card.Body>
                                             <div className="card-footer text-center border-top-0 pt-1">
                                               <button className="btn btn-lg btn-outline-secondary btn-block">
-                                                <span className="ms-4 me-4">Select</span>
+                                                <span className="ms-4 me-4">
+                                                  Select
+                                                </span>
                                               </button>
                                             </div>
                                           </Card>
                                         </Col>
                                         <Col lg={4} xl={4} md={8} sm={12}>
-                                          <Card
-                                            className="p-3 border bg-primary border-primary pricing-card advanced reveal revealrotate">
+                                          <Card className="p-3 border bg-primary border-primary pricing-card advanced reveal revealrotate">
                                             <Card.Header className="d-block text-justified pt-2 bd-white-2">
-                                              <p className="fs-18 fw-semibold mb-1 pe-0">Advanced<span
-                                                className="badge bg-white text-primary float-end font-weight-normal">Limited
-                                                Deal</span></p>
-                                              <p className="text-justify fw-semibold mb-1"> <span
-                                                className="fs-30 me-2">$</span><span
-                                                  className="fs-30 me-1">1,299</span><span
-                                                    className="fs-25"><span
-                                                      className="op-0-5 text-muted text-20">/</span>
-                                                  year</span></p>
-                                              <p className="fs-13 mb-2">Lorem ipsum dolor sit amet
-                                                consectetur adipisicing elit. Iure quos debitis
-                                                aliquam .</p>
-                                              <p className="fs-13 mb-1 text-primary">Billed monthly on
-                                                regular basis!</p>
+                                              <p className="fs-18 fw-semibold mb-1 pe-0">
+                                                Advanced
+                                                <span className="badge bg-white text-primary float-end font-weight-normal">
+                                                  Limited Deal
+                                                </span>
+                                              </p>
+                                              <p className="text-justify fw-semibold mb-1">
+                                                {" "}
+                                                <span className="fs-30 me-2">
+                                                  $
+                                                </span>
+                                                <span className="fs-30 me-1">
+                                                  1,299
+                                                </span>
+                                                <span className="fs-25">
+                                                  <span className="op-0-5 text-muted text-20">
+                                                    /
+                                                  </span>
+                                                  year
+                                                </span>
+                                              </p>
+                                              <p className="fs-13 mb-2">
+                                                Lorem ipsum dolor sit amet
+                                                consectetur adipisicing elit.
+                                                Iure quos debitis aliquam .
+                                              </p>
+                                              <p className="fs-13 mb-1 text-primary">
+                                                Billed monthly on regular basis!
+                                              </p>
                                             </Card.Header>
                                             <Card.Body className="py-2">
                                               <ul className="text-justify pricing-body ps-0 my-5">
-                                                <li><i
-                                                  className="mdi mdi-checkbox-marked-circle-outline text-primary p-2 fs-16"></i>
-                                                  <strong> 5 Free</strong> Domain Name
+                                                <li>
+                                                  <i className="mdi mdi-checkbox-marked-circle-outline text-primary p-2 fs-16"></i>
+                                                  <strong> 5 Free</strong>{" "}
+                                                  Domain Name
                                                 </li>
-                                                <li><i
-                                                  className="mdi mdi-checkbox-marked-circle-outline text-primary p-2 fs-16"></i><strong>5
-                                                  </strong> One-Click Apps</li>
-                                                <li><i
-                                                  className="mdi mdi-checkbox-marked-circle-outline text-primary p-2 fs-16"></i><strong>
-                                                    3 </strong> Databases</li>
-                                                <li><i
-                                                  className="mdi mdi-checkbox-marked-circle-outline text-primary p-2 fs-16"></i><strong>
-                                                    Unlimited </strong> Cloud Storage</li>
-                                                <li><i
-                                                  className="mdi mdi-checkbox-marked-circle-outline text-primary p-2 fs-16"></i><strong>
-                                                    Money </strong> BackGuarantee</li>
-                                                <li><i
-                                                  className="mdi mdi-checkbox-marked-circle-outline text-primary p-2 fs-16"></i><strong>
-                                                    24/7</strong> support</li>
+                                                <li>
+                                                  <i className="mdi mdi-checkbox-marked-circle-outline text-primary p-2 fs-16"></i>
+                                                  <strong>5</strong> One-Click
+                                                  Apps
+                                                </li>
+                                                <li>
+                                                  <i className="mdi mdi-checkbox-marked-circle-outline text-primary p-2 fs-16"></i>
+                                                  <strong>3 </strong> Databases
+                                                </li>
+                                                <li>
+                                                  <i className="mdi mdi-checkbox-marked-circle-outline text-primary p-2 fs-16"></i>
+                                                  <strong>Unlimited </strong>{" "}
+                                                  Cloud Storage
+                                                </li>
+                                                <li>
+                                                  <i className="mdi mdi-checkbox-marked-circle-outline text-primary p-2 fs-16"></i>
+                                                  <strong>Money </strong>{" "}
+                                                  BackGuarantee
+                                                </li>
+                                                <li>
+                                                  <i className="mdi mdi-checkbox-marked-circle-outline text-primary p-2 fs-16"></i>
+                                                  <strong>24/7</strong> support
+                                                </li>
                                               </ul>
                                             </Card.Body>
                                             <div className="card-footer text-center border-top-0 pt-1">
                                               <button className="btn btn-lg btn-white text-primary btn-block">
-                                                <span className="ms-4 me-4">Select</span>
+                                                <span className="ms-4 me-4">
+                                                  Select
+                                                </span>
                                               </button>
                                             </div>
                                           </Card>
@@ -3400,44 +4509,70 @@ C431.3,1830.2,378.4,1777.3,378.4,1712z" />
                                         <Col lg={4} xl={4} md={8} sm={12}>
                                           <Card className=" p-3 pricing-card reveal revealrotate">
                                             <Card.Header className="d-block text-justified pt-2">
-                                              <p className="fs-18 fw-semibold mb-1">Regular</p>
-                                              <p className="text-justify fw-semibold mb-1"> <span
-                                                className="fs-30 me-2">$</span><span
-                                                  className="fs-30 me-1">899</span><span
-                                                    className="fs-25"><span
-                                                      className="op-0-5 text-muted text-20">/</span>
-                                                  year</span></p>
-                                              <p className="fs-13 mb-1">Lorem ipsum dolor sit amet
-                                                consectetur adipisicing elit. Iure quos debitis
-                                                aliquam .</p>
-                                              <p className="fs-13 mb-3  text-danger">Billed monthly on
-                                                regular basis!</p>
+                                              <p className="fs-18 fw-semibold mb-1">
+                                                Regular
+                                              </p>
+                                              <p className="text-justify fw-semibold mb-1">
+                                                {" "}
+                                                <span className="fs-30 me-2">
+                                                  $
+                                                </span>
+                                                <span className="fs-30 me-1">
+                                                  899
+                                                </span>
+                                                <span className="fs-25">
+                                                  <span className="op-0-5 text-muted text-20">
+                                                    /
+                                                  </span>
+                                                  year
+                                                </span>
+                                              </p>
+                                              <p className="fs-13 mb-1">
+                                                Lorem ipsum dolor sit amet
+                                                consectetur adipisicing elit.
+                                                Iure quos debitis aliquam .
+                                              </p>
+                                              <p className="fs-13 mb-3  text-danger">
+                                                Billed monthly on regular basis!
+                                              </p>
                                             </Card.Header>
                                             <Card.Body className="py-2">
                                               <ul className="text-justify pricing-body ps-0 mb-0">
-                                                <li><i
-                                                  className="mdi mdi-checkbox-marked-circle-outline text-danger p-2 fs-16"></i><strong>
-                                                    1 Free</strong> Domain Name</li>
-                                                <li><i
-                                                  className="mdi mdi-checkbox-marked-circle-outline text-danger p-2 fs-16"></i><strong>4
-                                                  </strong> One-Click Apps</li>
-                                                <li><i
-                                                  className="mdi mdi-checkbox-marked-circle-outline text-danger p-2 fs-16"></i><strong>
-                                                    2 </strong> Databases</li>
-                                                <li className="text-muted"><i
-                                                  className="mdi mdi-close-circle-outline text-gray p-2 fs-16"></i><strong>
-                                                    Unlimited </strong> Cloud Storage</li>
-                                                <li className="text-muted"><i
-                                                  className="mdi mdi-close-circle-outline text-gray p-2 fs-16"></i><strong>
-                                                    Money </strong> BackGuarantee</li>
-                                                <li className="text-muted"><i
-                                                  className="mdi mdi-close-circle-outline text-gray p-2 fs-16"></i><strong>
-                                                    24/7</strong> support</li>
+                                                <li>
+                                                  <i className="mdi mdi-checkbox-marked-circle-outline text-danger p-2 fs-16"></i>
+                                                  <strong>1 Free</strong> Domain
+                                                  Name
+                                                </li>
+                                                <li>
+                                                  <i className="mdi mdi-checkbox-marked-circle-outline text-danger p-2 fs-16"></i>
+                                                  <strong>4</strong> One-Click
+                                                  Apps
+                                                </li>
+                                                <li>
+                                                  <i className="mdi mdi-checkbox-marked-circle-outline text-danger p-2 fs-16"></i>
+                                                  <strong>2 </strong> Databases
+                                                </li>
+                                                <li className="text-muted">
+                                                  <i className="mdi mdi-close-circle-outline text-gray p-2 fs-16"></i>
+                                                  <strong>Unlimited </strong>{" "}
+                                                  Cloud Storage
+                                                </li>
+                                                <li className="text-muted">
+                                                  <i className="mdi mdi-close-circle-outline text-gray p-2 fs-16"></i>
+                                                  <strong>Money </strong>{" "}
+                                                  BackGuarantee
+                                                </li>
+                                                <li className="text-muted">
+                                                  <i className="mdi mdi-close-circle-outline text-gray p-2 fs-16"></i>
+                                                  <strong>24/7</strong> support
+                                                </li>
                                               </ul>
                                             </Card.Body>
                                             <div className="card-footer text-center border-top-0 pt-1">
                                               <button className="btn btn-lg btn-outline-danger btn-block">
-                                                <span className="ms-4 me-4">Select</span>
+                                                <span className="ms-4 me-4">
+                                                  Select
+                                                </span>
                                               </button>
                                             </div>
                                           </Card>
@@ -3456,69 +4591,103 @@ C431.3,1830.2,378.4,1777.3,378.4,1712z" />
                   <div className="section bg-white" id="faqs">
                     <Container>
                       <Row>
-                        <h4 className="text-center fw-semibold landing-card-header">FAQ'S ?</h4>
+                        <h4 className="text-center fw-semibold landing-card-header">
+                          FAQ'S ?
+                        </h4>
                         <span className="landing-title"></span>
-                        <h2 className="text-center fw-semibold">We are here to help you</h2>
+                        <h2 className="text-center fw-semibold">
+                          We are here to help you
+                        </h2>
                         <Row className="justify-content-center">
-                          <Col xl={9} className="wow fadeInUp text-default sub-text mb-5" data-wow-delay="0s">
-                            The Spruha admin template is one of the modern dashboard templates.
-                            It is also a premium admin dashboard with high-end features, where users
-                            can easily customize
-                            or change their projects according to their choice. Please take a quick
-                            look at our template highlights.
+                          <Col
+                            xl={9}
+                            className="wow fadeInUp text-default sub-text mb-5"
+                            data-wow-delay="0s"
+                          >
+                            The Spruha admin template is one of the modern
+                            dashboard templates. It is also a premium admin
+                            dashboard with high-end features, where users can
+                            easily customize or change their projects according
+                            to their choice. Please take a quick look at our
+                            template highlights.
                           </Col>
                         </Row>
-                        <section className="sptb demo-screen-demo" >
+                        <section className="sptb demo-screen-demo">
                           <Row className="align-items-center">
                             <Col md={12} lg={6}>
                               <Col md={12} className="grid-item  px-0">
-                                <Card
-                                  className="bg-primary-transparent bg-transparent border  p-0 reveal">
-                                  <Card.Header className="grid-link" onClick={() => { Secondcollpase("primary") }}>
-                                    <Card.Subtitle
-                                      className="card-options-collapse h5 fw-bold mb-0  text-primary"><span
-                                        className="me-3 fs-18 fw-bold">01.</span>Can
-                                      i get a free trial before purchase ?</Card.Subtitle>
+                                <Card className="bg-primary-transparent bg-transparent border  p-0 reveal">
+                                  <Card.Header
+                                    className="grid-link"
+                                    onClick={() => {
+                                      Secondcollpase("primary");
+                                    }}
+                                  >
+                                    <Card.Subtitle className="card-options-collapse h5 fw-bold mb-0  text-primary">
+                                      <span className="me-3 fs-18 fw-bold">
+                                        01.
+                                      </span>
+                                      Can i get a free trial before purchase ?
+                                    </Card.Subtitle>
                                   </Card.Header>
                                   {is7Collapsed ? (
-
                                     <Card.Body className="pt-0">
                                       <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing
-                                        elit. Iure quos debitis aliquam .
+                                        Lorem ipsum dolor sit amet consectetur
+                                        adipisicing elit. Iure quos debitis
+                                        aliquam .
                                       </p>
                                       <p className="mt-2 mb-3">
-                                        <span className="fw-bold">Note: </span>Please Refer
-                                        support section for more information.
+                                        <span className="fw-bold">Note: </span>
+                                        Please Refer support section for more
+                                        information.
                                       </p>
-                                      <Link to="#" target="_blank"
-                                        className="btn btn-outline-primary tx-13">Click here</Link>
+                                      <Link
+                                        to="#"
+                                        target="_blank"
+                                        className="btn btn-outline-primary tx-13"
+                                      >
+                                        Click here
+                                      </Link>
                                     </Card.Body>
                                   ) : null}
                                 </Card>
                               </Col>
                               <Col md={12} className="grid-item  px-0">
-                                <Card
-                                  className="bg-success-transparent bg-transparent border p-0 reveal">
-                                  <Card.Header className="grid-link" onClick={() => { Secondcollpase("success") }}>
-                                    <Card.Subtitle
-                                      className="card-options-collapse  h5 fw-bold mb-0 text-success"><span
-                                        className="me-3 fs-18 fw-bold">02.</span>What
-                                      type of files i will get after purchase ?</Card.Subtitle>
+                                <Card className="bg-success-transparent bg-transparent border p-0 reveal">
+                                  <Card.Header
+                                    className="grid-link"
+                                    onClick={() => {
+                                      Secondcollpase("success");
+                                    }}
+                                  >
+                                    <Card.Subtitle className="card-options-collapse  h5 fw-bold mb-0 text-success">
+                                      <span className="me-3 fs-18 fw-bold">
+                                        02.
+                                      </span>
+                                      What type of files i will get after
+                                      purchase ?
+                                    </Card.Subtitle>
                                   </Card.Header>
                                   {is8Collapsed ? (
-
                                     <Card.Body className="pt-0">
                                       <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing
-                                        elit. Iure quos debitis aliquam.
+                                        Lorem ipsum dolor sit amet consectetur
+                                        adipisicing elit. Iure quos debitis
+                                        aliquam.
                                       </p>
                                       <p className="mt-2 mb-3">
-                                        <span className="fw-bold">Note: </span>Please Refer
-                                        support section for more information.
+                                        <span className="fw-bold">Note: </span>
+                                        Please Refer support section for more
+                                        information.
                                       </p>
-                                      <Link to="#" target="_blank"
-                                        className="btn btn-outline-success tx-13">Click here</Link>
+                                      <Link
+                                        to="#"
+                                        target="_blank"
+                                        className="btn btn-outline-success tx-13"
+                                      >
+                                        Click here
+                                      </Link>
                                     </Card.Body>
                                   ) : null}
                                 </Card>
@@ -3526,101 +4695,146 @@ C431.3,1830.2,378.4,1777.3,378.4,1712z" />
 
                               <Col md={12} className="grid-item  px-0">
                                 <Card className="bg-secondary-transparent bg-transparent border p-0 reveal">
-                                  <Card.Header className="grid-link" onClick={() => { Secondcollpase("secondary") }}>
-                                    <Card.Subtitle
-                                      className="card-options-collapse  h5 fw-bold mb-0 text-secondary"><span
-                                        className="me-3 fs-18 fw-bold">03.</span>What
-                                      is a single Application</Card.Subtitle>
+                                  <Card.Header
+                                    className="grid-link"
+                                    onClick={() => {
+                                      Secondcollpase("secondary");
+                                    }}
+                                  >
+                                    <Card.Subtitle className="card-options-collapse  h5 fw-bold mb-0 text-secondary">
+                                      <span className="me-3 fs-18 fw-bold">
+                                        03.
+                                      </span>
+                                      What is a single Application
+                                    </Card.Subtitle>
                                   </Card.Header>
                                   {is9Collapsed ? (
-
                                     <Card.Body className="pt-0">
                                       <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing
-                                        elit. Iure quos debitis aliquam.
+                                        Lorem ipsum dolor sit amet consectetur
+                                        adipisicing elit. Iure quos debitis
+                                        aliquam.
                                       </p>
                                       <p className="mt-2 mb-3">
-                                        <span className="fw-bold">Note:  </span>Please Refer
-                                        support section for more information.
+                                        <span className="fw-bold">Note: </span>
+                                        Please Refer support section for more
+                                        information.
                                       </p>
-                                      <Link to="#" target="_blank"
-                                        className="btn btn-outline-secondary tx-13">Click
-                                        here</Link>
+                                      <Link
+                                        to="#"
+                                        target="_blank"
+                                        className="btn btn-outline-secondary tx-13"
+                                      >
+                                        Click here
+                                      </Link>
                                     </Card.Body>
                                   ) : null}
                                 </Card>
                               </Col>
                               <Col md={12} className="grid-item  px-0">
-                                <Card
-                                  className="bg-warning-transparent  bg-transparent border p-0 reveal">
-                                  <Card.Header className="grid-link" onClick={() => { Secondcollpase("warning") }}>
-                                    <Card.Subtitle
-                                      className="card-options-collapse  h5 fw-bold mb-0 text-warning"><span
-                                        className="me-3 fs-18 fw-bold">04.</span>How
-                                      to get future updates ?</Card.Subtitle>
+                                <Card className="bg-warning-transparent  bg-transparent border p-0 reveal">
+                                  <Card.Header
+                                    className="grid-link"
+                                    onClick={() => {
+                                      Secondcollpase("warning");
+                                    }}
+                                  >
+                                    <Card.Subtitle className="card-options-collapse  h5 fw-bold mb-0 text-warning">
+                                      <span className="me-3 fs-18 fw-bold">
+                                        04.
+                                      </span>
+                                      How to get future updates ?
+                                    </Card.Subtitle>
                                   </Card.Header>
                                   {is10Collapsed ? (
-
                                     <Card.Body className="pt-0">
                                       <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing
-                                        elit. Iure quos debitis aliquam.
+                                        Lorem ipsum dolor sit amet consectetur
+                                        adipisicing elit. Iure quos debitis
+                                        aliquam.
                                       </p>
                                       <p className="mt-2 mb-3">
-                                        <span className="fw-bold">Note: </span>Please Refer
-                                        support section for more information.
+                                        <span className="fw-bold">Note: </span>
+                                        Please Refer support section for more
+                                        information.
                                       </p>
-                                      <Link to="#" target="_blank"
-                                        className="btn btn-outline-warning tx-13">Click here</Link>
+                                      <Link
+                                        to="#"
+                                        target="_blank"
+                                        className="btn btn-outline-warning tx-13"
+                                      >
+                                        Click here
+                                      </Link>
                                     </Card.Body>
                                   ) : null}
                                 </Card>
                               </Col>
                               <Col md={12} className="grid-item  px-0">
-                                <Card
-                                  className="bg-danger-transparent  bg-transparent border p-0 reveal">
-                                  <Card.Header className="grid-link" onClick={() => { Secondcollpase("danger") }}>
-                                    <Card.Subtitle
-                                      className="card-options-collapse  h5 fw-bold mb-0 text-danger"><span
-                                        className="me-3 fs-18 fw-bold">05.</span>Do
-                                      you provide support ?</Card.Subtitle>
+                                <Card className="bg-danger-transparent  bg-transparent border p-0 reveal">
+                                  <Card.Header
+                                    className="grid-link"
+                                    onClick={() => {
+                                      Secondcollpase("danger");
+                                    }}
+                                  >
+                                    <Card.Subtitle className="card-options-collapse  h5 fw-bold mb-0 text-danger">
+                                      <span className="me-3 fs-18 fw-bold">
+                                        05.
+                                      </span>
+                                      Do you provide support ?
+                                    </Card.Subtitle>
                                   </Card.Header>
                                   {is11Collapsed ? (
-
                                     <Card.Body className="pt-0">
                                       <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing
-                                        elit. Iure quos debitis aliquam.
+                                        Lorem ipsum dolor sit amet consectetur
+                                        adipisicing elit. Iure quos debitis
+                                        aliquam.
                                       </p>
                                       <p className="mt-2 mb-3">
-                                        <span className="fw-bold">Note: </span>Please Refer
-                                        support section for more information.
+                                        <span className="fw-bold">Note: </span>
+                                        Please Refer support section for more
+                                        information.
                                       </p>
-                                      <Link to="#" target="_blank"
-                                        className="btn btn-outline-danger tx-13">Click here</Link>
+                                      <Link
+                                        to="#"
+                                        target="_blank"
+                                        className="btn btn-outline-danger tx-13"
+                                      >
+                                        Click here
+                                      </Link>
                                     </Card.Body>
                                   ) : null}
                                 </Card>
                               </Col>
                             </Col>
                             <Col md={12} lg={6} className="reveal revealright">
-                              <img src={require("../../assets/landing/images/frequently-asked-questions.png")} alt="w" />
+                              <img
+                                src={require("../../assets/landing/images/frequently-asked-questions.png")}
+                                alt="w"
+                              />
                             </Col>
                           </Row>
                         </section>
                       </Row>
                     </Container>
                   </div>
-                  <div className="testimonial-owl-landing section pb-0" id="Clients">
+                  <div
+                    className="testimonial-owl-landing section pb-0"
+                    id="Clients"
+                  >
                     <Container>
                       <Row>
                         <Col md={12}>
                           <Card className="bg-transparent">
                             <Card.Body className="pt-5">
-                              <h4 className="text-center fw-semibold">Testimonials </h4>
+                              <h4 className="text-center fw-semibold">
+                                Testimonials{" "}
+                              </h4>
                               <span className="landing-title"></span>
-                              <h2 className="text-center fw-semibold text-white mb-5">What People Are
-                                Saying About Our Product.</h2>
+                              <h2 className="text-center fw-semibold text-white mb-5">
+                                What People Are Saying About Our Product.
+                              </h2>
                               <div className="testimonial-carousel">
                                 <Slicksiderwithdata />
                               </div>
@@ -3635,10 +4849,14 @@ C431.3,1830.2,378.4,1777.3,378.4,1712z" />
                     <Container>
                       <div>
                         <Card className="reveal p-5 mb-0 ">
-                          <h4 className="text-center fw-semibold mt-7 landing-card-header ">Contact</h4>
+                          <h4 className="text-center fw-semibold mt-7 landing-card-header ">
+                            Contact
+                          </h4>
                           <span className="landing-title"></span>
-                          <h2 className="text-center fw-semibold mb-0 px-2">Get in Touch with <span
-                            className="text-primary">US.</span></h2>
+                          <h2 className="text-center fw-semibold mb-0 px-2">
+                            Get in Touch with{" "}
+                            <span className="text-primary">US.</span>
+                          </h2>
                           <Card.Body className="text-dark">
                             <div className="statistics-info">
                               <Row className="row justify-content-center">
@@ -3651,15 +4869,15 @@ C431.3,1830.2,378.4,1777.3,378.4,1712z" />
                                             <Card>
                                               <Card.Body className="p-0">
                                                 <div className="counter-status">
-                                                  <div
-                                                    className="counter-icon bg-primary-transparent box-shadow-primary">
-                                                    <i
-                                                      className="fe fe-map-pin text-primary fs-23"></i>
+                                                  <div className="counter-icon bg-primary-transparent box-shadow-primary">
+                                                    <i className="fe fe-map-pin text-primary fs-23"></i>
                                                   </div>
                                                   <h4 className="mb-2 fw-semibold">
-                                                    Main Branch</h4>
-                                                  <p className="title-desc mb-1">150 Burno
-                                                    Street</p>
+                                                    Main Branch
+                                                  </h4>
+                                                  <p className="title-desc mb-1">
+                                                    150 Burno Street
+                                                  </p>
                                                   <p>San Francisco, CA </p>
                                                 </div>
                                               </Card.Body>
@@ -3669,15 +4887,15 @@ C431.3,1830.2,378.4,1777.3,378.4,1712z" />
                                             <Card>
                                               <Card.Body className="p-0">
                                                 <div className="counter-status">
-                                                  <div
-                                                    className="counter-icon bg-secondary-transparent box-shadow-secondary">
-                                                    <i
-                                                      className="fe fe-headphones text-secondary fs-23"></i>
+                                                  <div className="counter-icon bg-secondary-transparent box-shadow-secondary">
+                                                    <i className="fe fe-headphones text-secondary fs-23"></i>
                                                   </div>
                                                   <h4 className="mb-2 fw-semibold">
-                                                    Phone & Email</h4>
-                                                  <p className="mb-0">+125 254
-                                                    3562 </p>
+                                                    Phone & Email
+                                                  </h4>
+                                                  <p className="mb-0">
+                                                    +125 254 3562{" "}
+                                                  </p>
                                                   <p>georgeme@abc.com</p>
                                                 </div>
                                               </Card.Body>
@@ -3687,15 +4905,15 @@ C431.3,1830.2,378.4,1777.3,378.4,1712z" />
                                             <Card>
                                               <Card.Body className="p-0">
                                                 <div className="counter-statuss">
-                                                  <div
-                                                    className="counter-icon bg-success-transparent box-shadow-success">
-                                                    <i
-                                                      className="fe fe-mail text-success fs-23"></i>
+                                                  <div className="counter-icon bg-success-transparent box-shadow-success">
+                                                    <i className="fe fe-mail text-success fs-23"></i>
                                                   </div>
                                                   <h4 className="mb-2 fw-semibold">
-                                                    Contact</h4>
+                                                    Contact
+                                                  </h4>
                                                   <p className="mb-0">
-                                                    www.example.com</p>
+                                                    www.example.com
+                                                  </p>
                                                   <p>example@dev.com</p>
                                                 </div>
                                               </Card.Body>
@@ -3705,16 +4923,17 @@ C431.3,1830.2,378.4,1777.3,378.4,1712z" />
                                             <Card>
                                               <Card.Body className="p-0">
                                                 <div className="counter-status">
-                                                  <div
-                                                    className="counter-icon bg-danger-transparent box-shadow-danger">
-                                                    <i
-                                                      className="fe fe-airplay text-danger fs-23"></i>
+                                                  <div className="counter-icon bg-danger-transparent box-shadow-danger">
+                                                    <i className="fe fe-airplay text-danger fs-23"></i>
                                                   </div>
                                                   <h4 className="mb-2 fw-semibold">
-                                                    Working Hours</h4>
-                                                  <p className="mb-0">Monday -
-                                                    Friday: 9am - 6pm</p>
-                                                  <p>Satday - Sunday: Holiday
+                                                    Working Hours
+                                                  </h4>
+                                                  <p className="mb-0">
+                                                    Monday - Friday: 9am - 6pm
+                                                  </p>
+                                                  <p>
+                                                    Satday - Sunday: Holiday
                                                   </p>
                                                 </div>
                                               </Card.Body>
@@ -3725,42 +4944,70 @@ C431.3,1830.2,378.4,1777.3,378.4,1712z" />
                                     </div>
                                   </div>
                                 </Col>
-                                <Col xl={12} >
+                                <Col xl={12}>
                                   <div>
                                     <Form className="reveal">
                                       <Row>
                                         <Col xl={6}>
                                           <div className="form-group ">
-                                            <Form.Label htmlFor="cusName">Name
-                                              <span className="text-danger">*</span></Form.Label>
-                                            <Form.Control type="text" className="form-control"
-                                              id="cusName" placeholder="Enter your name" />
+                                            <Form.Label htmlFor="cusName">
+                                              Name
+                                              <span className="text-danger">
+                                                *
+                                              </span>
+                                            </Form.Label>
+                                            <Form.Control
+                                              type="text"
+                                              className="form-control"
+                                              id="cusName"
+                                              placeholder="Enter your name"
+                                            />
                                           </div>
                                         </Col>
                                         <Col xl={6}>
                                           <div className="form-group">
-                                            <Form.Label htmlFor="cusEmail">Email
-                                              <span className="text-danger">*</span></Form.Label>
-                                            <input type="text" className="form-control"
+                                            <Form.Label htmlFor="cusEmail">
+                                              Email
+                                              <span className="text-danger">
+                                                *
+                                              </span>
+                                            </Form.Label>
+                                            <input
+                                              type="text"
+                                              className="form-control"
                                               id="cusEmail"
-                                              placeholder="Enter your email" />
+                                              placeholder="Enter your email"
+                                            />
                                           </div>
                                         </Col>
                                       </Row>
                                       <div className="form-group">
-                                        <Form.Label htmlFor="cusSubject"
-                                        >Subject</Form.Label>
-                                        <input type="text" className="form-control" id="cusSubject"
-                                          placeholder="Enter your subject" />
+                                        <Form.Label htmlFor="cusSubject">
+                                          Subject
+                                        </Form.Label>
+                                        <input
+                                          type="text"
+                                          className="form-control"
+                                          id="cusSubject"
+                                          placeholder="Enter your subject"
+                                        />
                                       </div>
                                       <div className="form-group">
-                                        <Form.Label htmlFor="cusMessage">Message <span
-                                          className="text-danger">*</span></Form.Label>
-                                        <textarea rows="5" className="form-control" id="cusMessage"
-                                          placeholder="Type your message here..."></textarea>
+                                        <Form.Label htmlFor="cusMessage">
+                                          Message{" "}
+                                          <span className="text-danger">*</span>
+                                        </Form.Label>
+                                        <textarea
+                                          rows="5"
+                                          className="form-control"
+                                          id="cusMessage"
+                                          placeholder="Type your message here..."
+                                        ></textarea>
                                       </div>
                                       <div className="form-group">
-                                        <button className="btn btn-primary">Send Message</button>
+                                        <button className="btn btn-primary">
+                                          Send Message
+                                        </button>
                                       </div>
                                     </Form>
                                   </div>
@@ -3777,24 +5024,50 @@ C431.3,1830.2,378.4,1777.3,378.4,1712z" />
                     <Container className="text-center text-white px-5 px-md-0">
                       <Row id="demo">
                         <Col lg={6}>
-                          <div className="feature-1 border-0"> <Link to="#"></Link>
-                            <div className="mb-3"> <i className="si si-earphones-alt fs-50"></i> </div>
+                          <div className="feature-1 border-0">
+                            {" "}
+                            <Link to="#"></Link>
+                            <div className="mb-3">
+                              {" "}
+                              <i className="si si-earphones-alt fs-50"></i>{" "}
+                            </div>
                             <h4 className="fs-25">Get Support</h4>
-                            <p className="mb-1 text-white">Need Help? Don't worry. Please visit our support
-                              website. Our dedicated
-                              team will help you.</p>
-                            <h6 className="mb-0">Support : <Link to="mailto:support@spruko.com" className="text-white pos-relative"
-                            >support@spruko.com</Link></h6>
+                            <p className="mb-1 text-white">
+                              Need Help? Don't worry. Please visit our support
+                              website. Our dedicated team will help you.
+                            </p>
+                            <h6 className="mb-0">
+                              Support :{" "}
+                              <Link
+                                to="mailto:support@spruko.com"
+                                className="text-white pos-relative"
+                              >
+                                support@spruko.com
+                              </Link>
+                            </h6>
                           </div>
                         </Col>
                         <Col lg={6} className=" mt-5 mt-xl-0 mt-lg-0">
-                          <div className="feature-1 border-0"> <Link to="#"></Link>
-                            <div className="mb-3"> <i className="si si-bubbles fs-50"></i> </div>
+                          <div className="feature-1 border-0">
+                            {" "}
+                            <Link to="#"></Link>
+                            <div className="mb-3">
+                              {" "}
+                              <i className="si si-bubbles fs-50"></i>{" "}
+                            </div>
                             <h4 className="fs-25">Pre-Sale Questions</h4>
-                            <p className="mb-1 text-white">Please feel free to ask any questions before making
-                              the purchase.</p>
-                            <h6 className="mb-0">Ask : <Link to="mailto:support@spruko.com" className="text-white pos-relative"
-                            >support@spruko.com</Link>
+                            <p className="mb-1 text-white">
+                              Please feel free to ask any questions before
+                              making the purchase.
+                            </p>
+                            <h6 className="mb-0">
+                              Ask :{" "}
+                              <Link
+                                to="mailto:support@spruko.com"
+                                className="text-white pos-relative"
+                              >
+                                support@spruko.com
+                              </Link>
                             </h6>
                           </div>
                         </Col>
@@ -3806,8 +5079,15 @@ C431.3,1830.2,378.4,1777.3,378.4,1712z" />
             </div>
             <div className="pos-relative">
               <div className="shape overflow-hidden bottom-footer-shape">
-                <svg viewBox="0 0 2880 48" fill="none" xmsns="http://www.w3.org/2000/svg">
-                  <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="#0e0e23"></path>
+                <svg
+                  viewBox="0 0 2880 48"
+                  fill="none"
+                  xmsns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z"
+                    fill="#0e0e23"
+                  ></path>
                 </svg>
               </div>
             </div>
@@ -3818,65 +5098,146 @@ C431.3,1830.2,378.4,1777.3,378.4,1712z" />
                     <Card.Body className="p-0">
                       <div className="top-footer">
                         <Row>
-                          <Col lg={4} sm={12} md={12} className="reveal revealleft">
+                          <Col
+                            lg={4}
+                            sm={12}
+                            md={12}
+                            className="reveal revealleft"
+                          >
                             <h6>About</h6>
-                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-                              doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
-                              veritatis et quasi architecto beatae vitae dicta sunt
-                              explicabo.
+                            <p>
+                              Sed ut perspiciatis unde omnis iste natus error
+                              sit voluptatem accusantium doloremque laudantium,
+                              totam rem aperiam, eaque ipsa quae ab illo
+                              inventore veritatis et quasi architecto beatae
+                              vitae dicta sunt explicabo.
                             </p>
-                            <p className="mb-5 mb-lg-2">Duis aute irure dolor in reprehenderit in voluptate
-                              velit esse cillum dolore eu fugiat nulla pariatur Excepteur sint occaecat .
+                            <p className="mb-5 mb-lg-2">
+                              Duis aute irure dolor in reprehenderit in
+                              voluptate velit esse cillum dolore eu fugiat nulla
+                              pariatur Excepteur sint occaecat .
                             </p>
                           </Col>
-                          <Col lg={2} sm={6} md={4} className=" reveal revealleft">
+                          <Col
+                            lg={2}
+                            sm={6}
+                            md={4}
+                            className=" reveal revealleft"
+                          >
                             <h6>Pages</h6>
                             <ul className="mb-5 mb-lg-0 ps-0">
-                              <li><Link to="#">Dashboard</Link></li>
-                              <li><Link to="#">Elements</Link></li>
-                              <li><Link to="#">Forms</Link></li>
-                              <li><Link to="#">Charts</Link></li>
-                              <li><Link to="#">Tables</Link></li>
-                              <li><Link to="#">Other Pages</Link></li>
+                              <li>
+                                <Link to="#">Dashboard</Link>
+                              </li>
+                              <li>
+                                <Link to="#">Elements</Link>
+                              </li>
+                              <li>
+                                <Link to="#">Forms</Link>
+                              </li>
+                              <li>
+                                <Link to="#">Charts</Link>
+                              </li>
+                              <li>
+                                <Link to="#">Tables</Link>
+                              </li>
+                              <li>
+                                <Link to="#">Other Pages</Link>
+                              </li>
                             </ul>
                           </Col>
-                          <Col lg={2} sm={6} md={4} className=" reveal revealleft">
+                          <Col
+                            lg={2}
+                            sm={6}
+                            md={4}
+                            className=" reveal revealleft"
+                          >
                             <h6>Information</h6>
                             <ul className="mb-5 mb-lg-0 ps-0">
-                              <li><Link to="#">Our Team</Link></li>
-                              <li><Link to="#">Contact US</Link></li>
-                              <li><Link to="#">About</Link></li>
-                              <li><Link to="#">Services</Link></li>
-                              <li><Link to="#">Blog</Link></li>
-                              <li><Link to="#">Terms and Services</Link></li>
+                              <li>
+                                <Link to="#">Our Team</Link>
+                              </li>
+                              <li>
+                                <Link to="#">Contact US</Link>
+                              </li>
+                              <li>
+                                <Link to="#">About</Link>
+                              </li>
+                              <li>
+                                <Link to="#">Services</Link>
+                              </li>
+                              <li>
+                                <Link to="#">Blog</Link>
+                              </li>
+                              <li>
+                                <Link to="#">Terms and Services</Link>
+                              </li>
                             </ul>
                           </Col>
-                          <Col lg={4} sm={12} md={4} className="reveal revealleft">
+                          <Col
+                            lg={4}
+                            sm={12}
+                            md={4}
+                            className="reveal revealleft"
+                          >
                             <div>
-                              <Link to="index.html"><img loading="lazy" alt="" className="logo mb-3"
-                                src={require("../../assets/img/brand/logo-light.png")} /></Link>
-                              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                                dolore eu fugiat nulla pariatur Excepteur sint occaecat.</p>
+                              <Link to="index.html">
+                                <img
+                                  loading="lazy"
+                                  alt=""
+                                  className="logo mb-3"
+                                  src={require("../../assets/img/brand/logo-light.png")}
+                                />
+                              </Link>
+                              <p>
+                                Duis aute irure dolor in reprehenderit in
+                                voluptate velit esse cillum dolore eu fugiat
+                                nulla pariatur Excepteur sint occaecat.
+                              </p>
                               <div className="form-group">
                                 <div className="input-group">
-                                  <input type="text" className="form-control"
+                                  <input
+                                    type="text"
+                                    className="form-control"
                                     placeholder="Enter your email"
                                     aria-label="Example text with button addon"
-                                    aria-describedby="button-addon1" />
-                                  <Button variant="primary" type="button"
-                                    id="button-addon2">Submit</Button>
+                                    aria-describedby="button-addon1"
+                                  />
+                                  <Button
+                                    variant="primary"
+                                    type="button"
+                                    id="button-addon2"
+                                  >
+                                    Submit
+                                  </Button>
                                 </div>
                               </div>
                             </div>
                             <div className="btn-list mt-6">
-                              <Button type="Button " className=" btn-icon rounded-pill"><i
-                                className="fe fe-facebook"></i></Button>
-                              <Button type="Button " className=" btn-icon rounded-pill"><i
-                                className="fe fe-github"></i></Button>
-                              <Button type="Button " className=" btn-icon rounded-pill"><i
-                                className="fe fe-twitter"></i></Button>
-                              <Button type="Button " className=" btn-icon rounded-pill"><i
-                                className="fe fe-instagram"></i></Button>
+                              <Button
+                                type="Button "
+                                className=" btn-icon rounded-pill"
+                              >
+                                <i className="fe fe-facebook"></i>
+                              </Button>
+                              <Button
+                                type="Button "
+                                className=" btn-icon rounded-pill"
+                              >
+                                <i className="fe fe-github"></i>
+                              </Button>
+                              <Button
+                                type="Button "
+                                className=" btn-icon rounded-pill"
+                              >
+                                <i className="fe fe-twitter"></i>
+                              </Button>
+                              <Button
+                                type="Button "
+                                className=" btn-icon rounded-pill"
+                              >
+                                <i className="fe fe-instagram"></i>
+                              </Button>
                             </div>
                           </Col>
                         </Row>
@@ -3886,7 +5247,8 @@ C431.3,1830.2,378.4,1777.3,378.4,1712z" />
                         <Row>
                           <Col md={12} sm={12}>
                             Copyright © <span id="year"></span>
-                            <Link to="#">Spruha</Link>.Designed with <span className="fa fa-heart text-danger"></span> by
+                            <Link to="#">Spruha</Link>.Designed with{" "}
+                            <span className="fa fa-heart text-danger"></span> by
                             <Link to="#"> Spruko </Link> All rights reserved.
                           </Col>
                         </Row>
@@ -3900,8 +5262,7 @@ C431.3,1830.2,378.4,1777.3,378.4,1712z" />
         </div>
       </div>
     </Fragment>
-
-  )
+  );
 };
 Landingpage.propTypes = {};
 

@@ -69,7 +69,7 @@ const Trainings = () => {
         </div>
         <div className="d-flex">
           <div className="justify-content-center">
-            <Link to={"/spruha/preview/pages/training/create"}>
+            <Link to={"/pages/training/create"}>
               <Button
                 variant="primary"
                 type="button"

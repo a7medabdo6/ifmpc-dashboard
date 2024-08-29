@@ -36,7 +36,7 @@ function Header2() {
 
   let navigate = useNavigate();
   const routeChange = () => {
-    let path = `${process.env.PUBLIC_URL}/`;
+    let path = `/`;
     navigate(path);
   };
 
@@ -60,7 +60,7 @@ function Header2() {
         <Container fluid className="main-container">
           <div className="main-header-left">
             <Link
-              to={`${process.env.PUBLIC_URL}/Dashboard`}
+              to={`/Dashboard`}
               className="main-header-menu-icon"
               href="#"
               id="mainSidebarToggle"
@@ -72,10 +72,7 @@ function Header2() {
               <span></span>
             </Link>
             <div className="hor-logo">
-              <Link
-                className="main-logo"
-                to={`${process.env.PUBLIC_URL}/Dashboard`}
-              >
+              <Link className="main-logo" to={`/Dashboard`}>
                 <img
                   src={require("../../assets/img/brand/logo.png")}
                   className="header-brand-img desktop-logo"
@@ -91,14 +88,14 @@ function Header2() {
           </div>
           <div className="main-header-center">
             <div className="responsive-logo">
-              <Link to={`${process.env.PUBLIC_URL}/Dashboard`}>
+              <Link to={`/Dashboard`}>
                 <img
                   src={require("../../assets/img/brand/logo.png")}
                   className="mobile-logo"
                   alt="logo"
                 />
               </Link>
-              <Link to={`${process.env.PUBLIC_URL}/Dashboard`}>
+              <Link to={`/Dashboard`}>
                 <img
                   src={require("../../assets/img/brand/logo-light.png")}
                   className="mobile-logo-dark"
@@ -402,10 +399,7 @@ function Header2() {
                     </Dropdown.Menu>
                   </Dropdown>
                   <div className="main-header-notification">
-                    <Link
-                      className="icon nav-link"
-                      to={`${process.env.PUBLIC_URL}/advanceUI/chat/`}
-                    >
+                    <Link className="icon nav-link" to={`/advanceUI/chat/`}>
                       <i className="fe fe-message-square header-icons"></i>
                       <span className="badge bg-success nav-link-badge">6</span>
                     </Link>
@@ -428,30 +422,28 @@ function Header2() {
                       </div>
                       <Dropdown.Item
                         className="border-top"
-                        href={`${process.env.PUBLIC_URL}/pages/profile`}
+                        href={`/pages/profile`}
                       >
                         <i className="fe fe-user"></i> My Profile
                       </Dropdown.Item>
                       <Dropdown.Item
-                        href={`${process.env.PUBLIC_URL}/pages/profile`}
+                        href={`/pages/profile`}
                         //  href="profile.html"
                       >
                         <i className="fe fe-edit"></i> Edit Profile
                       </Dropdown.Item>
-                      <Dropdown.Item
-                        href={`${process.env.PUBLIC_URL}/pages/profile`}
-                      >
+                      <Dropdown.Item href={`/pages/profile`}>
                         <i className="fe fe-settings"></i> Account Settings
                       </Dropdown.Item>
                       <Dropdown.Item
                         //  href="profile.html"
-                        href={`${process.env.PUBLIC_URL}/pages/profile`}
+                        href={`/pages/profile`}
                       >
                         <i className="fe fe-settings"></i> Support
                       </Dropdown.Item>
                       <Dropdown.Item
                         //  href="profile.html"
-                        href={`${process.env.PUBLIC_URL}/pages/profile`}
+                        href={`/pages/profile`}
                       >
                         <i className="fe fe-compass"></i> Activity
                       </Dropdown.Item>
@@ -461,7 +453,6 @@ function Header2() {
                           dispatch(logout());
 
                           routeChange();
-
                         }}
                       >
                         <i className="fe fe-power"></i> Sign Out

@@ -80,7 +80,7 @@ const ContactUs = () => {
         </div>
         <div className="d-flex">
           <div className="justify-content-center">
-            <Link to={"/spruha/preview/pages/ContactUs/create"}>
+            <Link to={"/pages/ContactUs/create"}>
               <Button
                 variant="primary"
                 type="button"
@@ -128,7 +128,9 @@ border hover"
                   <tbody>
                     {data?.results.map((item, index) => {
                       const truncateText = (text, length) => {
-                        return text.length > length ? text.substring(0, length) + '...' : text;
+                        return text.length > length
+                          ? text.substring(0, length) + "..."
+                          : text;
                       };
                       return (
                         <tr key={index} data-index={index}>
@@ -144,9 +146,7 @@ border hover"
                           </td>{" "}
                           <td className="font-weight-semibold">
                             <div className="d-flex">
-                              <span className="mt-1">
-                                {item.location_ar}
-                              </span>
+                              <span className="mt-1">{item.location_ar}</span>
                             </div>
                           </td>
                           <td className="font-weight-semibold">
@@ -159,10 +159,11 @@ border hover"
                               <span className="mt-1">{item.email}</span>
                             </div>
                           </td>
-                      
                           <td className="font-weight-semibold">
                             <div className="d-flex">
-                              <span className="mt-1">{truncateText(item.map_link, 35)}</span>
+                              <span className="mt-1">
+                                {truncateText(item.map_link, 35)}
+                              </span>
                             </div>
                           </td>
                           <td className="font-weight-semibold">
@@ -175,14 +176,15 @@ border hover"
                               <span className="mt-1">{item.longitude}</span>
                             </div>
                           </td>
-
                           <td className="font-weight-semibold">
                             <div className="d-flex">
                               <Button
                                 type="submit"
                                 onClick={() => {
                                   return (
-                                    setId(item?.id), viewDemoShow("show10"), setItemData(item)
+                                    setId(item?.id),
+                                    viewDemoShow("show10"),
+                                    setItemData(item)
                                   );
                                 }}
                               >
@@ -253,7 +255,12 @@ border hover"
                       </Modal.Header>
                       <Modal.Body>
                         <Modal.Title>Edit categorie</Modal.Title>
-                        <EditContactUs setShow10={setShow10} id={id} itemData={itemData} viewDemoClose={viewDemoClose} />
+                        <EditContactUs
+                          setShow10={setShow10}
+                          id={id}
+                          itemData={itemData}
+                          viewDemoClose={viewDemoClose}
+                        />
                       </Modal.Body>
                       {/* <Modal.Footer>
                         <Button

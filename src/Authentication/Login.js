@@ -31,7 +31,7 @@
 //     setError("");
 //   };
 //   const routeChange = () => {
-//     let path = `${process.env.PUBLIC_URL}/dashboard`;
+//     let path = `/dashboard`;
 //     navigate(path);
 //   };
 
@@ -152,7 +152,7 @@
 //                             <div>
 //                               Don't have an account?
 //                               <Link
-//                                 to={`${process.env.PUBLIC_URL}/authentication/signup`}
+//                                 to={`/authentication/signup`}
 //                               >
 //                                 {" "}
 //                                 Resgister Here
@@ -216,7 +216,7 @@ const SignIn = () => {
   };
 
   const routeChange = () => {
-    let path = `${process.env.PUBLIC_URL}/dashboard`;
+    let path = `/dashboard`;
     navigate(path);
   };
   const Login = async (e) => {
@@ -236,12 +236,11 @@ const SignIn = () => {
   useEffect(() => {
     if (DataLoginResponse?.access) {
       dispatch(login({ access: DataLoginResponse?.access }));
-      localStorage.setItem('accessToken', DataLoginResponse.access);
+      localStorage.setItem("accessToken", DataLoginResponse.access);
 
-      routeChange()
+      routeChange();
     }
-  }, [DataLoginResponse?.access, routeChange])
-
+  }, [DataLoginResponse?.access, routeChange]);
 
   return (
     <Fragment>
@@ -342,9 +341,7 @@ const SignIn = () => {
                           </div>
                           <div>
                             Don't have an account?
-                            <Link
-                              to={`${process.env.PUBLIC_URL}/authentication/signup`}
-                            >
+                            <Link to={`/authentication/signup`}>
                               {" "}
                               Register Here
                             </Link>

@@ -9,10 +9,10 @@ import { useTags } from "../../../../Api/Tags";
 import { useUsers } from "../../../../Api/User";
 import { useCategories } from "../../../../Api/Categories/index";
 import { useAuthors } from "../../../../Api/Authors/index";
-import ReactQuill from 'react-quill'; // Import ReactQuill
-import 'react-quill/dist/quill.snow.css'; // Import Quill styles
-import { useLocation } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import ReactQuill from "react-quill"; // Import ReactQuill
+import "react-quill/dist/quill.snow.css"; // Import Quill styles
+import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // Define validation schema using yup
@@ -58,18 +58,18 @@ const EditPublications = () => {
   const AuthorsOptions =
     authorsData?.results.map((AUTH) => ({
       label: AUTH.name,
-      value: AUTH.id
+      value: AUTH.id,
     })) || [];
 
   const handleSubmit = (data) => {
-    console.log('Submitting data:', data); // للتحقق من البيانات
+    console.log("Submitting data:", data); // للتحقق من البيانات
     let dataForm = {
       data,
       id,
-    }
+    };
     mutate(dataForm, {
-      onSuccess: () => console.log('Data submitted successfully'),
-      onError: (error) => console.log('Error submitting data:', error),
+      onSuccess: () => console.log("Data submitted successfully"),
+      onError: (error) => console.log("Error submitting data:", error),
     });
   };
   const navigate = useNavigate(); // Initialize navigate function
@@ -80,7 +80,7 @@ const EditPublications = () => {
 
       // تأخير الانتقال لمدة 2 ثانية (2000 مللي ثانية)
       setTimeout(() => {
-        navigate("/spruha/preview/pages/publications/");
+        navigate("/pages/publications/");
       }, 2000); // يمكنك ضبط الوقت حسب الحاجة
     }
   }, [dataEdit, navigate]);
@@ -88,7 +88,7 @@ const EditPublications = () => {
     <Fragment>
       <div className="page-header">
         <div>
-          <h2 className="main-content-title tx-24 mg-b-5">Edit  Publication</h2>
+          <h2 className="main-content-title tx-24 mg-b-5">Edit Publication</h2>
           <Breadcrumb>
             <Breadcrumb.Item href="#">Pages</Breadcrumb.Item>
             <Breadcrumb.Item active>Edit Publication</Breadcrumb.Item>
@@ -102,7 +102,7 @@ const EditPublications = () => {
             <Formik
               validationSchema={schema}
               onSubmit={(values) => {
-                console.log('Submitting data:', values); // للتحقق من البيانات
+                console.log("Submitting data:", values); // للتحقق من البيانات
                 handleSubmit(values);
               }}
               initialValues={{
@@ -113,10 +113,14 @@ const EditPublications = () => {
                 content_en: "",
                 content_ar: "",
                 popularity_count: 0, // قيمة افتراضية مبدئية
-                category: categoryOptions.length > 0 ? categoryOptions[0].value : "", // إذا كان هناك فئات
-                author: authorsData?.results.length > 0 ? [authorsData.results[0].id] : [], // إذا كان هناك مؤلفون
+                category:
+                  categoryOptions.length > 0 ? categoryOptions[0].value : "", // إذا كان هناك فئات
+                author:
+                  authorsData?.results.length > 0
+                    ? [authorsData.results[0].id]
+                    : [], // إذا كان هناك مؤلفون
                 tags: tagOptions.length > 0 ? [tagOptions[0].value] : [], // إذا كان هناك علامات
-                references: [{ name: "", url: "" }] // القيم الافتراضية للمراجع
+                references: [{ name: "", url: "" }], // القيم الافتراضية للمراجع
               }}
             >
               {({
@@ -130,7 +134,11 @@ const EditPublications = () => {
                 <Form noValidate onSubmit={handleSubmit}>
                   {/* Existing fields */}
                   <Row className="mb-3">
-                    <Form.Group as={Col} md="6" controlId="validationFormikName">
+                    <Form.Group
+                      as={Col}
+                      md="6"
+                      controlId="validationFormikName"
+                    >
                       <Form.Label>Name</Form.Label>
                       <Form.Control
                         type="text"
@@ -140,7 +148,11 @@ const EditPublications = () => {
                         isValid={touched.name && !errors.name}
                       />
                     </Form.Group>
-                    <Form.Group as={Col} md="6" controlId="validationFormikNameEn">
+                    <Form.Group
+                      as={Col}
+                      md="6"
+                      controlId="validationFormikNameEn"
+                    >
                       <Form.Label>Name (English)</Form.Label>
                       <Form.Control
                         type="text"
@@ -153,7 +165,11 @@ const EditPublications = () => {
                         <div className="invalid-feedback">{errors.name_en}</div>
                       )}
                     </Form.Group>
-                    <Form.Group as={Col} md="6" controlId="validationFormikNameAr">
+                    <Form.Group
+                      as={Col}
+                      md="6"
+                      controlId="validationFormikNameAr"
+                    >
                       <Form.Label>Name (Arabic)</Form.Label>
                       <Form.Control
                         type="text"
@@ -166,7 +182,11 @@ const EditPublications = () => {
                         <div className="invalid-feedback">{errors.name_ar}</div>
                       )}
                     </Form.Group>
-                    <Form.Group as={Col} md="6" controlId="validationFormikContent">
+                    <Form.Group
+                      as={Col}
+                      md="6"
+                      controlId="validationFormikContent"
+                    >
                       <Form.Label>Content</Form.Label>
                       <Form.Control
                         type="text"
@@ -179,43 +199,65 @@ const EditPublications = () => {
                         <div className="invalid-feedback">{errors.content}</div>
                       )}
                     </Form.Group>
-                    <Form.Group as={Col} md="6" controlId="validationFormikContentEn">
+                    <Form.Group
+                      as={Col}
+                      md="6"
+                      controlId="validationFormikContentEn"
+                    >
                       <Form.Label>Content (English)</Form.Label>
                       <ReactQuill
                         value={values.content_en}
-                        onChange={(value) => setFieldValue('content_en', value)}
+                        onChange={(value) => setFieldValue("content_en", value)}
                         theme="snow"
                         modules={{ toolbar: true }}
                       />
                       {touched.content_en && errors.content_en && (
-                        <div className="invalid-feedback">{errors.content_en}</div>
+                        <div className="invalid-feedback">
+                          {errors.content_en}
+                        </div>
                       )}
                     </Form.Group>
-                    <Form.Group as={Col} md="6" controlId="validationFormikContentAr">
+                    <Form.Group
+                      as={Col}
+                      md="6"
+                      controlId="validationFormikContentAr"
+                    >
                       <Form.Label>Content (Arabic)</Form.Label>
                       <ReactQuill
                         value={values.content_ar}
-                        onChange={(value) => setFieldValue('content_ar', value)}
+                        onChange={(value) => setFieldValue("content_ar", value)}
                         theme="snow"
                         modules={{ toolbar: true }}
                       />
                       {touched.content_ar && errors.content_ar && (
-                        <div className="invalid-feedback">{errors.content_ar}</div>
+                        <div className="invalid-feedback">
+                          {errors.content_ar}
+                        </div>
                       )}
                     </Form.Group>
                   </Row>
                   <Row className="mb-3">
-                    <Form.Group as={Col} md="6" controlId="validationFormikPopularityCount">
+                    <Form.Group
+                      as={Col}
+                      md="6"
+                      controlId="validationFormikPopularityCount"
+                    >
                       <Form.Label>Popularity Count</Form.Label>
                       <Form.Control
                         type="number"
                         name="popularity_count"
                         value={values.popularity_count}
                         onChange={handleChange}
-                        isValid={touched.popularity_count && !errors.popularity_count}
+                        isValid={
+                          touched.popularity_count && !errors.popularity_count
+                        }
                       />
                     </Form.Group>
-                    <Form.Group as={Col} md="6" controlId="validationFormikCategory">
+                    <Form.Group
+                      as={Col}
+                      md="6"
+                      controlId="validationFormikCategory"
+                    >
                       <Form.Label>Category</Form.Label>
                       <Select
                         name="category"
@@ -229,7 +271,11 @@ const EditPublications = () => {
                         isValid={touched.category && !errors.category}
                       />
                     </Form.Group>
-                    <Form.Group as={Col} md="6" controlId="validationFormikAuthors">
+                    <Form.Group
+                      as={Col}
+                      md="6"
+                      controlId="validationFormikAuthors"
+                    >
                       <Form.Label>Authors</Form.Label>
                       <Select
                         isMulti
@@ -247,7 +293,11 @@ const EditPublications = () => {
                         isValid={touched.author && !errors.author}
                       />
                     </Form.Group>
-                    <Form.Group as={Col} md="6" controlId="validationFormikTags">
+                    <Form.Group
+                      as={Col}
+                      md="6"
+                      controlId="validationFormikTags"
+                    >
                       <Form.Label>Tags</Form.Label>
                       <Select
                         isMulti
@@ -265,7 +315,11 @@ const EditPublications = () => {
                         isValid={touched.tags && !errors.tags}
                       />
                     </Form.Group>
-                    <Form.Group as={Col} md="6" controlId="validationFormikReferences">
+                    <Form.Group
+                      as={Col}
+                      md="6"
+                      controlId="validationFormikReferences"
+                    >
                       <Form.Label>References</Form.Label>
                       {/* Add form fields for references if necessary */}
                       {values.references.map((reference, index) => (
@@ -309,21 +363,18 @@ const EditPublications = () => {
                   <Button type="submit" disabled={isLoading}>
                     {isLoading ? "Submitting..." : "Submit"}
                   </Button>
-                  {error && <div className="text-danger mt-3">{error.message}</div>}
+                  {error && (
+                    <div className="text-danger mt-3">{error.message}</div>
+                  )}
                 </Form>
               )}
             </Formik>
-
           </div>
         </div>
-
       </div>
       <ToastContainer />
-
     </Fragment>
   );
 };
-
-
 
 export default EditPublications;

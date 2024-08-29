@@ -31,7 +31,7 @@ const AddTrainings = () => {
     if (data) {
       toast.success("This item has been successfully created.");
       setTimeout(() => {
-        navigate("/spruha/preview/pages/training/");
+        navigate("/pages/training/");
       }, 2000);
     }
   }, [data, navigate]);

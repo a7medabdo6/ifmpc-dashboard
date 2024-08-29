@@ -43,7 +43,7 @@ function Header() {
 
   let navigate = useNavigate();
   const routeChange = () => {
-    let path = `${process.env.PUBLIC_URL}/`;
+    let path = `/`;
     navigate(path);
   };
 
@@ -95,10 +95,7 @@ function Header() {
               <span></span>
             </Link>
             <div className="hor-logo">
-              <Link
-                to={`${process.env.PUBLIC_URL}/dashboard/`}
-                className="main-logo"
-              >
+              <Link to={`/dashboard/`} className="main-logo">
                 <img
                   src={require("../../assets/img/brand/logo.png")}
                   className="header-brand-img desktop-logo"
@@ -114,14 +111,14 @@ function Header() {
           </div>
           <div className="main-header-center">
             <div className="responsive-logo">
-              <Link to={`${process.env.PUBLIC_URL}/dashboard/`}>
+              <Link to={`/dashboard/`}>
                 <img
                   src={require("../../assets/img/brand/logo.png")}
                   className="mobile-logo"
                   alt="logo"
                 />
               </Link>
-              <Link to={`${process.env.PUBLIC_URL}/dashboard/`}>
+              <Link to={`/dashboard/`}>
                 <img
                   src={require("../../assets/img/brand/logo-light.png")}
                   className="mobile-logo-dark"
@@ -426,10 +423,7 @@ function Header() {
                     </Dropdown.Menu>
                   </Dropdown>
                   <div className="main-header-notification">
-                    <Link
-                      className="icon nav-link"
-                      to={`${process.env.PUBLIC_URL}/advanceUI/chat/`}
-                    >
+                    <Link className="icon nav-link" to={`/advanceUI/chat/`}>
                       <i className="fe fe-message-square header-icons"></i>
                       <span className="badge bg-success nav-link-badge">6</span>
                     </Link>
@@ -452,28 +446,20 @@ function Header() {
                       </div>
                       <Dropdown.Item
                         className="border-top"
-                        href={`${process.env.PUBLIC_URL}/pages/profile`}
+                        href={`/pages/profile`}
                       >
                         <i className="fe fe-user"></i> My Profile
                       </Dropdown.Item>
-                      <Dropdown.Item
-                        href={`${process.env.PUBLIC_URL}/pages/profile`}
-                      >
+                      <Dropdown.Item href={`/pages/profile`}>
                         <i className="fe fe-edit"></i> Edit Profile
                       </Dropdown.Item>
-                      <Dropdown.Item
-                        href={`${process.env.PUBLIC_URL}/pages/profile`}
-                      >
+                      <Dropdown.Item href={`/pages/profile`}>
                         <i className="fe fe-settings"></i> Account Settings
                       </Dropdown.Item>
-                      <Dropdown.Item
-                        href={`${process.env.PUBLIC_URL}/pages/profile`}
-                      >
+                      <Dropdown.Item href={`/pages/profile`}>
                         <i className="fe fe-settings"></i> Support
                       </Dropdown.Item>
-                      <Dropdown.Item
-                        href={`${process.env.PUBLIC_URL}/pages/profile`}
-                      >
+                      <Dropdown.Item href={`/pages/profile`}>
                         <i className="fe fe-compass"></i> Activity
                       </Dropdown.Item>
                       <Dropdown.Item

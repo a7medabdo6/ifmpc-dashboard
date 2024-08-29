@@ -4,7 +4,7 @@ import { Formik } from "formik";
 import { Form } from "react-bootstrap";
 import * as yup from "yup";
 import { useCreateTage } from "../../../../Api/Tags";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const schema = yup.object().shape({
@@ -15,7 +15,7 @@ const schema = yup.object().shape({
 });
 
 const AddTags = () => {
-  const { mutate,data } = useCreateTage();
+  const { mutate, data } = useCreateTage();
   const navigate = useNavigate(); // Initialize navigate function
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const AddTags = () => {
 
       // تأخير الانتقال لمدة 2 ثانية (2000 مللي ثانية)
       setTimeout(() => {
-        navigate("/spruha/preview/pages/tages/");
+        navigate("/pages/tages/");
       }, 2000); // يمكنك ضبط الوقت حسب الحاجة
     }
   }, [data, navigate]);
@@ -56,13 +56,7 @@ const AddTags = () => {
                 post_count: 1,
               }}
             >
-              {({
-                handleSubmit,
-                handleChange,
-                values,
-                touched,
-                errors,
-              }) => (
+              {({ handleSubmit, handleChange, values, touched, errors }) => (
                 <Form noValidate onSubmit={handleSubmit}>
                   <Row className="mb-3">
                     <Form.Group

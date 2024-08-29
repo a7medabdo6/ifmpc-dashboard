@@ -4,7 +4,7 @@ import { Formik } from "formik";
 import { Form } from "react-bootstrap";
 import * as yup from "yup";
 import { useCreateAuthor } from "../../../../Api/Authors";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const schema = yup.object().shape({
@@ -13,7 +13,7 @@ const schema = yup.object().shape({
 });
 
 const AddAuthors = () => {
-  const { mutate,data } = useCreateAuthor();
+  const { mutate, data } = useCreateAuthor();
   const navigate = useNavigate(); // Initialize navigate function
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const AddAuthors = () => {
 
       // تأخير الانتقال لمدة 2 ثانية (2000 مللي ثانية)
       setTimeout(() => {
-        navigate("/spruha/preview/pages/authors/");
+        navigate("/pages/authors/");
       }, 2000); // يمكنك ضبط الوقت حسب الحاجة
     }
   }, [data, navigate]);
