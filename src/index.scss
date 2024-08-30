@@ -202,22 +202,22 @@
 // Popover
 // Calender
 .fc-direction-ltr .fc-button-group>.fc-button:not(:last-child) {
-  background-color: $primary  !important;
-  border: $primary  !important;
+  background-color: $primary !important;
+  border: $primary !important;
 }
 
 .fc-direction-ltr .fc-button-group>.fc-button:not(:first-child) {
-  background-color: $primary  !important;
-  border: $primary  !important;
+  background-color: $primary !important;
+  border: $primary !important;
 }
 
 .fc-direction-ltr .fc-toolbar>*> :not(:first-child) {
-  background-color: $primary  !important;
-  border: $primary  !important;
+  background-color: $primary !important;
+  border: $primary !important;
 }
 
 .fc-direction-ltr .fc-toolbar>*> :not(:first-child) {
-  background-color: $primary  !important;
+  background-color: $primary !important;
 }
 
 .fc-event.fc-h-event {
@@ -352,13 +352,13 @@
 // Accordin in Adavance ui
 .MuiPaper-elevation.MuiPaper-rounded.Mui-expanded {
   margin: 0px !important;
-  background-color: $primary-02  !important;
-  color: $primary  !important;
+  background-color: $primary-02 !important;
+  color: $primary !important;
 }
 
 .css-15v22id-MuiAccordionDetails-root {
   background-color: #fff !important;
-  color: $color  !important;
+  color: $color !important;
   border: 1px solid $border;
 }
 
@@ -369,8 +369,8 @@
 
 .MuiPaper-elevation.MuiPaper-rounded {
   overflow: hidden;
-  box-shadow: 0px 2px 1px -1px $white-2, 0px 1px 1px 0px $white-2, 0px 1px 3px 0px $white-2  !important;
-  background-color: $primary  !important;
+  box-shadow: 0px 2px 1px -1px $white-2, 0px 1px 1px 0px $white-2, 0px 1px 3px 0px $white-2 !important;
+  background-color: $primary !important;
   color: #fff !important;
 }
 
@@ -394,7 +394,7 @@
 
 //
 .MuiPaper-elevation0 .MuiButtonBase-root.MuiAccordionSummary-root {
-  background-color: $white  !important;
+  background-color: $white !important;
 }
 
 .slick-prev:before,
@@ -787,7 +787,7 @@
 // Select option
 .searchable__controls {
   background-color: #fff;
-  border: 1px solid $border  !important;
+  border: 1px solid $border !important;
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
   border-right: 0;
@@ -801,7 +801,7 @@
 
 .searchable__controls input {
   padding: 11px !important;
-  color: $color  !important;
+  color: $color !important;
 
   &::placeholder {
     color: #a8afc7 !important;
@@ -835,12 +835,12 @@
 }
 
 .searchable__list__item:hover {
-  color: $primary  !important;
+  color: $primary !important;
   background-color: #f8f9ff !important;
 }
 
 .searchable__list__item {
-  color: $color  !important;
+  color: $color !important;
 }
 
 textarea:focus,
@@ -896,11 +896,11 @@ textarea {
 }
 
 .searchable__controls {
-  background-color: $white  !important;
+  background-color: $white !important;
 }
 
 .searchable__list {
-  background-color: $white  !important;
+  background-color: $white !important;
 }
 
 @media (min-width: 992px) and (max-width: 1205px) {
@@ -1055,11 +1055,11 @@ a {
 
 // side activeclass
 .main-sidebar-body .nav-sub-item.active>.nav-sub-link.active {
-  color: $white  !important;
+  color: $white !important;
 }
 
 .main-sidebar-body li.nav-sub-item.active .nav-sub-link.active {
-  color: $white  !important;
+  color: $white !important;
 }
 
 //sidebar-menu
@@ -1211,7 +1211,7 @@ ol.progtrckr li.progtrckr-doing:hover:before {
 
 ol.progtrckr li.progtrckr-done:before {
   content: "\2713";
-  color: $primary  !important;
+  color: $primary !important;
   // background-color: $primary-1;
   width: 1.2em;
   line-height: 1.2em;
@@ -1266,10 +1266,10 @@ ol.progtrckr li.progtrckr-done:before {
 }
 
 .tabs-style-1 .main-nav-line .nav-link.active {
-  border-top: 1px solid $border  !important;
+  border-top: 1px solid $border !important;
   border-bottom: 1px solid transparent !important;
-  border-left: 1px solid $border  !important;
-  border-right: 1px solid $border  !important;
+  border-left: 1px solid $border !important;
+  border-right: 1px solid $border !important;
 }
 
 .nav-tabs .nav-link.active {
@@ -1367,7 +1367,7 @@ ol.progtrckr li.progtrckr-done:before {
 }
 
 .msl {
-  border: 1px solid $border  !important;
+  border: 1px solid $border !important;
 }
 
 .msl-arrow-btn,
@@ -1380,11 +1380,11 @@ ol.progtrckr li.progtrckr-done:before {
 }
 
 .ql-toolbar.ql-snow {
-  border: 1px solid $border  !important;
+  border: 1px solid $border !important;
 }
 
 .ql-container.ql-snow {
-  border: 1px solid $border  !important;
+  border: 1px solid $border !important;
 }
 
 .ql-toolbar.ql-snow+.ql-container.ql-snow {
@@ -1396,11 +1396,11 @@ ol.progtrckr li.progtrckr-done:before {
 }
 
 .MuiDropzoneArea-root {
-  border-color: $border  !important;
+  border-color: $border !important;
 }
 
 #checkoutsteps .item {
-  border-bottom: 1px solid $border  !important;
+  border-bottom: 1px solid $border !important;
 }
 
 @media (max-width: 492px) {
@@ -1418,20 +1418,20 @@ ol.progtrckr li.progtrckr-done:before {
 }
 
 .msl-option-active {
-  background: $background  !important;
-  color: $color  !important;
+  background: $background !important;
+  color: $color !important;
 }
 
 .msl-option:focus,
 .msl-options .msl-option:hover {
-  background: $background  !important;
+  background: $background !important;
 }
 
 .msl-chip,
 .msl-chip-delete,
 .msl-arrow-btn:hover,
 .msl-clear-btn:hover {
-  background: $background  !important;
+  background: $background !important;
 }
 
 @media (max-width: 575px) {
@@ -1489,13 +1489,13 @@ ol.progtrckr li.progtrckr-done:before {
 }
 
 .rdt_TableHeadRow {
-  border: 1px solid $border  !important;
+  border: 1px solid $border !important;
 }
 
 .rdt_TableRow {
-  border-bottom: 1px solid $border  !important;
-  border-left: 1px solid $border  !important;
-  border-right: 1px solid $border  !important;
+  border-bottom: 1px solid $border !important;
+  border-left: 1px solid $border !important;
+  border-right: 1px solid $border !important;
 }
 
 .jxflYm {
@@ -1503,7 +1503,7 @@ ol.progtrckr li.progtrckr-done:before {
 }
 
 .bynhzm {
-  background-color: $background  !important;
+  background-color: $background !important;
 }
 
 .bynhzm:hover {
@@ -1511,7 +1511,7 @@ ol.progtrckr li.progtrckr-done:before {
 }
 
 .kgEPYv:hover {
-  background-color: $background  !important;
+  background-color: $background !important;
   outline-color: transparent !important;
 }
 
@@ -1527,15 +1527,15 @@ ol.progtrckr li.progtrckr-done:before {
 
 .data-table-extensions>.data-table-extensions-filter {
   >.filter-text {
-    border: 1px solid $dark-border  !important;
-    border-bottom: 1px solid $dark-border  !important;
+    border: 1px solid $dark-border !important;
+    border-bottom: 1px solid $dark-border !important;
   }
 }
 
 .data-table-extensions>.data-table-extensions-filter {
   >.filter-text {
-    border: 1px solid $white-1  !important;
-    border-bottom: 1px solid $white-1  !important;
+    border: 1px solid $white-1 !important;
+    border-bottom: 1px solid $white-1 !important;
   }
 }
 
@@ -1567,8 +1567,8 @@ ol.progtrckr li.progtrckr-done:before {
 
 .data-table-extensions>.data-table-extensions-filter {
   >.filter-text {
-    border: 1px solid $border  !important;
-    border-bottom: 1px solid $border  !important;
+    border: 1px solid $border !important;
+    border-bottom: 1px solid $border !important;
     outline: none !important;
     padding: 0.375rem 0.75rem !important;
     margin-left: -11px !important;
@@ -1651,7 +1651,7 @@ ol.progtrckr li.progtrckr-done:before {
 .react-datepicker__year-text--selected,
 .react-datepicker__year-text--in-selecting-range,
 .react-datepicker__year-text--in-range {
-  background-color: $primary  !important;
+  background-color: $primary !important;
 }
 
 .Toastify__close-button {
@@ -1659,7 +1659,7 @@ ol.progtrckr li.progtrckr-done:before {
 }
 
 .deni-react-treeview-container.classic .deni-react-treeview-item-container.classic .expand-button {
-  color: $color  !important;
+  color: $color !important;
 }
 
 .lg-outer .lg-thumb {
@@ -1685,28 +1685,28 @@ ol.progtrckr li.progtrckr-done:before {
 }
 
 .react-datepicker__time-container {
-  border-left: 1px solid $border  !important;
+  border-left: 1px solid $border !important;
 }
 
 .react-datepicker__day--keyboard-selected,
 .react-datepicker__month-text--keyboard-selected,
 .react-datepicker__quarter-text--keyboard-selected,
 .react-datepicker__year-text--keyboard-selected {
-  background-color: $primary  !important;
+  background-color: $primary !important;
 }
 
 .css-187mznn-MuiSlider-root.Mui-disabled {
-  color: $border  !important;
+  color: $border !important;
 }
 
 .css-17djbj3-MuiSlider-valueLabel {
-  background-color: $primary  !important;
+  background-color: $primary !important;
 }
 
 .css-eg0mwd-MuiSlider-thumb:hover,
 .css-eg0mwd-MuiSlider-thumb.Mui-focusVisible,
 .css-eg0mwd-MuiSlider-thumb.Mui-active {
-  box-shadow: 0px 0px 0px 8px $primary-02  !important;
+  box-shadow: 0px 0px 0px 8px $primary-02 !important;
 }
 
 @media (max-width: 360px) {
@@ -1736,20 +1736,20 @@ ol.progtrckr li.progtrckr-done:before {
 
 .css-1s2u09g-control,
 .css-1pahdxg-control {
-  border-color: $border  !important;
+  border-color: $border !important;
 }
 
 .css-1rhbuit-multiValue {
-  background-color: $primary-01  !important;
+  background-color: $primary-01 !important;
 }
 
 .css-xb97g8:hover {
-  background-color: $primary-01  !important;
-  color: $color  !important;
+  background-color: $primary-01 !important;
+  color: $color !important;
 }
 
 .rmsc .dropdown-container {
-  border-color: $border  !important;
+  border-color: $border !important;
 }
 
 .rmsc .dropdown-container:focus-within {
@@ -1757,16 +1757,16 @@ ol.progtrckr li.progtrckr-done:before {
 }
 
 .css-1insrsq-control {
-  background-color: $primary-01  !important;
+  background-color: $primary-01 !important;
 }
 
 .MuiButton-contained {
-  background-color: $primary  !important;
-  color: $white  !important;
+  background-color: $primary !important;
+  color: $white !important;
 }
 
 .MuiStepLabel-label {
-  color: $color  !important;
+  color: $color !important;
 }
 
 .css-ahj2mt-MuiTypography-root {
@@ -1776,11 +1776,11 @@ ol.progtrckr li.progtrckr-done:before {
 }
 
 .MuiStepContent-root {
-  border-left: 1px solid $border  !important;
+  border-left: 1px solid $border !important;
 }
 
 .MuiStepConnector-line {
-  border-color: $border  !important;
+  border-color: $border !important;
 }
 
 .rdw-editor-main {
@@ -1881,8 +1881,8 @@ ol.progtrckr li.progtrckr-done:before {
 
 .cnZJOg {
   background-color: #fff !important;
-  border: 3px dashed $border  !important;
-  color: $color  !important;
+  border: 3px dashed $border !important;
+  color: $color !important;
   margin-bottom: 10px;
 }
 
@@ -1924,7 +1924,7 @@ ol.progtrckr li.progtrckr-done:before {
 .ql-snow .ql-toolbar .ql-picker-item:hover .ql-stroke-miter,
 .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke-miter,
 .ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-stroke-miter {
-  stroke: $primary  !important;
+  stroke: $primary !important;
 }
 
 .ql-snow.ql-toolbar button:hover,
@@ -1941,7 +1941,7 @@ ol.progtrckr li.progtrckr-done:before {
 .ql-snow .ql-toolbar .ql-picker-item:hover,
 .ql-snow.ql-toolbar .ql-picker-item.ql-selected,
 .ql-snow .ql-toolbar .ql-picker-item.ql-selected {
-  color: $primary  !important;
+  color: $primary !important;
 }
 
 .ql-snow.ql-toolbar button:hover .ql-fill,
@@ -1972,7 +1972,7 @@ ol.progtrckr li.progtrckr-done:before {
 .ql-snow .ql-toolbar .ql-picker-item:hover .ql-stroke.ql-fill,
 .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke.ql-fill,
 .ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-stroke.ql-fill {
-  fill: $primary  !important;
+  fill: $primary !important;
 }
 
 .item1-links {
@@ -1983,11 +1983,11 @@ ol.progtrckr li.progtrckr-done:before {
 
 .css-1eomvmf-MuiButtonBase-root-MuiIconButton-root,
 .css-bhp9pd-MuiPaper-root-MuiCard-root {
-  color: $color  !important;
+  color: $color !important;
 }
 
 .MuiTypography-colorPrimary {
-  color: $primary  !important;
+  color: $primary !important;
 }
 
 .MuiBox-root.css-1qm1lh {
@@ -2010,7 +2010,7 @@ ol.progtrckr li.progtrckr-done:before {
 
 .leftmenu {
   .hor-scroll div:nth-child(3) div {
-    background-color: $white-2  !important;
+    background-color: $white-2 !important;
   }
 }
 
@@ -2032,11 +2032,14 @@ ol.progtrckr li.progtrckr-done:before {
   border-bottom: 1px solid $border;
 
   &:last-child {
-      border-bottom: 0;
+    border-bottom: 0;
   }
 
-  &:hover, &.selected, &.active, &:focus {
-      background-color: $background;
+  &:hover,
+  &.selected,
+  &.active,
+  &:focus {
+    background-color: $background;
   }
 }
 
@@ -2046,3 +2049,13 @@ ol.progtrckr li.progtrckr-done:before {
 }
 
 
+
+.table-responsive .table> :not(caption)>*>* {
+  border-bottom: 1px solid #e8e8f7 !important;
+  max-width: 100px;
+  width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* overflow: hidden; */
+}

@@ -95,7 +95,7 @@ function Header() {
               <span></span>
             </Link>
             <div className="hor-logo">
-              <Link to={`/dashboard/`} className="main-logo">
+              {/* <Link to={`/dashboard/`} className="main-logo">
                 <img
                   src={require("../../assets/img/brand/logo.png")}
                   className="header-brand-img desktop-logo"
@@ -106,11 +106,11 @@ function Header() {
                   className="header-brand-img desktop-logo-dark"
                   alt="logo"
                 />
-              </Link>
+              </Link> */}
             </div>
           </div>
           <div className="main-header-center">
-            <div className="responsive-logo">
+            {/* <div className="responsive-logo">
               <Link to={`/dashboard/`}>
                 <img
                   src={require("../../assets/img/brand/logo.png")}
@@ -125,7 +125,7 @@ function Header() {
                   alt="logo"
                 />
               </Link>
-            </div>
+            </div> */}
           </div>
           <div className="main-header-right">
             <Navbar.Toggle

@@ -212,7 +212,7 @@ const SideBar = () => {
               className="hor-scroll"
               style={{ position: "absolute" }}
             >
-              <div className="sidemenu-logo">
+              {/* <div className="sidemenu-logo">
                 <Link className="main-logo" to={`/dashboard/ `}>
                   <img
                     src={require("../../assets/img/brand/logo-light.png")}
@@ -237,7 +237,7 @@ const SideBar = () => {
                     alt={"logo-4"}
                   />
                 </Link>
-              </div>
+              </div> */}
               <div
                 className="main-body-1 main-sidebar-body"
                 onMouseOver={() => Onhover()}
