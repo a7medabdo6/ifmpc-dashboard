@@ -2,14 +2,14 @@ export const MENUITEMS = [
   {
     menutitle: "DASHBOARD",
     Items: [
-      {
-        path: `/dashboard`,
-        icon: "ti-home",
-        type: "link",
-        active: false,
-        selected: false,
-        title: "Dashboard",
-      },
+      // {
+      //   path: `/dashboard`,
+      //   icon: "ti-home",
+      //   type: "link",
+      //   active: false,
+      //   selected: false,
+      //   title: "Dashboard",
+      // },
       {
         path: `/pages/categories`,
         type: "link",

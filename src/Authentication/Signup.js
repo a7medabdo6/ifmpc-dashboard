@@ -39,7 +39,7 @@ const SignUp = () => {
 
   let navigate = useNavigate();
   const routeChange = () => {
-    let path = `/dashboard/`;
+    let path = `/pages/categories//`;
     navigate(path);
   };
 

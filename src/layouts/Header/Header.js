@@ -174,9 +174,9 @@ function Header() {
                 className="rounded-0"
                 placeholder="Search for anything..."
               />
-              <InputGroup.Text className="btn search-btn">
+              {/* <InputGroup.Text className="btn search-btn">
                 <i className="fe fe-search"></i>
-              </InputGroup.Text>
+              </InputGroup.Text> */}
             </InputGroup>
           </div>
           <div className="main-header-right">
@@ -193,9 +193,9 @@ function Header() {
               >
                 <div className="d-flex order-lg-2 align-items-center ms-auto">
                   <Dropdown className="header-search">
-                    <Dropdown.Toggle variant="default" className="px-0">
+                    {/* <Dropdown.Toggle variant="default" className="px-0">
                       <i className="fe fe-search header-icons fs-18 px-2 lh-5"></i>
-                    </Dropdown.Toggle>
+                    </Dropdown.Toggle> */}
 
                     <Dropdown.Menu className="p-2">
                       <InputGroup>
@@ -265,7 +265,7 @@ function Header() {
                     </Nav.Link>
                   </Dropdown>
                   <Dropdown className=" main-header-notification flag-dropdown">
-                    <Dropdown.Toggle
+                    {/* <Dropdown.Toggle
                       className="nav-link icon country-Flag "
                       variant="default"
                     >
@@ -282,7 +282,7 @@ function Header() {
                           <path d="M322.783 322.784L437.019 437.02a256.636 256.636 0 0015.048-16.435l-97.802-97.802h-31.482v.001zM189.217 322.784h-.002L74.98 437.019a256.636 256.636 0 0016.435 15.048l97.802-97.804v-31.479zM189.217 189.219v-.002L74.981 74.98a256.636 256.636 0 00-15.048 16.435l97.803 97.803h31.481zM322.783 189.219L437.02 74.981a256.328 256.328 0 00-16.435-15.047l-97.802 97.803v31.482z" />
                         </g>
                       </svg>
-                    </Dropdown.Toggle>
+                    </Dropdown.Toggle> */}
                     <Dropdown.Menu
                       className="dropdown-menu"
                       style={{ margin: "0px" }}
@@ -354,14 +354,14 @@ function Header() {
                     </div>
                   </div>
                   <Dropdown className=" main-header-notification">
-                    <Dropdown.Toggle
+                    {/* <Dropdown.Toggle
                       className="nav-link icon"
                       href="#"
                       variant="default"
                     >
                       <i className="fe fe-bell header-icons"></i>
                       <span className="badge bg-danger nav-link-badge">4</span>
-                    </Dropdown.Toggle>
+                    </Dropdown.Toggle> */}
                     <Dropdown.Menu style={{ margin: "0px" }}>
                       <div className="header-navheading">
                         <p className="main-notification-text">
@@ -422,12 +422,12 @@ function Header() {
                       </div>
                     </Dropdown.Menu>
                   </Dropdown>
-                  <div className="main-header-notification">
+                  {/* <div className="main-header-notification">
                     <Link className="icon nav-link" to={`/advanceUI/chat/`}>
                       <i className="fe fe-message-square header-icons"></i>
                       <span className="badge bg-success nav-link-badge">6</span>
                     </Link>
-                  </div>
+                  </div> */}
                   <Dropdown className="main-profile-menu">
                     <Dropdown.Toggle className="d-flex p-0" variant="default">
                       <span className="main-img-user mx-1">
@@ -453,9 +453,9 @@ function Header() {
                       <Dropdown.Item href={`/pages/profile`}>
                         <i className="fe fe-edit"></i> Edit Profile
                       </Dropdown.Item>
-                      <Dropdown.Item href={`/pages/profile`}>
+                      {/* <Dropdown.Item href={`/pages/profile`}>
                         <i className="fe fe-settings"></i> Account Settings
-                      </Dropdown.Item>
+                      </Dropdown.Item> */}
                       <Dropdown.Item href={`/pages/profile`}>
                         <i className="fe fe-settings"></i> Support
                       </Dropdown.Item>

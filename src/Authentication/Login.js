@@ -216,7 +216,7 @@ const SignIn = () => {
   };
 
   const routeChange = () => {
-    let path = `/dashboard`;
+    let path = `/pages/categories`;
     navigate(path);
   };
   const Login = async (e) => {
