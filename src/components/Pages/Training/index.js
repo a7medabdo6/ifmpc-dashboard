@@ -104,9 +104,7 @@ const Trainings = () => {
                       <th className="wd-lg-10p">title</th>
                       <th className="wd-lg-20p">title_en</th>
                       <th className="wd-lg-20p">title_ar</th>
-                      <th className="wd-lg-20p">description</th>
-                      <th className="wd-lg-20p">description_en</th>
-                      <th className="wd-lg-20p">description_ar</th>
+                     
                       <th className="wd-lg-20p">image</th>
                       <th className="wd-lg-20p">Actions</th>
                     </tr>
@@ -130,25 +128,7 @@ const Trainings = () => {
                               <span className="mt-1">{item.title_ar}</span>
                             </div>
                           </td>
-                          <td className="font-weight-semibold">
-                            <div className="d-flex">
-                              <span className="mt-1">{item.description}</span>
-                            </div>
-                          </td>
-                          <td className="font-weight-semibold">
-                            <div className="d-flex">
-                              <span className="mt-1">
-                                {item.description_en}
-                              </span>
-                            </div>
-                          </td>
-                          <td className="font-weight-semibold">
-                            <div className="d-flex">
-                              <span className="mt-1">
-                                {item.description_ar}
-                              </span>
-                            </div>
-                          </td>
+              
                           <td className="font-weight-semibold">
                             <div className="d-flex">
                               <img
