@@ -1,5 +1,16 @@
 import React, { Fragment } from "react";
-import { Breadcrumb, BreadcrumbItem, Dropdown, ProgressBar, Row, Col, Table, Card, Container, Button, } from "react-bootstrap";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  Dropdown,
+  ProgressBar,
+  Row,
+  Col,
+  Table,
+  Card,
+  Container,
+  Button,
+} from "react-bootstrap";
 import user1 from "../../assets/img/users/1.jpg";
 import user2 from "../../assets/img/users/2.jpg";
 import user3 from "../../assets/img/users/3.jpg";
@@ -14,7 +25,7 @@ import projectlogo from "../../assets/img/media/project-logo.png";
 // chartjs plugin
 import { Bar, Line } from "react-chartjs-2";
 // eslint-disable-next-line
-import { Chart as ChartJS } from 'chart.js/auto';
+import { Chart as ChartJS } from "chart.js/auto";
 // ReactApexChart
 import ReactApexChart from "react-apexcharts";
 import * as dashboardmain from "../../data/maindashboard";
@@ -23,7 +34,6 @@ import CircularProgress from "@mui/material/CircularProgress";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 import DropdownItem from "react-bootstrap/esm/DropdownItem";
 import { Link } from "react-router-dom";
-
 
 function Dashboard() {
   const TASKS = [
@@ -79,7 +89,7 @@ function Dashboard() {
   return (
     <Fragment>
       {/* <!-- Page Header --> */}
-      <div className="page-header">
+      {/* <div className="page-header">
         <div>
           <h2 className="main-content-title tx-24 mg-b-5">
             Welcome To Dashboard
@@ -116,12 +126,10 @@ function Dashboard() {
             </Button>
           </div>
         </div>
-      </div>
-      {/* <!-- End Page Header --> */}
-
+      </div> */}
 
       {/* <!--Row--> */}
-      <Row className="row-sm">
+      <Row className="row-sm d-none">
         <Col sm={12} lg={12} xl={8}>
           <Row className=" row-sm  mt-lg-4">
             <Col sm={12} lg={12} xl={12}>
@@ -144,15 +152,16 @@ function Dashboard() {
                         level, Keep going to your level
                       </p>
                     </Col>
-                    <img src={require("../../assets/img/pngs/work3.png")} alt="work1" />
+                    <img
+                      src={require("../../assets/img/pngs/work3.png")}
+                      alt="work1"
+                    />
                   </Row>
                 </Card.Body>
               </Card>
             </Col>
           </Row>
-          {/* <!--Row --> */}
 
-          {/* <!--Row--> */}
           <Row className="row-sm">
             <Col sm={12} md={6} lg={6} xl={4}>
               <Card className="custom-card">
@@ -163,17 +172,28 @@ function Dashboard() {
                         className="text-primary"
                         xmlns="http://www.w3.org/2000/svg"
                         enableBackground="new 0 0 24 24"
-                        height="24" viewBox="0 0 24 24" width="24">
-                        <g><rect height="14" opacity=".3" width="14" x="5" y="5" /><g>
-                          <rect fill="none" height="24" width="24" />
+                        height="24"
+                        viewBox="0 0 24 24"
+                        width="24"
+                      >
+                        <g>
+                          <rect
+                            height="14"
+                            opacity=".3"
+                            width="14"
+                            x="5"
+                            y="5"
+                          />
                           <g>
-                            <path d="M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3z M19,19H5V5h14V19z" />
-                            <rect height="5" width="2" x="7" y="12" />
-                            <rect height="10" width="2" x="15" y="7" />
-                            <rect height="3" width="2" x="11" y="14" />
-                            <rect height="2" width="2" x="11" y="10" />
+                            <rect fill="none" height="24" width="24" />
+                            <g>
+                              <path d="M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3z M19,19H5V5h14V19z" />
+                              <rect height="5" width="2" x="7" y="12" />
+                              <rect height="10" width="2" x="15" y="7" />
+                              <rect height="3" width="2" x="11" y="14" />
+                              <rect height="2" width="2" x="11" y="10" />
+                            </g>
                           </g>
-                        </g>
                         </g>
                       </svg>
                     </div>
@@ -277,8 +297,7 @@ function Dashboard() {
               </Card>
             </Col>
           </Row>
-          {/* <!--End row--> */}
-          {/* <!--row--> */}
+
           <Row className="row-sm">
             <Col sm={12} lg={12} xl={12}>
               <Card className="custom-card overflow-hidden">
@@ -297,7 +316,12 @@ function Dashboard() {
                   <div>
                     <Container>
                       <div className="chart-dropshadow2 ht-300">
-                        <Line options={dashboardmain.linechartoptions} data={dashboardmain.linechart} className="barchart chart-dropshadow2 ht-300 chartjs-render-monitor" height="100" />
+                        <Line
+                          options={dashboardmain.linechartoptions}
+                          data={dashboardmain.linechart}
+                          className="barchart chart-dropshadow2 ht-300 chartjs-render-monitor"
+                          height="100"
+                        />
                       </div>
                     </Container>
                   </div>
@@ -347,7 +371,13 @@ function Dashboard() {
                     <Col md={6} className="my-auto">
                       <div className="forth circle">
                         <div>
-                          <ReactApexChart options={dashboardmain.Radialbar.options} series={dashboardmain.Radialbar.series} colors={dashboardmain.Radialbar.colors} type="radialBar" height={200} />
+                          <ReactApexChart
+                            options={dashboardmain.Radialbar.options}
+                            series={dashboardmain.Radialbar.series}
+                            colors={dashboardmain.Radialbar.colors}
+                            type="radialBar"
+                            height={200}
+                          />
                           <div className="chart-circle-value circle-style radialbar">
                             <div className="tx-16 font-weight-bold"></div>75%
                           </div>
@@ -467,7 +497,10 @@ function Dashboard() {
                       </span>
                     </div>
                     <Dropdown className="ms-auto">
-                      <Dropdown.Toggle variant="default" className="option-dots" >
+                      <Dropdown.Toggle
+                        variant="default"
+                        className="option-dots"
+                      >
                         <i className="fe fe-more-vertical"></i>
                       </Dropdown.Toggle>
                       <DropdownMenu style={{ margin: "0px" }}>
@@ -482,9 +515,12 @@ function Dashboard() {
                     </Dropdown>
                   </Card.Header>
                   <div className=" tasks">
-                    <Table responsive hover
+                    <Table
+                      responsive
+                      hover
                       className="card-table table-vcenter text-nowrap mb-0
-border hover"  >
+border hover"
+                    >
                       <thead>
                         <tr>
                           <th className="wd-lg-10p">Task</th>
@@ -561,9 +597,7 @@ border hover"  >
             </Col>
             {/* <!-- col end --> */}
           </Row>
-          {/* <!-- Row end --> */}
         </Col>
-        {/* <!-- col end --> */}
         <Col sm={12} lg={12} xl={4} className=" mt-xl-4">
           <div className="card custom-card card-dashboard-calendar pb-0">
             <label className="main-content-label mb-2 pt-1">
@@ -737,7 +771,11 @@ border hover"  >
                   </Link>
                 </Col>
                 <div className="col-6">
-                  <img src={require("../../assets/img/pngs/work.png")} alt="work" className="best-emp" />
+                  <img
+                    src={require("../../assets/img/pngs/work.png")}
+                    alt="work"
+                    className="best-emp"
+                  />
                 </div>
               </Row>
             </Card.Body>
@@ -789,7 +827,10 @@ border hover"  >
                   </div>
                   <div className="ms-auto float-end">
                     <Dropdown className="GOIONGPROJECTS">
-                      <Dropdown.Toggle variant="default" className="option-dots">
+                      <Dropdown.Toggle
+                        variant="default"
+                        className="option-dots"
+                      >
                         <i className="fe fe-more-horizontal"></i>
                       </Dropdown.Toggle>
                       <Dropdown.Menu
@@ -859,7 +900,10 @@ border hover"  >
                   </div>
                   <div className="ms-auto float-end">
                     <Dropdown className="Designteam">
-                      <Dropdown.Toggle variant="default" className="option-dots">
+                      <Dropdown.Toggle
+                        variant="default"
+                        className="option-dots"
+                      >
                         <i className="fe fe-more-horizontal"></i>
                       </Dropdown.Toggle>
                       <Dropdown.Menu
@@ -913,7 +957,11 @@ border hover"  >
                   </span>
                 </div>
                 <div className="container mt-2 mb-2">
-                  <Bar options={dashboardmain.Webdesgining} data={dashboardmain.webdesigning} className="line" />
+                  <Bar
+                    options={dashboardmain.Webdesgining}
+                    data={dashboardmain.webdesigning}
+                    className="line"
+                  />
                 </div>
               </div>
               <Row className="row">
@@ -946,9 +994,7 @@ border hover"  >
             </Card.Body>
           </Card>
         </Col>
-        {/* <!-- col end --> */}
       </Row>
-      {/* <!-- Row end --> */}
     </Fragment>
   );
 }

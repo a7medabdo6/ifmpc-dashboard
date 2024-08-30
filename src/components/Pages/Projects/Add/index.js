@@ -78,6 +78,8 @@ const AddProjects = () => {
     })) || [];
 
   const handleSubmit = (values) => {
+    console.log(values, "vvvvv");
+
     const jsonData = {
       name: values.name,
       name_en: values.name_en,
@@ -171,25 +173,19 @@ const AddProjects = () => {
               validationSchema={schema}
               onSubmit={(values) => handleSubmit(values)}
               initialValues={{
-                name: "Default Project Name",
-                name_en: "Default Project Name (English)",
-                name_ar: "اسم المشروع الافتراضي",
-                content: "Default content",
-                content_en: "Default content (English)",
-                content_ar: "محتوى افتراضي",
+                name: "",
+                name_en: "",
+                name_ar: "",
+                content: "",
+                content_en: "",
+                content_ar: "",
                 image: "", // Default URL or path
-                popularity_count: 10,
-                category:
-                  categoryOptions.length > 0 ? categoryOptions[0].value : null,
-                author:
-                  authorsData?.results.length > 0
-                    ? [authorsData.results[0].id]
-                    : [],
-                tags: tagOptions.length > 0 ? [tagOptions[0].value] : [],
-                references: [
-                  { name: "Default Reference", url: "http://default.url" },
-                ],
-                images: ["http://example.com/default-image.jpg"], // Default URL for images
+                popularity_count: "",
+                category: null,
+                author: [],
+                tags: [],
+                references: [{ name: "", url: "" }],
+                images: [], // Default URL for images
               }}
             >
               {({
@@ -420,7 +416,11 @@ const AddProjects = () => {
                       <div>
                         <h5>References</h5>
                         {values.references.map((reference, index) => (
-                          <Row key={index} className="mb-3">
+                          <Row
+                            key={index}
+                            style={{ display: "flex", alignItems: "flex-end" }}
+                            className="mb-3"
+                          >
                             <Form.Group
                               as={Col}
                               md="5"
@@ -446,7 +446,7 @@ const AddProjects = () => {
                             </Form.Group>
                             <Form.Group
                               as={Col}
-                              md="7"
+                              md="5"
                               controlId={`validationFormikReferenceUrl${index}`}
                             >
                               <Form.Label>Reference URL</Form.Label>
@@ -467,7 +467,7 @@ const AddProjects = () => {
                                   </div>
                                 )}
                             </Form.Group>
-                            <Col md="12" className="mb-2">
+                            <Col md="2" className="">
                               <Button
                                 type="button"
                                 variant="danger"
@@ -490,13 +490,17 @@ const AddProjects = () => {
                   <FieldArray
                     name="images"
                     render={({ remove, push }) => (
-                      <div>
+                      <div className="mt-4">
                         <h5>Images</h5>
                         {values.images.map((imageUrl, index) => (
-                          <Row key={index} className="mb-3">
+                          <Row
+                            key={index}
+                            className="mb-3"
+                            style={{ display: "flex", alignItems: "flex-end" }}
+                          >
                             <Form.Group
                               as={Col}
-                              md="12"
+                              md="10"
                               controlId={`validationFormikImage${index}`}
                             >
                               <Form.Label>Image URL</Form.Label>
@@ -522,7 +526,7 @@ const AddProjects = () => {
                                   </div>
                                 )}
                             </Form.Group>
-                            <Col md="12" className="mb-2">
+                            <Col md="2" className="">
                               <Button
                                 type="button"
                                 variant="danger"
@@ -542,6 +546,7 @@ const AddProjects = () => {
                       </div>
                     )}
                   />
+
                   <Form.Group as={Row} className="mb-3">
                     <Form.Label column sm={2}>
                       Upload Image
@@ -574,10 +579,7 @@ const AddProjects = () => {
                       </Button>
                     </div>
                   )}
-
-                  <Button type="submit" disabled={isLoading}>
-                    Submit
-                  </Button>
+                  <Button onClick={handleSubmit}>Submit</Button>
                   {error && (
                     <div className="text-danger mt-2">{error.message}</div>
                   )}

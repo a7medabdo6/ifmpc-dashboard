@@ -126,58 +126,6 @@ function Header() {
                 />
               </Link>
             </div>
-            <InputGroup>
-              {/* <Selectoptions /> */}
-              <Searchable
-                className="form-control select2"
-                value="test"
-                placeholder="Choose one" // by default "Search"
-                notFoundText="No result found" // by default "No result found"
-                noInput
-                options={[
-                  {
-                    value: "",
-                    label: "All categories",
-                  },
-                  {
-                    value: "it projects",
-                    label: "IT Projects",
-                  },
-                  {
-                    value: "business case",
-                    label: "Business Case",
-                  },
-                  {
-                    value: "microsoft project",
-                    label: "Microsoft Project",
-                  },
-                  {
-                    value: "risk ]management",
-                    label: "Risk Management",
-                  },
-                  {
-                    value: "popular",
-                    label: "Popular",
-                  },
-                  {
-                    value: "team building",
-                    label: "Team Building",
-                  },
-                ]}
-                onSelect={(value) => {
-                  console.log(value);
-                }}
-                listMaxHeight={140} //by default 140
-              />
-              <Form.Control
-                type="search"
-                className="rounded-0"
-                placeholder="Search for anything..."
-              />
-              <InputGroup.Text className="btn search-btn">
-                <i className="fe fe-search"></i>
-              </InputGroup.Text>
-            </InputGroup>
           </div>
           <div className="main-header-right">
             <Navbar.Toggle
@@ -264,7 +212,7 @@ function Header() {
                       </span>
                     </Nav.Link>
                   </Dropdown>
-                  <Dropdown className=" main-header-notification flag-dropdown">
+                  {/* <Dropdown className=" main-header-notification flag-dropdown">
                     <Dropdown.Toggle
                       className="nav-link icon country-Flag "
                       variant="default"
@@ -343,7 +291,7 @@ function Header() {
                         </div>
                       </Dropdown.Item>
                     </Dropdown.Menu>
-                  </Dropdown>
+                  </Dropdown> */}
                   <div className="d-md-flex">
                     <div
                       className="nav-link icon full-screen-link"
@@ -353,7 +301,7 @@ function Header() {
                       <i className="fe fe-minimize fullscreen-button exit-fullscreen header-icons"></i>
                     </div>
                   </div>
-                  <Dropdown className=" main-header-notification">
+                  {/* <Dropdown className=" main-header-notification">
                     <Dropdown.Toggle
                       className="nav-link icon"
                       href="#"
@@ -421,13 +369,13 @@ function Header() {
                         <Link to="#">View All Notifications</Link>
                       </div>
                     </Dropdown.Menu>
-                  </Dropdown>
-                  <div className="main-header-notification">
+                  </Dropdown> */}
+                  {/* <div className="main-header-notification">
                     <Link className="icon nav-link" to={`/advanceUI/chat/`}>
                       <i className="fe fe-message-square header-icons"></i>
                       <span className="badge bg-success nav-link-badge">6</span>
                     </Link>
-                  </div>
+                  </div> */}
                   <Dropdown className="main-profile-menu">
                     <Dropdown.Toggle className="d-flex p-0" variant="default">
                       <span className="main-img-user mx-1">
@@ -438,13 +386,13 @@ function Header() {
                       </span>
                     </Dropdown.Toggle>
                     <Dropdown.Menu style={{ margin: "0px" }}>
-                      <div className="header-navheading">
+                      {/* <div className="header-navheading">
                         <h6 className="main-notification-title">
                           Sonia Taylor
                         </h6>
                         <p className="main-notification-text">Web Designer</p>
-                      </div>
-                      <Dropdown.Item
+                      </div> */}
+                      {/* <Dropdown.Item
                         className="border-top"
                         href={`/pages/profile`}
                       >
@@ -458,10 +406,10 @@ function Header() {
                       </Dropdown.Item>
                       <Dropdown.Item href={`/pages/profile`}>
                         <i className="fe fe-settings"></i> Support
-                      </Dropdown.Item>
-                      <Dropdown.Item href={`/pages/profile`}>
+                      </Dropdown.Item> */}
+                      {/* <Dropdown.Item href={`/pages/profile`}>
                         <i className="fe fe-compass"></i> Activity
-                      </Dropdown.Item>
+                      </Dropdown.Item> */}
                       <Dropdown.Item
                         onClick={() => {
                           // auth.signOut();
@@ -474,7 +422,7 @@ function Header() {
                       </Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
-                  <div className="d-md-flex header-settings">
+                  {/* <div className="d-md-flex header-settings">
                     <Nav.Link
                       href="#"
                       className="nav-link icon"
@@ -482,14 +430,14 @@ function Header() {
                     >
                       <i className="fe fe-align-right header-icons"></i>
                     </Nav.Link>
-                  </div>
+                  </div> */}
                 </div>
               </Navbar.Collapse>
-              <div className="d-flex header-setting-icon demo-icon fa-spin">
+              {/* <div className="d-flex header-setting-icon demo-icon fa-spin">
                 <Nav.Link className="nav-link icon" onClick={Swicherbutton}>
                   <i className="fe fe-settings settings-icon "></i>
                 </Nav.Link>
-              </div>
+              </div> */}
             </div>
           </div>
         </Container>
