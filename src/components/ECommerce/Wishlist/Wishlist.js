@@ -8,7 +8,7 @@ import png5 from "../../../assets/img/pngs/5.png";
 import png6 from "../../../assets/img/pngs/6.png";
 import png7 from "../../../assets/img/pngs/7.png";
 import png8 from "../../../assets/img/pngs/8.png";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 let WishlistData = [
   {
     id: 1,
@@ -86,20 +86,16 @@ let WishlistData = [
     Addtocart: "Add to cart ",
     Favorite: "heart",
   },
-
-
-
 ];
 function Wishlist() {
   var clickq = (id1) => {
     let ee = WishlistData.filter((e, i) => {
-      return e.id !== id1
-    })
-    WishlistData = ee
-    setdata(ee)
-
-  }
-  const [data, setdata] = useState(WishlistData)
+      return e.id !== id1;
+    });
+    WishlistData = ee;
+    setdata(ee);
+  };
+  const [data, setdata] = useState(WishlistData);
 
   return (
     <Fragment>
@@ -107,12 +103,8 @@ function Wishlist() {
         <div>
           <h2 className="main-content-title tx-24 mg-b-5">Wishlist</h2>
           <Breadcrumb>
-            <Breadcrumb.Item href="#">
-              Ecommerce
-            </Breadcrumb.Item>
-            <Breadcrumb.Item active>
-              Wishlist
-            </Breadcrumb.Item>
+            <Breadcrumb.Item href="#">Ecommerce</Breadcrumb.Item>
+            <Breadcrumb.Item active>Wishlist</Breadcrumb.Item>
           </Breadcrumb>
         </div>
         <div className="d-flex">
@@ -131,9 +123,11 @@ function Wishlist() {
             >
               <i className="fe fe-filter me-2"></i> Filter
             </Button>
-            <Button type="button"
+            <Button
+              type="button"
               variant="primary"
-              className="my-2 btn-icon-text">
+              className="my-2 btn-icon-text"
+            >
               <i className="fe fe-download-cloud me-2"></i> Download Report
             </Button>
           </div>
@@ -142,78 +136,82 @@ function Wishlist() {
       <Row className="row-sm" id="wishlist">
         <Col md={12} lg={12} xl={12}>
           <Row className="row-sm">
-
-
             {data.map((items, index) => (
-              <Col md={6} lg={6} sm={6} xl={3} className="alert mb-0" key={index}
-                data-index={index}>
+              <Col
+                md={6}
+                lg={6}
+                sm={6}
+                xl={3}
+                className="alert mb-0"
+                key={index}
+                data-index={index}
+              >
                 <div className="card custom-card">
                   <div className="p-0">
                     <div className="product-grid">
                       <div className="product-image">
-                        <Link to={`${process.env.PUBLIC_URL}/ecommerce/productdeatils/`} className="image">
-                          <img className="pic-1" alt="product1" src={items.Product1}
+                        <Link
+                          to={`/ecommerce/productdeatils/`}
+                          className="image"
+                        >
+                          <img
+                            className="pic-1"
+                            alt="product1"
+                            src={items.Product1}
                           />
                         </Link>
-                        <Link to="#"
-                          className="wishlist-icon"
-                        >
-                          <i className={'far fa-heart'} onClick={() => { clickq(items.id) }}></i>
+                        <Link to="#" className="wishlist-icon">
+                          <i
+                            className={"far fa-heart"}
+                            onClick={() => {
+                              clickq(items.id);
+                            }}
+                          ></i>
                         </Link>
                       </div>
                       <div className="product-content">
                         <div className="d-flex">
                           <div>
                             <h3 className="title">
-                              <Link to="#"
-
-                              >{items.ProductId}</Link>
+                              <Link to="#">{items.ProductId}</Link>
                             </h3>
                           </div>
                           <div className="price text-end ms-auto">
-                            <span className="old-price">{items.Productpriceold}</span>
-                            <span className="fs-18">{items.Productdiscountnew}</span>
+                            <span className="old-price">
+                              {items.Productpriceold}
+                            </span>
+                            <span className="fs-18">
+                              {items.Productdiscountnew}
+                            </span>
                           </div>
                         </div>
                         <div>
-                          <Link to="#"
-
-                          >
+                          <Link to="#">
                             <i className="fa fa-star text-warning"></i>
                           </Link>
-                          <Link to="#"
-
-                          >
+                          <Link to="#">
                             <i className="fa fa-star text-warning"></i>
                           </Link>
-                          <Link to="#"
-
-                          >
+                          <Link to="#">
                             <i className="fa fa-star text-warning"></i>
                           </Link>
-                          <Link to="#"
-
-                          >
+                          <Link to="#">
                             <i className="far fa-star text-warning"></i>
                           </Link>
-                          <Link to="#"
-
-                          >
+                          <Link to="#">
                             <i className="far fa-star text-warning"></i>
                           </Link>
-                          <Link to="#"
-
-                            className="me-4 text-muted">
-
+                          <Link to="#" className="me-4 text-muted">
                             (25)
                           </Link>
                         </div>
                         <div className="mt-3">
-                          <Link to={`${process.env.PUBLIC_URL}/ecommerce/eccart/`}
+                          <Link
+                            to={`/ecommerce/eccart/`}
                             className="btn btn-block btn-primary"
                           >
-                            <i className="fe fe-shopping-cart me-2"></i><span>
-                              {items.Addtocart}</span>
+                            <i className="fe fe-shopping-cart me-2"></i>
+                            <span>{items.Addtocart}</span>
                           </Link>
                         </div>
                       </div>
@@ -222,46 +220,17 @@ function Wishlist() {
                 </div>
               </Col>
             ))}
-
           </Row>
           <Nav>
             <Pagination className="justify-content-end">
               <Pagination.Prev />
-              <Pagination.Item disabled>
-
-                Prev
-
-              </Pagination.Item>
-              <Pagination.Item active>
-
-                1
-
-              </Pagination.Item>
-              <Pagination.Item className="page-item">
-
-                2
-
-              </Pagination.Item>
-              <Pagination.Item className="page-item">
-
-                3
-
-              </Pagination.Item>
-              <Pagination.Item className="page-item">
-
-                4
-
-              </Pagination.Item>
-              <Pagination.Item className="page-item">
-
-                5
-
-              </Pagination.Item>
-              <Pagination.Item className="page-item">
-
-                Next
-
-              </Pagination.Item>
+              <Pagination.Item disabled>Prev</Pagination.Item>
+              <Pagination.Item active>1</Pagination.Item>
+              <Pagination.Item className="page-item">2</Pagination.Item>
+              <Pagination.Item className="page-item">3</Pagination.Item>
+              <Pagination.Item className="page-item">4</Pagination.Item>
+              <Pagination.Item className="page-item">5</Pagination.Item>
+              <Pagination.Item className="page-item">Next</Pagination.Item>
               <Pagination.Next />
             </Pagination>
           </Nav>

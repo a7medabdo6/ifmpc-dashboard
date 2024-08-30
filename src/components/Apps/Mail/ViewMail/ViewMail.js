@@ -1,5 +1,14 @@
 import React, { Fragment } from "react";
-import { Breadcrumb, Button, Card, Col, Nav, OverlayTrigger, Row, Tooltip } from "react-bootstrap";
+import {
+  Breadcrumb,
+  Button,
+  Card,
+  Col,
+  Nav,
+  OverlayTrigger,
+  Row,
+  Tooltip,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
 const ViewMail = () => (
   <Fragment>
@@ -8,12 +17,8 @@ const ViewMail = () => (
       <div>
         <h2 className="main-content-title tx-24 mg-b-5">View-Mail</h2>
         <Breadcrumb>
-          <Breadcrumb.Item href="#">
-            Apps
-          </Breadcrumb.Item>
-          <Breadcrumb.Item active >
-            View-Mail
-          </Breadcrumb.Item>
+          <Breadcrumb.Item href="#">Apps</Breadcrumb.Item>
+          <Breadcrumb.Item active>View-Mail</Breadcrumb.Item>
         </Breadcrumb>
       </div>
       <div className="d-flex">
@@ -33,7 +38,10 @@ const ViewMail = () => (
             <i className="fe fe-filter me-2"></i> Filter
           </Button>
           <Button
-            variant="primary" type="button" className="my-2 btn-icon-text">
+            variant="primary"
+            type="button"
+            className="my-2 btn-icon-text"
+          >
             <i className="fe fe-download-cloud me-2"></i> Download Report
           </Button>
         </div>
@@ -47,7 +55,8 @@ const ViewMail = () => (
         <Card className="custom-card">
           <Card.Body>
             <div>
-              <Link to={`${process.env.PUBLIC_URL}/apps/mail/mailcomposed`}
+              <Link
+                to={`/apps/mail/mailcomposed`}
                 variant="primary"
                 className="btn btn-main-primary btn-block btn-compose"
                 id="btnCompose"
@@ -55,54 +64,50 @@ const ViewMail = () => (
                 Compose
               </Link>
               <div className="main-mail-menu pd-r-0 mg-t-20">
-                <Nav className="nav main-nav-column mg-b-20" activeKey="/started">
+                <Nav
+                  className="nav main-nav-column mg-b-20"
+                  activeKey="/started"
+                >
                   <Nav.Item>
                     <Nav.Link active href="#">
                       <i className="fe fe-mail"></i> Inbox
                       <span className="badge bg-light">20</span>
-
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link href="#" eventKey="started">
                       <i className="fe fe-star"></i> Starred
                       <span className="badge bg-primary">3</span>
-
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link href="#" eventKey="important">
                       <i className="fe fe-bookmark"></i> Important
                       <span className="badge bg-secondary">10</span>
-
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link href="#" eventKey="sendmail">
                       <i className="fe fe-send"></i> Sent Mail
                       <span className="badge bg-success">8</span>
-
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link href="#" eventKey="drafts">
                       <i className="fe fe-edit-2"></i> Drafts
                       <span className="badge bg-danger">15</span>
-
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link href="#" eventKey="spam">
                       <i className="fe fe-disc"></i> Spam
                       <span className="badge bg-warning">128</span>
-
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link href="#" eventKey="trash">
                       <i className="fe fe-trash-2"></i> Trash
                       <span className="badge bg-info">6</span>
-
                     </Nav.Link>
                   </Nav.Item>
                 </Nav>
@@ -110,12 +115,10 @@ const ViewMail = () => (
                   Label
                 </label>
                 <Nav className="main-nav-column">
-
                   <Nav.Item>
                     <Nav.Link href="#" eventKey="social">
                       <i className="fe fe-folder"></i> Social
                       <span className="badge bg-primary">10</span>
-
                     </Nav.Link>
                   </Nav.Item>
 
@@ -123,7 +126,6 @@ const ViewMail = () => (
                     <Nav.Link href="#" eventKey="promotions">
                       <i className="fe fe-folder"></i> Promotions
                       <span className="badge bg-secondary">22</span>
-
                     </Nav.Link>
                   </Nav.Item>
 
@@ -131,7 +133,6 @@ const ViewMail = () => (
                     <Nav.Link href="#">
                       <i className="fe fe-folder"></i> Updates
                       <span className="badge bg-success">17</span>
-
                     </Nav.Link>
                   </Nav.Item>
                 </Nav>
@@ -175,7 +176,9 @@ const ViewMail = () => (
               </div>
               <div className="media mt-0">
                 <div className="main-img-user avatar-md me-3 online">
-                  <img alt="avatar" className="rounded-circle"
+                  <img
+                    alt="avatar"
+                    className="rounded-circle"
                     src={require("../../../../assets/img/users/1.jpg")}
                   />
                 </div>
@@ -277,7 +280,6 @@ const ViewMail = () => (
               <hr />
               <div className="email-attch">
                 <div className="float-end">
-
                   <OverlayTrigger
                     placement="top"
                     overlay={<Tooltip>download</Tooltip>}
@@ -289,7 +291,11 @@ const ViewMail = () => (
                   </OverlayTrigger>
                 </div>
                 <p>
-                  3 Attachments<Link to href="#"> View All Images</Link>
+                  3 Attachments
+                  <Link to href="#">
+                    {" "}
+                    View All Images
+                  </Link>
                 </p>
                 <div className="emai-img">
                   <div className="row row-sm">
@@ -338,7 +344,11 @@ const ViewMail = () => (
             <Link to className="btn ripple btn-primary mt-1 mb-1 me-1" href="#">
               <i className="fa fa-reply"></i> Reply
             </Link>
-            <Link to className="btn ripple btn-secondary mt-1 mb-1 me-1" href="#">
+            <Link
+              to
+              className="btn ripple btn-secondary mt-1 mb-1 me-1"
+              href="#"
+            >
               <i className="fa fa-share"></i> Forward
             </Link>
           </Card.Footer>
@@ -346,7 +356,7 @@ const ViewMail = () => (
       </Col>
     </Row>
     {/* <!-- End Row --> */}
-  </Fragment >
+  </Fragment>
 );
 
 ViewMail.propTypes = {};

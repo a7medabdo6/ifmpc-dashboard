@@ -5,17 +5,18 @@ import * as Customswitcherdata from "../../../data/Switcherdata/Customswitcherda
 const Signin = () => (
   <Fragment>
     {/* <!-- Row --> */}
-    <div className="page main-signin-wrapper"
-    >
-      <div className="d-flex header-setting-icon demo-icon fa-spin"
-       onClick={() => Customswitcherdata.Swicherbutton()}
-       >
-        <Link className="nav-link icon" to="#" >
+    <div className="page main-signin-wrapper">
+      <div
+        className="d-flex header-setting-icon demo-icon fa-spin"
+        onClick={() => Customswitcherdata.Swicherbutton()}
+      >
+        <Link className="nav-link icon" to="#">
           <i className="fe fe-settings settings-icon "></i>
         </Link>
       </div>
-      <Row className="signpages text-center" 
-      onClick={() => Customswitcherdata.remove()}
+      <Row
+        className="signpages text-center"
+        onClick={() => Customswitcherdata.remove()}
       >
         <Col md={12}>
           <Card>
@@ -67,7 +68,10 @@ const Signin = () => (
                           Signin to create, discover and connect with the global
                           community
                         </p>
-                        <Form.Group className="text-start form-group" controlId="formEmail">
+                        <Form.Group
+                          className="text-start form-group"
+                          controlId="formEmail"
+                        >
                           <Form.Label>Email</Form.Label>
                           <Form.Control
                             placeholder="Enter your email"
@@ -90,16 +94,17 @@ const Signin = () => (
                       </Form>
                       <div className="text-start mt-5 ms-0">
                         <div className="mb-1">
-                          <Link
-                            to={`${process.env.PUBLIC_URL}/custompages/forgotpassword/`}
-                          > Forgot password ? 
+                          <Link to={`/custompages/forgotpassword/`}>
+                            {" "}
+                            Forgot password ?
                           </Link>
                         </div>
                         <div>
                           Don't have an account?
-                          <Link
-                            to={`${process.env.PUBLIC_URL}/custompages/signup/`}
-                          > Resgister Here</Link>
+                          <Link to={`/custompages/signup/`}>
+                            {" "}
+                            Resgister Here
+                          </Link>
                         </div>
                       </div>
                     </Card.Body>

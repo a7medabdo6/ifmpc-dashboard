@@ -6,9 +6,9 @@ import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import { GeoSearchControl, OpenStreetMapProvider } from "leaflet-geosearch";
 import { useCreateContactUs } from "../../../../Api/ContactUs";
 import L from "leaflet";
-import 'leaflet/dist/leaflet.css';
-import markir from '../../../../assets/img/markir.png';
-import { useNavigate } from 'react-router-dom';
+import "leaflet/dist/leaflet.css";
+import markir from "../../../../assets/img/markir.png";
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // تعريف الأيقونة المخصصة
@@ -16,7 +16,7 @@ const customIcon = new L.Icon({
   iconUrl: markir, // المسار إلى صورة الأيقونة
   iconSize: [32, 32], // حجم الأيقونة
   iconAnchor: [16, 32], // نقطة التثبيت على الأيقونة
-  popupAnchor: [0, -32] // نقطة فتح النوافذ المنبثقة بالنسبة للأيقونة
+  popupAnchor: [0, -32], // نقطة فتح النوافذ المنبثقة بالنسبة للأيقونة
 });
 
 const schema = yup.object().shape({
@@ -31,13 +31,15 @@ const schema = yup.object().shape({
 });
 
 const AddContactUs = () => {
-  const { mutate ,data} = useCreateContactUs();
+  const { mutate, data } = useCreateContactUs();
   const mapRef = useRef();
   const provider = new OpenStreetMapProvider();
 
   // وظيفة للحصول على تفاصيل الموقع بما في ذلك اسم البلد
   const getLocationDetails = async (lat, lng) => {
-    const response = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json&addressdetails=1`);
+    const response = await fetch(
+      `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json&addressdetails=1`
+    );
     const data = await response.json();
     return data;
   };
@@ -47,7 +49,9 @@ const AddContactUs = () => {
     const result = await getLocationDetails(lat, lng);
     if (result && result.address) {
       const { address } = result;
-      const location = address.road ? `${address.road}, ${address.city}, ${address.country}` : address.country;
+      const location = address.road
+        ? `${address.road}, ${address.city}, ${address.country}`
+        : address.country;
 
       setFieldValue("location", location);
       setFieldValue("location_en", address.country); // استخدم اسم البلد باللغة الإنجليزية
@@ -55,7 +59,10 @@ const AddContactUs = () => {
 
       setFieldValue("latitude", lat);
       setFieldValue("longitude", lng);
-      setFieldValue("map_link", `https://www.openstreetmap.org/#map=13/${lat}/${lng}`);
+      setFieldValue(
+        "map_link",
+        `https://www.openstreetmap.org/#map=13/${lat}/${lng}`
+      );
     }
   };
 
@@ -63,7 +70,7 @@ const AddContactUs = () => {
   const initializeSearchControl = (setFieldValue) => {
     const searchControl = new GeoSearchControl({
       provider,
-      style: 'button',
+      style: "button",
       marker: {
         icon: customIcon, // استخدام الأيقونة المخصصة
         draggable: true,
@@ -72,7 +79,7 @@ const AddContactUs = () => {
 
     mapRef.current.leafletElement.addControl(searchControl);
 
-    mapRef.current.leafletElement.on('geosearch/showlocation', (event) => {
+    mapRef.current.leafletElement.on("geosearch/showlocation", (event) => {
       const { location } = event;
       const { lat, lng } = location;
       updateFormFields(lat, lng, setFieldValue);
@@ -86,7 +93,7 @@ const AddContactUs = () => {
 
       // تأخير الانتقال لمدة 2 ثانية (2000 مللي ثانية)
       setTimeout(() => {
-        navigate("/spruha/preview/pages/contactus/");
+        navigate("/pages/contactus/");
       }, 2000); // يمكنك ضبط الوقت حسب الحاجة
     }
   }, [data, navigate]);
@@ -115,8 +122,8 @@ const AddContactUs = () => {
                 email: "user@example.com",
                 phone: "",
                 map_link: "",
-                latitude: 51.505,  // تعيين قيمة افتراضية
-                longitude: -0.09,  // تعيين قيمة افتراضية
+                latitude: 51.505, // تعيين قيمة افتراضية
+                longitude: -0.09, // تعيين قيمة افتراضية
               }}
             >
               {({
@@ -279,7 +286,11 @@ const AddContactUs = () => {
                               const position = marker.getLatLng();
                               setFieldValue("latitude", position.lat);
                               setFieldValue("longitude", position.lng);
-                              updateFormFields(position.lat, position.lng, setFieldValue);
+                              updateFormFields(
+                                position.lat,
+                                position.lng,
+                                setFieldValue
+                              );
                             },
                           }}
                         ></Marker>

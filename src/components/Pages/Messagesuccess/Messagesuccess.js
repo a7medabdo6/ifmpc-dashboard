@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react';
-import { Col, Card, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import React, { Fragment } from "react";
+import { Col, Card, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import * as Customswitcherdata from "../../../data/Switcherdata/Customswitcherdata";
 const Messagesuccess = () => (
   <Fragment>
@@ -14,7 +14,10 @@ const Messagesuccess = () => (
           <i className="fe fe-settings settings-icon "></i>
         </span>
       </div>
-      <Row className="signpages ext-center" onClick={() => Customswitcherdata.remove()}>
+      <Row
+        className="signpages ext-center"
+        onClick={() => Customswitcherdata.remove()}
+      >
         <Col md={7} className=" mx-auto">
           <Card className="alert-message">
             <Card.Body>
@@ -35,10 +38,7 @@ const Messagesuccess = () => (
                 <p className="tx-18 text-white-50">
                   Oops!! You tried to access a page which is not available.
                 </p>
-                <Link
-                  to={`${process.env.PUBLIC_URL}/dashboard/`}
-                  className="btn btn-success"
-                >
+                <Link to={`/dashboard/`} className="btn btn-success">
                   Back to Home
                 </Link>
               </div>
@@ -47,7 +47,6 @@ const Messagesuccess = () => (
         </Col>
       </Row>
     </div>
-
 
     {/* <!-- End Page -- */}
   </Fragment>

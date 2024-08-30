@@ -3,7 +3,7 @@ import { Breadcrumb, Button, Col, Row, Form } from "react-bootstrap";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { useCreateOurPartner } from "../../../../Api/OurPartners";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const schema = yup.object().shape({
@@ -14,7 +14,7 @@ const schema = yup.object().shape({
 });
 
 const AddOurPartners = () => {
-  const { mutate,data } = useCreateOurPartner();
+  const { mutate, data } = useCreateOurPartner();
   const navigate = useNavigate(); // Initialize navigate function
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const AddOurPartners = () => {
 
       // تأخير الانتقال لمدة 2 ثانية (2000 مللي ثانية)
       setTimeout(() => {
-        navigate("/spruha/preview/pages/ourpartners/");
+        navigate("/pages/ourpartners/");
       }, 2000); // يمكنك ضبط الوقت حسب الحاجة
     }
   }, [data, navigate]);
@@ -31,9 +31,7 @@ const AddOurPartners = () => {
     <Fragment>
       <div className="page-header">
         <div>
-          <h2 className="main-content-title tx-24 mg-b-5">
-            Create OurPartner
-          </h2>
+          <h2 className="main-content-title tx-24 mg-b-5">Create OurPartner</h2>
           <Breadcrumb>
             <Breadcrumb.Item href="#"> Pages </Breadcrumb.Item>
             <Breadcrumb.Item active>Create OurPartner</Breadcrumb.Item>

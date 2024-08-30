@@ -25,7 +25,7 @@ import { Link } from "react-router-dom";
 import { useDeleteUser, useEditUser } from "../../../Api/User";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import OneUser from './OneUser/index'
+import OneUser from "./OneUser/index";
 const Users = () => {
   const { mutate } = useDeleteUser();
   const { mutate: mutateEdit } = useEditUser();
@@ -83,7 +83,7 @@ const Users = () => {
         </div>
         <div className="d-flex">
           <div className="justify-content-center">
-            {/* <Link to={"/spruha/preview/pages/Users/create"}>
+            {/* <Link to={"/pages/Users/create"}>
               <Button
                 variant="primary"
                 type="button"
@@ -119,7 +119,6 @@ border hover"
                       <th className="wd-lg-10p">username</th>
                       <th className="wd-lg-20p">name</th>
                       <th className="wd-lg-20p ">url</th>
-                     
 
                       <th className="wd-lg-20p">Actions</th>
                     </tr>
@@ -140,20 +139,18 @@ border hover"
                           </td>{" "}
                           <td className="font-weight-semibold">
                             <div className="d-flex">
-                              <span className="mt-1">
-                                {item.url}
-                              </span>
+                              <span className="mt-1">{item.url}</span>
                             </div>
                           </td>
-                      
-                        
                           <td className="font-weight-semibold">
                             <div className="d-flex">
                               <Button
                                 type="submit"
                                 onClick={() => {
                                   return (
-                                    setId(item?.id), viewDemoShow("show10"), setItemData(item)
+                                    setId(item?.id),
+                                    viewDemoShow("show10"),
+                                    setItemData(item)
                                   );
                                 }}
                               >
@@ -161,7 +158,10 @@ border hover"
                               </Button>
                               <Button
                                 onClick={() => {
-                                  return setUserName(item?.username), viewDemoShow("Basic");
+                                  return (
+                                    setUserName(item?.username),
+                                    viewDemoShow("Basic")
+                                  );
                                 }}
                                 type="submit"
                                 style={{ marginInline: "5px" }}
@@ -186,8 +186,7 @@ border hover"
                         <h6>Confirm Deletion</h6>
                       </Modal.Header>
                       <Modal.Body>
-                        <OneUser username={username}/>
-                 
+                        <OneUser username={username} />
                       </Modal.Body>
                       <Modal.Footer>
                         {/* <Button
@@ -223,7 +222,12 @@ border hover"
                       </Modal.Header>
                       <Modal.Body>
                         <Modal.Title>Edit categorie</Modal.Title>
-                        <EditUsers setShow10={setShow10} username={itemData?.username} itemData={itemData} viewDemoClose={viewDemoClose} />
+                        <EditUsers
+                          setShow10={setShow10}
+                          username={itemData?.username}
+                          itemData={itemData}
+                          viewDemoClose={viewDemoClose}
+                        />
                       </Modal.Body>
                       {/* <Modal.Footer>
                         <Button

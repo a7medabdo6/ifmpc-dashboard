@@ -83,7 +83,7 @@ const OurPartners = () => {
         </div>
         <div className="d-flex">
           <div className="justify-content-center">
-            <Link to={"/spruha/preview/pages/OurPartners/create"}>
+            <Link to={"/pages/OurPartners/create"}>
               <Button
                 variant="primary"
                 type="button"

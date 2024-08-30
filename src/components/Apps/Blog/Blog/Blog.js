@@ -29,7 +29,10 @@ const Blog = () => (
             <i className="fe fe-filter me-2"></i> Filter
           </Button>
           <Button
-            variant="primary" type="button" className="my-2 btn-icon-text">
+            variant="primary"
+            type="button"
+            className="my-2 btn-icon-text"
+          >
             <i className="fe fe-download-cloud me-2"></i> Download Report
           </Button>
         </div>
@@ -39,7 +42,7 @@ const Blog = () => (
       <Col xl={6} lg={12}>
         <Card className=" custom-card overflow-hidden">
           <div className="px-4 pt-4">
-            <Link to={`${process.env.PUBLIC_URL}/apps/blog/blogdetails`}>
+            <Link to={`/apps/blog/blogdetails`}>
               <img
                 src={require("../../../../assets/img/media/blog9.jpg")}
                 alt="blog9"
@@ -123,9 +126,7 @@ const Blog = () => (
               <Col xl={5} lg={12} md={12}>
                 <Card.Body className="p-0">
                   <div className="item-card-img">
-                    <Link
-                      to={`${process.env.PUBLIC_URL}/advanceUI/blogdetails/`}
-                    >
+                    <Link to={`/advanceUI/blogdetails/`}>
                       <img
                         className="card-img-left h-130 w-100"
                         src={require("../../../../assets/img/media/blog2.jpg")}
@@ -137,7 +138,7 @@ const Blog = () => (
               </Col>
               <Col xl={7} lg={12} md={12}>
                 <Card.Body className="p-2">
-                  <Link to={`${process.env.PUBLIC_URL}/advanceUI/blogdetails/`}>
+                  <Link to={`/advanceUI/blogdetails/`}>
                     <h5 className="font-weight-semibold mt-3">
                       Circumstances Certain claims
                     </h5>
@@ -179,9 +180,7 @@ const Blog = () => (
               <Col xl={5} lg={12} md={12}>
                 <Card.Body className="p-0">
                   <div className="item-card-img">
-                    <Link
-                      to={`${process.env.PUBLIC_URL}/advanceUI/blogdetails/`}
-                    >
+                    <Link to={`/advanceUI/blogdetails/`}>
                       <img
                         className="card-img-left h-130 w-100 op-8"
                         src={require("../../../../assets/img/media/blog4.jpg")}
@@ -193,7 +192,7 @@ const Blog = () => (
               </Col>
               <Col xl={7} lg={12} md={12}>
                 <Card.Body className="p-2">
-                  <Link to={`${process.env.PUBLIC_URL}/advanceUI/blogdetails/`}>
+                  <Link to={`/advanceUI/blogdetails/`}>
                     <h5 className="font-weight-semibold mt-3">
                       Teri Dactyl Certain
                     </h5>
@@ -235,9 +234,7 @@ const Blog = () => (
               <Col xl={5} lg={12} md={12}>
                 <Card.Body className="p-0">
                   <div className="item-card-img">
-                    <Link
-                      to={`${process.env.PUBLIC_URL}/advanceUI/blogdetails/`}
-                    >
+                    <Link to={`/advanceUI/blogdetails/`}>
                       <img
                         className="card-img-left h-130 w-100 op-9"
                         src={require("../../../../assets/img/media/blog3.jpg")}
@@ -249,7 +246,7 @@ const Blog = () => (
               </Col>
               <Col xl={7} lg={12} md={12}>
                 <Card.Body className="p-2">
-                  <Link to={`${process.env.PUBLIC_URL}/advanceUI/blogdetails/`}>
+                  <Link to={`/advanceUI/blogdetails/`}>
                     <h5 className="font-weight-semibold mt-3">
                       Circumstances Certain claims
                     </h5>
@@ -290,7 +287,7 @@ const Blog = () => (
     <Row className=" row-sm">
       <Col xl={3} md={6}>
         <Card className=" custom-card">
-          <Link to={`${process.env.PUBLIC_URL}/advanceUI/blogdetails/`}>
+          <Link to={`/advanceUI/blogdetails/`}>
             <img
               className="card-img-top w-100 blog-img"
               src={require("../../../../assets/img/media/blog11.jpg")}
@@ -313,7 +310,7 @@ const Blog = () => (
       </Col>
       <Col md={6} xl={3}>
         <Card className=" custom-card">
-          <Link to={`${process.env.PUBLIC_URL}/advanceUI/blogdetails/`}>
+          <Link to={`/advanceUI/blogdetails/`}>
             <img
               className="card-img-top w-100 blog-img"
               src={require("../../../../assets/img/media/blog6.jpg")}
@@ -336,7 +333,7 @@ const Blog = () => (
       </Col>
       <Col md={6} xl={3}>
         <Card className=" custom-card">
-          <Link to={`${process.env.PUBLIC_URL}/advanceUI/blogdetails/`}>
+          <Link to={`/advanceUI/blogdetails/`}>
             <img
               className="card-img-top w-100 blog-img op-9"
               src={require("../../../../assets/img/media/blog9.jpg")}
@@ -359,8 +356,12 @@ const Blog = () => (
       </Col>
       <Col md={6} xl={3}>
         <Card className=" custom-card">
-          <Link to={`${process.env.PUBLIC_URL}/advanceUI/blogdetails/`}>
-            <img className="card-img-top w-100 blog-img op-9" src={require("../../../../assets/img/media/blog10.jpg")} alt="blog10" />
+          <Link to={`/advanceUI/blogdetails/`}>
+            <img
+              className="card-img-top w-100 blog-img op-9"
+              src={require("../../../../assets/img/media/blog10.jpg")}
+              alt="blog10"
+            />
           </Link>
           <Card.Body>
             <h5 className="main-content-label mb-3 tx-16">
@@ -381,8 +382,10 @@ const Blog = () => (
       <Col lg={6}>
         <Card className=" card-aside custom-card">
           <Card.Body>
-            <Link to={`${process.env.PUBLIC_URL}/advanceUI/blogdetails/`}>
-              <label className="main-content-label tx-16 mb-3">Blog Title</label>
+            <Link to={`/advanceUI/blogdetails/`}>
+              <label className="main-content-label tx-16 mb-3">
+                Blog Title
+              </label>
             </Link>
             <div>
               Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
@@ -390,17 +393,26 @@ const Blog = () => (
             </div>
             <div className="d-flex align-items-center pt-3 mt-auto">
               <div className="main-img-user avatar-sm me-3">
-                <Link to={`${process.env.PUBLIC_URL}/advanceUI/blogdetails/`}
-                ></Link>
-                <img src={require("../../../../assets/img/users/1.jpg")} className="w-10 rounded-circle" alt="user1" />
+                <Link to={`/advanceUI/blogdetails/`}></Link>
+                <img
+                  src={require("../../../../assets/img/users/1.jpg")}
+                  className="w-10 rounded-circle"
+                  alt="user1"
+                />
               </div>
               <div>
-                <Link to={`${process.env.PUBLIC_URL}/advanceUI/blogdetails/`} className="text-default">Alica Nestle</Link>
+                <Link to={`/advanceUI/blogdetails/`} className="text-default">
+                  Alica Nestle
+                </Link>
                 <small className="d-block text-muted">15 mintues ago</small>
               </div>
               <div className="ms-auto text-muted">
-                <Link to="#" className="icon d-none d-md-inline-block ms-3"><i className="far fa-heart me-1"></i></Link>
-                <Link to="#" className="icon d-none d-md-inline-block ms-3"><i className="far fa-thumbs-up"></i></Link>
+                <Link to="#" className="icon d-none d-md-inline-block ms-3">
+                  <i className="far fa-heart me-1"></i>
+                </Link>
+                <Link to="#" className="icon d-none d-md-inline-block ms-3">
+                  <i className="far fa-thumbs-up"></i>
+                </Link>
               </div>
             </div>
           </Card.Body>
@@ -409,25 +421,38 @@ const Blog = () => (
       <Col lg={6} className="col-lg-6">
         <Card className="card card-aside custom-card">
           <Card.Body>
-            <Link to={`${process.env.PUBLIC_URL}/advanceUI/blogdetails/`}>
-              <label className="main-content-label tx-16 mb-3">Blog Title</label></Link>
+            <Link to={`/advanceUI/blogdetails/`}>
+              <label className="main-content-label tx-16 mb-3">
+                Blog Title
+              </label>
+            </Link>
             <div>
               Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
               officia deserunt mollit anim id est laborum.
             </div>
             <div className="d-flex align-items-center pt-3 mt-auto">
               <div className="main-img-user avatar-sm me-3">
-                <Link to={`${process.env.PUBLIC_URL}/advanceUI/blogdetails/`}>
-                  <img src={require("../../../../assets/img/users/2.jpg")} className="w-10 rounded-circle" alt="avatar-img" />
+                <Link to={`/advanceUI/blogdetails/`}>
+                  <img
+                    src={require("../../../../assets/img/users/2.jpg")}
+                    className="w-10 rounded-circle"
+                    alt="avatar-img"
+                  />
                 </Link>
               </div>
               <div>
-                <Link to={`${process.env.PUBLIC_URL}/advanceUI/blogdetails/`} className="text-default">Alica Nestle</Link>
+                <Link to={`/advanceUI/blogdetails/`} className="text-default">
+                  Alica Nestle
+                </Link>
                 <small className="d-block text-muted">15 mintues ago</small>
               </div>
               <div className="ms-auto text-muted">
-                <Link to="#" className="icon d-none d-md-inline-block ms-3"><i className="far fa-heart me-1"></i></Link>
-                <Link to="#" className="icon d-none d-md-inline-block ms-3"><i className="far fa-thumbs-up"></i></Link>
+                <Link to="#" className="icon d-none d-md-inline-block ms-3">
+                  <i className="far fa-heart me-1"></i>
+                </Link>
+                <Link to="#" className="icon d-none d-md-inline-block ms-3">
+                  <i className="far fa-thumbs-up"></i>
+                </Link>
               </div>
             </div>
           </Card.Body>

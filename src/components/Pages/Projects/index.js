@@ -12,7 +12,7 @@ import {
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { useDeleteProject, useEditProject } from "../../../Api/Projects";
 import { useProjects } from "../../../Api/Projects/index";
 import { ToastContainer, toast } from "react-toastify";
@@ -28,13 +28,13 @@ const Projects = () => {
   const [itemData, setItemData] = useState();
   const [show10, setShow10] = useState(false);
   const [title, setTitle] = useState(false);
-useEffect(()=>{
-  if(title && id){
-    navigate("/spruha/preview/pages/Projects/edit", {
-      state: { id: id }
-    });
-  }
-},[title, id, navigate])
+  useEffect(() => {
+    if (title && id) {
+      navigate("/pages/Projects/edit", {
+        state: { id: id },
+      });
+    }
+  }, [title, id, navigate]);
   const handleDelete = () => {
     mutate(id);
     toast.success("This item has been successfully deleted.");
@@ -78,7 +78,7 @@ useEffect(()=>{
         </div>
         <div className="d-flex">
           <div className="justify-content-center">
-            <Link to={"/spruha/preview/pages/Projects/create"}>
+            <Link to={"/pages/Projects/create"}>
               <Button
                 variant="primary"
                 type="button"
@@ -112,11 +112,11 @@ useEffect(()=>{
                     <tr>
                       <th className="wd-lg-20p">name</th>
                       <th className="wd-lg-10p">category_name</th>
-                      <th className="wd-lg-20p">content</th>
+                      {/* <th className="wd-lg-20p">content</th> */}
                       <th className="wd-lg-20p">popularity_count</th>
-                      <th className="wd-lg-20p">name_en</th>
+                      {/* <th className="wd-lg-20p">name_en</th>
                       <th className="wd-lg-20p">name_ar</th>
-                      <th className="wd-lg-20p">name</th>
+                      <th className="wd-lg-20p">name</th> */}
                       <th className="wd-lg-20p">Actions</th>
                     </tr>
                   </thead>
@@ -133,17 +133,19 @@ useEffect(()=>{
                             <span className="mt-1">{item?.category?.name}</span>
                           </div>
                         </td>
-                        <td className="font-weight-semibold">
+                        {/* <td className="font-weight-semibold">
                           <div className="d-flex">
                             <span className="mt-1">{item?.content}</span>
                           </div>
-                        </td>
+                        </td> */}
                         <td className="font-weight-semibold">
                           <div className="d-flex">
-                            <span className="mt-1">{item.popularity_count}</span>
+                            <span className="mt-1">
+                              {item.popularity_count}
+                            </span>
                           </div>
                         </td>
-                        <td className="font-weight-semibold">
+                        {/* <td className="font-weight-semibold">
                           <div className="d-flex">
                             <span className="mt-1">{item.name_en}</span>
                           </div>
@@ -157,16 +159,16 @@ useEffect(()=>{
                           <div className="d-flex">
                             <span className="mt-1">{item.name}</span>
                           </div>
-                        </td>
+                        </td> */}
                         <td className="font-weight-semibold">
                           <div className="d-flex">
                             <Button
                               onClick={() => {
                                 setId(item?.id);
-                                setTitle(true)
-                                if(id){
-                                  navigate("/spruha/preview/pages/Projects/edit", {
-                                    state: { id: item?.id }
+                                setTitle(true);
+                                if (id) {
+                                  navigate("/pages/Projects/edit", {
+                                    state: { id: item?.id },
                                   });
                                 }
                               }}

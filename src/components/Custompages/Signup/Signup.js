@@ -4,16 +4,18 @@ import { Row, Col, Card, Container, Form } from "react-bootstrap";
 import * as Customswitcherdata from "../../../data/Switcherdata/Customswitcherdata";
 const Signup = () => (
   <Fragment>
-    <div className="page main-signin-wrapper" >
-      <div className="d-flex header-setting-icon demo-icon fa-spin" 
-      onClick={() => Customswitcherdata.Swicherbutton()}
+    <div className="page main-signin-wrapper">
+      <div
+        className="d-flex header-setting-icon demo-icon fa-spin"
+        onClick={() => Customswitcherdata.Swicherbutton()}
       >
-        <Link className="nav-link icon" to="#" >
+        <Link className="nav-link icon" to="#">
           <i className="fe fe-settings settings-icon "></i>
         </Link>
       </div>
-      <Row className="signpages text-center" 
-      onClick={() => Customswitcherdata.remove()} 
+      <Row
+        className="signpages text-center"
+        onClick={() => Customswitcherdata.remove()}
       >
         <Col md={12} className="col-md-12">
           <Card>
@@ -62,14 +64,20 @@ const Signup = () => (
                         It's free to signup and only takes a minute.
                       </p>
                       <Form>
-                        <Form.Group className="text-start form-group" controlId="fromName">
+                        <Form.Group
+                          className="text-start form-group"
+                          controlId="fromName"
+                        >
                           <Form.Label>Name</Form.Label>
                           <Form.Control
                             placeholder="Enter your Name"
                             type="text"
                           />
                         </Form.Group>
-                        <Form.Group className="text-start form-group" controlId="formEmail">
+                        <Form.Group
+                          className="text-start form-group"
+                          controlId="formEmail"
+                        >
                           <Form.Label>Email</Form.Label>
                           <Form.Control
                             placeholder="Enter your email"
@@ -94,9 +102,7 @@ const Signup = () => (
                       <div className="text-start mt-5 ms-0">
                         <p className="mb-0">
                           Already have an account?
-                          <Link
-                            to={`${process.env.PUBLIC_URL}/custompages/signin`}> SignIn
-                          </Link>
+                          <Link to={`/custompages/signin`}> SignIn</Link>
                         </p>
                       </div>
                     </Card.Body>
@@ -108,7 +114,6 @@ const Signup = () => (
         </Col>
       </Row>
     </div>
-
   </Fragment>
 );
 

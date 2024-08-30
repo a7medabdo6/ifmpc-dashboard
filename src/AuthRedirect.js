@@ -15,12 +15,14 @@ const AuthRedirect = () => {
       const authState = localStorage.getItem("authState");
       if (authState) {
         const { isAuthenticated } = JSON.parse(authState);
-        if (isAuthenticated) {
+        if (isAuthenticated || authState) {
           dispatch(login(JSON.parse(authState).user)); // Restore user data if needed
-          navigate("/spruha/preview/dashboard"); // Redirect to dashboard
+          navigate("/dashboard"); // Redirect to dashboard
           setHasRedirected(true); // Mark as redirected
         }
       } else {
+        // navigate("/dashboard"); // Redirect to dashboard
+
         setHasRedirected(true); // If no authState, proceed
       }
     }

@@ -6,17 +6,18 @@ import * as Customswitcherdata from "../../../data/Switcherdata/Customswitcherda
 const Resetpassword = () => (
   <Fragment>
     <div className="page main-signin-wrapper">
-      <div className="d-flex header-setting-icon demo-icon fa-spin" 
-      onClick={() => Customswitcherdata.Swicherbutton()}
+      <div
+        className="d-flex header-setting-icon demo-icon fa-spin"
+        onClick={() => Customswitcherdata.Swicherbutton()}
       >
-        <Link className="nav-link icon" to="#" >
+        <Link className="nav-link icon" to="#">
           <i className="fe fe-settings settings-icon "></i>
         </Link>
       </div>
-      <Row className="signpages text-center" 
-      onClick={() => Customswitcherdata.remove()}
+      <Row
+        className="signpages text-center"
+        onClick={() => Customswitcherdata.remove()}
       >
-
         <Col md={12}>
           <Card>
             <Row className="row-sm">
@@ -64,7 +65,10 @@ const Resetpassword = () => (
                         It's free to signup and only takes a minute.
                       </p>
                       <Form>
-                        <Form.Group className="text-start form-group" controlId="fromEmail">
+                        <Form.Group
+                          className="text-start form-group"
+                          controlId="fromEmail"
+                        >
                           <Form.Label>Email</Form.Label>
                           <Form.Control
                             placeholder="Enter your mail"
@@ -99,10 +103,7 @@ const Resetpassword = () => (
                       <div className="text-start mt-5 ms-0">
                         <p className="mb-0">
                           Already have an account?
-                          <Link
-                            to={`${process.env.PUBLIC_URL}/custompages/signin/`}>
-                            Sign In
-                          </Link>
+                          <Link to={`/custompages/signin/`}>Sign In</Link>
                         </p>
                       </div>
                     </Card.Body>

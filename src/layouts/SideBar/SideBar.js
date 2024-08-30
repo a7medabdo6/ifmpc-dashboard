@@ -8,7 +8,7 @@ let history = [];
 const SideBar = () => {
   let location = useLocation();
   console.log(location.pathname);
-  
+
   const [menuitems, setMenuitems] = useState(MENUITEMS);
   // initial loading
   useEffect(() => {
@@ -62,10 +62,11 @@ const SideBar = () => {
             items.active = false;
             items.selected = false;
             if (
-              location.pathname === "/spruha/preview/" ||
-              location.pathname === "/spruha/preview"
+              location.pathname === "/" ||
+              location.pathname === "/spruha/preview" ||
+              location.pathname === "/"
             ) {
-              location.pathname = "/spruha/preview/dashboard/";
+              location.pathname = "/dashboard/";
             }
             if (location.pathname === items.path + "/") {
               items.active = true;
@@ -212,10 +213,7 @@ const SideBar = () => {
               style={{ position: "absolute" }}
             >
               <div className="sidemenu-logo">
-                <Link
-                  className="main-logo"
-                  to={`${process.env.PUBLIC_URL}/dashboard/ `}
-                >
+                <Link className="main-logo" to={`/dashboard/ `}>
                   <img
                     src={require("../../assets/img/brand/logo-light.png")}
                     className="header-brand-img desktop-logo"

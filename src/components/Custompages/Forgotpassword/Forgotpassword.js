@@ -4,18 +4,20 @@ import { Link } from "react-router-dom";
 import * as Customswitcherdata from "../../../data/Switcherdata/Customswitcherdata";
 const Forgotpassword = () => (
   <Fragment>
-    <div className="page main-signin-wrapper" >
-      <div className="d-flex header-setting-icon demo-icon fa-spin" 
-      onClick={() => Customswitcherdata.Swicherbutton()}
+    <div className="page main-signin-wrapper">
+      <div
+        className="d-flex header-setting-icon demo-icon fa-spin"
+        onClick={() => Customswitcherdata.Swicherbutton()}
       >
-        <span className="nav-link icon"  >
+        <span className="nav-link icon">
           <i className="fe fe-settings settings-icon "></i>
         </span>
       </div>
       {/* <!-- Row --> */}
-      <Row className="signpages text-center" 
-      onClick={() => Customswitcherdata.remove()}
-        >
+      <Row
+        className="signpages text-center"
+        onClick={() => Customswitcherdata.remove()}
+      >
         <Col md={12}>
           <Card>
             <Row className="row-sm">
@@ -83,9 +85,7 @@ const Forgotpassword = () => (
                         <p>Did you remembered your password?</p>
                         <p className="mb-0">
                           Try to
-                          <Link
-                            to={`${process.env.PUBLIC_URL}/custompages/signin/`}> Signin
-                          </Link>
+                          <Link to={`/custompages/signin/`}> Signin</Link>
                         </p>
                       </div>
                     </Card.Body>
@@ -99,7 +99,6 @@ const Forgotpassword = () => (
     </div>
 
     {/* <!-- End Row --> */}
-
   </Fragment>
 );
 

@@ -39,7 +39,7 @@ const SignUp = () => {
 
   let navigate = useNavigate();
   const routeChange = () => {
-    let path = `${process.env.PUBLIC_URL}/dashboard/`;
+    let path = `/dashboard/`;
     navigate(path);
   };
 

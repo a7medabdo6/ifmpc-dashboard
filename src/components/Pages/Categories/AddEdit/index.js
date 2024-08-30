@@ -1,10 +1,10 @@
-import React, { Fragment ,useEffect} from "react";
+import React, { Fragment, useEffect } from "react";
 import { Breadcrumb, Button, Col, Row } from "react-bootstrap";
 import { Formik } from "formik";
 import { Form, InputGroup } from "react-bootstrap";
 import * as yup from "yup";
 import { useCreateCategory } from "../../../../Api/Categories";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const schema = yup.object().shape({
@@ -17,7 +17,7 @@ const schema = yup.object().shape({
 });
 
 const AddEditcategories = () => {
-  const { mutate,data } = useCreateCategory();
+  const { mutate, data } = useCreateCategory();
   const navigate = useNavigate(); // Initialize navigate function
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const AddEditcategories = () => {
 
       // تأخير الانتقال لمدة 2 ثانية (2000 مللي ثانية)
       setTimeout(() => {
-        navigate("/spruha/preview/pages/categories/");
+        navigate("/pages/categories/");
       }, 2000); // يمكنك ضبط الوقت حسب الحاجة
     }
   }, [data, navigate]);
@@ -60,13 +60,7 @@ const AddEditcategories = () => {
                 // other fields
               }}
             >
-              {({
-                handleSubmit,
-                handleChange,
-                values,
-                touched,
-                errors,
-              }) => (
+              {({ handleSubmit, handleChange, values, touched, errors }) => (
                 <Form noValidate onSubmit={handleSubmit}>
                   <Row className="mb-3">
                     <Form.Group
@@ -146,7 +140,10 @@ const AddEditcategories = () => {
                         isValid={
                           touched.publication_count && !errors.publication_count
                         }
-                        isInvalid={touched.publication_count && !!errors.publication_count}
+                        isInvalid={
+                          touched.publication_count &&
+                          !!errors.publication_count
+                        }
                       />
                       <Form.Control.Feedback type="invalid">
                         {errors.publication_count}
@@ -170,7 +167,9 @@ const AddEditcategories = () => {
                           isValid={
                             touched.project_count && !errors.project_count
                           }
-                          isInvalid={touched.project_count && !!errors.project_count}
+                          isInvalid={
+                            touched.project_count && !!errors.project_count
+                          }
                         />
                         <Form.Control.Feedback type="invalid">
                           {errors.project_count}

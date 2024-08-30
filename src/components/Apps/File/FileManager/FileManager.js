@@ -1,5 +1,16 @@
 import React, { Fragment, useState } from "react";
-import {  Breadcrumb,  BreadcrumbItem,  Card,  Col,  Dropdown,  Nav,  Pagination,  Row,  Button,  Modal,} from "react-bootstrap";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  Card,
+  Col,
+  Dropdown,
+  Nav,
+  Pagination,
+  Row,
+  Button,
+  Modal,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { DropzoneAreaBase } from "material-ui-dropzone";
 const FileManager = () => {
@@ -579,7 +590,7 @@ const FileManager = () => {
                   </div>
                   <div className="card-body pt-0 text-center">
                     <Link
-                      to={`${process.env.PUBLIC_URL}/apps/file/filemangerlist`}
+                      to={`/apps/file/filemangerlist`}
                       className="open-file"
                     >
                       <div className="file-manger-icon">
@@ -634,9 +645,7 @@ const FileManager = () => {
                     </Dropdown>
                   </div>
                   <div className="card-body pt-0 text-center">
-                    <Link
-                      to={`${process.env.PUBLIC_URL}/apps/file/filemangerlist`}
-                    >
+                    <Link to={`/apps/file/filemangerlist`}>
                       <div className="file-manger-icon">
                         <img
                           src={require("../../../../assets/img/files/file.png")}
@@ -745,7 +754,7 @@ const FileManager = () => {
                   </div>
                   <div className="card-body pt-0 text-center">
                     <Link
-                      to={`${process.env.PUBLIC_URL}/apps/file/filemangerlist`}
+                      to={`/apps/file/filemangerlist`}
                       className="open-file"
                     >
                       <div className="file-manger-icon">
@@ -800,9 +809,7 @@ const FileManager = () => {
                     </Dropdown>
                   </div>
                   <div className="card-body pt-0 text-center">
-                    <Link
-                      to={`${process.env.PUBLIC_URL}/apps/file/filemangerlist`}
-                    >
+                    <Link to={`/apps/file/filemangerlist`}>
                       <div className="file-manger-icon">
                         <img
                           src={require("../../../../assets/img/files/image.png")}
@@ -855,9 +862,7 @@ const FileManager = () => {
                     </Dropdown>
                   </div>
                   <div className="card-body pt-0 text-center">
-                    <Link
-                      to={`${process.env.PUBLIC_URL}/apps/file/filemangerlist`}
-                    >
+                    <Link to={`/apps/file/filemangerlist`}>
                       <div className="file-manger-icon">
                         <img
                           src={require("../../../../assets/img/files/file.png")}
@@ -913,7 +918,7 @@ const FileManager = () => {
                   </div>
                   <div className="card-body pt-0 text-center">
                     <Link
-                      to={`${process.env.PUBLIC_URL}/apps/file/filemangerlist`}
+                      to={`/apps/file/filemangerlist`}
                       className="open-file"
                     >
                       <div className="file-manger-icon">
@@ -970,9 +975,7 @@ const FileManager = () => {
                     </Dropdown>
                   </div>
                   <div className="card-body pt-0 text-center">
-                    <Link
-                      to={`${process.env.PUBLIC_URL}/apps/file/filemangerlist`}
-                    >
+                    <Link to={`/apps/file/filemangerlist`}>
                       <div className="file-manger-icon">
                         <img
                           src={require("../../../../assets/img/files/word.png")}

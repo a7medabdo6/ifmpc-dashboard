@@ -67,7 +67,7 @@ const Links = () => {
         </div>
         <div className="d-flex">
           <div className="justify-content-center">
-            <Link to={"/spruha/preview/pages/Links/create"}>
+            <Link to={"/pages/Links/create"}>
               <Button
                 variant="primary"
                 type="button"
@@ -224,7 +224,12 @@ const Links = () => {
         </Modal.Header>
         <Modal.Body>
           <Modal.Title>Edit Link</Modal.Title>
-          <EditLinks id={id} itemData={itemData} viewDemoClose={viewDemoClose} setShow10={setShow10} />
+          <EditLinks
+            id={id}
+            itemData={itemData}
+            viewDemoClose={viewDemoClose}
+            setShow10={setShow10}
+          />
         </Modal.Body>
       </Modal>
 

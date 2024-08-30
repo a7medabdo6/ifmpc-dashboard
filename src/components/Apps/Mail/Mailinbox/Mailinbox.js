@@ -1,5 +1,14 @@
 import React, { Fragment } from "react";
-import { Breadcrumb, Col, Dropdown, Row, Card, Nav, Button, Table } from "react-bootstrap";
+import {
+  Breadcrumb,
+  Col,
+  Dropdown,
+  Row,
+  Card,
+  Nav,
+  Button,
+  Table,
+} from "react-bootstrap";
 
 import { Link } from "react-router-dom";
 const Mailinbox = () => (
@@ -9,12 +18,8 @@ const Mailinbox = () => (
       <div>
         <h2 className="main-content-title tx-24 mg-b-5">Mail-Inbox</h2>
         <Breadcrumb>
-          <Breadcrumb.Item href="#">
-            Apps
-          </Breadcrumb.Item>
-          <Breadcrumb.Item active>
-            Mail-Inbox
-          </Breadcrumb.Item>
+          <Breadcrumb.Item href="#">Apps</Breadcrumb.Item>
+          <Breadcrumb.Item active>Mail-Inbox</Breadcrumb.Item>
         </Breadcrumb>
       </div>
       <div className="d-flex">
@@ -34,7 +39,10 @@ const Mailinbox = () => (
             <i className="fe fe-filter me-2"></i> Filter
           </Button>
           <Button
-            variant="primary" type="button" className="my-2 btn-icon-text">
+            variant="primary"
+            type="button"
+            className="my-2 btn-icon-text"
+          >
             <i className="fe fe-download-cloud me-2"></i> Download Report
           </Button>
         </div>
@@ -44,12 +52,12 @@ const Mailinbox = () => (
 
     {/* <!-- row --> */}
     <Row className="row-sm">
-      <Col xl={3} lg={4} >
+      <Col xl={3} lg={4}>
         <Card className=" custom-card mail-container task-container overflow-hidden">
           <div className="">
             <div className="p-4 border-bottom">
-              <Link to={`${process.env.PUBLIC_URL}/apps/mail/mailcomposed`}
-
+              <Link
+                to={`/apps/mail/mailcomposed`}
                 variant="primary"
                 className="btn btn-main-primary btn-block btn-compose"
                 id="btnCompose"
@@ -60,7 +68,10 @@ const Mailinbox = () => (
             <Card.Body className="card-body tab-list-items">
               <div className="main-content-left main-content-left-mail">
                 <div className="main-mail-menu">
-                  <Nav className=" main-nav-column mg-b-20" defaultActiveKey="Inbox" >
+                  <Nav
+                    className=" main-nav-column mg-b-20"
+                    defaultActiveKey="Inbox"
+                  >
                     <Nav.Item>
                       <Nav.Link eventKey="Inbox">
                         <i className="fe fe-mail"></i> Inbox <span>20</span>
@@ -114,7 +125,8 @@ const Mailinbox = () => (
                     </Nav.Item>
                     <Nav.Item>
                       <Nav.Link eventKey="Personal">
-                        <i className="fe fe-folder"></i> Personal <span>22</span>
+                        <i className="fe fe-folder"></i> Personal{" "}
+                        <span>22</span>
                       </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
@@ -124,7 +136,6 @@ const Mailinbox = () => (
                       </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-
                       <Nav.Link eventKey="Updates">
                         <i className="fe fe-folder-plus"></i> Updates
                         <span>17</span>
@@ -164,7 +175,8 @@ const Mailinbox = () => (
             <div className="mail-option">
               <div className="chk-all border-0">
                 <Dropdown className="btn-group me-1">
-                  <Dropdown.Toggle variant="default"
+                  <Dropdown.Toggle
+                    variant="default"
                     href="#"
                     className="btn mini all"
                   >
@@ -172,23 +184,17 @@ const Mailinbox = () => (
                     {/* <i className="fe fe-chevron-down"></i> */}
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
-                    <Dropdown.Item href="#">
-                      None
-                    </Dropdown.Item>
-                    <Dropdown.Item href="#">
-                      Read
-                    </Dropdown.Item>
-                    <Dropdown.Item href="#">
-                      Unread
-                    </Dropdown.Item>
+                    <Dropdown.Item href="#">None</Dropdown.Item>
+                    <Dropdown.Item href="#">Read</Dropdown.Item>
+                    <Dropdown.Item href="#">Unread</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               </div>
               <div className="btn-group me-1">
-                <Link to="#"
+                <Link
+                  to="#"
                   data-bs-original-title="Refresh"
                   data-bs-placement="top"
-
                   className="btn mini tooltips"
                 >
                   <i className="fe fe-refresh-cw"></i>
@@ -204,19 +210,13 @@ const Mailinbox = () => (
                 </Dropdown.Toggle>
                 <Dropdown.Menu className="dropdown-menu">
                   <Dropdown.Item href="#">
-
                     <i className="fe fe-edit me-2"></i> Mark as Read
-
                   </Dropdown.Item>
                   <Dropdown.Item href="#">
-
                     <i className="fe fe fe-slash me-2"></i> Spam
-
                   </Dropdown.Item>
                   <Dropdown.Item href="#">
-
                     <i className="fe fe-trash me-2"></i> Delete
-
                   </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
@@ -282,9 +282,7 @@ const Mailinbox = () => (
                     <td className="view-message dont-show font-weight-semibold">
                       Freelancer.com
                     </td>
-                    <td className="view-message">
-                      Stop wasting your visitors
-                    </td>
+                    <td className="view-message">Stop wasting your visitors</td>
                     <td className="view-message text-end font-weight-semibold">
                       May 23
                     </td>

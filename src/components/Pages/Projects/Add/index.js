@@ -1,9 +1,12 @@
-import React, { Fragment, useState,useEffect} from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { Breadcrumb, Button, Col, Row } from "react-bootstrap";
 import { Formik, FieldArray } from "formik";
 import { Form } from "react-bootstrap";
 import * as yup from "yup";
-import { useCreateProject, useCreateProjectImage } from "../../../../Api/Projects";
+import {
+  useCreateProject,
+  useCreateProjectImage,
+} from "../../../../Api/Projects";
 import Select from "react-select";
 import { useTags } from "../../../../Api/Tags";
 import { useUsers } from "../../../../Api/User";
@@ -11,7 +14,7 @@ import { useCategories } from "../../../../Api/Categories/index";
 import { useAuthors } from "../../../../Api/Authors/index";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // Validation schema
@@ -43,18 +46,22 @@ const schema = yup.object().shape({
     })
   ),
   images: yup.array().of(yup.string().required("Image URL is required")),
-
 });
 
 const AddProjects = () => {
-  const { mutate, isLoading, error,data:dataOfCreatProject } = useCreateProject();
+  const {
+    mutate,
+    isLoading,
+    error,
+    data: dataOfCreatProject,
+  } = useCreateProject();
   const { mutate: mutateImage, data: dataImage } = useCreateProjectImage();
 
   const { data } = useTags();
   const { data: AuthorData } = useUsers();
   const { data: dataOfCategory } = useCategories();
   const { data: authorsData } = useAuthors();
-  const [uploadedImageUrl, setUploadedImageUrl] = useState('');
+  const [uploadedImageUrl, setUploadedImageUrl] = useState("");
   const [file, setFile] = useState(null);
 
   const tagOptions =
@@ -128,7 +135,8 @@ const AddProjects = () => {
   };
 
   const handleCopyUrl = () => {
-    navigator.clipboard.writeText(uploadedImageUrl)
+    navigator.clipboard
+      .writeText(uploadedImageUrl)
       .then(() => alert("Image URL copied to clipboard!"))
       .catch(() => alert("Failed to copy URL."));
   };
@@ -140,7 +148,7 @@ const AddProjects = () => {
 
       // تأخير الانتقال لمدة 2 ثانية (2000 مللي ثانية)
       setTimeout(() => {
-        navigate("/spruha/preview/pages/Projects/");
+        navigate("/pages/Projects/");
       }, 2000); // يمكنك ضبط الوقت حسب الحاجة
     }
   }, [dataOfCreatProject, navigate]);
@@ -328,7 +336,9 @@ const AddProjects = () => {
                         name="popularity_count"
                         value={values.popularity_count}
                         onChange={handleChange}
-                        isValid={touched.popularity_count && !errors.popularity_count}
+                        isValid={
+                          touched.popularity_count && !errors.popularity_count
+                        }
                       />
                       {touched.popularity_count && errors.popularity_count && (
                         <div className="invalid-feedback">
@@ -344,11 +354,17 @@ const AddProjects = () => {
                       <Form.Label>Category</Form.Label>
                       <Select
                         options={categoryOptions}
-                        onChange={(option) => setFieldValue("category", option?.value)}
-                        value={categoryOptions.find((c) => c.value === values.category)}
+                        onChange={(option) =>
+                          setFieldValue("category", option?.value)
+                        }
+                        value={categoryOptions.find(
+                          (c) => c.value === values.category
+                        )}
                       />
                       {touched.category && errors.category && (
-                        <div className="invalid-feedback">{errors.category}</div>
+                        <div className="invalid-feedback">
+                          {errors.category}
+                        </div>
                       )}
                     </Form.Group>
                     <Form.Group
@@ -361,7 +377,10 @@ const AddProjects = () => {
                         options={AuthorsOptions}
                         isMulti
                         onChange={(options) =>
-                          setFieldValue("author", options.map((opt) => opt.value))
+                          setFieldValue(
+                            "author",
+                            options.map((opt) => opt.value)
+                          )
                         }
                         value={AuthorsOptions.filter((option) =>
                           values.author.includes(option.value)
@@ -381,7 +400,10 @@ const AddProjects = () => {
                         options={tagOptions}
                         isMulti
                         onChange={(options) =>
-                          setFieldValue("tags", options.map((opt) => opt.value))
+                          setFieldValue(
+                            "tags",
+                            options.map((opt) => opt.value)
+                          )
                         }
                         value={tagOptions.filter((option) =>
                           values.tags.includes(option.value)
@@ -410,11 +432,17 @@ const AddProjects = () => {
                                 name={`references.${index}.name`}
                                 value={reference.name}
                                 onChange={handleChange}
-                                isValid={touched.references?.[index]?.name && !errors.references?.[index]?.name}
+                                isValid={
+                                  touched.references?.[index]?.name &&
+                                  !errors.references?.[index]?.name
+                                }
                               />
-                              {touched.references?.[index]?.name && errors.references?.[index]?.name && (
-                                <div className="invalid-feedback">{errors.references[index].name}</div>
-                              )}
+                              {touched.references?.[index]?.name &&
+                                errors.references?.[index]?.name && (
+                                  <div className="invalid-feedback">
+                                    {errors.references[index].name}
+                                  </div>
+                                )}
                             </Form.Group>
                             <Form.Group
                               as={Col}
@@ -427,11 +455,17 @@ const AddProjects = () => {
                                 name={`references.${index}.url`}
                                 value={reference.url}
                                 onChange={handleChange}
-                                isValid={touched.references?.[index]?.url && !errors.references?.[index]?.url}
+                                isValid={
+                                  touched.references?.[index]?.url &&
+                                  !errors.references?.[index]?.url
+                                }
                               />
-                              {touched.references?.[index]?.url && errors.references?.[index]?.url && (
-                                <div className="invalid-feedback">{errors.references[index].url}</div>
-                              )}
+                              {touched.references?.[index]?.url &&
+                                errors.references?.[index]?.url && (
+                                  <div className="invalid-feedback">
+                                    {errors.references[index].url}
+                                  </div>
+                                )}
                             </Form.Group>
                             <Col md="12" className="mb-2">
                               <Button
@@ -470,12 +504,23 @@ const AddProjects = () => {
                                 type="text"
                                 name={`images.${index}`}
                                 value={imageUrl}
-                                onChange={(e) => setFieldValue(`images.${index}`, e.target.value)}
-                                isValid={touched.images?.[index] && !errors.images?.[index]}
+                                onChange={(e) =>
+                                  setFieldValue(
+                                    `images.${index}`,
+                                    e.target.value
+                                  )
+                                }
+                                isValid={
+                                  touched.images?.[index] &&
+                                  !errors.images?.[index]
+                                }
                               />
-                              {touched.images?.[index] && errors.images?.[index] && (
-                                <div className="invalid-feedback">{errors.images[index]}</div>
-                              )}
+                              {touched.images?.[index] &&
+                                errors.images?.[index] && (
+                                  <div className="invalid-feedback">
+                                    {errors.images[index]}
+                                  </div>
+                                )}
                             </Form.Group>
                             <Col md="12" className="mb-2">
                               <Button
@@ -498,7 +543,9 @@ const AddProjects = () => {
                     )}
                   />
                   <Form.Group as={Row} className="mb-3">
-                    <Form.Label column sm={2}>Upload Image</Form.Label>
+                    <Form.Label column sm={2}>
+                      Upload Image
+                    </Form.Label>
                     <Col sm={10}>
                       <Form.Control
                         type="file"
@@ -506,20 +553,34 @@ const AddProjects = () => {
                         onChange={handleFileChange}
                       />
                     </Col>
-                    <Button variant="primary" onClick={handleUpload}>upload Image</Button>
-
+                    <Button variant="primary" onClick={handleUpload}>
+                      upload Image
+                    </Button>
                   </Form.Group>
                   {uploadedImageUrl && (
                     <div className="mb-3">
-                      <p>Uploaded Image URL: <a href={uploadedImageUrl} target="_blank" rel="noopener noreferrer">{uploadedImageUrl}</a></p>
-                      <Button variant="secondary" onClick={handleCopyUrl}>Copy URL</Button>
+                      <p>
+                        Uploaded Image URL:{" "}
+                        <a
+                          href={uploadedImageUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {uploadedImageUrl}
+                        </a>
+                      </p>
+                      <Button variant="secondary" onClick={handleCopyUrl}>
+                        Copy URL
+                      </Button>
                     </div>
                   )}
 
                   <Button type="submit" disabled={isLoading}>
                     Submit
                   </Button>
-                  {error && <div className="text-danger mt-2">{error.message}</div>}
+                  {error && (
+                    <div className="text-danger mt-2">{error.message}</div>
+                  )}
                 </Form>
               )}
             </Formik>

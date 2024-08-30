@@ -31,7 +31,7 @@ const EditTrainings = ({ id, itemData, viewDemoClose, setShow10 }) => {
     if (data) {
       toast.success("This item has been successfully Edit.");
       setTimeout(() => {
-        navigate("/spruha/preview/pages/training/");
+        navigate("/pages/training/");
       }, 2000);
     }
   }, [data, navigate]);

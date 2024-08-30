@@ -14,7 +14,7 @@ import {
   Button,
   Modal,
 } from "react-bootstrap";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 import Searchable from "react-searchable-dropdown";
 import EditPublications from "./Edit/index";
@@ -24,7 +24,10 @@ import DropdownItem from "react-bootstrap/esm/DropdownItem";
 import user1 from "../../../assets/img/users/1.jpg";
 import { usePublications } from "../../../Api/Publications/index";
 import { Link } from "react-router-dom";
-import { useDeletePublication, useEditPublication } from "../../../Api/Publications";
+import {
+  useDeletePublication,
+  useEditPublication,
+} from "../../../Api/Publications";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const Publications = () => {
@@ -39,11 +42,11 @@ const Publications = () => {
   const [title, setTitle] = useState(false);
   useEffect(() => {
     if (title && id) {
-      navigate("/spruha/preview/pages/publication/edit", {
-        state: { id: id }
+      navigate("/pages/publication/edit", {
+        state: { id: id },
       });
     }
-  }, [title, id, navigate])
+  }, [title, id, navigate]);
   const handleDelete = () => {
     mutate(id);
     toast.success("This item has been successfully deleted.");
@@ -92,7 +95,7 @@ const Publications = () => {
         </div>
         <div className="d-flex">
           <div className="justify-content-center">
-            <Link to={"/spruha/preview/pages/Publications/create"}>
+            <Link to={"/pages/Publications/create"}>
               <Button
                 variant="primary"
                 type="button"
@@ -113,7 +116,9 @@ const Publications = () => {
             <Card.Body>
               <Card.Header className="card-header border-bottom-0 pt-0 ps-0 pe-0 d-flex">
                 <div>
-                  <label className="main-content-label mb-2">Publications</label>
+                  <label className="main-content-label mb-2">
+                    Publications
+                  </label>
                 </div>
               </Card.Header>
               <div className=" tasks">
@@ -126,9 +131,8 @@ border hover"
                   <thead>
                     <tr>
                       <th className="wd-lg-10p">name</th>
-                      <th className="wd-lg-20p">content</th>
+                      {/* <th className="wd-lg-20p">content</th> */}
                       <th className="wd-lg-20p ">category</th>
-
 
                       <th className="wd-lg-20p">Actions</th>
                     </tr>
@@ -142,11 +146,11 @@ border hover"
                               <span className="mt-1">{item.name}</span>
                             </div>
                           </td>
-                          <td className="font-weight-semibold">
+                          {/* <td className="font-weight-semibold">
                             <div className="d-flex">
                               <span className="mt-1">{item.content}</span>
                             </div>
-                          </td>{" "}
+                          </td>{" "} */}
                           <td className="font-weight-semibold">
                             <div className="d-flex">
                               <span className="mt-1">
@@ -154,7 +158,6 @@ border hover"
                               </span>
                             </div>
                           </td>
-
                           <td className="font-weight-semibold">
                             <div className="d-flex">
                               <Button
@@ -162,7 +165,8 @@ border hover"
                                 onClick={() => {
                                   return (
                                     setId(item?.id),
-                                    setTitle(true), setItemData(item)
+                                    setTitle(true),
+                                    setItemData(item)
                                   );
                                 }}
                               >
@@ -233,7 +237,11 @@ border hover"
                       </Modal.Header>
                       <Modal.Body>
                         <Modal.Title>Edit categorie</Modal.Title>
-                        <Publications id={id} itemData={itemData} viewDemoClose={viewDemoClose} />
+                        <Publications
+                          id={id}
+                          itemData={itemData}
+                          viewDemoClose={viewDemoClose}
+                        />
                       </Modal.Body>
                       {/* <Modal.Footer>
                         <Button
