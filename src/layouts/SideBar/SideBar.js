@@ -66,7 +66,7 @@ const SideBar = () => {
               location.pathname === "/spruha/preview" ||
               location.pathname === "/"
             ) {
-              location.pathname = "/dashboard/";
+              location.pathname = "/pages/categories/";
             }
             if (location.pathname === items.path + "/") {
               items.active = true;

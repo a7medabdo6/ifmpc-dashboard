@@ -112,11 +112,11 @@ const Projects = () => {
                     <tr>
                       <th className="wd-lg-20p">name</th>
                       <th className="wd-lg-10p">category_name</th>
-                      <th className="wd-lg-20p">content</th>
+                      {/* <th className="wd-lg-20p">content</th> */}
                       <th className="wd-lg-20p">popularity_count</th>
-                      <th className="wd-lg-20p">name_en</th>
+                      {/* <th className="wd-lg-20p">name_en</th>
                       <th className="wd-lg-20p">name_ar</th>
-                      <th className="wd-lg-20p">name</th>
+                      <th className="wd-lg-20p">name</th> */}
                       <th className="wd-lg-20p">Actions</th>
                     </tr>
                   </thead>
@@ -133,11 +133,11 @@ const Projects = () => {
                             <span className="mt-1">{item?.category?.name}</span>
                           </div>
                         </td>
-                        <td className="font-weight-semibold">
+                        {/* <td className="font-weight-semibold">
                           <div className="d-flex">
                             <span className="mt-1">{item?.content}</span>
                           </div>
-                        </td>
+                        </td> */}
                         <td className="font-weight-semibold">
                           <div className="d-flex">
                             <span className="mt-1">
@@ -145,7 +145,7 @@ const Projects = () => {
                             </span>
                           </div>
                         </td>
-                        <td className="font-weight-semibold">
+                        {/* <td className="font-weight-semibold">
                           <div className="d-flex">
                             <span className="mt-1">{item.name_en}</span>
                           </div>
@@ -159,7 +159,7 @@ const Projects = () => {
                           <div className="d-flex">
                             <span className="mt-1">{item.name}</span>
                           </div>
-                        </td>
+                        </td> */}
                         <td className="font-weight-semibold">
                           <div className="d-flex">
                             <Button

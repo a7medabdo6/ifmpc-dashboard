@@ -398,12 +398,12 @@ function Header2() {
                       </div>
                     </Dropdown.Menu>
                   </Dropdown>
-                  <div className="main-header-notification">
+                  {/* <div className="main-header-notification">
                     <Link className="icon nav-link" to={`/advanceUI/chat/`}>
                       <i className="fe fe-message-square header-icons"></i>
                       <span className="badge bg-success nav-link-badge">6</span>
                     </Link>
-                  </div>
+                  </div> */}
                   <Dropdown className="main-profile-menu">
                     <Dropdown.Toggle className="d-flex" variant="default">
                       <span className="main-img-user">

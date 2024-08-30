@@ -7,9 +7,10 @@ const ProtectedRoute = ({ children }) => {
   console.log(isAuthenticated);
 
   if (!isAuthenticated) {
-    return <Navigate to="/spruha/preview" />;
-  }
+    return <Navigate to="/ifmpc/preview" />;
+  } 
 
+  
   return children;
 };
 

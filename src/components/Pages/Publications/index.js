@@ -131,7 +131,7 @@ border hover"
                   <thead>
                     <tr>
                       <th className="wd-lg-10p">name</th>
-                      <th className="wd-lg-20p">content</th>
+                      {/* <th className="wd-lg-20p">content</th> */}
                       <th className="wd-lg-20p ">category</th>
 
                       <th className="wd-lg-20p">Actions</th>
@@ -146,11 +146,11 @@ border hover"
                               <span className="mt-1">{item.name}</span>
                             </div>
                           </td>
-                          <td className="font-weight-semibold">
+                          {/* <td className="font-weight-semibold">
                             <div className="d-flex">
                               <span className="mt-1">{item.content}</span>
                             </div>
-                          </td>{" "}
+                          </td>{" "} */}
                           <td className="font-weight-semibold">
                             <div className="d-flex">
                               <span className="mt-1">
