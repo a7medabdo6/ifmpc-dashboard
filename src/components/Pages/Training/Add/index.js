@@ -1,33 +1,32 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { Breadcrumb, Button, Col, Row, Card } from "react-bootstrap";
+import { Breadcrumb, Button, Col, Row, Form } from "react-bootstrap";
 import { Formik } from "formik";
-import { Form } from "react-bootstrap";
 import * as yup from "yup";
 import { useCreateTraining } from "../../../../Api/Training";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useCreateProjectImage } from "../../../../Api/Projects";
 import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css"; // Import styles for ReactQuill
+import "react-quill/dist/quill.snow.css";
+import { useCreateProjectImage } from "../../../../Api/Projects";
 
 const schema = yup.object().shape({
-  title: yup.string().required(),
-  title_en: yup.string().required(),
-  title_ar: yup.string().required(),
-  image: yup.string().required(),
-  description: yup.string().required(),
-  description_en: yup.string().required(),
-  description_ar: yup.string().required(),
+  title: yup.string().required("Title is required"),
+  title_en: yup.string().required("Title (English) is required"),
+  title_ar: yup.string().required("Title (Arabic) is required"),
+  image: yup.string().url("Invalid URL").required("Image URL is required"),
+  description: yup.string().required("Description is required"),
+  description_en: yup.string().required("Description (English) is required"),
+  description_ar: yup.string().required("Description (Arabic) is required"),
 });
 
 const AddTrainings = () => {
   const { mutate, data } = useCreateTraining();
   const navigate = useNavigate();
-  const { mutate: mutateImage, data: dataImage } = useCreateProjectImage();
 
-  const [uploadedImageUrl, setUploadedImageUrl] = useState("");
   const [file, setFile] = useState(null);
+  const [uploadedImageUrl, setUploadedImageUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState(""); // To handle URL input
 
   useEffect(() => {
     if (data) {
@@ -52,8 +51,10 @@ const AddTrainings = () => {
       setFile(file);
     }
   };
+  const { mutate: mutateImage, data: dataImage } = useCreateProjectImage();
 
-  const handleUpload = () => {
+
+  const uploadImage = () => {
     if (file) {
       const formData = new FormData();
       formData.append("file", file);
@@ -69,14 +70,13 @@ const AddTrainings = () => {
       alert("No file selected.");
     }
   };
-
+ 
   const handleCopyUrl = () => {
     navigator.clipboard
       .writeText(uploadedImageUrl)
       .then(() => alert("Image URL copied to clipboard!"))
       .catch(() => alert("Failed to copy URL."));
   };
-
   return (
     <Fragment>
       <div className="page-header">
@@ -94,15 +94,21 @@ const AddTrainings = () => {
           <div className="card-body">
             <Formik
               validationSchema={schema}
-              onSubmit={(data) => mutate(data)}
+              onSubmit={(data) => {
+                // Ensure image URL is used
+                if (uploadedImageUrl || imageUrl) {
+                  data.image = uploadedImageUrl || imageUrl;
+                }
+                mutate(data);
+              }}
               initialValues={{
-                title: "title",
-                title_en: "title",
-                title_ar: "title",
-                image: "imag",
-                description: "des", // Initial values for the Quill editors
-                description_en: "des",
-                description_ar: "des",
+                title: "",
+                title_en: "",
+                title_ar: "",
+                image: "",
+                description: "",
+                description_en: "",
+                description_ar: "",
               }}
             >
               {({
@@ -127,8 +133,11 @@ const AddTrainings = () => {
                         name="title"
                         value={values.title}
                         onChange={handleChange}
-                        isValid={touched.title && !errors.title}
+                        isInvalid={!!errors.title && touched.title}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.title}
+                      </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group
                       as={Col}
@@ -142,8 +151,11 @@ const AddTrainings = () => {
                         name="title_en"
                         value={values.title_en}
                         onChange={handleChange}
-                        isValid={touched.title_en && !errors.title_en}
+                        isInvalid={!!errors.title_en && touched.title_en}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.title_en}
+                      </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group
                       as={Col}
@@ -157,8 +169,11 @@ const AddTrainings = () => {
                         name="title_ar"
                         value={values.title_ar}
                         onChange={handleChange}
-                        isValid={touched.title_ar && !errors.title_ar}
+                        isInvalid={!!errors.title_ar && touched.title_ar}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.title_ar}
+                      </Form.Control.Feedback>
                     </Form.Group>
                   </Row>
                   <Row className="mb-3">
@@ -168,14 +183,57 @@ const AddTrainings = () => {
                       controlId="validationFormikImage"
                       className="position-relative"
                     >
-                      <Form.Label>Image</Form.Label>
+                      <Form.Label>Image URL</Form.Label>
                       <Form.Control
                         type="text"
-                        name="image"
-                        value={values.image}
-                        onChange={handleChange}
-                        isValid={touched.image && !errors.image}
+                        name="imageUrl"
+                        value={imageUrl}
+                        onChange={(e) => {
+                          setImageUrl(e.target.value);
+                          setFieldValue("image", e.target.value);
+                        }}
+                        isInvalid={!!errors.image && touched.image}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.image}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group
+                      as={Col}
+                      md="12"
+                      controlId="validationFormikImageUpload"
+                      className="position-relative"
+                    >
+                      <Form.Label>Upload Image</Form.Label>
+                      <Form.Control
+                        type="file"
+                        accept="image/*"
+                        onChange={handleFileChange}
+                      />
+                      <Button
+                        type="button"
+                        onClick={uploadImage}
+                        className="mt-2"
+                      >
+                        Upload Image
+                      </Button>
+                      {uploadedImageUrl && (
+                      <div className="mb-3">
+                        <p>
+                          Uploaded Image URL:{" "}
+                          <a
+                            href={uploadedImageUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {uploadedImageUrl}
+                          </a>
+                        </p>
+                        <Button variant="secondary" onClick={handleCopyUrl}>
+                          Copy URL
+                        </Button>
+                      </div>
+                    )}
                     </Form.Group>
                     <Form.Group
                       as={Col}
@@ -203,6 +261,11 @@ const AddTrainings = () => {
                           ],
                         }}
                       />
+                      {touched.description && errors.description && (
+                        <div className="invalid-feedback d-block">
+                          {errors.description}
+                        </div>
+                      )}
                     </Form.Group>
                   </Row>
                   <Row className="mb-3">
@@ -215,9 +278,7 @@ const AddTrainings = () => {
                       <Form.Label>Description (English)</Form.Label>
                       <ReactQuill
                         value={values.description_en}
-                        onChange={(value) =>
-                          setFieldValue("description_en", value)
-                        }
+                        onChange={(value) => setFieldValue("description_en", value)}
                         modules={{
                           toolbar: [
                             [{ header: "1" }, { header: "2" }, { font: [] }],
@@ -234,6 +295,11 @@ const AddTrainings = () => {
                           ],
                         }}
                       />
+                      {touched.description_en && errors.description_en && (
+                        <div className="invalid-feedback d-block">
+                          {errors.description_en}
+                        </div>
+                      )}
                     </Form.Group>
                     <Form.Group
                       as={Col}
@@ -244,9 +310,7 @@ const AddTrainings = () => {
                       <Form.Label>Description (Arabic)</Form.Label>
                       <ReactQuill
                         value={values.description_ar}
-                        onChange={(value) =>
-                          setFieldValue("description_ar", value)
-                        }
+                        onChange={(value) => setFieldValue("description_ar", value)}
                         modules={{
                           toolbar: [
                             [{ header: "1" }, { header: "2" }, { font: [] }],
@@ -263,30 +327,16 @@ const AddTrainings = () => {
                           ],
                         }}
                       />
+                      {touched.description_ar && errors.description_ar && (
+                        <div className="invalid-feedback d-block">
+                          {errors.description_ar}
+                        </div>
+                      )}
                     </Form.Group>
-                    <Form.Group as={Row} className="mb-3 mt-3">
-                      <Form.Label column sm={2}>
-                        Upload Image
-                      </Form.Label>
-                      <Col sm={10}>
-                        <Form.Control
-                          type="file"
-                          accept="image/jpeg,image/png"
-                          onChange={handleFileChange}
-                        />
-                      </Col>
-                      <Button variant="primary" onClick={handleUpload} className="mt-3">
-                        Upload
-                      </Button>
-                    </Form.Group>
-                    {uploadedImageUrl && (
-                      <div>
-                        <p>Uploaded Image URL: {uploadedImageUrl}</p>
-                        <Button onClick={handleCopyUrl}>Copy Image URL</Button>
-                      </div>
-                    )}
                   </Row>
-                  <Button type="submit">Create Training</Button>
+                  <Button type="submit" className="btn btn-primary mt-3">
+                    Save
+                  </Button>
                 </Form>
               )}
             </Formik>

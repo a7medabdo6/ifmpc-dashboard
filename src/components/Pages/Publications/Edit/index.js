@@ -3,7 +3,7 @@ import { Breadcrumb, Button, Col, Row, Card } from "react-bootstrap";
 import { Formik } from "formik";
 import { Form } from "react-bootstrap";
 import * as yup from "yup";
-import { useEditPublication } from "../../../../Api/Publications";
+import { useEditPublication,useOnePublication } from "../../../../Api/Publications";
 import Select from "react-select";
 import { useTags } from "../../../../Api/Tags";
 import { useUsers } from "../../../../Api/User";
@@ -15,22 +15,23 @@ import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 // Define validation schema using yup
 const schema = yup.object().shape({
-  name: yup.string().required(),
-  name_en: yup.string().required(),
-  name_ar: yup.string().required(),
-  content: yup.string().required(),
-  content_en: yup.string().required(),
-  content_ar: yup.string().required(),
-  popularity_count: yup.number().integer().required(),
-  category: yup.number().required(),
-  author: yup.array().of(yup.number()).required(),
-  tags: yup.array().of(yup.number()).required(),
+  name: yup.string().required("Name is required"),
+  name_en: yup.string().required("English name is required"),
+  name_ar: yup.string().required("Arabic name is required"),
+  content: yup.string().required("Content is required"),
+  content_en: yup.string().required("English content is required"),
+  content_ar: yup.string().required("Arabic content is required"),
+  popularity_count: yup.number().integer().required("Popularity count is required"),
+  category: yup.number().required("Category is required"),
+  author: yup.array().of(yup.number()).required("At least one author is required"),
+  tags: yup.array().of(yup.number()).required("At least one tag is required"),
   references: yup.array().of(
     yup.object().shape({
-      name: yup.string().required(),
-      url: yup.string().url().required(),
+      name: yup.string().required("Reference name is required"),
+      url: yup.string().url("Invalid URL").required("Reference URL is required"),
     })
   ),
 });
@@ -43,7 +44,8 @@ const EditPublications = () => {
   const { data: AuthorData } = useUsers();
   const { data: dataOfCategory } = useCategories();
   const { data: authorsData } = useAuthors();
-
+  const { data: dataone, isLoading: isLoadingOne } = useOnePublication(id);
+console.log(dataone);
   // Convert tags data to options for Select
   const tagOptions =
     data?.results.map((tag) => ({ value: tag.id, label: tag.name })) || [];
@@ -84,6 +86,7 @@ const EditPublications = () => {
       }, 2000); // يمكنك ضبط الوقت حسب الحاجة
     }
   }, [dataEdit, navigate]);
+
   return (
     <Fragment>
       <div className="page-header">
@@ -106,21 +109,17 @@ const EditPublications = () => {
                 handleSubmit(values);
               }}
               initialValues={{
-                name: "",
-                name_en: "",
-                name_ar: "",
-                content: "",
-                content_en: "",
-                content_ar: "",
-                popularity_count: 0, // قيمة افتراضية مبدئية
-                category:
-                  categoryOptions.length > 0 ? categoryOptions[0].value : "", // إذا كان هناك فئات
-                author:
-                  authorsData?.results.length > 0
-                    ? [authorsData.results[0].id]
-                    : [], // إذا كان هناك مؤلفون
-                tags: tagOptions.length > 0 ? [tagOptions[0].value] : [], // إذا كان هناك علامات
-                references: [{ name: "", url: "" }], // القيم الافتراضية للمراجع
+                name: dataone?.name || "",
+                name_en: dataone?.name_en || "",
+                name_ar: dataone?.name_ar || "",
+                content: dataone?.content || "",
+                content_en: dataone?.content_en || "",
+                content_ar: dataone?.content_ar || "",
+                popularity_count: dataone?.popularity_count || 0,
+                category: dataone?.category?.id || (categoryOptions.length > 0 ? categoryOptions[0].value : ""),
+                author: dataone?.author.map((a) => a.id) || (authorsData?.results.length > 0 ? [authorsData.results[0].id] : []),
+                tags: dataone?.tags.map((t) => t.id) || (tagOptions.length > 0 ? [tagOptions[0].value] : []),
+                references: dataone?.references || [{ name: "", url: "" }],
               }}
             >
               {({
@@ -146,7 +145,11 @@ const EditPublications = () => {
                         value={values.name}
                         onChange={handleChange}
                         isValid={touched.name && !errors.name}
+                        isInvalid={touched.name && !!errors.name}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.name}
+                      </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group
                       as={Col}
@@ -160,10 +163,11 @@ const EditPublications = () => {
                         value={values.name_en}
                         onChange={handleChange}
                         isValid={touched.name_en && !errors.name_en}
+                        isInvalid={touched.name_en && !!errors.name_en}
                       />
-                      {touched.name_en && errors.name_en && (
-                        <div className="invalid-feedback">{errors.name_en}</div>
-                      )}
+                      <Form.Control.Feedback type="invalid">
+                        {errors.name_en}
+                      </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group
                       as={Col}
@@ -177,10 +181,11 @@ const EditPublications = () => {
                         value={values.name_ar}
                         onChange={handleChange}
                         isValid={touched.name_ar && !errors.name_ar}
+                        isInvalid={touched.name_ar && !!errors.name_ar}
                       />
-                      {touched.name_ar && errors.name_ar && (
-                        <div className="invalid-feedback">{errors.name_ar}</div>
-                      )}
+                      <Form.Control.Feedback type="invalid">
+                        {errors.name_ar}
+                      </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group
                       as={Col}
@@ -194,10 +199,11 @@ const EditPublications = () => {
                         value={values.content}
                         onChange={handleChange}
                         isValid={touched.content && !errors.content}
+                        isInvalid={touched.content && !!errors.content}
                       />
-                      {touched.content && errors.content && (
-                        <div className="invalid-feedback">{errors.content}</div>
-                      )}
+                      <Form.Control.Feedback type="invalid">
+                        {errors.content}
+                      </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group
                       as={Col}
@@ -212,9 +218,7 @@ const EditPublications = () => {
                         modules={{ toolbar: true }}
                       />
                       {touched.content_en && errors.content_en && (
-                        <div className="invalid-feedback">
-                          {errors.content_en}
-                        </div>
+                        <div className="invalid-feedback">{errors.content_en}</div>
                       )}
                     </Form.Group>
                     <Form.Group
@@ -230,9 +234,7 @@ const EditPublications = () => {
                         modules={{ toolbar: true }}
                       />
                       {touched.content_ar && errors.content_ar && (
-                        <div className="invalid-feedback">
-                          {errors.content_ar}
-                        </div>
+                        <div className="invalid-feedback">{errors.content_ar}</div>
                       )}
                     </Form.Group>
                   </Row>
@@ -248,16 +250,14 @@ const EditPublications = () => {
                         name="popularity_count"
                         value={values.popularity_count}
                         onChange={handleChange}
-                        isValid={
-                          touched.popularity_count && !errors.popularity_count
-                        }
+                        isValid={touched.popularity_count && !errors.popularity_count}
+                        isInvalid={touched.popularity_count && !!errors.popularity_count}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.popularity_count}
+                      </Form.Control.Feedback>
                     </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="6"
-                      controlId="validationFormikCategory"
-                    >
+                    <Form.Group as={Col} md="6" controlId="validationFormikCategory">
                       <Form.Label>Category</Form.Label>
                       <Select
                         name="category"
@@ -265,18 +265,15 @@ const EditPublications = () => {
                         value={categoryOptions.find(
                           (option) => option.value === values.category
                         )}
-                        onChange={(option) =>
-                          setFieldValue("category", option?.value)
-                        }
-                        isValid={touched.category && !errors.category}
+                        onChange={(option) => setFieldValue("category", option.value)}
+                        isInvalid={touched.category && !!errors.category}
                       />
+                      {touched.category && errors.category && (
+                        <div className="invalid-feedback">{errors.category}</div>
+                      )}
                     </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="6"
-                      controlId="validationFormikAuthors"
-                    >
-                      <Form.Label>Authors</Form.Label>
+                    <Form.Group as={Col} md="6" controlId="validationFormikAuthor">
+                      <Form.Label>Author</Form.Label>
                       <Select
                         isMulti
                         name="author"
@@ -284,20 +281,14 @@ const EditPublications = () => {
                         value={AuthorsOptions.filter((option) =>
                           values.author.includes(option.value)
                         )}
-                        onChange={(options) =>
-                          setFieldValue(
-                            "author",
-                            options.map((option) => option.value)
-                          )
-                        }
-                        isValid={touched.author && !errors.author}
+                        onChange={(options) => setFieldValue("author", options.map((option) => option.value))}
+                        isInvalid={touched.author && !!errors.author}
                       />
+                      {touched.author && errors.author && (
+                        <div className="invalid-feedback">{errors.author}</div>
+                      )}
                     </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="6"
-                      controlId="validationFormikTags"
-                    >
+                    <Form.Group as={Col} md="6" controlId="validationFormikTags">
                       <Form.Label>Tags</Form.Label>
                       <Select
                         isMulti
@@ -306,27 +297,21 @@ const EditPublications = () => {
                         value={tagOptions.filter((option) =>
                           values.tags.includes(option.value)
                         )}
-                        onChange={(options) =>
-                          setFieldValue(
-                            "tags",
-                            options.map((option) => option.value)
-                          )
-                        }
-                        isValid={touched.tags && !errors.tags}
+                        onChange={(options) => setFieldValue("tags", options.map((option) => option.value))}
+                        isInvalid={touched.tags && !!errors.tags}
                       />
+                      {touched.tags && errors.tags && (
+                        <div className="invalid-feedback">{errors.tags}</div>
+                      )}
                     </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="6"
-                      controlId="validationFormikReferences"
-                    >
+                    <Form.Group as={Col} md="12" controlId="validationFormikReferences">
                       <Form.Label>References</Form.Label>
-                      {/* Add form fields for references if necessary */}
                       {values.references.map((reference, index) => (
-                        <div key={index}>
+                        <div key={index} className="mb-3">
                           <Form.Control
                             type="text"
                             name={`references[${index}].name`}
+                            placeholder="Reference Name"
                             value={reference.name}
                             onChange={(e) =>
                               setFieldValue(
@@ -334,15 +319,20 @@ const EditPublications = () => {
                                 e.target.value
                               )
                             }
-                            isValid={
+                            isInvalid={
                               touched.references &&
-                              touched.references[index]?.name &&
-                              !errors.references?.[index]?.name
+                              touched.references[index] &&
+                              !!errors.references &&
+                              !!errors.references[index]?.name
                             }
                           />
+                          <Form.Control.Feedback type="invalid">
+                            {errors.references && errors.references[index]?.name}
+                          </Form.Control.Feedback>
                           <Form.Control
                             type="url"
                             name={`references[${index}].url`}
+                            placeholder="Reference URL"
                             value={reference.url}
                             onChange={(e) =>
                               setFieldValue(
@@ -350,22 +340,23 @@ const EditPublications = () => {
                                 e.target.value
                               )
                             }
-                            isValid={
+                            isInvalid={
                               touched.references &&
-                              touched.references[index]?.url &&
-                              !errors.references?.[index]?.url
+                              touched.references[index] &&
+                              !!errors.references &&
+                              !!errors.references[index]?.url
                             }
                           />
+                          <Form.Control.Feedback type="invalid">
+                            {errors.references && errors.references[index]?.url}
+                          </Form.Control.Feedback>
                         </div>
                       ))}
                     </Form.Group>
                   </Row>
                   <Button type="submit" disabled={isLoading}>
-                    {isLoading ? "Submitting..." : "Submit"}
+                    Submit
                   </Button>
-                  {error && (
-                    <div className="text-danger mt-3">{error.message}</div>
-                  )}
                 </Form>
               )}
             </Formik>

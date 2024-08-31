@@ -5,7 +5,12 @@ const fetchPublications = async () => {
   const response = await axiosInstance.get("/publications");
   return response.data;
 };
-
+const fetchOnePublication = async (id) => {
+  console.log(id);
+  
+  const response = await axiosInstance.get(`/publications/${id}`);
+  return response.data;
+};
 export const createPublications = async (data) => {
   const response = await axiosInstance.post("/publications/", data);
   return response.data;
@@ -30,6 +35,14 @@ export const usePublications = () => {
   return useQuery({
     queryKey: ["Publications"],
     queryFn: fetchPublications,
+  });
+};
+
+export const useOnePublication = (id) => {
+  return useQuery({
+    queryKey: ["Publications", id], // Include the id in the queryKey
+    queryFn: () => fetchOnePublication(id), // Pass id to the fetch function
+    enabled: !!id, // Ensure the query is only run if id is truthy
   });
 };
 

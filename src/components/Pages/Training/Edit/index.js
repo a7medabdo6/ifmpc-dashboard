@@ -1,19 +1,21 @@
-import React, { Fragment, useState, useEffect } from "react"; // Ensure useState is imported
+import React, { Fragment, useState, useEffect } from "react";
 import { Breadcrumb, Button, Col, Row, Card } from "react-bootstrap";
 import { Formik } from "formik";
-import { Form, InputGroup } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import * as yup from "yup";
 import { useEditTraining } from "../../../../Api/Training";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useCreateProjectImage } from "../../../../Api/Projects";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 const schema = yup.object().shape({
   title: yup.string().required(),
   title_en: yup.string().required(),
   title_ar: yup.string().required(),
-  image: yup.string().required(),
+  image: yup.string().url().required(), // Validate as URL
   description: yup.string().required(),
   description_en: yup.string().required(),
   description_ar: yup.string().required(),
@@ -23,13 +25,18 @@ const EditTrainings = ({ id, itemData, viewDemoClose, setShow10 }) => {
   const { mutate, data } = useEditTraining();
   const navigate = useNavigate();
   const { mutate: mutateImage, data: dataImage } = useCreateProjectImage();
-
-  const [uploadedImageUrl, setUploadedImageUrl] = useState(""); // Ensure useState is used correctly
+  useEffect(() => {
+    if (data) {
+      setShow10(false)
+    }
+  }, [data, navigate]);
+  const [uploadedImageUrl, setUploadedImageUrl] = useState(itemData?.image || "");
   const [file, setFile] = useState(null);
+  const [imageUrl, setImageUrl] = useState(itemData?.image || ""); // To handle URL input
 
   useEffect(() => {
     if (data) {
-      toast.success("This item has been successfully Edit.");
+      toast.success("This item has been successfully edited.");
       setTimeout(() => {
         navigate("/pages/training/");
       }, 2000);
@@ -51,15 +58,16 @@ const EditTrainings = ({ id, itemData, viewDemoClose, setShow10 }) => {
     }
   };
 
-  const handleUpload = () => {
+  const uploadImage = () => {
     if (file) {
       const formData = new FormData();
       formData.append("file", file);
       mutateImage(formData, {
         onSuccess: (data) => {
           setUploadedImageUrl(data.file_url);
+          setImageUrl(data.file_url); // Update image URL as well
         },
-        onError: (error) => {
+        onError: () => {
           alert("Error uploading image.");
         },
       });
@@ -79,10 +87,10 @@ const EditTrainings = ({ id, itemData, viewDemoClose, setShow10 }) => {
     <Fragment>
       <div className="page-header">
         <div>
-          <h2 className="main-content-title tx-24 mg-b-5">Create Training</h2>
+          <h2 className="main-content-title tx-24 mg-b-5">Edit Training</h2>
           <Breadcrumb>
             <Breadcrumb.Item href="#">Pages</Breadcrumb.Item>
-            <Breadcrumb.Item active>Create Training</Breadcrumb.Item>
+            <Breadcrumb.Item active>Edit Training</Breadcrumb.Item>
           </Breadcrumb>
         </div>
       </div>
@@ -92,25 +100,29 @@ const EditTrainings = ({ id, itemData, viewDemoClose, setShow10 }) => {
           <div className="card-body">
             <Formik
               validationSchema={schema}
-              onSubmit={(data) =>
-                mutate(
-                  (data = {
-                    data,
-                    id,
-                  })
-                )
-              }
+              onSubmit={(data) => {
+                // Ensure image URL is used
+                data.image = uploadedImageUrl || imageUrl;
+                mutate({ data, id });
+              }}
               initialValues={{
-                title: itemData?.title,
-                title_en: itemData?.title_en,
-                title_ar: itemData?.title_ar,
-                image: itemData?.image,
-                description: itemData?.description,
-                description_en: itemData?.description_en,
-                description_ar: itemData?.description_ar,
+                title: itemData?.title || "",
+                title_en: itemData?.title_en || "",
+                title_ar: itemData?.title_ar || "",
+                image: itemData?.image || "",
+                description: itemData?.description || "",
+                description_en: itemData?.description_en || "",
+                description_ar: itemData?.description_ar || "",
               }}
             >
-              {({ handleSubmit, handleChange, values, touched, errors }) => (
+              {({
+                handleSubmit,
+                handleChange,
+                values,
+                setFieldValue,
+                touched,
+                errors,
+              }) => (
                 <Form noValidate onSubmit={handleSubmit}>
                   <Row className="mb-3">
                     <Form.Group
@@ -125,8 +137,11 @@ const EditTrainings = ({ id, itemData, viewDemoClose, setShow10 }) => {
                         name="title"
                         value={values.title}
                         onChange={handleChange}
-                        isValid={touched.title && !errors.title}
+                        isInvalid={!!errors.title && touched.title}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.title}
+                      </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group
                       as={Col}
@@ -140,8 +155,11 @@ const EditTrainings = ({ id, itemData, viewDemoClose, setShow10 }) => {
                         name="title_en"
                         value={values.title_en}
                         onChange={handleChange}
-                        isValid={touched.title_en && !errors.title_en}
+                        isInvalid={!!errors.title_en && touched.title_en}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.title_en}
+                      </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group
                       as={Col}
@@ -155,109 +173,99 @@ const EditTrainings = ({ id, itemData, viewDemoClose, setShow10 }) => {
                         name="title_ar"
                         value={values.title_ar}
                         onChange={handleChange}
-                        isValid={touched.title_ar && !errors.title_ar}
+                        isInvalid={!!errors.title_ar && touched.title_ar}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.title_ar}
+                      </Form.Control.Feedback>
                     </Form.Group>
                   </Row>
                   <Row className="mb-3">
                     <Form.Group
                       as={Col}
-                      md="4"
-                      controlId="validationFormikImage"
+                      md="12"
+                      controlId="validationFormikImageUrl"
                       className="position-relative"
                     >
-                      <Form.Label>Image</Form.Label>
+                      <Form.Label>Image URL</Form.Label>
                       <Form.Control
                         type="text"
-                        name="image"
-                        value={values.image}
-                        onChange={handleChange}
-                        isValid={touched.image && !errors.image}
+                        name="imageUrl"
+                        value={imageUrl}
+                        onChange={(e) => {
+                          setImageUrl(e.target.value);
+                          setFieldValue("image", e.target.value);
+                        }}
+                        isInvalid={!!errors.image && touched.image}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.image}
+                      </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group
                       as={Col}
-                      md="8"
+                      md="12"
+                      controlId="validationFormikImageUpload"
+                      className="position-relative"
+                    >
+                      <Form.Label>Upload Image</Form.Label>
+                      <Form.Control
+                        type="file"
+                        accept="image/*"
+                        onChange={handleFileChange}
+                      />
+                      <Button
+                        type="button"
+                        onClick={uploadImage}
+                        className="mt-2"
+                      >
+                        Upload Image
+                      </Button>
+                      {uploadedImageUrl && (
+                        <div className="mb-3">
+                          <p>
+                            Uploaded Image URL:{" "}
+                            <a
+                              href={uploadedImageUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              {uploadedImageUrl}
+                            </a>
+                          </p>
+                          <Button variant="secondary" onClick={handleCopyUrl}>
+                            Copy URL
+                          </Button>
+                        </div>
+                      )}
+                    </Form.Group>
+                    <Form.Group
+                      as={Col}
+                      md="12"
                       controlId="validationFormikDescription"
                       className="position-relative"
                     >
                       <Form.Label>Description</Form.Label>
-                      <Form.Control
-                        as="textarea"
-                        name="description"
+                      <ReactQuill
                         value={values.description}
-                        onChange={handleChange}
-                        isValid={touched.description && !errors.description}
+                        onChange={(value) => setFieldValue("description", value)}
+                        modules={{
+                          toolbar: [
+                            [{ header: "1" }, { header: "2" }, { font: [] }],
+                            [{ size: [] }],
+                            ["bold", "italic", "underline", "strike", "blockquote"],
+                            [
+                              { list: "ordered" },
+                              { list: "bullet" },
+                              { indent: "-1" },
+                              { indent: "+1" },
+                            ],
+                            ["link", "image"],
+                            ["clean"],
+                          ],
+                        }}
                       />
                     </Form.Group>
-                  </Row>
-                  <Row className="mb-3">
-                    <Form.Group
-                      as={Col}
-                      md="4"
-                      controlId="validationFormikDescriptionEn"
-                      className="position-relative"
-                    >
-                      <Form.Label>Description (English)</Form.Label>
-                      <Form.Control
-                        as="textarea"
-                        name="description_en"
-                        value={values.description_en}
-                        onChange={handleChange}
-                        isValid={
-                          touched.description_en && !errors.description_en
-                        }
-                      />
-                    </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="4"
-                      controlId="validationFormikDescriptionAr"
-                      className="position-relative"
-                    >
-                      <Form.Label>Description (Arabic)</Form.Label>
-                      <Form.Control
-                        as="textarea"
-                        name="description_ar"
-                        value={values.description_ar}
-                        onChange={handleChange}
-                        isValid={
-                          touched.description_ar && !errors.description_ar
-                        }
-                      />
-                    </Form.Group>
-                    <Form.Group as={Row} className="mb-3 mt-3">
-                      <Form.Label column sm={2}>
-                        Upload Image
-                      </Form.Label>
-                      <Col sm={10}>
-                        <Form.Control
-                          type="file"
-                          accept="image/jpeg,image/png"
-                          onChange={handleFileChange}
-                        />
-                      </Col>
-                      <Button variant="primary" onClick={handleUpload}>
-                        Upload Image
-                      </Button>
-                    </Form.Group>
-                    {uploadedImageUrl && (
-                      <div className="mb-3">
-                        <p>
-                          Uploaded Image URL:{" "}
-                          <a
-                            href={uploadedImageUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            {uploadedImageUrl}
-                          </a>
-                        </p>
-                        <Button variant="secondary" onClick={handleCopyUrl}>
-                          Copy URL
-                        </Button>
-                      </div>
-                    )}
                   </Row>
                   <Button type="submit">Save</Button>
                 </Form>
@@ -266,6 +274,8 @@ const EditTrainings = ({ id, itemData, viewDemoClose, setShow10 }) => {
           </div>
         </div>
       </div>
+
+      <ToastContainer />
     </Fragment>
   );
 };

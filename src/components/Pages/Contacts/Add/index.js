@@ -1,18 +1,19 @@
 import React, { Fragment, useEffect } from "react";
 import { Breadcrumb, Button, Col, Row, Card } from "react-bootstrap";
 import { Formik } from "formik";
-import { Form, InputGroup } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import * as yup from "yup";
 import { useCreateContact } from "../../../../Api/Contacts";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 const schema = yup.object().shape({
-  first_name: yup.string().required(),
-  last_name: yup.string().required(),
-  email: yup.string().email().required(),
-  phone: yup.string().required(),
-  description: yup.string().required(),
+  first_name: yup.string().required("First name is required"),
+  last_name: yup.string().required("Last name is required"),
+  email: yup.string().email("Invalid email address").required("Email is required"),
+  phone: yup.string().required("Phone number is required"),
+  description: yup.string().required("Description is required"),
 });
 
 const AddContacts = () => {
@@ -29,6 +30,7 @@ const AddContacts = () => {
       }, 2000); // يمكنك ضبط الوقت حسب الحاجة
     }
   }, [data, navigate]);
+
   return (
     <Fragment>
       <div className="page-header">
@@ -70,8 +72,11 @@ const AddContacts = () => {
                         name="first_name"
                         value={values.first_name}
                         onChange={handleChange}
-                        isValid={touched.first_name && !errors.first_name}
+                        isInvalid={touched.first_name && !!errors.first_name}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.first_name}
+                      </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group
                       as={Col}
@@ -85,8 +90,11 @@ const AddContacts = () => {
                         name="last_name"
                         value={values.last_name}
                         onChange={handleChange}
-                        isValid={touched.last_name && !errors.last_name}
+                        isInvalid={touched.last_name && !!errors.last_name}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.last_name}
+                      </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group
                       as={Col}
@@ -100,8 +108,11 @@ const AddContacts = () => {
                         name="email"
                         value={values.email}
                         onChange={handleChange}
-                        isValid={touched.email && !errors.email}
+                        isInvalid={touched.email && !!errors.email}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.email}
+                      </Form.Control.Feedback>
                     </Form.Group>
                   </Row>
                   <Row className="mb-3">
@@ -117,8 +128,11 @@ const AddContacts = () => {
                         name="phone"
                         value={values.phone}
                         onChange={handleChange}
-                        isValid={touched.phone && !errors.phone}
+                        isInvalid={touched.phone && !!errors.phone}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.phone}
+                      </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group
                       as={Col}
@@ -132,8 +146,11 @@ const AddContacts = () => {
                         name="description"
                         value={values.description}
                         onChange={handleChange}
-                        isValid={touched.description && !errors.description}
+                        isInvalid={touched.description && !!errors.description}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.description}
+                      </Form.Control.Feedback>
                     </Form.Group>
                   </Row>
                   <Button type="submit">Save</Button>
@@ -143,6 +160,7 @@ const AddContacts = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </Fragment>
   );
 };

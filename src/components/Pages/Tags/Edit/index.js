@@ -7,19 +7,20 @@ import { useEditTage } from "../../../../Api/Tags";
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 const schema = yup.object().shape({
-  name: yup.string().required(),
-  name_en: yup.string().required(),
-  name_ar: yup.string().required(),
-  post_count: yup.number().required(),
+  name: yup.string().required("Name is required"),
+  name_en: yup.string().required("English name is required"),
+  name_ar: yup.string().required("Arabic name is required"),
+  post_count: yup.number().required("Post count is required").positive("Post count must be a positive number").integer("Post count must be an integer"),
 });
 
 const EditTags = ({ itemData, id, setShow10 }) => {
-  const { mutate,data } = useEditTage();
+  const { mutate, data } = useEditTage();
 
   useEffect(() => {
     if (data) {
-      toast.success("This item has been successfully Editing.");
+      toast.success("This item has been successfully edited.");
 
       // تأخير الانتقال لمدة 2 ثانية (2000 مللي ثانية)
       setTimeout(() => {
@@ -27,6 +28,7 @@ const EditTags = ({ itemData, id, setShow10 }) => {
       }, 2000); // يمكنك ضبط الوقت حسب الحاجة
     }
   }, [data]);
+
   return (
     <Fragment>
       <div className="page-header">

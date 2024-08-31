@@ -1,17 +1,17 @@
 import React, { Fragment, useEffect } from "react";
-import { Breadcrumb, Button, Col, Row, Card } from "react-bootstrap";
+import { Breadcrumb, Button, Col, Row, Card,Form } from "react-bootstrap";
 import { Formik } from "formik";
-import { Form } from "react-bootstrap";
 import * as yup from "yup";
 import { useCreateTage } from "../../../../Api/Tags";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 const schema = yup.object().shape({
-  name: yup.string().required(),
-  name_en: yup.string().required(),
-  name_ar: yup.string().required(),
-  post_count: yup.number().required(),
+  name: yup.string().required("Name is required"),
+  name_en: yup.string().required("Name (English) is required"),
+  name_ar: yup.string().required("Name (Arabic) is required"),
+  post_count: yup.number().required("Post count is required").positive("Post count must be a positive number"),
 });
 
 const AddTags = () => {
@@ -28,6 +28,7 @@ const AddTags = () => {
       }, 2000); // يمكنك ضبط الوقت حسب الحاجة
     }
   }, [data, navigate]);
+
   return (
     <Fragment>
       {/* <!-- Page Header --> */}
@@ -50,9 +51,9 @@ const AddTags = () => {
               validationSchema={schema}
               onSubmit={(data) => mutate(data)}
               initialValues={{
-                name: "string",
-                name_en: "string",
-                name_ar: "string",
+                name: "",
+                name_en: "",
+                name_ar: "",
                 post_count: 1,
               }}
             >
@@ -71,8 +72,11 @@ const AddTags = () => {
                         name="name"
                         value={values.name}
                         onChange={handleChange}
-                        isValid={touched.name && !errors.name}
+                        isInvalid={touched.name && !!errors.name}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.name}
+                      </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group
                       as={Col}
@@ -86,8 +90,11 @@ const AddTags = () => {
                         name="name_en"
                         value={values.name_en}
                         onChange={handleChange}
-                        isValid={touched.name_en && !errors.name_en}
+                        isInvalid={touched.name_en && !!errors.name_en}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.name_en}
+                      </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group
                       as={Col}
@@ -101,8 +108,11 @@ const AddTags = () => {
                         name="name_ar"
                         value={values.name_ar}
                         onChange={handleChange}
-                        isValid={touched.name_ar && !errors.name_ar}
+                        isInvalid={touched.name_ar && !!errors.name_ar}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.name_ar}
+                      </Form.Control.Feedback>
                     </Form.Group>
                   </Row>
                   <Row className="mb-3">
@@ -118,8 +128,11 @@ const AddTags = () => {
                         name="post_count"
                         value={values.post_count}
                         onChange={handleChange}
-                        isValid={touched.post_count && !errors.post_count}
+                        isInvalid={touched.post_count && !!errors.post_count}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.post_count}
+                      </Form.Control.Feedback>
                     </Form.Group>
                   </Row>
                   <Button type="submit">Save</Button>

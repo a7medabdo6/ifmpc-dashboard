@@ -6,6 +6,12 @@ const fetchProjects = async () => {
   return response.data;
 };
 
+const fetchOneProject = async (id) => {
+  console.log(id);
+  
+  const response = await axiosInstance.get(`/projects/${id}`);
+  return response.data;
+};
 export const createProjects = async (data) => {
   const response = await axiosInstance.post("/projects/", data);
   return response.data;
@@ -22,7 +28,6 @@ export const deleteProjects = async (id) => {
 
 // Edit a data
 export const editProjects = async (data) => {
-  console.log(data);
 
   const response = await axiosInstance.put(
     `/projects/${data.id}/`,
@@ -37,6 +42,13 @@ export const useProjects = () => {
   });
 };
 
+export const useOneProject = (id) => {
+  return useQuery({
+    queryKey: ["Projects", id], // Include the id in the queryKey
+    queryFn: () => fetchOneProject(id), // Pass id to the fetch function
+    enabled: !!id, // Ensure the query is only run if id is truthy
+  });
+};
 export const useCreateProject = () => {
   const queryClient = useQueryClient();
   return useMutation({

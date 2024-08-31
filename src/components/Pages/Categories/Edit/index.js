@@ -9,11 +9,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from 'react-router-dom';
 
 const schema = yup.object().shape({
-  name: yup.string().required(),
-  name_en: yup.string().required(),
-  name_ar: yup.string().required(),
-  publication_count: yup.string().required(),
-  project_count: yup.string().required(),
+  name: yup.string().required('Name is required'),
+  name_en: yup.string().required('Name (English) is required'),
+  name_ar: yup.string().required('Name (Arabic) is required'),
+  publication_count: yup.string().required('Publication count is required'),
+  project_count: yup.string().required('Project count is required'),
 });
 
 const Editcategories = ({ id, itemData, viewDemoClose, setShow10 }) => {
@@ -23,10 +23,10 @@ const Editcategories = ({ id, itemData, viewDemoClose, setShow10 }) => {
   useEffect(() => {
     if (data !== undefined) {
       toast.success("This item has been successfully edited.");
-      // تأخير الانتقال لمدة 2 ثانية (2000 مللي ثانية)
+      // Delay navigation for 2 seconds
       setTimeout(() => {
-        setShow10(false)  
-          }, 2000); // يمكنك ضبط الوقت حسب الحاجة
+        setShow10(false);
+      }, 2000); // Adjust the time as needed
     }
   }, [data]);
 
@@ -38,19 +38,17 @@ const Editcategories = ({ id, itemData, viewDemoClose, setShow10 }) => {
             <Formik
               validationSchema={schema}
               onSubmit={(data) =>
-                mutate(
-                  (data = {
-                    data,
-                    id,
-                  })
-                )
+                mutate({
+                  data,
+                  id,
+                })
               }
               initialValues={{
-                name: itemData?.name,
+                name: itemData?.name || "",
                 name_en: itemData?.name_en || "",
                 name_ar: itemData?.name_ar || "",
-                publication_count: itemData?.publication_count,
-                project_count: itemData?.project_count,
+                publication_count: itemData?.publication_count || "",
+                project_count: itemData?.project_count || "",
               }}
             >
               {({
@@ -68,14 +66,17 @@ const Editcategories = ({ id, itemData, viewDemoClose, setShow10 }) => {
                       controlid="validationFormik101"
                       className="position-relative"
                     >
-                      <Form.Label> Name</Form.Label>
+                      <Form.Label>Name</Form.Label>
                       <Form.Control
                         type="text"
                         name="name"
                         value={values.name}
                         onChange={handleChange}
-                        isValid={touched.name && !errors.name}
+                        isInvalid={touched.name && !!errors.name}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.name}
+                      </Form.Control.Feedback>
                     </Form.Group>
                     
                     <Form.Group
@@ -90,8 +91,11 @@ const Editcategories = ({ id, itemData, viewDemoClose, setShow10 }) => {
                         name="name_en"
                         value={values.name_en}
                         onChange={handleChange}
-                        isValid={touched.name_en && !errors.name_en}
+                        isInvalid={touched.name_en && !!errors.name_en}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.name_en}
+                      </Form.Control.Feedback>
                     </Form.Group>
 
                     <Form.Group
@@ -106,8 +110,11 @@ const Editcategories = ({ id, itemData, viewDemoClose, setShow10 }) => {
                         name="name_ar"
                         value={values.name_ar}
                         onChange={handleChange}
-                        isValid={touched.name_ar && !errors.name_ar}
+                        isInvalid={touched.name_ar && !!errors.name_ar}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.name_ar}
+                      </Form.Control.Feedback>
                     </Form.Group>
                   </Row>
 
@@ -124,10 +131,13 @@ const Editcategories = ({ id, itemData, viewDemoClose, setShow10 }) => {
                         name="publication_count"
                         value={values.publication_count}
                         onChange={handleChange}
-                        isValid={
-                          touched.publication_count && !errors.publication_count
+                        isInvalid={
+                          touched.publication_count && !!errors.publication_count
                         }
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.publication_count}
+                      </Form.Control.Feedback>
                     </Form.Group>
                     
                     <Form.Group
@@ -143,10 +153,13 @@ const Editcategories = ({ id, itemData, viewDemoClose, setShow10 }) => {
                           name="project_count"
                           value={values.project_count}
                           onChange={handleChange}
-                          isValid={
-                            touched.project_count && !errors.project_count
+                          isInvalid={
+                            touched.project_count && !!errors.project_count
                           }
                         />
+                        <Form.Control.Feedback type="invalid">
+                          {errors.project_count}
+                        </Form.Control.Feedback>
                       </InputGroup>
                     </Form.Group>
                   </Row>

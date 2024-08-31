@@ -6,6 +6,7 @@ import { useCreateOurPartner } from "../../../../Api/OurPartners";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 const schema = yup.object().shape({
   image: yup.mixed().required("Image is required"),
   name: yup.string().required("Name is required"),
@@ -15,18 +16,17 @@ const schema = yup.object().shape({
 
 const AddOurPartners = () => {
   const { mutate, data } = useCreateOurPartner();
-  const navigate = useNavigate(); // Initialize navigate function
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (data) {
       toast.success("This item has been successfully Created.");
-
-      // تأخير الانتقال لمدة 2 ثانية (2000 مللي ثانية)
       setTimeout(() => {
         navigate("/pages/ourpartners/");
-      }, 2000); // يمكنك ضبط الوقت حسب الحاجة
+      }, 2000);
     }
   }, [data, navigate]);
+
   return (
     <Fragment>
       <div className="page-header">
@@ -83,8 +83,11 @@ const AddOurPartners = () => {
                         onChange={(event) => {
                           setFieldValue("image", event.currentTarget.files[0]);
                         }}
-                        isValid={touched.image && !errors.image}
+                        isInvalid={touched.image && !!errors.image}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.image}
+                      </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group
                       as={Col}
@@ -98,8 +101,11 @@ const AddOurPartners = () => {
                         name="name"
                         value={values.name}
                         onChange={handleChange}
-                        isValid={touched.name && !errors.name}
+                        isInvalid={touched.name && !!errors.name}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.name}
+                      </Form.Control.Feedback>
                     </Form.Group>
                   </Row>
                   <Row className="mb-3">
@@ -115,8 +121,11 @@ const AddOurPartners = () => {
                         name="name_en"
                         value={values.name_en}
                         onChange={handleChange}
-                        isValid={touched.name_en && !errors.name_en}
+                        isInvalid={touched.name_en && !!errors.name_en}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.name_en}
+                      </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group
                       as={Col}
@@ -130,8 +139,11 @@ const AddOurPartners = () => {
                         name="name_ar"
                         value={values.name_ar}
                         onChange={handleChange}
-                        isValid={touched.name_ar && !errors.name_ar}
+                        isInvalid={touched.name_ar && !!errors.name_ar}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.name_ar}
+                      </Form.Control.Feedback>
                     </Form.Group>
                   </Row>
                   <Button type="submit">Save</Button>
@@ -141,6 +153,7 @@ const AddOurPartners = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </Fragment>
   );
 };

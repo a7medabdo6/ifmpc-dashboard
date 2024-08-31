@@ -134,76 +134,59 @@ const AddPublications = () => {
                 <Form noValidate onSubmit={handleSubmit}>
                   {/* Existing fields */}
                   <Row className="mb-3">
-                    <Form.Group
-                      as={Col}
-                      md="6"
-                      controlId="validationFormikName"
-                    >
+                    <Form.Group as={Col} md="6" controlId="validationFormikName">
                       <Form.Label>Name</Form.Label>
                       <Form.Control
                         type="text"
                         name="name"
                         value={values.name}
                         onChange={handleChange}
-                        isValid={touched.name && !errors.name}
+                        isInvalid={!!errors.name && touched.name}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.name}
+                      </Form.Control.Feedback>
                     </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="6"
-                      controlId="validationFormikNameEn"
-                    >
+                    <Form.Group as={Col} md="6" controlId="validationFormikNameEn">
                       <Form.Label>Name (English)</Form.Label>
                       <Form.Control
                         type="text"
                         name="name_en"
                         value={values.name_en}
                         onChange={handleChange}
-                        isValid={touched.name_en && !errors.name_en}
+                        isInvalid={!!errors.name_en && touched.name_en}
                       />
-                      {touched.name_en && errors.name_en && (
-                        <div className="invalid-feedback">{errors.name_en}</div>
-                      )}
+                      <Form.Control.Feedback type="invalid">
+                        {errors.name_en}
+                      </Form.Control.Feedback>
                     </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="6"
-                      controlId="validationFormikNameAr"
-                    >
+                    <Form.Group as={Col} md="6" controlId="validationFormikNameAr">
                       <Form.Label>Name (Arabic)</Form.Label>
                       <Form.Control
                         type="text"
                         name="name_ar"
                         value={values.name_ar}
                         onChange={handleChange}
-                        isValid={touched.name_ar && !errors.name_ar}
+                        isInvalid={!!errors.name_ar && touched.name_ar}
                       />
-                      {touched.name_ar && errors.name_ar && (
-                        <div className="invalid-feedback">{errors.name_ar}</div>
-                      )}
+                      <Form.Control.Feedback type="invalid">
+                        {errors.name_ar}
+                      </Form.Control.Feedback>
                     </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="6"
-                      controlId="validationFormikContent"
-                    >
+                    <Form.Group as={Col} md="6" controlId="validationFormikContent">
                       <Form.Label>Content</Form.Label>
                       <Form.Control
                         type="text"
                         name="content"
                         value={values.content}
                         onChange={handleChange}
-                        isValid={touched.content && !errors.content}
+                        isInvalid={!!errors.content && touched.content}
                       />
-                      {touched.content && errors.content && (
-                        <div className="invalid-feedback">{errors.content}</div>
-                      )}
+                      <Form.Control.Feedback type="invalid">
+                        {errors.content}
+                      </Form.Control.Feedback>
                     </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="6"
-                      controlId="validationFormikContentEn"
-                    >
+                    <Form.Group as={Col} md="6" controlId="validationFormikContentEn">
                       <Form.Label>Content (English)</Form.Label>
                       <ReactQuill
                         value={values.content_en}
@@ -217,11 +200,7 @@ const AddPublications = () => {
                         </div>
                       )}
                     </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="6"
-                      controlId="validationFormikContentAr"
-                    >
+                    <Form.Group as={Col} md="6" controlId="validationFormikContentAr">
                       <Form.Label>Content (Arabic)</Form.Label>
                       <ReactQuill
                         value={values.content_ar}
@@ -237,125 +216,90 @@ const AddPublications = () => {
                     </Form.Group>
                   </Row>
                   <Row className="mb-3">
-                    <Form.Group
-                      as={Col}
-                      md="6"
-                      controlId="validationFormikPopularityCount"
-                    >
+                    <Form.Group as={Col} md="6" controlId="validationFormikPopularityCount">
                       <Form.Label>Popularity Count</Form.Label>
                       <Form.Control
                         type="number"
                         name="popularity_count"
                         value={values.popularity_count}
                         onChange={handleChange}
-                        isValid={
-                          touched.popularity_count && !errors.popularity_count
-                        }
+                        isInvalid={!!errors.popularity_count && touched.popularity_count}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.popularity_count}
+                      </Form.Control.Feedback>
                     </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="6"
-                      controlId="validationFormikCategory"
-                    >
+                    <Form.Group as={Col} md="6" controlId="validationFormikCategory">
                       <Form.Label>Category</Form.Label>
                       <Select
                         name="category"
                         options={categoryOptions}
-                        value={categoryOptions.find(
-                          (option) => option.value === values.category
-                        )}
-                        onChange={(option) =>
-                          setFieldValue("category", option?.value)
-                        }
-                        isValid={touched.category && !errors.category}
+                        value={categoryOptions.find((option) => option.value === values.category)}
+                        onChange={(option) => setFieldValue("category", option?.value)}
+                        isInvalid={!!errors.category && touched.category}
                       />
+                      {touched.category && errors.category && (
+                        <div className="invalid-feedback">
+                          {errors.category}
+                        </div>
+                      )}
                     </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="6"
-                      controlId="validationFormikAuthors"
-                    >
+                    <Form.Group as={Col} md="6" controlId="validationFormikAuthors">
                       <Form.Label>Authors</Form.Label>
                       <Select
                         isMulti
                         name="author"
                         options={AuthorsOptions}
-                        value={AuthorsOptions.filter((option) =>
-                          values.author.includes(option.value)
-                        )}
-                        onChange={(options) =>
-                          setFieldValue(
-                            "author",
-                            options.map((option) => option.value)
-                          )
-                        }
-                        isValid={touched.author && !errors.author}
+                        value={AuthorsOptions.filter((option) => values.author.includes(option.value))}
+                        onChange={(options) => setFieldValue("author", options.map((option) => option.value))}
+                        isInvalid={!!errors.author && touched.author}
                       />
+                      {touched.author && errors.author && (
+                        <div className="invalid-feedback">
+                          {errors.author}
+                        </div>
+                      )}
                     </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="6"
-                      controlId="validationFormikTags"
-                    >
+                    <Form.Group as={Col} md="6" controlId="validationFormikTags">
                       <Form.Label>Tags</Form.Label>
                       <Select
                         isMulti
                         name="tags"
                         options={tagOptions}
-                        value={tagOptions.filter((option) =>
-                          values.tags.includes(option.value)
-                        )}
-                        onChange={(options) =>
-                          setFieldValue(
-                            "tags",
-                            options.map((option) => option.value)
-                          )
-                        }
-                        isValid={touched.tags && !errors.tags}
+                        value={tagOptions.filter((option) => values.tags.includes(option.value))}
+                        onChange={(options) => setFieldValue("tags", options.map((option) => option.value))}
+                        isInvalid={!!errors.tags && touched.tags}
                       />
+                      {touched.tags && errors.tags && (
+                        <div className="invalid-feedback">
+                          {errors.tags}
+                        </div>
+                      )}
                     </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="6"
-                      controlId="validationFormikReferences"
-                    >
+                    <Form.Group as={Col} md="6" controlId="validationFormikReferences">
                       <Form.Label>References</Form.Label>
-                      {/* Add form fields for references if necessary */}
                       {values.references.map((reference, index) => (
                         <div key={index}>
                           <Form.Control
                             type="text"
                             name={`references[${index}].name`}
                             value={reference.name}
-                            onChange={(e) =>
-                              setFieldValue(
-                                `references[${index}].name`,
-                                e.target.value
-                              )
-                            }
-                            isValid={
-                              touched.references &&
-                              touched.references[index]?.name &&
-                              !errors.references?.[index]?.name
-                            }
+                            onChange={(e) => setFieldValue(`references[${index}].name`, e.target.value)}
+                            isInvalid={!!errors.references?.[index]?.name && touched.references?.[index]?.name}
                           />
+                          <Form.Control.Feedback type="invalid">
+                            {errors.references?.[index]?.name}
+                          </Form.Control.Feedback>
                           <Form.Control
                             type="url"
                             name={`references[${index}].url`}
                             value={reference.url}
-                            onChange={(e) =>
-                              setFieldValue(
-                                `references[${index}].url`,
-                                e.target.value
-                              )
-                            }
-                            isValid={
-                              touched.references &&
-                              touched.references[index]?.url &&
-                              !errors.references?.[index]?.url
-                            }
+                            onChange={(e) => setFieldValue(`references[${index}].url`, e.target.value)}
+                            isInvalid={!!errors.references?.[index]?.url && touched.references?.[index]?.url}
                           />
+                          <Form.Control.Feedback type="invalid">
+                            {errors.references?.[index]?.url}
+                          </Form.Control.Feedback>
                         </div>
                       ))}
                     </Form.Group>
@@ -367,6 +311,7 @@ const AddPublications = () => {
                     <div className="text-danger mt-3">{error.message}</div>
                   )}
                 </Form>
+
               )}
             </Formik>
           </div>

@@ -17,6 +17,7 @@ import "react-quill/dist/quill.snow.css";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 // Validation schema
 const schema = yup.object().shape({
   name: yup.string().required("Name is required"),
@@ -25,7 +26,7 @@ const schema = yup.object().shape({
   content: yup.string().required("Content is required"),
   content_en: yup.string().required("English content is required"),
   content_ar: yup.string().required("Arabic content is required"),
-  image: yup.string().required("Image URL is required"), // Changed to string
+  image: yup.string().url("Invalid URL").required("Image URL is required"), // Changed to string
   popularity_count: yup
     .number()
     .integer()
@@ -78,8 +79,6 @@ const AddProjects = () => {
     })) || [];
 
   const handleSubmit = (values) => {
-    console.log(values, "vvvvv");
-
     const jsonData = {
       name: values.name,
       name_en: values.name_en,
@@ -100,10 +99,15 @@ const AddProjects = () => {
     };
 
     mutate(jsonData, {
-      onSuccess: () => console.log("Data submitted successfully"),
-      onError: (error) => console.log("Error submitting data:", error),
+      onSuccess: () => {
+        toast.success("Data submitted successfully");
+      },
+      onError: (error) => {
+        toast.error("Error submitting data:", error.message);
+      },
     });
   };
+
   const handleFileChange = (event) => {
     const file = event.currentTarget.files[0];
     if (file) {
@@ -119,7 +123,8 @@ const AddProjects = () => {
       setFile(file); // Update file state
     }
   };
-  const handleUpload = () => {
+
+  const uploadImage = () => {
     if (file) {
       const formData = new FormData();
       formData.append("file", file);
@@ -127,7 +132,7 @@ const AddProjects = () => {
         onSuccess: (data) => {
           setUploadedImageUrl(data.file_url); // Update state with the uploaded image URL
         },
-        onError: (error) => {
+        onError: () => {
           alert("Error uploading image.");
         },
       });
@@ -142,18 +147,18 @@ const AddProjects = () => {
       .then(() => alert("Image URL copied to clipboard!"))
       .catch(() => alert("Failed to copy URL."));
   };
+
   const navigate = useNavigate(); // Initialize navigate function
 
   useEffect(() => {
     if (dataOfCreatProject) {
       toast.success("This item has been successfully Created.");
-
-      // تأخير الانتقال لمدة 2 ثانية (2000 مللي ثانية)
       setTimeout(() => {
         navigate("/pages/Projects/");
-      }, 2000); // يمكنك ضبط الوقت حسب الحاجة
+      }, 2000); // Delay navigation by 2 seconds
     }
   }, [dataOfCreatProject, navigate]);
+
   return (
     <Fragment>
       <div className="page-header">
@@ -198,11 +203,7 @@ const AddProjects = () => {
               }) => (
                 <Form noValidate onSubmit={handleSubmit}>
                   <Row className="mb-3">
-                    <Form.Group
-                      as={Col}
-                      md="6"
-                      controlId="validationFormikName"
-                    >
+                    <Form.Group as={Col} md="6" controlId="validationFormikName">
                       <Form.Label>Name</Form.Label>
                       <Form.Control
                         type="text"
@@ -210,16 +211,13 @@ const AddProjects = () => {
                         value={values.name}
                         onChange={handleChange}
                         isValid={touched.name && !errors.name}
+                        isInvalid={!!errors.name}
                       />
-                      {touched.name && errors.name && (
-                        <div className="invalid-feedback">{errors.name}</div>
-                      )}
+                      <Form.Control.Feedback type="invalid">
+                        {errors.name}
+                      </Form.Control.Feedback>
                     </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="6"
-                      controlId="validationFormikNameEn"
-                    >
+                    <Form.Group as={Col} md="6" controlId="validationFormikNameEn">
                       <Form.Label>Name (English)</Form.Label>
                       <Form.Control
                         type="text"
@@ -227,16 +225,13 @@ const AddProjects = () => {
                         value={values.name_en}
                         onChange={handleChange}
                         isValid={touched.name_en && !errors.name_en}
+                        isInvalid={!!errors.name_en}
                       />
-                      {touched.name_en && errors.name_en && (
-                        <div className="invalid-feedback">{errors.name_en}</div>
-                      )}
+                      <Form.Control.Feedback type="invalid">
+                        {errors.name_en}
+                      </Form.Control.Feedback>
                     </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="6"
-                      controlId="validationFormikNameAr"
-                    >
+                    <Form.Group as={Col} md="6" controlId="validationFormikNameAr">
                       <Form.Label>Name (Arabic)</Form.Label>
                       <Form.Control
                         type="text"
@@ -244,16 +239,13 @@ const AddProjects = () => {
                         value={values.name_ar}
                         onChange={handleChange}
                         isValid={touched.name_ar && !errors.name_ar}
+                        isInvalid={!!errors.name_ar}
                       />
-                      {touched.name_ar && errors.name_ar && (
-                        <div className="invalid-feedback">{errors.name_ar}</div>
-                      )}
+                      <Form.Control.Feedback type="invalid">
+                        {errors.name_ar}
+                      </Form.Control.Feedback>
                     </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="6"
-                      controlId="validationFormikContent"
-                    >
+                    <Form.Group as={Col} md="6" controlId="validationFormikContent">
                       <Form.Label>Content</Form.Label>
                       <Form.Control
                         type="text"
@@ -261,54 +253,35 @@ const AddProjects = () => {
                         value={values.content}
                         onChange={handleChange}
                         isValid={touched.content && !errors.content}
+                        isInvalid={!!errors.content}
                       />
-                      {touched.content && errors.content && (
-                        <div className="invalid-feedback">{errors.content}</div>
-                      )}
+                      <Form.Control.Feedback type="invalid">
+                        {errors.content}
+                      </Form.Control.Feedback>
                     </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="6"
-                      controlId="validationFormikContentEn"
-                    >
+                    <Form.Group as={Col} md="6" controlId="validationFormikContentEn">
                       <Form.Label>Content (English)</Form.Label>
                       <ReactQuill
                         value={values.content_en}
                         onChange={(value) => setFieldValue("content_en", value)}
-                        theme="snow"
-                        modules={{ toolbar: true }}
+                        className="react-quill"
                       />
                       {touched.content_en && errors.content_en && (
-                        <div className="invalid-feedback">
-                          {errors.content_en}
-                        </div>
+                        <div className="invalid-feedback d-block">{errors.content_en}</div>
                       )}
                     </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="6"
-                      controlId="validationFormikContentAr"
-                    >
+                    <Form.Group as={Col} md="6" controlId="validationFormikContentAr">
                       <Form.Label>Content (Arabic)</Form.Label>
                       <ReactQuill
                         value={values.content_ar}
                         onChange={(value) => setFieldValue("content_ar", value)}
-                        theme="snow"
-                        modules={{ toolbar: true }}
+                        className="react-quill"
                       />
                       {touched.content_ar && errors.content_ar && (
-                        <div className="invalid-feedback">
-                          {errors.content_ar}
-                        </div>
+                        <div className="invalid-feedback d-block">{errors.content_ar}</div>
                       )}
                     </Form.Group>
-                  </Row>
-                  <Row className="mb-3">
-                    <Form.Group
-                      as={Col}
-                      md="6"
-                      controlId="validationFormikImage"
-                    >
+                    <Form.Group as={Col} md="6" controlId="validationFormikImage">
                       <Form.Label>Image URL</Form.Label>
                       <Form.Control
                         type="text"
@@ -316,273 +289,212 @@ const AddProjects = () => {
                         value={values.image}
                         onChange={handleChange}
                         isValid={touched.image && !errors.image}
+                        isInvalid={!!errors.image}
                       />
-                      {touched.image && errors.image && (
-                        <div className="invalid-feedback">{errors.image}</div>
-                      )}
+                      <Form.Control.Feedback type="invalid">
+                        {errors.image}
+                      </Form.Control.Feedback>
+                      <div className="mt-3">
+                      <Form.Label>Upload Image</Form.Label>
+                      <Form.Control
+                        type="file"
+                        accept="image/*"
+                        onChange={handleFileChange}
+                      />
+                         <Button
+                        type="button"
+                        onClick={uploadImage}
+                        className="mt-2"
+                      >
+                        Upload Image
+                      </Button>
+                        {uploadedImageUrl && (
+                      <div className="mb-3">
+                        <p>
+                          Uploaded Image URL:{" "}
+                          <a
+                            href={uploadedImageUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {uploadedImageUrl}
+                          </a>
+                        </p>
+                        <Button variant="secondary" onClick={handleCopyUrl}>
+                          Copy URL
+                        </Button>
+                      </div>
+                    )}
+                      
+                      </div>
                     </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="6"
-                      controlId="validationFormikPopularityCount"
-                    >
+                    <Form.Group as={Col} md="6" controlId="validationFormikPopularityCount">
                       <Form.Label>Popularity Count</Form.Label>
                       <Form.Control
                         type="number"
                         name="popularity_count"
                         value={values.popularity_count}
                         onChange={handleChange}
-                        isValid={
-                          touched.popularity_count && !errors.popularity_count
-                        }
+                        isValid={touched.popularity_count && !errors.popularity_count}
+                        isInvalid={!!errors.popularity_count}
                       />
-                      {touched.popularity_count && errors.popularity_count && (
-                        <div className="invalid-feedback">
-                          {errors.popularity_count}
-                        </div>
-                      )}
+                      <Form.Control.Feedback type="invalid">
+                        {errors.popularity_count}
+                      </Form.Control.Feedback>
                     </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="6"
-                      controlId="validationFormikCategory"
-                    >
+                    <Form.Group as={Col} md="6" controlId="validationFormikCategory">
                       <Form.Label>Category</Form.Label>
                       <Select
                         options={categoryOptions}
-                        onChange={(option) =>
-                          setFieldValue("category", option?.value)
-                        }
+                        name="category"
                         value={categoryOptions.find(
-                          (c) => c.value === values.category
+                          (option) => option.value === values.category
                         )}
+                        onChange={(option) => setFieldValue("category", option?.value)}
                       />
                       {touched.category && errors.category && (
-                        <div className="invalid-feedback">
-                          {errors.category}
-                        </div>
+                        <div className="invalid-feedback d-block">{errors.category}</div>
                       )}
                     </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="6"
-                      controlId="validationFormikAuthor"
-                    >
-                      <Form.Label>Author</Form.Label>
+                    <Form.Group as={Col} md="6" controlId="validationFormikAuthor">
+                      <Form.Label>Authors</Form.Label>
                       <Select
                         options={AuthorsOptions}
                         isMulti
-                        onChange={(options) =>
-                          setFieldValue(
-                            "author",
-                            options.map((opt) => opt.value)
-                          )
-                        }
-                        value={AuthorsOptions.filter((option) =>
-                          values.author.includes(option.value)
+                        name="author"
+                        value={values.author.map((id) =>
+                          AuthorsOptions.find((option) => option.value === id)
                         )}
+                        onChange={(options) =>
+                          setFieldValue("author", options.map((option) => option.value))
+                        }
                       />
                       {touched.author && errors.author && (
-                        <div className="invalid-feedback">{errors.author}</div>
+                        <div className="invalid-feedback d-block">{errors.author}</div>
                       )}
                     </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="6"
-                      controlId="validationFormikTags"
-                    >
+                    <Form.Group as={Col} md="6" controlId="validationFormikTags">
                       <Form.Label>Tags</Form.Label>
                       <Select
                         options={tagOptions}
                         isMulti
-                        onChange={(options) =>
-                          setFieldValue(
-                            "tags",
-                            options.map((opt) => opt.value)
-                          )
-                        }
-                        value={tagOptions.filter((option) =>
-                          values.tags.includes(option.value)
+                        name="tags"
+                        value={values.tags.map((id) =>
+                          tagOptions.find((option) => option.value === id)
                         )}
+                        onChange={(options) =>
+                          setFieldValue("tags", options.map((option) => option.value))
+                        }
                       />
                       {touched.tags && errors.tags && (
-                        <div className="invalid-feedback">{errors.tags}</div>
+                        <div className="invalid-feedback d-block">{errors.tags}</div>
                       )}
                     </Form.Group>
-                  </Row>
-                  <FieldArray
-                    name="references"
-                    render={({ remove, push }) => (
-                      <div>
-                        <h5>References</h5>
-                        {values.references.map((reference, index) => (
-                          <Row
-                            key={index}
-                            style={{ display: "flex", alignItems: "flex-end" }}
-                            className="mb-3"
-                          >
-                            <Form.Group
-                              as={Col}
-                              md="5"
-                              controlId={`validationFormikReferenceName${index}`}
+                    <Form.Group as={Col} md="6" controlId="validationFormikReferences">
+                      <Form.Label>References</Form.Label>
+                      <FieldArray
+                        name="references"
+                        render={({ push, remove }) => (
+                          <div>
+                            {values.references.map((reference, index) => (
+                              <Row key={index} className="mb-2">
+                                <Col>
+                                  <Form.Control
+                                    type="text"
+                                    name={`references[${index}].name`}
+                                    value={reference.name}
+                                    onChange={handleChange}
+                                    placeholder="Reference Name"
+                                    isValid={touched.references?.[index]?.name && !errors.references?.[index]?.name}
+                                    isInvalid={!!errors.references?.[index]?.name}
+                                  />
+                                  <Form.Control.Feedback type="invalid">
+                                    {errors.references?.[index]?.name}
+                                  </Form.Control.Feedback>
+                                </Col>
+                                <Col>
+                                  <Form.Control
+                                    type="text"
+                                    name={`references[${index}].url`}
+                                    value={reference.url}
+                                    onChange={handleChange}
+                                    placeholder="Reference URL"
+                                    isValid={touched.references?.[index]?.url && !errors.references?.[index]?.url}
+                                    isInvalid={!!errors.references?.[index]?.url}
+                                  />
+                                  <Form.Control.Feedback type="invalid">
+                                    {errors.references?.[index]?.url}
+                                  </Form.Control.Feedback>
+                                </Col>
+                                <Col xs="auto">
+                                  <Button
+                                    variant="danger"
+                                    onClick={() => remove(index)}
+                                    className="mt-4"
+                                  >
+                                    Remove
+                                  </Button>
+                                </Col>
+                              </Row>
+                            ))}
+                            <Button
+                              type="button"
+                              onClick={() => push({ name: "", url: "" })}
                             >
-                              <Form.Label>Reference Name</Form.Label>
-                              <Form.Control
-                                type="text"
-                                name={`references.${index}.name`}
-                                value={reference.name}
-                                onChange={handleChange}
-                                isValid={
-                                  touched.references?.[index]?.name &&
-                                  !errors.references?.[index]?.name
-                                }
-                              />
-                              {touched.references?.[index]?.name &&
-                                errors.references?.[index]?.name && (
-                                  <div className="invalid-feedback">
-                                    {errors.references[index].name}
-                                  </div>
-                                )}
-                            </Form.Group>
-                            <Form.Group
-                              as={Col}
-                              md="5"
-                              controlId={`validationFormikReferenceUrl${index}`}
-                            >
-                              <Form.Label>Reference URL</Form.Label>
-                              <Form.Control
-                                type="text"
-                                name={`references.${index}.url`}
-                                value={reference.url}
-                                onChange={handleChange}
-                                isValid={
-                                  touched.references?.[index]?.url &&
-                                  !errors.references?.[index]?.url
-                                }
-                              />
-                              {touched.references?.[index]?.url &&
-                                errors.references?.[index]?.url && (
-                                  <div className="invalid-feedback">
-                                    {errors.references[index].url}
-                                  </div>
-                                )}
-                            </Form.Group>
-                            <Col md="2" className="">
-                              <Button
-                                type="button"
-                                variant="danger"
-                                onClick={() => remove(index)}
-                              >
-                                Remove
-                              </Button>
-                            </Col>
-                          </Row>
-                        ))}
-                        <Button
-                          type="button"
-                          onClick={() => push({ name: "", url: "" })}
-                        >
-                          Add Reference
-                        </Button>
-                      </div>
-                    )}
-                  />
-                  <FieldArray
-                    name="images"
-                    render={({ remove, push }) => (
-                      <div className="mt-4">
-                        <h5>Images</h5>
-                        {values.images.map((imageUrl, index) => (
-                          <Row
-                            key={index}
-                            className="mb-3"
-                            style={{ display: "flex", alignItems: "flex-end" }}
-                          >
-                            <Form.Group
-                              as={Col}
-                              md="10"
-                              controlId={`validationFormikImage${index}`}
-                            >
-                              <Form.Label>Image URL</Form.Label>
-                              <Form.Control
-                                type="text"
-                                name={`images.${index}`}
-                                value={imageUrl}
-                                onChange={(e) =>
-                                  setFieldValue(
-                                    `images.${index}`,
-                                    e.target.value
-                                  )
-                                }
-                                isValid={
-                                  touched.images?.[index] &&
-                                  !errors.images?.[index]
-                                }
-                              />
-                              {touched.images?.[index] &&
-                                errors.images?.[index] && (
-                                  <div className="invalid-feedback">
-                                    {errors.images[index]}
-                                  </div>
-                                )}
-                            </Form.Group>
-                            <Col md="2" className="">
-                              <Button
-                                type="button"
-                                variant="danger"
-                                onClick={() => remove(index)}
-                              >
-                                Remove
-                              </Button>
-                            </Col>
-                          </Row>
-                        ))}
-                        <Button
-                          type="button"
-                          onClick={() => push("")} // Add an empty string for the new image URL
-                        >
-                          Add Image
-                        </Button>
-                      </div>
-                    )}
-                  />
-
-                  <Form.Group as={Row} className="mb-3">
-                    <Form.Label column sm={2}>
-                      Upload Image
-                    </Form.Label>
-                    <Col sm={10}>
-                      <Form.Control
-                        type="file"
-                        accept="image/jpeg,image/png"
-                        onChange={handleFileChange}
+                              Add Reference
+                            </Button>
+                          </div>
+                        )}
                       />
-                    </Col>
-                    <Button variant="primary" onClick={handleUpload}>
-                      upload Image
-                    </Button>
-                  </Form.Group>
-                  {uploadedImageUrl && (
-                    <div className="mb-3">
-                      <p>
-                        Uploaded Image URL:{" "}
-                        <a
-                          href={uploadedImageUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {uploadedImageUrl}
-                        </a>
-                      </p>
-                      <Button variant="secondary" onClick={handleCopyUrl}>
-                        Copy URL
-                      </Button>
-                    </div>
-                  )}
-                  <Button onClick={handleSubmit}>Submit</Button>
-                  {error && (
-                    <div className="text-danger mt-2">{error.message}</div>
-                  )}
+                    </Form.Group>
+                    <Form.Group as={Col} md="6" controlId="validationFormikImages">
+                      <Form.Label>Images</Form.Label>
+                      <FieldArray
+                        name="images"
+                        render={({ push, remove }) => (
+                          <div>
+                            {values.images.map((image, index) => (
+                              <Row key={index} className="mb-2">
+                                <Col>
+                                  <Form.Control
+                                    type="text"
+                                    name={`images[${index}]`}
+                                    value={image}
+                                    onChange={handleChange}
+                                    placeholder="Image URL"
+                                    isValid={touched.images?.[index] && !errors.images?.[index]}
+                                    isInvalid={!!errors.images?.[index]}
+                                  />
+                                  <Form.Control.Feedback type="invalid">
+                                    {errors.images?.[index]}
+                                  </Form.Control.Feedback>
+                                </Col>
+                                <Col xs="auto">
+                                  <Button
+                                    variant="danger"
+                                    onClick={() => remove(index)}
+                                    className="mt-4"
+                                  >
+                                    Remove
+                                  </Button>
+                                </Col>
+                              </Row>
+                            ))}
+                            <Button
+                              type="button"
+                              onClick={() => push("")}
+                            >
+                              Add Image
+                            </Button>
+                          </div>
+                        )}
+                      />
+                    </Form.Group>
+                  </Row>
+                  <Button type="submit" disabled={isLoading}>
+                    {isLoading ? "Saving…" : "Save"}
+                  </Button>
+                  <ToastContainer />
                 </Form>
               )}
             </Formik>

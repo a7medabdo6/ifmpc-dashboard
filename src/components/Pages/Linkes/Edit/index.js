@@ -7,25 +7,25 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const schema = yup.object().shape({
-  name: yup.string().required(),
-  name_en: yup.string().required(),
-  name_ar: yup.string().required(),
+  name: yup.string().required("Name is required"),
+  name_en: yup.string().required("Name (English) is required"),
+  name_ar: yup.string().required("Name (Arabic) is required"),
   logo: yup.mixed().required("Logo is required"),
-  url: yup.string().url().required(),
+  url: yup.string().url("Invalid URL format").required("URL is required"),
 });
 
 const EditLinks = ({ itemData, id, setShow10 }) => {
   const { mutate, data } = useEditLink();
-  const fileInputRef = useRef(null); // Create a ref for the file input
+  const fileInputRef = useRef(null);
 
   useEffect(() => {
     if (data !== undefined) {
       toast.success("This item has been successfully edited.");
       setTimeout(() => {
-        setShow10(false)
-      }, 2000); // يمكنك ضبط الوقت حسب الحاجة
+        setShow10(false);
+      }, 2000);
     }
-  }, [data]);
+  }, [data, setShow10]);
 
   return (
     <Fragment>
@@ -52,32 +52,27 @@ const EditLinks = ({ itemData, id, setShow10 }) => {
                 formData.append("logo", data.logo);
                 formData.append("url", data.url);
 
-                // Print form data to console
                 formData.forEach((value, key) => {
                   console.log(`${key}:`, value);
                 });
 
-                mutate(
-                  (data = {
-                    formData,
-                    id,
-                  })
-                )
+                mutate({ formData, id })
                   .then(() => {
-                    alert("Link created successfully!");
+                    toast.success("Link updated successfully!");
                     setSubmitting(false);
                   })
                   .catch((error) => {
-                    console.error("Error creating link:", error);
+                    toast.error("Error updating link.");
+                    console.error("Error updating link:", error);
                     setSubmitting(false);
                   });
               }}
               initialValues={{
-                name: itemData?.name,
-                name_en: itemData?.name_en,
-                name_ar: itemData?.name_ar,
-                logo: itemData?.logo,
-                url: itemData?.url,
+                name: itemData?.name || "",
+                name_en: itemData?.name_en || "",
+                name_ar: itemData?.name_ar || "",
+                logo: itemData?.logo || "",
+                url: itemData?.url || "",
               }}
             >
               {({
@@ -102,8 +97,11 @@ const EditLinks = ({ itemData, id, setShow10 }) => {
                         name="name"
                         value={values.name}
                         onChange={handleChange}
-                        isValid={touched.name && !errors.name}
+                        isInvalid={touched.name && !!errors.name}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.name}
+                      </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group
                       as={Col}
@@ -117,8 +115,11 @@ const EditLinks = ({ itemData, id, setShow10 }) => {
                         name="name_en"
                         value={values.name_en}
                         onChange={handleChange}
-                        isValid={touched.name_en && !errors.name_en}
+                        isInvalid={touched.name_en && !!errors.name_en}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.name_en}
+                      </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group
                       as={Col}
@@ -132,8 +133,11 @@ const EditLinks = ({ itemData, id, setShow10 }) => {
                         name="name_ar"
                         value={values.name_ar}
                         onChange={handleChange}
-                        isValid={touched.name_ar && !errors.name_ar}
+                        isInvalid={touched.name_ar && !!errors.name_ar}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.name_ar}
+                      </Form.Control.Feedback>
                     </Form.Group>
                   </Row>
                   <Row className="mb-3">
@@ -184,13 +188,13 @@ const EditLinks = ({ itemData, id, setShow10 }) => {
                         onChange={(event) => {
                           setFieldValue("logo", event.currentTarget.files[0]);
                         }}
-                        isValid={touched.logo && !errors.logo}
-                        ref={fileInputRef} // Attach the ref to the input
-                        style={{ display: "none" }} // Hide the actual file input
+                        isInvalid={touched.logo && !!errors.logo}
+                        ref={fileInputRef}
+                        style={{ display: "none" }}
                       />
-                      {errors.logo && touched.logo ? (
-                        <div className="invalid-feedback">{errors.logo}</div>
-                      ) : null}
+                      <Form.Control.Feedback type="invalid">
+                        {errors.logo}
+                      </Form.Control.Feedback>
                     </Form.Group>
 
                     <Form.Group
@@ -205,8 +209,11 @@ const EditLinks = ({ itemData, id, setShow10 }) => {
                         name="url"
                         value={values.url}
                         onChange={handleChange}
-                        isValid={touched.url && !errors.url}
+                        isInvalid={touched.url && !!errors.url}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.url}
+                      </Form.Control.Feedback>
                     </Form.Group>
                   </Row>
                   <Button type="submit">Save</Button>

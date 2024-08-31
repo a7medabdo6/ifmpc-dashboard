@@ -6,6 +6,7 @@ import { useEditOurPartner } from "../../../../Api/OurPartners";
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 const schema = yup.object().shape({
   image: yup.mixed().required("Image is required"),
   name: yup.string().required("Name is required"),
@@ -13,20 +14,21 @@ const schema = yup.object().shape({
   name_ar: yup.string().required("Arabic name is required"),
 });
 
-const EditOurPartners = ({ id, setShow10 }) => {
+const EditOurPartners = ({ id, setShow10,itemData }) => {
   const { mutate, data } = useEditOurPartner();
   const navigate = useNavigate(); // Initialize navigate function
 
   useEffect(() => {
     if (data) {
-      toast.success("This item has been successfully Editing.");
+      toast.success("This item has been successfully edited.");
 
       // تأخير الانتقال لمدة 2 ثانية (2000 مللي ثانية)
       setTimeout(() => {
-        setShow10(false)
+        setShow10(false);
       }, 2000); // يمكنك ضبط الوقت حسب الحاجة
     }
-  }, [data, navigate]);
+  }, [data, navigate, setShow10]);
+
   return (
     <Fragment>
       <div className="page-header">
@@ -57,9 +59,9 @@ const EditOurPartners = ({ id, setShow10 }) => {
               }}
               initialValues={{
                 image: null,
-                name: "",
-                name_en: "",
-                name_ar: "",
+                name: itemData?.name,
+                name_en: itemData?.name_en,
+                name_ar: itemData?.name_ar,
               }}
             >
               {({
@@ -85,8 +87,11 @@ const EditOurPartners = ({ id, setShow10 }) => {
                         onChange={(event) => {
                           setFieldValue("image", event.currentTarget.files[0]);
                         }}
-                        isValid={touched.image && !errors.image}
+                        isInvalid={!!errors.image && touched.image}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.image}
+                      </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group
                       as={Col}
@@ -100,8 +105,11 @@ const EditOurPartners = ({ id, setShow10 }) => {
                         name="name"
                         value={values.name}
                         onChange={handleChange}
-                        isValid={touched.name && !errors.name}
+                        isInvalid={!!errors.name && touched.name}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.name}
+                      </Form.Control.Feedback>
                     </Form.Group>
                   </Row>
                   <Row className="mb-3">
@@ -117,8 +125,11 @@ const EditOurPartners = ({ id, setShow10 }) => {
                         name="name_en"
                         value={values.name_en}
                         onChange={handleChange}
-                        isValid={touched.name_en && !errors.name_en}
+                        isInvalid={!!errors.name_en && touched.name_en}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.name_en}
+                      </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group
                       as={Col}
@@ -132,8 +143,11 @@ const EditOurPartners = ({ id, setShow10 }) => {
                         name="name_ar"
                         value={values.name_ar}
                         onChange={handleChange}
-                        isValid={touched.name_ar && !errors.name_ar}
+                        isInvalid={!!errors.name_ar && touched.name_ar}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.name_ar}
+                      </Form.Control.Feedback>
                     </Form.Group>
                   </Row>
                   <Button type="submit">Save</Button>
