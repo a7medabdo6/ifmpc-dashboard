@@ -1,9 +1,9 @@
 import React, { Fragment, useEffect } from "react";
-import { Breadcrumb, Button, Col, Row, Form } from "react-bootstrap";
+import { Breadcrumb, Button, Col, Row, Form, Spinner } from "react-bootstrap";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { useEditOurPartner } from "../../../../Api/OurPartners";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -14,29 +14,25 @@ const schema = yup.object().shape({
   name_ar: yup.string().required("Arabic name is required"),
 });
 
-const EditOurPartners = ({ id, setShow10,itemData }) => {
+const EditOurPartners = ({ id, setShow10, itemData }) => {
   const { mutate, data } = useEditOurPartner();
-  const navigate = useNavigate(); // Initialize navigate function
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (data) {
       toast.success("This item has been successfully edited.");
-
-      // تأخير الانتقال لمدة 2 ثانية (2000 مللي ثانية)
-      setTimeout(() => {
-        setShow10(false);
-      }, 2000); // يمكنك ضبط الوقت حسب الحاجة
+      setShow10(false);
     }
-  }, [data, navigate, setShow10]);
+  }, [data, setShow10]);
 
   return (
     <Fragment>
       <div className="page-header">
         <div>
-          <h2 className="main-content-title tx-24 mg-b-5">Edit OurPartner</h2>
+          <h2 className="main-content-title tx-24 mg-b-5">Edit Our Partner</h2>
           <Breadcrumb>
-            <Breadcrumb.Item href="#"> Pages </Breadcrumb.Item>
-            <Breadcrumb.Item active>Edit OurPartner</Breadcrumb.Item>
+            <Breadcrumb.Item href="#">Pages</Breadcrumb.Item>
+            <Breadcrumb.Item active>Edit Our Partner</Breadcrumb.Item>
           </Breadcrumb>
         </div>
       </div>
@@ -59,9 +55,9 @@ const EditOurPartners = ({ id, setShow10,itemData }) => {
               }}
               initialValues={{
                 image: null,
-                name: itemData?.name,
-                name_en: itemData?.name_en,
-                name_ar: itemData?.name_ar,
+                name: itemData?.name || "",
+                name_en: itemData?.name_en || "",
+                name_ar: itemData?.name_ar || "",
               }}
             >
               {({
@@ -71,6 +67,8 @@ const EditOurPartners = ({ id, setShow10,itemData }) => {
                 values,
                 touched,
                 errors,
+                isSubmitting,
+                isValid,
               }) => (
                 <Form noValidate onSubmit={handleSubmit}>
                   <Row className="mb-3">
@@ -150,13 +148,26 @@ const EditOurPartners = ({ id, setShow10,itemData }) => {
                       </Form.Control.Feedback>
                     </Form.Group>
                   </Row>
-                  <Button type="submit">Save</Button>
+                  <Button type="submit" disabled={isSubmitting || !isValid}>
+                    {isSubmitting ? (
+                      <Spinner
+                        as="span"
+                        animation="border"
+                        size="sm"
+                        role="status"
+                        aria-hidden="true"
+                      />
+                    ) : (
+                      "Save"
+                    )}
+                  </Button>
                 </Form>
               )}
             </Formik>
           </div>
         </div>
       </div>
+      <ToastContainer />
     </Fragment>
   );
 };

@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect } from "react";
-import { Breadcrumb, Button, Col, Row, Form } from "react-bootstrap";
+import { Breadcrumb, Button, Col, Row, Form, Spinner } from "react-bootstrap";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { useCreateLink } from "../../../../Api/Links";
@@ -17,16 +17,12 @@ const schema = yup.object().shape({
 
 const AddLinks = () => {
   const { mutate, data } = useCreateLink();
-  const navigate = useNavigate(); // Initialize navigate function
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (data) {
       toast.success("This item has been successfully created.");
-
-      // Delay navigation for 2 seconds (2000 milliseconds)
-      setTimeout(() => {
-        navigate("/pages/linkes/");
-      }, 2000); // Adjust time as needed
+      navigate("/pages/linkes/");
     }
   }, [data, navigate]);
 
@@ -55,14 +51,8 @@ const AddLinks = () => {
                 formData.append("logo", data.logo);
                 formData.append("url", data.url);
 
-                // Print form data to console
-                formData.forEach((value, key) => {
-                  console.log(`${key}:`, value);
-                });
-
                 mutate(formData)
                   .then(() => {
-                    alert("Link created successfully!");
                     setSubmitting(false);
                   })
                   .catch((error) => {
@@ -85,6 +75,8 @@ const AddLinks = () => {
                 values,
                 touched,
                 errors,
+                isSubmitting,
+                isValid,
               }) => (
                 <Form noValidate onSubmit={handleSubmit}>
                   <Row className="mb-3">
@@ -182,13 +174,26 @@ const AddLinks = () => {
                       </Form.Control.Feedback>
                     </Form.Group>
                   </Row>
-                  <Button type="submit">Save</Button>
+                  <Button type="submit" disabled={isSubmitting || !isValid}>
+                    {isSubmitting ? (
+                      <Spinner
+                        as="span"
+                        animation="border"
+                        size="sm"
+                        role="status"
+                        aria-hidden="true"
+                      />
+                    ) : (
+                      "Save"
+                    )}
+                  </Button>
                 </Form>
               )}
             </Formik>
           </div>
         </div>
       </div>
+      <ToastContainer />
     </Fragment>
   );
 };

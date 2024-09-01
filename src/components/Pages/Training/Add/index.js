@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { Breadcrumb, Button, Col, Row, Form } from "react-bootstrap";
+import { Breadcrumb, Button, Col, Row, Form, Spinner } from "react-bootstrap";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { useCreateTraining } from "../../../../Api/Training";
@@ -27,6 +27,7 @@ const AddTrainings = () => {
   const [file, setFile] = useState(null);
   const [uploadedImageUrl, setUploadedImageUrl] = useState("");
   const [imageUrl, setImageUrl] = useState(""); // To handle URL input
+  const [isSubmitting, setIsSubmitting] = useState(false); // Loader state
 
   useEffect(() => {
     if (data) {
@@ -51,8 +52,8 @@ const AddTrainings = () => {
       setFile(file);
     }
   };
-  const { mutate: mutateImage, data: dataImage } = useCreateProjectImage();
 
+  const { mutate: mutateImage, data: dataImage } = useCreateProjectImage();
 
   const uploadImage = () => {
     if (file) {
@@ -70,13 +71,14 @@ const AddTrainings = () => {
       alert("No file selected.");
     }
   };
- 
+
   const handleCopyUrl = () => {
     navigator.clipboard
       .writeText(uploadedImageUrl)
       .then(() => alert("Image URL copied to clipboard!"))
       .catch(() => alert("Failed to copy URL."));
   };
+
   return (
     <Fragment>
       <div className="page-header">
@@ -95,6 +97,7 @@ const AddTrainings = () => {
             <Formik
               validationSchema={schema}
               onSubmit={(data) => {
+                setIsSubmitting(true);
                 // Ensure image URL is used
                 if (uploadedImageUrl || imageUrl) {
                   data.image = uploadedImageUrl || imageUrl;
@@ -118,227 +121,277 @@ const AddTrainings = () => {
                 setFieldValue,
                 touched,
                 errors,
-              }) => (
-                <Form noValidate onSubmit={handleSubmit}>
-                  <Row className="mb-3">
-                    <Form.Group
-                      as={Col}
-                      md="4"
-                      controlId="validationFormikTitle"
-                      className="position-relative"
-                    >
-                      <Form.Label>Title</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="title"
-                        value={values.title}
-                        onChange={handleChange}
-                        isInvalid={!!errors.title && touched.title}
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {errors.title}
-                      </Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="4"
-                      controlId="validationFormikTitleEn"
-                      className="position-relative"
-                    >
-                      <Form.Label>Title (English)</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="title_en"
-                        value={values.title_en}
-                        onChange={handleChange}
-                        isInvalid={!!errors.title_en && touched.title_en}
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {errors.title_en}
-                      </Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="4"
-                      controlId="validationFormikTitleAr"
-                      className="position-relative"
-                    >
-                      <Form.Label>Title (Arabic)</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="title_ar"
-                        value={values.title_ar}
-                        onChange={handleChange}
-                        isInvalid={!!errors.title_ar && touched.title_ar}
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {errors.title_ar}
-                      </Form.Control.Feedback>
-                    </Form.Group>
-                  </Row>
-                  <Row className="mb-3">
-                    <Form.Group
-                      as={Col}
-                      md="12"
-                      controlId="validationFormikImage"
-                      className="position-relative"
-                    >
-                      <Form.Label>Image URL</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="imageUrl"
-                        value={imageUrl}
-                        onChange={(e) => {
-                          setImageUrl(e.target.value);
-                          setFieldValue("image", e.target.value);
-                        }}
-                        isInvalid={!!errors.image && touched.image}
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {errors.image}
-                      </Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="12"
-                      controlId="validationFormikImageUpload"
-                      className="position-relative"
-                    >
-                      <Form.Label>Upload Image</Form.Label>
-                      <Form.Control
-                        type="file"
-                        accept="image/*"
-                        onChange={handleFileChange}
-                      />
-                      <Button
-                        type="button"
-                        onClick={uploadImage}
-                        className="mt-2"
+              }) => {
+                // Check if all required fields are filled
+                const isFormValid =
+                  values.title &&
+                  values.title_en &&
+                  values.title_ar &&
+                  (uploadedImageUrl || imageUrl) &&
+                  values.description &&
+                  values.description_en &&
+                  values.description_ar;
+
+                return (
+                  <Form noValidate onSubmit={handleSubmit}>
+                    <Row className="mb-3">
+                      <Form.Group
+                        as={Col}
+                        md="4"
+                        controlId="validationFormikTitle"
+                        className="position-relative"
                       >
-                        Upload Image
-                      </Button>
-                      {uploadedImageUrl && (
-                      <div className="mb-3">
-                        <p>
-                          Uploaded Image URL:{" "}
-                          <a
-                            href={uploadedImageUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            {uploadedImageUrl}
-                          </a>
-                        </p>
-                        <Button variant="secondary" onClick={handleCopyUrl}>
-                          Copy URL
+                        <Form.Label>Title</Form.Label>
+                        <Form.Control
+                          type="text"
+                          name="title"
+                          value={values.title}
+                          onChange={handleChange}
+                          isInvalid={!!errors.title && touched.title}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                          {errors.title}
+                        </Form.Control.Feedback>
+                      </Form.Group>
+                      <Form.Group
+                        as={Col}
+                        md="4"
+                        controlId="validationFormikTitleEn"
+                        className="position-relative"
+                      >
+                        <Form.Label>Title (English)</Form.Label>
+                        <Form.Control
+                          type="text"
+                          name="title_en"
+                          value={values.title_en}
+                          onChange={handleChange}
+                          isInvalid={!!errors.title_en && touched.title_en}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                          {errors.title_en}
+                        </Form.Control.Feedback>
+                      </Form.Group>
+                      <Form.Group
+                        as={Col}
+                        md="4"
+                        controlId="validationFormikTitleAr"
+                        className="position-relative"
+                      >
+                        <Form.Label>Title (Arabic)</Form.Label>
+                        <Form.Control
+                          type="text"
+                          name="title_ar"
+                          value={values.title_ar}
+                          onChange={handleChange}
+                          isInvalid={!!errors.title_ar && touched.title_ar}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                          {errors.title_ar}
+                        </Form.Control.Feedback>
+                      </Form.Group>
+                    </Row>
+                    <Row className="mb-3">
+                      <Form.Group
+                        as={Col}
+                        md="12"
+                        controlId="validationFormikImage"
+                        className="position-relative"
+                      >
+                        <Form.Label>Image URL</Form.Label>
+                        <Form.Control
+                          type="text"
+                          name="imageUrl"
+                          value={imageUrl}
+                          onChange={(e) => {
+                            setImageUrl(e.target.value);
+                            setFieldValue("image", e.target.value);
+                          }}
+                          isInvalid={!!errors.image && touched.image}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                          {errors.image}
+                        </Form.Control.Feedback>
+                      </Form.Group>
+                      <Form.Group
+                        as={Col}
+                        md="12"
+                        controlId="validationFormikImageUpload"
+                        className="position-relative"
+                      >
+                        <Form.Label>Upload Image</Form.Label>
+                        <Form.Control
+                          type="file"
+                          accept="image/*"
+                          onChange={handleFileChange}
+                        />
+                        <Button
+                          type="button"
+                          onClick={uploadImage}
+                          className="mt-2"
+                        >
+                          Upload Image
                         </Button>
-                      </div>
-                    )}
-                    </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="12"
-                      controlId="validationFormikDescription"
-                      className="position-relative"
-                    >
-                      <Form.Label>Description</Form.Label>
-                      <ReactQuill
-                        value={values.description}
-                        onChange={(value) => setFieldValue("description", value)}
-                        modules={{
-                          toolbar: [
-                            [{ header: "1" }, { header: "2" }, { font: [] }],
-                            [{ size: [] }],
-                            ["bold", "italic", "underline", "strike", "blockquote"],
-                            [
-                              { list: "ordered" },
-                              { list: "bullet" },
-                              { indent: "-1" },
-                              { indent: "+1" },
+                        {uploadedImageUrl && (
+                          <div className="mb-3">
+                            <p>
+                              Uploaded Image URL:{" "}
+                              <a
+                                href={uploadedImageUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                {uploadedImageUrl}
+                              </a>
+                            </p>
+                            <Button variant="secondary" onClick={handleCopyUrl}>
+                              Copy URL
+                            </Button>
+                          </div>
+                        )}
+                      </Form.Group>
+                      <Form.Group
+                        as={Col}
+                        md="12"
+                        controlId="validationFormikDescription"
+                        className="position-relative"
+                      >
+                        <Form.Label>Description</Form.Label>
+                        <ReactQuill
+                          value={values.description}
+                          onChange={(value) =>
+                            setFieldValue("description", value)
+                          }
+                          modules={{
+                            toolbar: [
+                              [{ header: "1" }, { header: "2" }, { font: [] }],
+                              [{ size: [] }],
+                              [
+                                "bold",
+                                "italic",
+                                "underline",
+                                "strike",
+                                "blockquote",
+                              ],
+                              [
+                                { list: "ordered" },
+                                { list: "bullet" },
+                                { indent: "-1" },
+                                { indent: "+1" },
+                              ],
+                              ["link", "image"],
+                              ["clean"],
                             ],
-                            ["link", "image"],
-                            ["clean"],
-                          ],
-                        }}
-                      />
-                      {touched.description && errors.description && (
-                        <div className="invalid-feedback d-block">
-                          {errors.description}
-                        </div>
-                      )}
-                    </Form.Group>
-                  </Row>
-                  <Row className="mb-3">
-                    <Form.Group
-                      as={Col}
-                      md="6"
-                      controlId="validationFormikDescriptionEn"
-                      className="position-relative"
-                    >
-                      <Form.Label>Description (English)</Form.Label>
-                      <ReactQuill
-                        value={values.description_en}
-                        onChange={(value) => setFieldValue("description_en", value)}
-                        modules={{
-                          toolbar: [
-                            [{ header: "1" }, { header: "2" }, { font: [] }],
-                            [{ size: [] }],
-                            ["bold", "italic", "underline", "strike", "blockquote"],
-                            [
-                              { list: "ordered" },
-                              { list: "bullet" },
-                              { indent: "-1" },
-                              { indent: "+1" },
+                          }}
+                        />
+                        {touched.description && errors.description && (
+                          <div className="invalid-feedback d-block">
+                            {errors.description}
+                          </div>
+                        )}
+                      </Form.Group>
+                    </Row>
+                    <Row className="mb-3">
+                      <Form.Group
+                        as={Col}
+                        md="6"
+                        controlId="validationFormikDescriptionEn"
+                        className="position-relative"
+                      >
+                        <Form.Label>Description (English)</Form.Label>
+                        <ReactQuill
+                          value={values.description_en}
+                          onChange={(value) =>
+                            setFieldValue("description_en", value)
+                          }
+                          modules={{
+                            toolbar: [
+                              [{ header: "1" }, { header: "2" }, { font: [] }],
+                              [{ size: [] }],
+                              [
+                                "bold",
+                                "italic",
+                                "underline",
+                                "strike",
+                                "blockquote",
+                              ],
+                              [
+                                { list: "ordered" },
+                                { list: "bullet" },
+                                { indent: "-1" },
+                                { indent: "+1" },
+                              ],
+                              ["link", "image"],
+                              ["clean"],
                             ],
-                            ["link", "image"],
-                            ["clean"],
-                          ],
-                        }}
-                      />
-                      {touched.description_en && errors.description_en && (
-                        <div className="invalid-feedback d-block">
-                          {errors.description_en}
-                        </div>
-                      )}
-                    </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="6"
-                      controlId="validationFormikDescriptionAr"
-                      className="position-relative"
-                    >
-                      <Form.Label>Description (Arabic)</Form.Label>
-                      <ReactQuill
-                        value={values.description_ar}
-                        onChange={(value) => setFieldValue("description_ar", value)}
-                        modules={{
-                          toolbar: [
-                            [{ header: "1" }, { header: "2" }, { font: [] }],
-                            [{ size: [] }],
-                            ["bold", "italic", "underline", "strike", "blockquote"],
-                            [
-                              { list: "ordered" },
-                              { list: "bullet" },
-                              { indent: "-1" },
-                              { indent: "+1" },
+                          }}
+                        />
+                        {touched.description_en && errors.description_en && (
+                          <div className="invalid-feedback d-block">
+                            {errors.description_en}
+                          </div>
+                        )}
+                      </Form.Group>
+                      <Form.Group
+                        as={Col}
+                        md="6"
+                        controlId="validationFormikDescriptionAr"
+                        className="position-relative"
+                      >
+                        <Form.Label>Description (Arabic)</Form.Label>
+                        <ReactQuill
+                          value={values.description_ar}
+                          onChange={(value) =>
+                            setFieldValue("description_ar", value)
+                          }
+                          modules={{
+                            toolbar: [
+                              [{ header: "1" }, { header: "2" }, { font: [] }],
+                              [{ size: [] }],
+                              [
+                                "bold",
+                                "italic",
+                                "underline",
+                                "strike",
+                                "blockquote",
+                              ],
+                              [
+                                { list: "ordered" },
+                                { list: "bullet" },
+                                { indent: "-1" },
+                                { indent: "+1" },
+                              ],
+                              ["link", "image"],
+                              ["clean"],
                             ],
-                            ["link", "image"],
-                            ["clean"],
-                          ],
-                        }}
-                      />
-                      {touched.description_ar && errors.description_ar && (
-                        <div className="invalid-feedback d-block">
-                          {errors.description_ar}
-                        </div>
+                          }}
+                        />
+                        {touched.description_ar && errors.description_ar && (
+                          <div className="invalid-feedback d-block">
+                            {errors.description_ar}
+                          </div>
+                        )}
+                      </Form.Group>
+                    </Row>
+                    <Button
+                      type="submit"
+                      className="btn btn-primary mt-3"
+                      disabled={!isFormValid || isSubmitting}
+                    >
+                      {isSubmitting ? (
+                        <Spinner
+                          as="span"
+                          animation="border"
+                          size="sm"
+                          role="status"
+                          aria-hidden="true"
+                        />
+                      ) : (
+                        "Save"
                       )}
-                    </Form.Group>
-                  </Row>
-                  <Button type="submit" className="btn btn-primary mt-3">
-                    Save
-                  </Button>
-                </Form>
-              )}
+                    </Button>
+                  </Form>
+                );
+              }}
             </Formik>
           </div>
         </div>

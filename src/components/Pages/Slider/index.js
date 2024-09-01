@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Formik, Form, Field } from "formik";
-import { Button, Row, Col, Card, Container, Form as BootstrapForm } from "react-bootstrap";
+import {
+  Button,
+  Row,
+  Col,
+  Card,
+  Container,
+  Form as BootstrapForm,
+} from "react-bootstrap";
 import * as Yup from "yup";
 import { ToastContainer, toast } from "react-toastify";
 import { useSliders, useEditSlider } from "../../../Api/SettingsSlider";
@@ -24,8 +31,14 @@ const Sliders = () => {
   const { mutate, isLoading, error, data: dataEdit } = useEditSlider();
   const { data } = useSliders();
   const { mutate: mutateImage, data: dataImage } = useCreateProjectImage();
-
-  const [uploadedImageUrl, setUploadedImageUrl] = useState('');
+  console.log(data);
+  const [dataShow, setdataShow] = useState(null);
+  useEffect(() => {
+    if (data) {
+      setdataShow(data);
+    }
+  }, [data]);
+  const [uploadedImageUrl, setUploadedImageUrl] = useState("");
   const [file, setFile] = useState(null);
 
   const handleFormSubmit = (values, { setErrors }) => {
@@ -89,24 +102,27 @@ const Sliders = () => {
   };
 
   const handleCopyUrl = () => {
-    navigator.clipboard.writeText(uploadedImageUrl)
+    navigator.clipboard
+      .writeText(uploadedImageUrl)
       .then(() => alert("Image URL copied to clipboard!"))
       .catch(() => alert("Failed to copy URL."));
   };
-
+  if (!dataShow) {
+    return <div>loading ...</div>;
+  }
   return (
     <Formik
       initialValues={{
-        footer_short_desc: data?.footer_short_desc || "",
-        footer_short_desc_en: data?.footer_short_desc_en || "",
-        footer_short_desc_ar: data?.footer_short_desc_ar || "",
-        main_header_en: data?.main_header_en || "",
-        main_header_ar: data?.main_header_ar || "",
-        slider_image: data?.slider_image || "",
-        subscribe_title_en: data?.subscribe_title_en || "",
-        subscribe_title_ar: data?.subscribe_title_ar || "",
-        subscribe_desc_en: data?.subscribe_desc_en || "",
-        subscribe_desc_ar: data?.subscribe_desc_ar || "",
+        footer_short_desc: dataShow?.footer_short_desc || "",
+        footer_short_desc_en: dataShow?.footer_short_desc_en || "",
+        footer_short_desc_ar: dataShow?.footer_short_desc_ar || "",
+        main_header_en: dataShow?.main_header_en || "",
+        main_header_ar: dataShow?.main_header_ar || "",
+        slider_image: dataShow?.slider_image || "",
+        subscribe_title_en: dataShow?.subscribe_title_en || "",
+        subscribe_title_ar: dataShow?.subscribe_title_ar || "",
+        subscribe_desc_en: dataShow?.subscribe_desc_en || "",
+        subscribe_desc_ar: dataShow?.subscribe_desc_ar || "",
       }}
       validationSchema={validationSchema}
       onSubmit={handleFormSubmit}
@@ -118,10 +134,14 @@ const Sliders = () => {
               <Col lg={12}>
                 <Card className="custom-card mg-b-20">
                   <Card.Body>
-                    <h2 className="main-content-title tx-24 mg-b-5">Sliders Page</h2>
+                    <h2 className="main-content-title tx-24 mg-b-5">
+                      Sliders Page
+                    </h2>
 
                     <BootstrapForm.Group controlId="footer_short_desc">
-                      <BootstrapForm.Label>Footer Short Description</BootstrapForm.Label>
+                      <BootstrapForm.Label>
+                        Footer Short Description
+                      </BootstrapForm.Label>
                       <Field
                         name="footer_short_desc"
                         placeholder="Footer Short Description"
@@ -133,25 +153,31 @@ const Sliders = () => {
                     </BootstrapForm.Group>
 
                     <BootstrapForm.Group controlId="footer_short_desc_en">
-                      <BootstrapForm.Label>Footer Short Description EN</BootstrapForm.Label>
+                      <BootstrapForm.Label>
+                        Footer Short Description EN
+                      </BootstrapForm.Label>
                       <Field
                         name="footer_short_desc_en"
                         placeholder="Footer Short Description EN"
                         className="form-control"
                       />
-                      {errors.footer_short_desc_en && touched.footer_short_desc_en ? (
+                      {errors.footer_short_desc_en &&
+                      touched.footer_short_desc_en ? (
                         <div>{errors.footer_short_desc_en}</div>
                       ) : null}
                     </BootstrapForm.Group>
 
                     <BootstrapForm.Group controlId="footer_short_desc_ar">
-                      <BootstrapForm.Label>Footer Short Description AR</BootstrapForm.Label>
+                      <BootstrapForm.Label>
+                        Footer Short Description AR
+                      </BootstrapForm.Label>
                       <Field
                         name="footer_short_desc_ar"
                         placeholder="Footer Short Description AR"
                         className="form-control"
                       />
-                      {errors.footer_short_desc_ar && touched.footer_short_desc_ar ? (
+                      {errors.footer_short_desc_ar &&
+                      touched.footer_short_desc_ar ? (
                         <div>{errors.footer_short_desc_ar}</div>
                       ) : null}
                     </BootstrapForm.Group>
@@ -181,7 +207,9 @@ const Sliders = () => {
                     </BootstrapForm.Group>
 
                     <BootstrapForm.Group controlId="slider_image">
-                      <BootstrapForm.Label>Slider Image URL</BootstrapForm.Label>
+                      <BootstrapForm.Label>
+                        Slider Image URL
+                      </BootstrapForm.Label>
                       <Field
                         name="slider_image"
                         placeholder="Slider Image URL"
@@ -193,7 +221,9 @@ const Sliders = () => {
                     </BootstrapForm.Group>
 
                     <BootstrapForm.Group controlId="imageUpload">
-                      <BootstrapForm.Label>Upload Slider Image</BootstrapForm.Label>
+                      <BootstrapForm.Label>
+                        Upload Slider Image
+                      </BootstrapForm.Label>
                       <input
                         type="file"
                         accept="image/jpeg, image/png"
@@ -205,38 +235,52 @@ const Sliders = () => {
                       {uploadedImageUrl && (
                         <div>
                           <p>Uploaded Image URL:</p>
-                          <a href={uploadedImageUrl} target="_blank" rel="noopener noreferrer">{uploadedImageUrl}</a>
+                          <a
+                            href={uploadedImageUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {uploadedImageUrl}
+                          </a>
                           <Button onClick={handleCopyUrl}>Copy URL</Button>
                         </div>
                       )}
                     </BootstrapForm.Group>
 
                     <BootstrapForm.Group controlId="subscribe_title_en">
-                      <BootstrapForm.Label>Subscribe Title EN</BootstrapForm.Label>
+                      <BootstrapForm.Label>
+                        Subscribe Title EN
+                      </BootstrapForm.Label>
                       <Field
                         name="subscribe_title_en"
                         placeholder="Subscribe Title EN"
                         className="form-control"
                       />
-                      {errors.subscribe_title_en && touched.subscribe_title_en ? (
+                      {errors.subscribe_title_en &&
+                      touched.subscribe_title_en ? (
                         <div>{errors.subscribe_title_en}</div>
                       ) : null}
                     </BootstrapForm.Group>
 
                     <BootstrapForm.Group controlId="subscribe_title_ar">
-                      <BootstrapForm.Label>Subscribe Title AR</BootstrapForm.Label>
+                      <BootstrapForm.Label>
+                        Subscribe Title AR
+                      </BootstrapForm.Label>
                       <Field
                         name="subscribe_title_ar"
                         placeholder="Subscribe Title AR"
                         className="form-control"
                       />
-                      {errors.subscribe_title_ar && touched.subscribe_title_ar ? (
+                      {errors.subscribe_title_ar &&
+                      touched.subscribe_title_ar ? (
                         <div>{errors.subscribe_title_ar}</div>
                       ) : null}
                     </BootstrapForm.Group>
 
                     <BootstrapForm.Group controlId="subscribe_desc_en">
-                      <BootstrapForm.Label>Subscribe Description EN</BootstrapForm.Label>
+                      <BootstrapForm.Label>
+                        Subscribe Description EN
+                      </BootstrapForm.Label>
                       <Field
                         name="subscribe_desc_en"
                         placeholder="Subscribe Description EN"
@@ -248,7 +292,9 @@ const Sliders = () => {
                     </BootstrapForm.Group>
 
                     <BootstrapForm.Group controlId="subscribe_desc_ar">
-                      <BootstrapForm.Label>Subscribe Description AR</BootstrapForm.Label>
+                      <BootstrapForm.Label>
+                        Subscribe Description AR
+                      </BootstrapForm.Label>
                       <Field
                         name="subscribe_desc_ar"
                         placeholder="Subscribe Description AR"
@@ -259,7 +305,11 @@ const Sliders = () => {
                       ) : null}
                     </BootstrapForm.Group>
 
-                    <Button type="submit" variant="primary" disabled={isLoading}>
+                    <Button
+                      type="submit"
+                      variant="primary"
+                      disabled={isLoading}
+                    >
                       {isLoading ? "Submitting..." : "Submit"}
                     </Button>
 

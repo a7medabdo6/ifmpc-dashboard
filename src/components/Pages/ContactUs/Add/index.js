@@ -1,5 +1,5 @@
-import React, { Fragment, useRef, useEffect } from "react";
-import { Breadcrumb, Button, Col, Row, Form } from "react-bootstrap";
+import React, { Fragment, useRef, useEffect, useState } from "react";
+import { Breadcrumb, Button, Col, Row, Form, Spinner } from "react-bootstrap";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
@@ -34,6 +34,7 @@ const AddContactUs = () => {
   const { mutate, data } = useCreateContactUs();
   const mapRef = useRef();
   const provider = new OpenStreetMapProvider();
+  const [isSubmitting, setIsSubmitting] = useState(false); // Track submission state
 
   // وظيفة للحصول على تفاصيل الموقع بما في ذلك اسم البلد
   const getLocationDetails = async (lat, lng) => {
@@ -92,9 +93,7 @@ const AddContactUs = () => {
       toast.success("This item has been successfully Created.");
 
       // تأخير الانتقال لمدة 2 ثانية (2000 مللي ثانية)
-      setTimeout(() => {
-        navigate("/pages/contactus/");
-      }, 2000); // يمكنك ضبط الوقت حسب الحاجة
+      navigate("/pages/contactus/");
     }
   }, [data, navigate]);
   return (
@@ -114,7 +113,18 @@ const AddContactUs = () => {
           <div className="card-body">
             <Formik
               validationSchema={schema}
-              onSubmit={(data) => mutate(data)}
+              onSubmit={(data) => {
+                setIsSubmitting(true);
+                mutate(data, {
+                  onSuccess: () => {
+                    setIsSubmitting(false); // Reset submitting state
+                  },
+                  onError: (error) => {
+                    toast.error("Error submitting data:", error.message);
+                    setIsSubmitting(false); // Reset submitting state
+                  },
+                });
+              }}
               initialValues={{
                 location: "",
                 location_en: "",
@@ -133,173 +143,193 @@ const AddContactUs = () => {
                 values,
                 touched,
                 errors,
-              }) => (
-                <Form noValidate onSubmit={handleSubmit}>
-                  <Row className="mb-3">
-                    <Form.Group
-                      as={Col}
-                      md="4"
-                      controlId="validationFormik101"
-                      className="position-relative"
-                    >
-                      <Form.Label>Location</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="location"
-                        value={values.location}
-                        onChange={handleChange}
-                        isValid={touched.location && !errors.location}
-                      />
-                    </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="4"
-                      controlId="validationFormik102"
-                      className="position-relative"
-                    >
-                      <Form.Label>Location (EN)</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="location_en"
-                        value={values.location_en}
-                        onChange={handleChange}
-                        isValid={touched.location_en && !errors.location_en}
-                      />
-                    </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="4"
-                      controlId="validationFormik103"
-                      className="position-relative"
-                    >
-                      <Form.Label>Location (AR)</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="location_ar"
-                        value={values.location_ar}
-                        onChange={handleChange}
-                        isValid={touched.location_ar && !errors.location_ar}
-                      />
-                    </Form.Group>
-                  </Row>
-                  <Row className="mb-3">
-                    <Form.Group
-                      as={Col}
-                      md="4"
-                      controlId="validationFormikEmail"
-                      className="position-relative"
-                    >
-                      <Form.Label>Email</Form.Label>
-                      <Form.Control
-                        type="email"
-                        name="email"
-                        value={values.email}
-                        onChange={handleChange}
-                        isValid={touched.email && !errors.email}
-                      />
-                    </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="4"
-                      controlId="validationFormik104"
-                      className="position-relative"
-                    >
-                      <Form.Label>Phone</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="phone"
-                        value={values.phone}
-                        onChange={handleChange}
-                        isValid={touched.phone && !errors.phone}
-                      />
-                    </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="4"
-                      controlId="validationFormik105"
-                      className="position-relative"
-                    >
-                      <Form.Label>Map Link</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="map_link"
-                        value={values.map_link}
-                        onChange={handleChange}
-                        isValid={touched.map_link && !errors.map_link}
-                      />
-                    </Form.Group>
-                  </Row>
-                  <Row className="mb-3">
-                    <Form.Group
-                      as={Col}
-                      md="6"
-                      controlId="validationFormik106"
-                      className="position-relative"
-                    >
-                      <Form.Label>Latitude</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="latitude"
-                        value={values.latitude}
-                        onChange={handleChange}
-                        isValid={touched.latitude && !errors.latitude}
-                      />
-                    </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="6"
-                      controlId="validationFormik107"
-                      className="position-relative"
-                    >
-                      <Form.Label>Longitude</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="longitude"
-                        value={values.longitude}
-                        onChange={handleChange}
-                        isValid={touched.longitude && !errors.longitude}
-                      />
-                    </Form.Group>
-                  </Row>
-                  <Row className="mb-3">
-                    <Col md="12">
-                      <MapContainer
-                        center={[values.latitude, values.longitude]}
-                        zoom={13}
-                        style={{ height: "400px", width: "100%" }}
-                        whenCreated={(map) => {
-                          mapRef.current = map;
-                          initializeSearchControl(setFieldValue);
-                        }}
+              }) => {
+                const isFormValid = !Object.values(values).some(
+                  (value) => value === "" || value === null
+                );
+                return (
+                  <Form noValidate onSubmit={handleSubmit}>
+                    <Row className="mb-3">
+                      <Form.Group
+                        as={Col}
+                        md="4"
+                        controlId="validationFormik101"
+                        className="position-relative"
                       >
-                        <TileLayer
-                          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        <Form.Label>Location</Form.Label>
+                        <Form.Control
+                          type="text"
+                          name="location"
+                          value={values.location}
+                          onChange={handleChange}
+                          isValid={touched.location && !errors.location}
                         />
-                        <Marker
-                          position={[values.latitude, values.longitude]}
-                          icon={customIcon} // استخدام الأيقونة المخصصة
-                          draggable={true}
-                          eventHandlers={{
-                            dragend: (event) => {
-                              const marker = event.target;
-                              const position = marker.getLatLng();
-                              setFieldValue("latitude", position.lat);
-                              setFieldValue("longitude", position.lng);
-                              updateFormFields(
-                                position.lat,
-                                position.lng,
-                                setFieldValue
-                              );
-                            },
+                      </Form.Group>
+                      <Form.Group
+                        as={Col}
+                        md="4"
+                        controlId="validationFormik102"
+                        className="position-relative"
+                      >
+                        <Form.Label>Location (EN)</Form.Label>
+                        <Form.Control
+                          type="text"
+                          name="location_en"
+                          value={values.location_en}
+                          onChange={handleChange}
+                          isValid={touched.location_en && !errors.location_en}
+                        />
+                      </Form.Group>
+                      <Form.Group
+                        as={Col}
+                        md="4"
+                        controlId="validationFormik103"
+                        className="position-relative"
+                      >
+                        <Form.Label>Location (AR)</Form.Label>
+                        <Form.Control
+                          type="text"
+                          name="location_ar"
+                          value={values.location_ar}
+                          onChange={handleChange}
+                          isValid={touched.location_ar && !errors.location_ar}
+                        />
+                      </Form.Group>
+                    </Row>
+                    <Row className="mb-3">
+                      <Form.Group
+                        as={Col}
+                        md="4"
+                        controlId="validationFormikEmail"
+                        className="position-relative"
+                      >
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control
+                          type="email"
+                          name="email"
+                          value={values.email}
+                          onChange={handleChange}
+                          isValid={touched.email && !errors.email}
+                        />
+                      </Form.Group>
+                      <Form.Group
+                        as={Col}
+                        md="4"
+                        controlId="validationFormik104"
+                        className="position-relative"
+                      >
+                        <Form.Label>Phone</Form.Label>
+                        <Form.Control
+                          type="text"
+                          name="phone"
+                          value={values.phone}
+                          onChange={handleChange}
+                          isValid={touched.phone && !errors.phone}
+                        />
+                      </Form.Group>
+                      <Form.Group
+                        as={Col}
+                        md="4"
+                        controlId="validationFormik105"
+                        className="position-relative"
+                      >
+                        <Form.Label>Map Link</Form.Label>
+                        <Form.Control
+                          type="text"
+                          name="map_link"
+                          value={values.map_link}
+                          onChange={handleChange}
+                          isValid={touched.map_link && !errors.map_link}
+                        />
+                      </Form.Group>
+                    </Row>
+                    <Row className="mb-3">
+                      <Form.Group
+                        as={Col}
+                        md="6"
+                        controlId="validationFormik106"
+                        className="position-relative"
+                      >
+                        <Form.Label>Latitude</Form.Label>
+                        <Form.Control
+                          type="text"
+                          name="latitude"
+                          value={values.latitude}
+                          onChange={handleChange}
+                          isValid={touched.latitude && !errors.latitude}
+                        />
+                      </Form.Group>
+                      <Form.Group
+                        as={Col}
+                        md="6"
+                        controlId="validationFormik107"
+                        className="position-relative"
+                      >
+                        <Form.Label>Longitude</Form.Label>
+                        <Form.Control
+                          type="text"
+                          name="longitude"
+                          value={values.longitude}
+                          onChange={handleChange}
+                          isValid={touched.longitude && !errors.longitude}
+                        />
+                      </Form.Group>
+                    </Row>
+                    <Row className="mb-3">
+                      <Col md="12">
+                        <MapContainer
+                          center={[values.latitude, values.longitude]}
+                          zoom={13}
+                          style={{ height: "400px", width: "100%" }}
+                          whenCreated={(map) => {
+                            mapRef.current = map;
+                            initializeSearchControl(setFieldValue);
                           }}
-                        ></Marker>
-                      </MapContainer>
-                    </Col>
-                  </Row>
-                  <Button type="submit">Save</Button>
-                </Form>
-              )}
+                        >
+                          <TileLayer
+                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                          />
+                          <Marker
+                            position={[values.latitude, values.longitude]}
+                            icon={customIcon} // استخدام الأيقونة المخصصة
+                            draggable={true}
+                            eventHandlers={{
+                              dragend: (event) => {
+                                const marker = event.target;
+                                const position = marker.getLatLng();
+                                setFieldValue("latitude", position.lat);
+                                setFieldValue("longitude", position.lng);
+                                updateFormFields(
+                                  position.lat,
+                                  position.lng,
+                                  setFieldValue
+                                );
+                              },
+                            }}
+                          ></Marker>
+                        </MapContainer>
+                      </Col>
+                    </Row>
+                    <Button
+                      type="submit"
+                      disabled={isSubmitting || !isFormValid}
+                    >
+                      {isSubmitting ? (
+                        <Spinner
+                          as="span"
+                          animation="border"
+                          size="sm"
+                          role="status"
+                          aria-hidden="true"
+                        />
+                      ) : (
+                        "Submit"
+                      )}
+                    </Button>{" "}
+                  </Form>
+                );
+              }}
             </Formik>
           </div>
         </div>

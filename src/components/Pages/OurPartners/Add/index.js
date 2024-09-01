@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect } from "react";
-import { Breadcrumb, Button, Col, Row, Form } from "react-bootstrap";
+import { Breadcrumb, Button, Col, Row, Form, Spinner } from "react-bootstrap";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { useCreateOurPartner } from "../../../../Api/OurPartners";
@@ -20,10 +20,8 @@ const AddOurPartners = () => {
 
   useEffect(() => {
     if (data) {
-      toast.success("This item has been successfully Created.");
-      setTimeout(() => {
-        navigate("/pages/ourpartners/");
-      }, 2000);
+      toast.success("This item has been successfully created.");
+      navigate("/pages/ourpartners/");
     }
   }, [data, navigate]);
 
@@ -31,10 +29,12 @@ const AddOurPartners = () => {
     <Fragment>
       <div className="page-header">
         <div>
-          <h2 className="main-content-title tx-24 mg-b-5">Create OurPartner</h2>
+          <h2 className="main-content-title tx-24 mg-b-5">
+            Create Our Partner
+          </h2>
           <Breadcrumb>
-            <Breadcrumb.Item href="#"> Pages </Breadcrumb.Item>
-            <Breadcrumb.Item active>Create OurPartner</Breadcrumb.Item>
+            <Breadcrumb.Item href="#">Pages</Breadcrumb.Item>
+            <Breadcrumb.Item active>Create Our Partner</Breadcrumb.Item>
           </Breadcrumb>
         </div>
       </div>
@@ -67,6 +67,8 @@ const AddOurPartners = () => {
                 values,
                 touched,
                 errors,
+                isSubmitting,
+                isValid,
               }) => (
                 <Form noValidate onSubmit={handleSubmit}>
                   <Row className="mb-3">
@@ -146,7 +148,19 @@ const AddOurPartners = () => {
                       </Form.Control.Feedback>
                     </Form.Group>
                   </Row>
-                  <Button type="submit">Save</Button>
+                  <Button type="submit" disabled={isSubmitting || !isValid}>
+                    {isSubmitting ? (
+                      <Spinner
+                        as="span"
+                        animation="border"
+                        size="sm"
+                        role="status"
+                        aria-hidden="true"
+                      />
+                    ) : (
+                      "Save"
+                    )}
+                  </Button>
                 </Form>
               )}
             </Formik>

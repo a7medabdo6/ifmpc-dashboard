@@ -1,7 +1,6 @@
-import React, { Fragment, useEffect } from "react";
-import { Breadcrumb, Button, Col, Row, Card } from "react-bootstrap";
+import React, { Fragment, useEffect, useState } from "react";
+import { Breadcrumb, Button, Col, Row, Form } from "react-bootstrap";
 import { Formik } from "formik";
-import { Form } from "react-bootstrap";
 import * as yup from "yup";
 import { useCreateContact } from "../../../../Api/Contacts";
 import { useNavigate } from "react-router-dom";
@@ -11,25 +10,44 @@ import "react-toastify/dist/ReactToastify.css";
 const schema = yup.object().shape({
   first_name: yup.string().required("First name is required"),
   last_name: yup.string().required("Last name is required"),
-  email: yup.string().email("Invalid email address").required("Email is required"),
+  email: yup
+    .string()
+    .email("Invalid email address")
+    .required("Email is required"),
   phone: yup.string().required("Phone number is required"),
   description: yup.string().required("Description is required"),
 });
 
 const AddContacts = () => {
-  const { mutate, data } = useCreateContact();
-  const navigate = useNavigate(); // Initialize navigate function
+  const [loading, setLoading] = useState(false); // Add loading state
+  const { mutate, data, isError } = useCreateContact(); // Remove isLoading
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (data) {
-      toast.success("This item has been successfully Created.");
-
-      // تأخير الانتقال لمدة 2 ثانية (2000 مللي ثانية)
+      toast.success("This item has been successfully created.");
       setTimeout(() => {
         navigate("/pages/contacts/");
-      }, 2000); // يمكنك ضبط الوقت حسب الحاجة
+      }, 2000);
     }
-  }, [data, navigate]);
+    if (isError) {
+      toast.error("An error occurred while creating the contact.");
+    }
+  }, [data, isError, navigate]);
+
+  const handleSubmit = (values, { setSubmitting }) => {
+    setLoading(true); // Set loading to true before starting the mutation
+    mutate(values, {
+      onSuccess: () => {
+        setLoading(false); // Set loading to false on successful mutation
+        setSubmitting(false);
+      },
+      onError: () => {
+        setLoading(false); // Set loading to false on error
+        setSubmitting(false);
+      },
+    });
+  };
 
   return (
     <Fragment>
@@ -48,7 +66,7 @@ const AddContacts = () => {
           <div className="card-body">
             <Formik
               validationSchema={schema}
-              onSubmit={(data) => mutate(data)}
+              onSubmit={handleSubmit}
               initialValues={{
                 first_name: "",
                 last_name: "",
@@ -57,7 +75,14 @@ const AddContacts = () => {
                 description: "",
               }}
             >
-              {({ handleSubmit, handleChange, values, touched, errors }) => (
+              {({
+                handleSubmit,
+                handleChange,
+                values,
+                touched,
+                errors,
+                isSubmitting,
+              }) => (
                 <Form noValidate onSubmit={handleSubmit}>
                   <Row className="mb-3">
                     <Form.Group
@@ -153,7 +178,19 @@ const AddContacts = () => {
                       </Form.Control.Feedback>
                     </Form.Group>
                   </Row>
-                  <Button type="submit">Save</Button>
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting || loading} // Disable button while submitting or loading
+                  >
+                    {isSubmitting || loading ? (
+                      <div className="d-flex align-items-center">
+                        <span className="spinner-border spinner-border-sm me-2" />
+                        Saving...
+                      </div>
+                    ) : (
+                      "Save"
+                    )}
+                  </Button>
                 </Form>
               )}
             </Formik>
@@ -164,9 +201,5 @@ const AddContacts = () => {
     </Fragment>
   );
 };
-
-AddContacts.propTypes = {};
-
-AddContacts.defaultProps = {};
 
 export default AddContacts;

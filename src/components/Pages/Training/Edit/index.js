@@ -1,7 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { Breadcrumb, Button, Col, Row, Card } from "react-bootstrap";
+import { Breadcrumb, Button, Col, Row, Form, Spinner } from "react-bootstrap";
 import { Formik } from "formik";
-import { Form } from "react-bootstrap";
 import * as yup from "yup";
 import { useEditTraining } from "../../../../Api/Training";
 import { useNavigate } from "react-router-dom";
@@ -25,17 +24,15 @@ const EditTrainings = ({ id, itemData, viewDemoClose, setShow10 }) => {
   const { mutate, data } = useEditTraining();
   const navigate = useNavigate();
   const { mutate: mutateImage, data: dataImage } = useCreateProjectImage();
-  useEffect(() => {
-    if (data) {
-      setShow10(false)
-    }
-  }, [data, navigate]);
-  const [uploadedImageUrl, setUploadedImageUrl] = useState(itemData?.image || "");
+  const [uploadedImageUrl, setUploadedImageUrl] = useState(
+    itemData?.image || ""
+  );
   const [file, setFile] = useState(null);
-  const [imageUrl, setImageUrl] = useState(itemData?.image || ""); // To handle URL input
+  const [imageUrl, setImageUrl] = useState(itemData?.image || "");
 
   useEffect(() => {
     if (data) {
+      setShow10(false);
       toast.success("This item has been successfully edited.");
       setTimeout(() => {
         navigate("/pages/training/");
@@ -65,7 +62,7 @@ const EditTrainings = ({ id, itemData, viewDemoClose, setShow10 }) => {
       mutateImage(formData, {
         onSuccess: (data) => {
           setUploadedImageUrl(data.file_url);
-          setImageUrl(data.file_url); // Update image URL as well
+          setImageUrl(data.file_url);
         },
         onError: () => {
           alert("Error uploading image.");
@@ -100,10 +97,11 @@ const EditTrainings = ({ id, itemData, viewDemoClose, setShow10 }) => {
           <div className="card-body">
             <Formik
               validationSchema={schema}
-              onSubmit={(data) => {
+              onSubmit={(data, { setSubmitting }) => {
                 // Ensure image URL is used
                 data.image = uploadedImageUrl || imageUrl;
                 mutate({ data, id });
+                setSubmitting(false);
               }}
               initialValues={{
                 title: itemData?.title || "",
@@ -122,6 +120,9 @@ const EditTrainings = ({ id, itemData, viewDemoClose, setShow10 }) => {
                 setFieldValue,
                 touched,
                 errors,
+                isSubmitting,
+                isValid,
+                dirty,
               }) => (
                 <Form noValidate onSubmit={handleSubmit}>
                   <Row className="mb-3">
@@ -239,6 +240,8 @@ const EditTrainings = ({ id, itemData, viewDemoClose, setShow10 }) => {
                         </div>
                       )}
                     </Form.Group>
+                  </Row>
+                  <Row className="mb-3">
                     <Form.Group
                       as={Col}
                       md="12"
@@ -248,12 +251,20 @@ const EditTrainings = ({ id, itemData, viewDemoClose, setShow10 }) => {
                       <Form.Label>Description</Form.Label>
                       <ReactQuill
                         value={values.description}
-                        onChange={(value) => setFieldValue("description", value)}
+                        onChange={(value) =>
+                          setFieldValue("description", value)
+                        }
                         modules={{
                           toolbar: [
                             [{ header: "1" }, { header: "2" }, { font: [] }],
                             [{ size: [] }],
-                            ["bold", "italic", "underline", "strike", "blockquote"],
+                            [
+                              "bold",
+                              "italic",
+                              "underline",
+                              "strike",
+                              "blockquote",
+                            ],
                             [
                               { list: "ordered" },
                               { list: "bullet" },
@@ -265,16 +276,109 @@ const EditTrainings = ({ id, itemData, viewDemoClose, setShow10 }) => {
                           ],
                         }}
                       />
+                      {touched.description && errors.description && (
+                        <div className="invalid-feedback d-block">
+                          {errors.description}
+                        </div>
+                      )}
+                    </Form.Group>
+                    <Form.Group
+                      as={Col}
+                      md="12"
+                      controlId="validationFormikDescriptionEn"
+                      className="position-relative"
+                    >
+                      <Form.Label>Description (English)</Form.Label>
+                      <ReactQuill
+                        value={values.description_en}
+                        onChange={(value) =>
+                          setFieldValue("description_en", value)
+                        }
+                        modules={{
+                          toolbar: [
+                            [{ header: "1" }, { header: "2" }, { font: [] }],
+                            [{ size: [] }],
+                            [
+                              "bold",
+                              "italic",
+                              "underline",
+                              "strike",
+                              "blockquote",
+                            ],
+                            [
+                              { list: "ordered" },
+                              { list: "bullet" },
+                              { indent: "-1" },
+                              { indent: "+1" },
+                            ],
+                            ["link", "image"],
+                            ["clean"],
+                          ],
+                        }}
+                      />
+                      {touched.description_en && errors.description_en && (
+                        <div className="invalid-feedback d-block">
+                          {errors.description_en}
+                        </div>
+                      )}
+                    </Form.Group>
+                    <Form.Group
+                      as={Col}
+                      md="12"
+                      controlId="validationFormikDescriptionAr"
+                      className="position-relative"
+                    >
+                      <Form.Label>Description (Arabic)</Form.Label>
+                      <ReactQuill
+                        value={values.description_ar}
+                        onChange={(value) =>
+                          setFieldValue("description_ar", value)
+                        }
+                        modules={{
+                          toolbar: [
+                            [{ header: "1" }, { header: "2" }, { font: [] }],
+                            [{ size: [] }],
+                            [
+                              "bold",
+                              "italic",
+                              "underline",
+                              "strike",
+                              "blockquote",
+                            ],
+                            [
+                              { list: "ordered" },
+                              { list: "bullet" },
+                              { indent: "-1" },
+                              { indent: "+1" },
+                            ],
+                            ["link", "image"],
+                            ["clean"],
+                          ],
+                        }}
+                      />
+                      {touched.description_ar && errors.description_ar && (
+                        <div className="invalid-feedback d-block">
+                          {errors.description_ar}
+                        </div>
+                      )}
                     </Form.Group>
                   </Row>
-                  <Button type="submit">Save</Button>
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting || !isValid || !dirty}
+                  >
+                    {isSubmitting ? (
+                      <Spinner animation="border" size="sm" />
+                    ) : (
+                      "Save"
+                    )}
+                  </Button>
                 </Form>
               )}
             </Formik>
           </div>
         </div>
       </div>
-
       <ToastContainer />
     </Fragment>
   );

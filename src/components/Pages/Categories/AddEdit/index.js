@@ -1,5 +1,5 @@
-import React, { Fragment, useEffect } from "react";
-import { Breadcrumb, Button, Col, Row } from "react-bootstrap";
+import React, { Fragment, useState, useEffect } from "react";
+import { Breadcrumb, Button, Col, Row, Spinner } from "react-bootstrap";
 import { Formik } from "formik";
 import { Form, InputGroup } from "react-bootstrap";
 import * as yup from "yup";
@@ -7,6 +7,7 @@ import { useCreateCategory } from "../../../../Api/Categories";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 const schema = yup.object().shape({
   name: yup.string().required(),
   name_ar: yup.string().required(),
@@ -17,17 +18,15 @@ const schema = yup.object().shape({
 });
 
 const AddEditcategories = () => {
-  const { mutate, data } = useCreateCategory();
+  const { mutate, data, isLoading } = useCreateCategory(); // Add isLoading from the mutation hook
   const navigate = useNavigate(); // Initialize navigate function
+  const [loading, setLoading] = useState(false); // Manage loading state for button
 
   useEffect(() => {
     if (data) {
       toast.success("This item has been successfully Created.");
 
-      // تأخير الانتقال لمدة 2 ثانية (2000 مللي ثانية)
-      setTimeout(() => {
-        navigate("/pages/categories/");
-      }, 2000); // يمكنك ضبط الوقت حسب الحاجة
+      navigate("/pages/categories/");
     }
   }, [data, navigate]);
 
@@ -50,7 +49,14 @@ const AddEditcategories = () => {
           <div className="card-body">
             <Formik
               validationSchema={schema}
-              onSubmit={(data) => mutate(data)}
+              onSubmit={(data) => {
+                setLoading(true); // Set loading to true when form is submitted
+                mutate(data, {
+                  onSettled: () => {
+                    setLoading(false); // Set loading to false after mutation is settled
+                  },
+                });
+              }}
               initialValues={{
                 name: "",
                 name_ar: "",
@@ -178,7 +184,29 @@ const AddEditcategories = () => {
                     </Form.Group>
                   </Row>
 
-                  <Button type="submit">Save</Button>
+                  <Button
+                    type="submit"
+                    disabled={
+                      loading ||
+                      !values.name ||
+                      !values.name_ar ||
+                      !values.name_en ||
+                      !values.publication_count ||
+                      !values.project_count
+                    }
+                  >
+                    {loading ? (
+                      <Spinner
+                        as="span"
+                        animation="border"
+                        size="sm"
+                        role="status"
+                        aria-hidden="true"
+                      />
+                    ) : (
+                      "Save"
+                    )}
+                  </Button>
                 </Form>
               )}
             </Formik>

@@ -1,32 +1,31 @@
-import React, { Fragment, useEffect } from "react";
-import { Breadcrumb, Button, Col, Row, Card } from "react-bootstrap";
+import React, { Fragment, useEffect, useState } from "react";
+import { Breadcrumb, Button, Col, Row, Card, Spinner } from "react-bootstrap";
 import { Formik } from "formik";
 import { Form, InputGroup } from "react-bootstrap";
 import * as yup from "yup";
 import { useEditCategory } from "../../../../Api/Categories";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const schema = yup.object().shape({
-  name: yup.string().required('Name is required'),
-  name_en: yup.string().required('Name (English) is required'),
-  name_ar: yup.string().required('Name (Arabic) is required'),
-  publication_count: yup.string().required('Publication count is required'),
-  project_count: yup.string().required('Project count is required'),
+  name: yup.string().required("Name is required"),
+  name_en: yup.string().required("Name (English) is required"),
+  name_ar: yup.string().required("Name (Arabic) is required"),
+  publication_count: yup.string().required("Publication count is required"),
+  project_count: yup.string().required("Project count is required"),
 });
 
 const Editcategories = ({ id, itemData, viewDemoClose, setShow10 }) => {
-  const { mutate, data } = useEditCategory();
-  const navigate = useNavigate(); // Initialize navigate function
-  
+  const { mutate, data, isLoading } = useEditCategory();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate();
+
   useEffect(() => {
-    if (data !== undefined) {
+    if (data) {
       toast.success("This item has been successfully edited.");
-      // Delay navigation for 2 seconds
-      setTimeout(() => {
-        setShow10(false);
-      }, 2000); // Adjust the time as needed
+      setIsSubmitting(false);
+      setShow10(false);
     }
   }, [data]);
 
@@ -37,12 +36,13 @@ const Editcategories = ({ id, itemData, viewDemoClose, setShow10 }) => {
           <div className="card-body">
             <Formik
               validationSchema={schema}
-              onSubmit={(data) =>
+              onSubmit={(data) => {
+                setIsSubmitting(true);
                 mutate({
                   data,
                   id,
-                })
-              }
+                });
+              }}
               initialValues={{
                 name: itemData?.name || "",
                 name_en: itemData?.name_en || "",
@@ -57,13 +57,14 @@ const Editcategories = ({ id, itemData, viewDemoClose, setShow10 }) => {
                 values,
                 touched,
                 errors,
+                isValid,
               }) => (
                 <Form noValidate onSubmit={handleSubmit}>
                   <Row className="mb-3">
                     <Form.Group
                       as={Col}
                       md="4"
-                      controlid="validationFormik101"
+                      controlId="validationFormik101"
                       className="position-relative"
                     >
                       <Form.Label>Name</Form.Label>
@@ -78,11 +79,11 @@ const Editcategories = ({ id, itemData, viewDemoClose, setShow10 }) => {
                         {errors.name}
                       </Form.Control.Feedback>
                     </Form.Group>
-                    
+
                     <Form.Group
                       as={Col}
                       md="4"
-                      controlid="validationFormik102"
+                      controlId="validationFormik102"
                       className="position-relative"
                     >
                       <Form.Label>Name (English)</Form.Label>
@@ -101,7 +102,7 @@ const Editcategories = ({ id, itemData, viewDemoClose, setShow10 }) => {
                     <Form.Group
                       as={Col}
                       md="4"
-                      controlid="validationFormik103"
+                      controlId="validationFormik103"
                       className="position-relative"
                     >
                       <Form.Label>Name (Arabic)</Form.Label>
@@ -122,7 +123,7 @@ const Editcategories = ({ id, itemData, viewDemoClose, setShow10 }) => {
                     <Form.Group
                       as={Col}
                       md="4"
-                      controlid="validationFormik104"
+                      controlId="validationFormik104"
                       className="position-relative"
                     >
                       <Form.Label>Publication Count</Form.Label>
@@ -132,18 +133,19 @@ const Editcategories = ({ id, itemData, viewDemoClose, setShow10 }) => {
                         value={values.publication_count}
                         onChange={handleChange}
                         isInvalid={
-                          touched.publication_count && !!errors.publication_count
+                          touched.publication_count &&
+                          !!errors.publication_count
                         }
                       />
                       <Form.Control.Feedback type="invalid">
                         {errors.publication_count}
                       </Form.Control.Feedback>
                     </Form.Group>
-                    
+
                     <Form.Group
                       as={Col}
                       md="4"
-                      controlid="validationFormik105"
+                      controlId="validationFormik105"
                       className="position-relative"
                     >
                       <Form.Label>Project Count</Form.Label>
@@ -169,10 +171,23 @@ const Editcategories = ({ id, itemData, viewDemoClose, setShow10 }) => {
                       className="ms-3"
                       variant="secondary"
                       onClick={() => viewDemoClose("show10")}
+                      disabled={isSubmitting}
                     >
                       Cancel
                     </Button>
-                    <Button type="submit">Save</Button>
+                    <Button type="submit" disabled={!isValid || isSubmitting}>
+                      {isSubmitting ? (
+                        <Spinner
+                          as="span"
+                          animation="border"
+                          size="sm"
+                          role="status"
+                          aria-hidden="true"
+                        />
+                      ) : (
+                        "Save"
+                      )}
+                    </Button>
                   </div>
                 </Form>
               )}

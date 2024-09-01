@@ -20,6 +20,15 @@ export const MENUITEMS = [
         title: "Categories",
       },
       {
+        path: `/pages/tages`,
+        type: "link",
+        icon: "ti-list",
+
+        active: false,
+        selected: false,
+        title: "Tags",
+      },
+      {
         path: `/pages/training`,
         type: "link",
         icon: "ti-list",
@@ -110,15 +119,7 @@ export const MENUITEMS = [
         selected: false,
         title: "Authors",
       },
-      {
-        path: `/pages/tages`,
-        type: "link",
-        icon: "ti-list",
 
-        active: false,
-        selected: false,
-        title: "Tages",
-      },
       {
         path: `/pages/contacts`,
         type: "link",

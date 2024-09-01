@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useRef } from "react";
-import { Breadcrumb, Button, Col, Row, Form } from "react-bootstrap";
+import { Breadcrumb, Button, Col, Row, Form, Spinner } from "react-bootstrap";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { useEditLink } from "../../../../Api/Links";
@@ -15,15 +15,13 @@ const schema = yup.object().shape({
 });
 
 const EditLinks = ({ itemData, id, setShow10 }) => {
-  const { mutate, data } = useEditLink();
+  const { mutate, data, isLoading } = useEditLink();
   const fileInputRef = useRef(null);
 
   useEffect(() => {
     if (data !== undefined) {
       toast.success("This item has been successfully edited.");
-      setTimeout(() => {
-        setShow10(false);
-      }, 2000);
+      setShow10(false);
     }
   }, [data, setShow10]);
 
@@ -52,10 +50,6 @@ const EditLinks = ({ itemData, id, setShow10 }) => {
                 formData.append("logo", data.logo);
                 formData.append("url", data.url);
 
-                formData.forEach((value, key) => {
-                  console.log(`${key}:`, value);
-                });
-
                 mutate({ formData, id })
                   .then(() => {
                     toast.success("Link updated successfully!");
@@ -82,6 +76,8 @@ const EditLinks = ({ itemData, id, setShow10 }) => {
                 values,
                 touched,
                 errors,
+                isValid,
+                isSubmitting,
               }) => (
                 <Form noValidate onSubmit={handleSubmit}>
                   <Row className="mb-3">
@@ -148,7 +144,7 @@ const EditLinks = ({ itemData, id, setShow10 }) => {
                       className="position-relative"
                     >
                       <Form.Label>Logo</Form.Label>
-                      {values.logo && typeof values.logo !== 'string' ? (
+                      {values.logo && typeof values.logo !== "string" ? (
                         <div
                           className="logo-preview"
                           onClick={() => fileInputRef.current.click()}
@@ -176,7 +172,9 @@ const EditLinks = ({ itemData, id, setShow10 }) => {
                             </div>
                           )}
                           {!values.logo && (
-                            <Button onClick={() => fileInputRef.current.click()}>
+                            <Button
+                              onClick={() => fileInputRef.current.click()}
+                            >
                               Choose Logo
                             </Button>
                           )}
@@ -216,7 +214,15 @@ const EditLinks = ({ itemData, id, setShow10 }) => {
                       </Form.Control.Feedback>
                     </Form.Group>
                   </Row>
-                  <Button type="submit">Save</Button>
+                  <Button type="submit" disabled={isSubmitting || !isValid}>
+                    {isSubmitting ? (
+                      <>
+                        <Spinner animation="border" size="sm" /> Saving...
+                      </>
+                    ) : (
+                      "Save"
+                    )}
+                  </Button>
                 </Form>
               )}
             </Formik>
