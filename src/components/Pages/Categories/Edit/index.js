@@ -9,7 +9,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
 const schema = yup.object().shape({
-  name: yup.string().required("Name is required"),
   name_en: yup.string().required("Name (English) is required"),
   name_ar: yup.string().required("Name (Arabic) is required"),
   publication_count: yup.string().required("Publication count is required"),
@@ -44,7 +43,6 @@ const Editcategories = ({ id, itemData, viewDemoClose, setShow10 }) => {
                 });
               }}
               initialValues={{
-                name: itemData?.name || "",
                 name_en: itemData?.name_en || "",
                 name_ar: itemData?.name_ar || "",
                 publication_count: itemData?.publication_count || "",
@@ -61,25 +59,7 @@ const Editcategories = ({ id, itemData, viewDemoClose, setShow10 }) => {
               }) => (
                 <Form noValidate onSubmit={handleSubmit}>
                   <Row className="mb-3">
-                    <Form.Group
-                      as={Col}
-                      md="4"
-                      controlId="validationFormik101"
-                      className="position-relative"
-                    >
-                      <Form.Label>Name</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="name"
-                        value={values.name}
-                        onChange={handleChange}
-                        isInvalid={touched.name && !!errors.name}
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {errors.name}
-                      </Form.Control.Feedback>
-                    </Form.Group>
-
+                   
                     <Form.Group
                       as={Col}
                       md="4"

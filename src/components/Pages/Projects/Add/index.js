@@ -20,10 +20,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 // Validation schema
 const schema = yup.object().shape({
-  name: yup.string().required("Name is required"),
   name_en: yup.string().required("English name is required"),
   name_ar: yup.string().required("Arabic name is required"),
-  content: yup.string().required("Content is required"),
   content_en: yup.string().required("English content is required"),
   content_ar: yup.string().required("Arabic content is required"),
   image: yup.string().url("Invalid URL").required("Image URL is required"), // Changed to string
@@ -83,10 +81,8 @@ const AddProjects = () => {
     setIsSubmitting(true); // Set submitting state to true
 
     const jsonData = {
-      name: values.name,
       name_en: values.name_en,
       name_ar: values.name_ar,
-      content: values.content,
       content_en: values.content_en,
       content_ar: values.content_ar,
       image: values.image, // URL or path
@@ -157,9 +153,7 @@ const AddProjects = () => {
   useEffect(() => {
     if (dataOfCreatProject) {
       toast.success("This item has been successfully Created.");
-      setTimeout(() => {
         navigate("/pages/Projects/");
-      }, 2000); // Delay navigation by 2 seconds
     }
   }, [dataOfCreatProject, navigate]);
 
@@ -182,10 +176,8 @@ const AddProjects = () => {
               validationSchema={schema}
               onSubmit={(values) => handleSubmit(values)}
               initialValues={{
-                name: "",
                 name_en: "",
                 name_ar: "",
-                content: "",
                 content_en: "",
                 content_ar: "",
                 image: "", // Default URL or path
@@ -211,24 +203,7 @@ const AddProjects = () => {
                 return (
                   <Form noValidate onSubmit={handleSubmit}>
                     <Row className="mb-3">
-                      <Form.Group
-                        as={Col}
-                        md="6"
-                        controlId="validationFormikName"
-                      >
-                        <Form.Label>Name</Form.Label>
-                        <Form.Control
-                          type="text"
-                          name="name"
-                          value={values.name}
-                          onChange={handleChange}
-                          isValid={touched.name && !errors.name}
-                          isInvalid={!!errors.name}
-                        />
-                        <Form.Control.Feedback type="invalid">
-                          {errors.name}
-                        </Form.Control.Feedback>
-                      </Form.Group>
+                     
                       <Form.Group
                         as={Col}
                         md="6"
@@ -265,24 +240,7 @@ const AddProjects = () => {
                           {errors.name_ar}
                         </Form.Control.Feedback>
                       </Form.Group>
-                      <Form.Group
-                        as={Col}
-                        md="6"
-                        controlId="validationFormikContent"
-                      >
-                        <Form.Label>Content</Form.Label>
-                        <Form.Control
-                          type="text"
-                          name="content"
-                          value={values.content}
-                          onChange={handleChange}
-                          isValid={touched.content && !errors.content}
-                          isInvalid={!!errors.content}
-                        />
-                        <Form.Control.Feedback type="invalid">
-                          {errors.content}
-                        </Form.Control.Feedback>
-                      </Form.Group>
+                     
                       <Form.Group
                         as={Col}
                         md="6"

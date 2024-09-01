@@ -11,11 +11,9 @@ import "react-quill/dist/quill.snow.css";
 import { useCreateProjectImage } from "../../../../Api/Projects";
 
 const schema = yup.object().shape({
-  title: yup.string().required("Title is required"),
   title_en: yup.string().required("Title (English) is required"),
   title_ar: yup.string().required("Title (Arabic) is required"),
   image: yup.string().url("Invalid URL").required("Image URL is required"),
-  description: yup.string().required("Description is required"),
   description_en: yup.string().required("Description (English) is required"),
   description_ar: yup.string().required("Description (Arabic) is required"),
 });
@@ -32,9 +30,7 @@ const AddTrainings = () => {
   useEffect(() => {
     if (data) {
       toast.success("This item has been successfully created.");
-      setTimeout(() => {
         navigate("/pages/training/");
-      }, 2000);
     }
   }, [data, navigate]);
 
@@ -105,11 +101,9 @@ const AddTrainings = () => {
                 mutate(data);
               }}
               initialValues={{
-                title: "",
                 title_en: "",
                 title_ar: "",
                 image: "",
-                description: "",
                 description_en: "",
                 description_ar: "",
               }}
@@ -124,35 +118,16 @@ const AddTrainings = () => {
               }) => {
                 // Check if all required fields are filled
                 const isFormValid =
-                  values.title &&
                   values.title_en &&
                   values.title_ar &&
                   (uploadedImageUrl || imageUrl) &&
-                  values.description &&
                   values.description_en &&
                   values.description_ar;
 
                 return (
                   <Form noValidate onSubmit={handleSubmit}>
                     <Row className="mb-3">
-                      <Form.Group
-                        as={Col}
-                        md="4"
-                        controlId="validationFormikTitle"
-                        className="position-relative"
-                      >
-                        <Form.Label>Title</Form.Label>
-                        <Form.Control
-                          type="text"
-                          name="title"
-                          value={values.title}
-                          onChange={handleChange}
-                          isInvalid={!!errors.title && touched.title}
-                        />
-                        <Form.Control.Feedback type="invalid">
-                          {errors.title}
-                        </Form.Control.Feedback>
-                      </Form.Group>
+                     
                       <Form.Group
                         as={Col}
                         md="4"
@@ -249,46 +224,7 @@ const AddTrainings = () => {
                           </div>
                         )}
                       </Form.Group>
-                      <Form.Group
-                        as={Col}
-                        md="12"
-                        controlId="validationFormikDescription"
-                        className="position-relative"
-                      >
-                        <Form.Label>Description</Form.Label>
-                        <ReactQuill
-                          value={values.description}
-                          onChange={(value) =>
-                            setFieldValue("description", value)
-                          }
-                          modules={{
-                            toolbar: [
-                              [{ header: "1" }, { header: "2" }, { font: [] }],
-                              [{ size: [] }],
-                              [
-                                "bold",
-                                "italic",
-                                "underline",
-                                "strike",
-                                "blockquote",
-                              ],
-                              [
-                                { list: "ordered" },
-                                { list: "bullet" },
-                                { indent: "-1" },
-                                { indent: "+1" },
-                              ],
-                              ["link", "image"],
-                              ["clean"],
-                            ],
-                          }}
-                        />
-                        {touched.description && errors.description && (
-                          <div className="invalid-feedback d-block">
-                            {errors.description}
-                          </div>
-                        )}
-                      </Form.Group>
+                     
                     </Row>
                     <Row className="mb-3">
                       <Form.Group

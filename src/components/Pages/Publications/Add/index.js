@@ -16,10 +16,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // Define validation schema using yup
 const schema = yup.object().shape({
-  name: yup.string().required(),
   name_en: yup.string().required(),
   name_ar: yup.string().required(),
-  content: yup.string().required(),
   content_en: yup.string().required(),
   content_ar: yup.string().required(),
   popularity_count: yup.number().integer().required(),
@@ -110,10 +108,8 @@ const AddPublications = () => {
                 handleSubmit(values);
               }}
               initialValues={{
-                name: "",
                 name_en: "",
                 name_ar: "",
-                content: "",
                 content_en: "",
                 content_ar: "",
                 popularity_count: 0, // قيمة افتراضية مبدئية
@@ -142,23 +138,7 @@ const AddPublications = () => {
                   <Form noValidate onSubmit={handleSubmit}>
                     {/* Existing fields */}
                     <Row className="mb-3">
-                      <Form.Group
-                        as={Col}
-                        md="6"
-                        controlId="validationFormikName"
-                      >
-                        <Form.Label>Name</Form.Label>
-                        <Form.Control
-                          type="text"
-                          name="name"
-                          value={values.name}
-                          onChange={handleChange}
-                          isInvalid={!!errors.name && touched.name}
-                        />
-                        <Form.Control.Feedback type="invalid">
-                          {errors.name}
-                        </Form.Control.Feedback>
-                      </Form.Group>
+                    
                       <Form.Group
                         as={Col}
                         md="6"
@@ -193,23 +173,7 @@ const AddPublications = () => {
                           {errors.name_ar}
                         </Form.Control.Feedback>
                       </Form.Group>
-                      <Form.Group
-                        as={Col}
-                        md="6"
-                        controlId="validationFormikContent"
-                      >
-                        <Form.Label>Content</Form.Label>
-                        <Form.Control
-                          type="text"
-                          name="content"
-                          value={values.content}
-                          onChange={handleChange}
-                          isInvalid={!!errors.content && touched.content}
-                        />
-                        <Form.Control.Feedback type="invalid">
-                          {errors.content}
-                        </Form.Control.Feedback>
-                      </Form.Group>
+                     
                       <Form.Group
                         as={Col}
                         md="6"

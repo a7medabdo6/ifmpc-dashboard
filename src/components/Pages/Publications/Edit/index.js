@@ -18,13 +18,12 @@ import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useParams } from 'react-router-dom';
 
 // Define validation schema using yup
 const schema = yup.object().shape({
-  name: yup.string().required("Name is required"),
   name_en: yup.string().required("English name is required"),
   name_ar: yup.string().required("Arabic name is required"),
-  content: yup.string().required("Content is required"),
   content_en: yup.string().required("English content is required"),
   content_ar: yup.string().required("Arabic content is required"),
   popularity_count: yup
@@ -49,9 +48,11 @@ const schema = yup.object().shape({
 });
 
 const EditPublications = () => {
+  const { id } = useParams();
+
   const { mutate, isLoading, error, data: dataEdit } = useEditPublication();
   const location = useLocation();
-  const id = location.state?.id;
+  // const id = location.state?.id;
   const { data } = useTags();
   const { data: AuthorData } = useUsers();
   const { data: dataOfCategory } = useCategories();
@@ -59,7 +60,6 @@ const EditPublications = () => {
   const { data: dataone, isLoading: isLoadingOne } = useOnePublication(id);
   const [isSubmitting, setIsSubmitting] = useState(false); // Track submission state
 
-  console.log(dataone);
   // Convert tags data to options for Select
   const tagOptions =
     data?.results.map((tag) => ({ value: tag.id, label: tag.name })) || [];
@@ -128,10 +128,8 @@ const EditPublications = () => {
                 handleSubmit(values);
               }}
               initialValues={{
-                name: dataone?.name || "",
                 name_en: dataone?.name_en || "",
                 name_ar: dataone?.name_ar || "",
-                content: dataone?.content || "",
                 content_en: dataone?.content_en || "",
                 content_ar: dataone?.content_ar || "",
                 popularity_count: dataone?.popularity_count || 0,
@@ -164,24 +162,7 @@ const EditPublications = () => {
                   <Form noValidate onSubmit={handleSubmit}>
                     {/* Existing fields */}
                     <Row className="mb-3">
-                      <Form.Group
-                        as={Col}
-                        md="6"
-                        controlId="validationFormikName"
-                      >
-                        <Form.Label>Name</Form.Label>
-                        <Form.Control
-                          type="text"
-                          name="name"
-                          value={values.name}
-                          onChange={handleChange}
-                          isValid={touched.name && !errors.name}
-                          isInvalid={touched.name && !!errors.name}
-                        />
-                        <Form.Control.Feedback type="invalid">
-                          {errors.name}
-                        </Form.Control.Feedback>
-                      </Form.Group>
+                     
                       <Form.Group
                         as={Col}
                         md="6"
@@ -218,24 +199,7 @@ const EditPublications = () => {
                           {errors.name_ar}
                         </Form.Control.Feedback>
                       </Form.Group>
-                      <Form.Group
-                        as={Col}
-                        md="6"
-                        controlId="validationFormikContent"
-                      >
-                        <Form.Label>Content</Form.Label>
-                        <Form.Control
-                          type="text"
-                          name="content"
-                          value={values.content}
-                          onChange={handleChange}
-                          isValid={touched.content && !errors.content}
-                          isInvalid={touched.content && !!errors.content}
-                        />
-                        <Form.Control.Feedback type="invalid">
-                          {errors.content}
-                        </Form.Control.Feedback>
-                      </Form.Group>
+                     
                       <Form.Group
                         as={Col}
                         md="6"

@@ -635,11 +635,11 @@ const Root = () => {
                   element={<AddProjects />}
                 />
                 <Route
-                  path={`/pages/projects/edit`}
+                  path={`/pages/projects/edit/:id`}
                   element={<EditProjects />}
                 />
                 <Route
-                  path={`/pages/publication/edit`}
+                  path={`/pages/publication/edit/:id`}
                   element={<EditPublications />}
                 />
 

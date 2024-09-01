@@ -11,11 +11,9 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
 const schema = yup.object().shape({
-  title: yup.string().required(),
   title_en: yup.string().required(),
   title_ar: yup.string().required(),
   image: yup.string().url().required(), // Validate as URL
-  description: yup.string().required(),
   description_en: yup.string().required(),
   description_ar: yup.string().required(),
 });
@@ -34,9 +32,7 @@ const EditTrainings = ({ id, itemData, viewDemoClose, setShow10 }) => {
     if (data) {
       setShow10(false);
       toast.success("This item has been successfully edited.");
-      setTimeout(() => {
         navigate("/pages/training/");
-      }, 2000);
     }
   }, [data, navigate]);
 
@@ -104,11 +100,9 @@ const EditTrainings = ({ id, itemData, viewDemoClose, setShow10 }) => {
                 setSubmitting(false);
               }}
               initialValues={{
-                title: itemData?.title || "",
                 title_en: itemData?.title_en || "",
                 title_ar: itemData?.title_ar || "",
                 image: itemData?.image || "",
-                description: itemData?.description || "",
                 description_en: itemData?.description_en || "",
                 description_ar: itemData?.description_ar || "",
               }}
@@ -126,24 +120,7 @@ const EditTrainings = ({ id, itemData, viewDemoClose, setShow10 }) => {
               }) => (
                 <Form noValidate onSubmit={handleSubmit}>
                   <Row className="mb-3">
-                    <Form.Group
-                      as={Col}
-                      md="4"
-                      controlId="validationFormikTitle"
-                      className="position-relative"
-                    >
-                      <Form.Label>Title</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="title"
-                        value={values.title}
-                        onChange={handleChange}
-                        isInvalid={!!errors.title && touched.title}
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {errors.title}
-                      </Form.Control.Feedback>
-                    </Form.Group>
+                   
                     <Form.Group
                       as={Col}
                       md="4"
@@ -242,46 +219,7 @@ const EditTrainings = ({ id, itemData, viewDemoClose, setShow10 }) => {
                     </Form.Group>
                   </Row>
                   <Row className="mb-3">
-                    <Form.Group
-                      as={Col}
-                      md="12"
-                      controlId="validationFormikDescription"
-                      className="position-relative"
-                    >
-                      <Form.Label>Description</Form.Label>
-                      <ReactQuill
-                        value={values.description}
-                        onChange={(value) =>
-                          setFieldValue("description", value)
-                        }
-                        modules={{
-                          toolbar: [
-                            [{ header: "1" }, { header: "2" }, { font: [] }],
-                            [{ size: [] }],
-                            [
-                              "bold",
-                              "italic",
-                              "underline",
-                              "strike",
-                              "blockquote",
-                            ],
-                            [
-                              { list: "ordered" },
-                              { list: "bullet" },
-                              { indent: "-1" },
-                              { indent: "+1" },
-                            ],
-                            ["link", "image"],
-                            ["clean"],
-                          ],
-                        }}
-                      />
-                      {touched.description && errors.description && (
-                        <div className="invalid-feedback d-block">
-                          {errors.description}
-                        </div>
-                      )}
-                    </Form.Group>
+                   
                     <Form.Group
                       as={Col}
                       md="12"

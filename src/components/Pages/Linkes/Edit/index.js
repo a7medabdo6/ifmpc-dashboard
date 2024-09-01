@@ -7,7 +7,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const schema = yup.object().shape({
-  name: yup.string().required("Name is required"),
   name_en: yup.string().required("Name (English) is required"),
   name_ar: yup.string().required("Name (Arabic) is required"),
   logo: yup.mixed().required("Logo is required"),
@@ -44,7 +43,6 @@ const EditLinks = ({ itemData, id, setShow10 }) => {
               validationSchema={schema}
               onSubmit={(data, { setSubmitting }) => {
                 const formData = new FormData();
-                formData.append("name", data.name);
                 formData.append("name_en", data.name_en);
                 formData.append("name_ar", data.name_ar);
                 formData.append("logo", data.logo);
@@ -62,7 +60,6 @@ const EditLinks = ({ itemData, id, setShow10 }) => {
                   });
               }}
               initialValues={{
-                name: itemData?.name || "",
                 name_en: itemData?.name_en || "",
                 name_ar: itemData?.name_ar || "",
                 logo: itemData?.logo || "",
@@ -81,24 +78,7 @@ const EditLinks = ({ itemData, id, setShow10 }) => {
               }) => (
                 <Form noValidate onSubmit={handleSubmit}>
                   <Row className="mb-3">
-                    <Form.Group
-                      as={Col}
-                      md="4"
-                      controlId="validationFormikName"
-                      className="position-relative"
-                    >
-                      <Form.Label>Name</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="name"
-                        value={values.name}
-                        onChange={handleChange}
-                        isInvalid={touched.name && !!errors.name}
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {errors.name}
-                      </Form.Control.Feedback>
-                    </Form.Group>
+                  
                     <Form.Group
                       as={Col}
                       md="4"

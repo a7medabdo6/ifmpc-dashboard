@@ -42,7 +42,7 @@ const Publications = () => {
   const [title, setTitle] = useState(false);
   useEffect(() => {
     if (title && id) {
-      navigate("/pages/publication/edit", {
+      navigate(`/pages/publication/edit/${id}`, {
         state: { id: id },
       });
     }

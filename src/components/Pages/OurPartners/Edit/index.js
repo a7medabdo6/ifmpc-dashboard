@@ -9,7 +9,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 const schema = yup.object().shape({
   image: yup.mixed().required("Image is required"),
-  name: yup.string().required("Name is required"),
   name_en: yup.string().required("English name is required"),
   name_ar: yup.string().required("Arabic name is required"),
 });
@@ -45,7 +44,6 @@ const EditOurPartners = ({ id, setShow10, itemData }) => {
               onSubmit={(data, { setSubmitting }) => {
                 const formData = new FormData();
                 formData.append("image", data.image);
-                formData.append("name", data.name);
                 formData.append("name_en", data.name_en);
                 formData.append("name_ar", data.name_ar);
 
@@ -55,7 +53,6 @@ const EditOurPartners = ({ id, setShow10, itemData }) => {
               }}
               initialValues={{
                 image: null,
-                name: itemData?.name || "",
                 name_en: itemData?.name_en || "",
                 name_ar: itemData?.name_ar || "",
               }}
@@ -91,24 +88,7 @@ const EditOurPartners = ({ id, setShow10, itemData }) => {
                         {errors.image}
                       </Form.Control.Feedback>
                     </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="6"
-                      controlId="validationFormikName"
-                      className="position-relative"
-                    >
-                      <Form.Label>Name</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="name"
-                        value={values.name}
-                        onChange={handleChange}
-                        isInvalid={!!errors.name && touched.name}
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {errors.name}
-                      </Form.Control.Feedback>
-                    </Form.Group>
+                   
                   </Row>
                   <Row className="mb-3">
                     <Form.Group

@@ -20,7 +20,6 @@ const customIcon = new L.Icon({
 });
 
 const schema = yup.object().shape({
-  location: yup.string().required(),
   location_en: yup.string().required(),
   location_ar: yup.string().required(),
   email: yup.string().email().required(),
@@ -134,7 +133,6 @@ const EditContactUs = ({ id, setShow10 }) => {
                 );
               }}
               initialValues={{
-                location: "",
                 location_en: "",
                 location_ar: "",
                 email: "user@example.com",
@@ -158,21 +156,7 @@ const EditContactUs = ({ id, setShow10 }) => {
                 return (
                   <Form noValidate onSubmit={handleSubmit}>
                     <Row className="mb-3">
-                      <Form.Group
-                        as={Col}
-                        md="4"
-                        controlId="validationFormik101"
-                        className="position-relative"
-                      >
-                        <Form.Label>Location</Form.Label>
-                        <Form.Control
-                          type="text"
-                          name="location"
-                          value={values.location}
-                          onChange={handleChange}
-                          isValid={touched.location && !errors.location}
-                        />
-                      </Form.Group>
+                     
                       <Form.Group
                         as={Col}
                         md="4"

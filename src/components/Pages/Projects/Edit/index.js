@@ -19,12 +19,12 @@ import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useParams } from 'react-router-dom';
+
 // Validation schema
 const schema = yup.object().shape({
-  name: yup.string().required("Name is required"),
   name_en: yup.string().required("English name is required"),
   name_ar: yup.string().required("Arabic name is required"),
-  content: yup.string().required("Content is required"),
   content_en: yup.string().required("English content is required"),
   content_ar: yup.string().required("Arabic content is required"),
   image: yup.string().required("Image URL is required"), // Changed to string
@@ -51,8 +51,10 @@ const schema = yup.object().shape({
 });
 
 const EditProjects = ({}) => {
+  const { id } = useParams();
+
   const location = useLocation();
-  const id = location.state?.id;
+  // const id = location.state?.id;
   const { mutate, isLoading, error, data: dataEdit } = useEditProject();
   const { mutate: mutateImage, data: dataImage } = useCreateProjectImage();
   const { data: dataone, isLoading: isLoadingOne } = useOneProject(id);
@@ -83,10 +85,8 @@ const EditProjects = ({}) => {
     setIsSubmitting(true); // Reset submitting state
 
     const jsonData = {
-      name: values.name,
       name_en: values.name_en,
       name_ar: values.name_ar,
-      content: values.content,
       content_en: values.content_en,
       content_ar: values.content_ar,
       image: values.image, // URL or path
@@ -104,7 +104,6 @@ const EditProjects = ({}) => {
       jsonData,
       id,
     };
-    console.log(id);
 
     // eslint-disable-next-line no-const-assign
     mutate(data, {
@@ -162,16 +161,12 @@ const EditProjects = ({}) => {
       toast.success("This item has been successfully edited.");
 
       // تأخير الانتقال لمدة 2 ثانية (2000 مللي ثانية)
-      setTimeout(() => {
         navigate("/pages/Projects/");
-      }, 2000); // يمكنك ضبط الوقت حسب الحاجة
     }
   }, [dataEdit, navigate]);
   const [initialValues, setInitialValues] = useState({
-    name: "",
     name_en: "",
     name_ar: "",
-    content: "",
     content_en: "",
     content_ar: "",
     image: "",
@@ -186,10 +181,8 @@ const EditProjects = ({}) => {
   useEffect(() => {
     if (dataone) {
       setInitialValues({
-        name: dataone.name || "",
         name_en: dataone.name_en || "",
         name_ar: dataone.name_ar || "",
-        content: dataone.content || "",
         content_en: dataone.content_en || "",
         content_ar: dataone.content_ar || "",
         image: dataone.images[0]?.image || "",
@@ -226,10 +219,8 @@ const EditProjects = ({}) => {
               validationSchema={schema}
               onSubmit={(values) => handleSubmit(values)}
               initialValues={{
-                name: dataone.name || "",
                 name_en: dataone.name_en || "",
                 name_ar: dataone.name_ar || "",
-                content: dataone.content || "",
                 content_en: dataone.content_en || "",
                 content_ar: dataone.content_ar || "",
                 image: dataone.images[0]?.image || "",
@@ -255,24 +246,7 @@ const EditProjects = ({}) => {
                 return (
                   <Form noValidate onSubmit={handleSubmit}>
                     <Row className="mb-3">
-                      <Form.Group
-                        as={Col}
-                        md="6"
-                        controlId="validationFormikName"
-                      >
-                        <Form.Label>Name</Form.Label>
-                        <Form.Control
-                          type="text"
-                          name="name"
-                          value={values?.name}
-                          onChange={handleChange}
-                          isValid={touched.name && !errors.name}
-                          isInvalid={!!errors.name}
-                        />
-                        <Form.Control.Feedback type="invalid">
-                          {errors.name}
-                        </Form.Control.Feedback>
-                      </Form.Group>
+                    
                       <Form.Group
                         as={Col}
                         md="6"
@@ -309,24 +283,7 @@ const EditProjects = ({}) => {
                           {errors.name_ar}
                         </Form.Control.Feedback>
                       </Form.Group>
-                      <Form.Group
-                        as={Col}
-                        md="6"
-                        controlId="validationFormikContent"
-                      >
-                        <Form.Label>Content</Form.Label>
-                        <Form.Control
-                          type="text"
-                          name="content"
-                          value={values?.content}
-                          onChange={handleChange}
-                          isValid={touched.content && !errors.content}
-                          isInvalid={!!errors.content}
-                        />
-                        <Form.Control.Feedback type="invalid">
-                          {errors.content}
-                        </Form.Control.Feedback>
-                      </Form.Group>
+                     
                       <Form.Group
                         as={Col}
                         md="6"

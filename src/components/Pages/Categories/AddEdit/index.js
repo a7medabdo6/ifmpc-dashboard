@@ -9,7 +9,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const schema = yup.object().shape({
-  name: yup.string().required(),
   name_ar: yup.string().required(),
   name_en: yup.string().required(),
   publication_count: yup.string().required(),
@@ -35,11 +34,11 @@ const AddEditcategories = () => {
       <div className="page-header">
         <div>
           <h2 className="main-content-title tx-24 mg-b-5">
-            Create / Edit categories
+            Create categories
           </h2>
           <Breadcrumb>
             <Breadcrumb.Item href="#">Pages</Breadcrumb.Item>
-            <Breadcrumb.Item active>Create / Edit categories</Breadcrumb.Item>
+            <Breadcrumb.Item active>Create categories</Breadcrumb.Item>
           </Breadcrumb>
         </div>
       </div>
@@ -58,7 +57,6 @@ const AddEditcategories = () => {
                 });
               }}
               initialValues={{
-                name: "",
                 name_ar: "",
                 name_en: "",
                 publication_count: "",
@@ -69,25 +67,7 @@ const AddEditcategories = () => {
               {({ handleSubmit, handleChange, values, touched, errors }) => (
                 <Form noValidate onSubmit={handleSubmit}>
                   <Row className="mb-3">
-                    <Form.Group
-                      as={Col}
-                      md="4"
-                      controlId="validationFormikName"
-                      className="position-relative"
-                    >
-                      <Form.Label>Name</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="name"
-                        value={values.name}
-                        onChange={handleChange}
-                        isValid={touched.name && !errors.name}
-                        isInvalid={touched.name && !!errors.name}
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {errors.name}
-                      </Form.Control.Feedback>
-                    </Form.Group>
+       
 
                     <Form.Group
                       as={Col}
@@ -188,7 +168,6 @@ const AddEditcategories = () => {
                     type="submit"
                     disabled={
                       loading ||
-                      !values.name ||
                       !values.name_ar ||
                       !values.name_en ||
                       !values.publication_count ||

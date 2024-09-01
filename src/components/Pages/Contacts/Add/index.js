@@ -19,31 +19,38 @@ const schema = yup.object().shape({
 });
 
 const AddContacts = () => {
-  const [loading, setLoading] = useState(false); // Add loading state
-  const { mutate, data, isError } = useCreateContact(); // Remove isLoading
+  const [loading, setLoading] = useState(false); 
+  const [isFormValid, setIsFormValid] = useState(false); // Add state for form validity
+  const { mutate, data, isError } = useCreateContact(); 
   const navigate = useNavigate();
 
   useEffect(() => {
     if (data) {
       toast.success("This item has been successfully created.");
-      setTimeout(() => {
         navigate("/pages/contacts/");
-      }, 2000);
     }
     if (isError) {
       toast.error("An error occurred while creating the contact.");
     }
   }, [data, isError, navigate]);
 
+  const handleInputChange = (e, handleChange, values) => {
+    handleChange(e);
+    const allFieldsFilled = Object.values(values).every(
+      (value) => value.trim() !== ""
+    );
+    setIsFormValid(allFieldsFilled);
+  };
+
   const handleSubmit = (values, { setSubmitting }) => {
-    setLoading(true); // Set loading to true before starting the mutation
+    setLoading(true); 
     mutate(values, {
       onSuccess: () => {
-        setLoading(false); // Set loading to false on successful mutation
+        setLoading(false); 
         setSubmitting(false);
       },
       onError: () => {
-        setLoading(false); // Set loading to false on error
+        setLoading(false); 
         setSubmitting(false);
       },
     });
@@ -96,7 +103,7 @@ const AddContacts = () => {
                         type="text"
                         name="first_name"
                         value={values.first_name}
-                        onChange={handleChange}
+                        onChange={(e) => handleInputChange(e, handleChange, values)}
                         isInvalid={touched.first_name && !!errors.first_name}
                       />
                       <Form.Control.Feedback type="invalid">
@@ -114,7 +121,7 @@ const AddContacts = () => {
                         type="text"
                         name="last_name"
                         value={values.last_name}
-                        onChange={handleChange}
+                        onChange={(e) => handleInputChange(e, handleChange, values)}
                         isInvalid={touched.last_name && !!errors.last_name}
                       />
                       <Form.Control.Feedback type="invalid">
@@ -132,7 +139,7 @@ const AddContacts = () => {
                         type="email"
                         name="email"
                         value={values.email}
-                        onChange={handleChange}
+                        onChange={(e) => handleInputChange(e, handleChange, values)}
                         isInvalid={touched.email && !!errors.email}
                       />
                       <Form.Control.Feedback type="invalid">
@@ -152,7 +159,7 @@ const AddContacts = () => {
                         type="text"
                         name="phone"
                         value={values.phone}
-                        onChange={handleChange}
+                        onChange={(e) => handleInputChange(e, handleChange, values)}
                         isInvalid={touched.phone && !!errors.phone}
                       />
                       <Form.Control.Feedback type="invalid">
@@ -170,7 +177,7 @@ const AddContacts = () => {
                         as="textarea"
                         name="description"
                         value={values.description}
-                        onChange={handleChange}
+                        onChange={(e) => handleInputChange(e, handleChange, values)}
                         isInvalid={touched.description && !!errors.description}
                       />
                       <Form.Control.Feedback type="invalid">
@@ -180,7 +187,7 @@ const AddContacts = () => {
                   </Row>
                   <Button
                     type="submit"
-                    disabled={isSubmitting || loading} // Disable button while submitting or loading
+                    disabled={isSubmitting || loading || !isFormValid} // Disable button if form is invalid
                   >
                     {isSubmitting || loading ? (
                       <div className="d-flex align-items-center">

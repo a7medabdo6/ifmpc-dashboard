@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { Breadcrumb, Button, Col, Row, Spinner } from "react-bootstrap";
+import { Breadcrumb, Button, Col, Row, Spinner, Form } from "react-bootstrap";
 import { Formik } from "formik";
-import { Form } from "react-bootstrap";
 import * as yup from "yup";
 import { useEditContact } from "../../../../Api/Contacts";
 import { ToastContainer, toast } from "react-toastify";
@@ -20,19 +19,29 @@ const schema = yup.object().shape({
 
 const EditContacts = ({ id, itemData, viewDemoClose, setShow10 }) => {
   const [loading, setLoading] = useState(false);
+  const [isFormValid, setIsFormValid] = useState(false);
   const { mutate, data } = useEditContact();
 
   useEffect(() => {
     if (data !== undefined) {
       toast.success("This item has been successfully edited.");
-      setTimeout(() => {
         setShow10(false);
-      }, 2000);
     }
   }, [data, setShow10]);
 
+  useEffect(() => {
+    // التحقق من صحة الحقول المطلوبة
+    const isValid =
+      itemData.first_name.trim() !== "" &&
+      itemData.last_name.trim() !== "" &&
+      itemData.email.trim() !== "" &&
+      itemData.phone.trim() !== "" &&
+      itemData.description.trim() !== "";
+    setIsFormValid(isValid);
+  }, [itemData]);
+
   const handleSubmit = (values) => {
-    setLoading(true); // Set loading to true before starting the mutation
+    setLoading(true);
     mutate(
       {
         data: values,
@@ -40,10 +49,10 @@ const EditContacts = ({ id, itemData, viewDemoClose, setShow10 }) => {
       },
       {
         onSuccess: () => {
-          setLoading(false); // Set loading to false on successful mutation
+          setLoading(false);
         },
         onError: () => {
-          setLoading(false); // Set loading to false on error
+          setLoading(false);
         },
       }
     );
@@ -65,7 +74,13 @@ const EditContacts = ({ id, itemData, viewDemoClose, setShow10 }) => {
                 description: itemData?.description || "",
               }}
             >
-              {({ handleSubmit, handleChange, values, touched, errors }) => (
+              {({
+                handleSubmit,
+                handleChange,
+                values,
+                touched,
+                errors,
+              }) => (
                 <Form noValidate onSubmit={handleSubmit}>
                   <Row className="mb-3">
                     <Form.Group
@@ -79,8 +94,20 @@ const EditContacts = ({ id, itemData, viewDemoClose, setShow10 }) => {
                         type="text"
                         name="first_name"
                         value={values.first_name}
-                        onChange={handleChange}
-                        isInvalid={touched.first_name && !!errors.first_name}
+                        onChange={(e) => {
+                          handleChange(e);
+                          // تحديث التحقق من صحة الحقول عند تغيير المدخلات
+                          setIsFormValid(
+                            e.target.value.trim() !== "" &&
+                              values.last_name.trim() !== "" &&
+                              values.email.trim() !== "" &&
+                              values.phone.trim() !== "" &&
+                              values.description.trim() !== ""
+                          );
+                        }}
+                        isInvalid={
+                          touched.first_name && !!errors.first_name
+                        }
                       />
                       <Form.Control.Feedback type="invalid">
                         {errors.first_name}
@@ -97,7 +124,16 @@ const EditContacts = ({ id, itemData, viewDemoClose, setShow10 }) => {
                         type="text"
                         name="last_name"
                         value={values.last_name}
-                        onChange={handleChange}
+                        onChange={(e) => {
+                          handleChange(e);
+                          setIsFormValid(
+                            values.first_name.trim() !== "" &&
+                              e.target.value.trim() !== "" &&
+                              values.email.trim() !== "" &&
+                              values.phone.trim() !== "" &&
+                              values.description.trim() !== ""
+                          );
+                        }}
                         isInvalid={touched.last_name && !!errors.last_name}
                       />
                       <Form.Control.Feedback type="invalid">
@@ -115,7 +151,16 @@ const EditContacts = ({ id, itemData, viewDemoClose, setShow10 }) => {
                         type="email"
                         name="email"
                         value={values.email}
-                        onChange={handleChange}
+                        onChange={(e) => {
+                          handleChange(e);
+                          setIsFormValid(
+                            values.first_name.trim() !== "" &&
+                              values.last_name.trim() !== "" &&
+                              e.target.value.trim() !== "" &&
+                              values.phone.trim() !== "" &&
+                              values.description.trim() !== ""
+                          );
+                        }}
                         isInvalid={touched.email && !!errors.email}
                       />
                       <Form.Control.Feedback type="invalid">
@@ -135,7 +180,16 @@ const EditContacts = ({ id, itemData, viewDemoClose, setShow10 }) => {
                         type="text"
                         name="phone"
                         value={values.phone}
-                        onChange={handleChange}
+                        onChange={(e) => {
+                          handleChange(e);
+                          setIsFormValid(
+                            values.first_name.trim() !== "" &&
+                              values.last_name.trim() !== "" &&
+                              values.email.trim() !== "" &&
+                              e.target.value.trim() !== "" &&
+                              values.description.trim() !== ""
+                          );
+                        }}
                         isInvalid={touched.phone && !!errors.phone}
                       />
                       <Form.Control.Feedback type="invalid">
@@ -153,7 +207,16 @@ const EditContacts = ({ id, itemData, viewDemoClose, setShow10 }) => {
                         as="textarea"
                         name="description"
                         value={values.description}
-                        onChange={handleChange}
+                        onChange={(e) => {
+                          handleChange(e);
+                          setIsFormValid(
+                            values.first_name.trim() !== "" &&
+                              values.last_name.trim() !== "" &&
+                              values.email.trim() !== "" &&
+                              values.phone.trim() !== "" &&
+                              e.target.value.trim() !== ""
+                          );
+                        }}
                         isInvalid={touched.description && !!errors.description}
                       />
                       <Form.Control.Feedback type="invalid">
@@ -169,7 +232,10 @@ const EditContacts = ({ id, itemData, viewDemoClose, setShow10 }) => {
                     >
                       Cancel
                     </Button>
-                    <Button type="submit" disabled={loading}>
+                    <Button
+                      type="submit"
+                      disabled={loading || !isFormValid} // تعطيل الزر إذا كان النموذج غير صالح
+                    >
                       {loading ? (
                         <div className="d-flex align-items-center">
                           <Spinner

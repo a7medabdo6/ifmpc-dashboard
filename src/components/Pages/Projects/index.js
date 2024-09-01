@@ -30,7 +30,7 @@ const Projects = () => {
   const [title, setTitle] = useState(false);
   useEffect(() => {
     if (title && id) {
-      navigate("/pages/Projects/edit", {
+      navigate(`/pages/Projects/edit/${id}`, {
         state: { id: id },
       });
     }
