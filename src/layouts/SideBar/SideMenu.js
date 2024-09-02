@@ -13,7 +13,7 @@ export const MENUITEMS = [
       {
         path: `/pages/categories`,
         type: "link",
-        icon: "ti-list",
+        icon: "fas fa-th-list",
 
         active: false,
         selected: false,
@@ -22,7 +22,7 @@ export const MENUITEMS = [
       {
         path: `/pages/tages`,
         type: "link",
-        icon: "ti-list",
+        icon: "fas fa-tags",
 
         active: false,
         selected: false,
@@ -31,7 +31,7 @@ export const MENUITEMS = [
       {
         path: `/pages/training`,
         type: "link",
-        icon: "ti-list",
+        icon: "fas fa-chalkboard-teacher",
 
         active: false,
         selected: false,
@@ -40,7 +40,7 @@ export const MENUITEMS = [
       {
         path: `/pages/settingspage`,
         type: "link",
-        icon: "ti-list",
+        icon: "fas fa-cog",
 
         active: false,
         selected: false,
@@ -58,7 +58,7 @@ export const MENUITEMS = [
       {
         path: `/pages/projects`,
         type: "link",
-        icon: "ti-list",
+        icon: "fas fa-project-diagram",
 
         active: false,
         selected: false,
@@ -67,7 +67,7 @@ export const MENUITEMS = [
       {
         path: `/pages/publications`,
         type: "link",
-        icon: "ti-list",
+        icon: "fas fa-book",
 
         active: false,
         selected: false,
@@ -76,7 +76,7 @@ export const MENUITEMS = [
       {
         path: `/pages/ourpartners`,
         type: "link",
-        icon: "ti-list",
+        icon: "fas fa-handshake",
 
         active: false,
         selected: false,
@@ -85,7 +85,7 @@ export const MENUITEMS = [
       {
         path: `/pages/linkes`,
         type: "link",
-        icon: "ti-list",
+        icon: "fas fa-link",
 
         active: false,
         selected: false,
@@ -94,7 +94,7 @@ export const MENUITEMS = [
       {
         path: `/pages/contactus`,
         type: "link",
-        icon: "ti-list",
+        icon: "fas fa-envelope",
 
         active: false,
         selected: false,
@@ -103,7 +103,7 @@ export const MENUITEMS = [
       {
         path: `/pages/users`,
         type: "link",
-        icon: "ti-list",
+        icon: "fas fa-users",
 
         active: false,
         selected: false,
@@ -113,7 +113,7 @@ export const MENUITEMS = [
       {
         path: `/pages/authors`,
         type: "link",
-        icon: "ti-list",
+        icon: "fas fa-user",
 
         active: false,
         selected: false,
@@ -123,7 +123,7 @@ export const MENUITEMS = [
       {
         path: `/pages/contacts`,
         type: "link",
-        icon: "ti-user",
+        icon: "fas fa-address-book",
 
         active: false,
         selected: false,

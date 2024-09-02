@@ -7,11 +7,8 @@ const ProtectedRoute = ({ children }) => {
   console.log(isAuthenticated);
 
   if (!isAuthenticated) {
-    return <Navigate to="/ifmpc/preview" />;
-  } 
-
-  
-  return children;
+    return <Navigate to="/" />;
+  } else return children;
 };
 
 export default ProtectedRoute;

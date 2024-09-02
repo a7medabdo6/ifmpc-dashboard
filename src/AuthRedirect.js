@@ -17,7 +17,7 @@ const AuthRedirect = () => {
         const { isAuthenticated } = JSON.parse(authState);
         if (isAuthenticated || authState) {
           dispatch(login(JSON.parse(authState).user)); // Restore user data if needed
-          navigate("/pages/categories/"); // Redirect to dashboard
+          // navigate("/pages/categories/"); // Redirect to dashboard
           setHasRedirected(true); // Mark as redirected
         }
       } else {
