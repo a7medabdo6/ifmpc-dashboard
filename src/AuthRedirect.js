@@ -8,6 +8,7 @@ const AuthRedirect = () => {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const [hasRedirected, setHasRedirected] = useState(false);
+console.log(hasRedirected);
 
   useEffect(() => {
     if (!hasRedirected) {
