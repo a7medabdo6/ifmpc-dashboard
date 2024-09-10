@@ -10,6 +10,9 @@ import { store } from "./store";
 import AddEditcategories from "./components/Pages/Categories/AddEdit";
 import Categories from "./components/Pages/Categories";
 import AddContacts from "./components/Pages/Contacts/Add";
+import AddQuestions from "./components/Pages/Questions/Add";
+
+
 import Tages from "./components/Pages/Tags";
 import AddTags from "./components/Pages/Tags/Add";
 import Projects from "./components/Pages/Projects";
@@ -48,6 +51,8 @@ const Chat = React.lazy(() => import("./components/AdvanceUI/Chat/Chat"));
 //   import("./components/AdvanceUI/Contacts/Contacts")
 // );
 const Contacts = React.lazy(() => import("./components/Pages/Contacts"));
+
+const Questions = React.lazy(() => import("./components/Pages/Questions"));
 
 const Trainings = React.lazy(() => import("./components/Pages/Training"));
 const AddTraining = React.lazy(() => import("./components/Pages/Training/Add"));
@@ -648,6 +653,8 @@ const Root = () => {
                   element={<AddEditcategories />}
                 />
                 <Route path={`/pages/contacts`} element={<Contacts />} />
+                <Route path={`/pages/questions`} element={<Questions />} />
+
                 <Route path={`/pages/training`} element={<Trainings />} />
                 <Route path={`/pages/settingspage`} element={<Sliders />} />
                 <Route path={`/pages/ourpartners`} element={<OurPartners />} />
@@ -674,6 +681,10 @@ const Root = () => {
                 <Route
                   path={`/pages/contacts/create`}
                   element={<AddContacts />}
+                />
+                  <Route
+                  path={`/pages/questions/create`}
+                  element={<AddQuestions />}
                 />
                 <Route
                   path={`/pages/training/create`}

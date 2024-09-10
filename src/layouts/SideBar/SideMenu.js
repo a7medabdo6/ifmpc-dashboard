@@ -129,6 +129,15 @@ export const MENUITEMS = [
         selected: false,
         title: "Contacts",
       },
+      {
+        path: `/pages/questions`,
+        type: "link",
+        icon: "fas fa-address-book",
+
+        active: false,
+        selected: false,
+        title: "Questions",
+      },
       // {
       //   title: "ECommerce",
       //   icon: "ti-shopping-cart-full",
