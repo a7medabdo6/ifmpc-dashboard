@@ -8,10 +8,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const schema = yup.object().shape({
-  name: yup.string().required("Name is required"),
   name_en: yup.string().required("English name is required"),
   name_ar: yup.string().required("Arabic name is required"),
-  post_count: yup.number().required("Post count is required").positive("Post count must be a positive number").integer("Post count must be an integer"),
 });
 
 const EditTags = ({ itemData, id, setShow10 }) => {
@@ -50,10 +48,8 @@ const EditTags = ({ itemData, id, setShow10 }) => {
                 mutate({ data, id });
               }}
               initialValues={{
-                name: itemData?.name || "",
                 name_en: itemData?.name_en || "",
                 name_ar: itemData?.name_ar || "",
-                post_count: itemData?.post_count || 0,
               }}
             >
               {({
@@ -64,28 +60,13 @@ const EditTags = ({ itemData, id, setShow10 }) => {
                 errors,
               }) => {
                 const isFormInvalid =
-                  !values.name ||
                   !values.name_en ||
-                  !values.name_ar ||
-                  !values.post_count;
+                  !values.name_ar 
 
                 return (
                   <Form noValidate onSubmit={handleSubmit}>
                     <Row className="mb-3">
-                      <Form.Group as={Col} md="4" controlId="validationFormik101">
-                        <Form.Label>Name</Form.Label>
-                        <Form.Control
-                          type="text"
-                          name="name"
-                          value={values.name}
-                          onChange={handleChange}
-                          isValid={touched.name && !errors.name}
-                          isInvalid={touched.name && !!errors.name}
-                        />
-                        <Form.Control.Feedback type="invalid">
-                          {errors.name}
-                        </Form.Control.Feedback>
-                      </Form.Group>
+                 
                       <Form.Group as={Col} md="4" controlId="validationFormik102">
                         <Form.Label>Name (English)</Form.Label>
                         <Form.Control
@@ -115,22 +96,7 @@ const EditTags = ({ itemData, id, setShow10 }) => {
                         </Form.Control.Feedback>
                       </Form.Group>
                     </Row>
-                    <Row className="mb-3">
-                      <Form.Group as={Col} md="6" controlId="validationFormik104">
-                        <Form.Label>Post Count</Form.Label>
-                        <Form.Control
-                          type="number"
-                          name="post_count"
-                          value={values.post_count}
-                          onChange={handleChange}
-                          isValid={touched.post_count && !errors.post_count}
-                          isInvalid={touched.post_count && !!errors.post_count}
-                        />
-                        <Form.Control.Feedback type="invalid">
-                          {errors.post_count}
-                        </Form.Control.Feedback>
-                      </Form.Group>
-                    </Row>
+                 
                     <Button type="submit" disabled={isFormInvalid || isSubmitting}>
                       {isSubmitting ? (
                         <Spinner

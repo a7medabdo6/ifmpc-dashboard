@@ -2059,3 +2059,12 @@ ol.progtrckr li.progtrckr-done:before {
   text-overflow: ellipsis;
   /* overflow: hidden; */
 }
+
+.ql-snow .ql-editor[dir="rtl"] {
+  text-align: right;
+}
+
+/* تطبيق المحاذاة للنصوص الأخرى (لنفترض أنها الإنجليزية) */
+.ql-snow .ql-editor[dir="ltr"] {
+  text-align: left;
+}

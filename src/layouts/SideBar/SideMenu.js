@@ -132,12 +132,24 @@ export const MENUITEMS = [
       {
         path: `/pages/questions`,
         type: "link",
-        icon: "fas fa-address-book",
+        icon: "far fa-list-alt",
 
         active: false,
         selected: false,
         title: "Questions",
       },
+
+      {
+        path: `/pages/uploadimage`,
+        type: "link",
+        icon: "fas fa-file-upload",
+
+        active: false,
+        selected: false,
+        title: "uploadimage",
+      },
+
+      
       // {
       //   title: "ECommerce",
       //   icon: "ti-shopping-cart-full",

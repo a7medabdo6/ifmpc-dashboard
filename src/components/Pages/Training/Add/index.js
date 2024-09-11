@@ -37,14 +37,8 @@ const AddTrainings = () => {
   const handleFileChange = (event) => {
     const file = event.currentTarget.files[0];
     if (file) {
-      if (file.size > 5 * 1024 * 1024) {
-        alert("File size is too large. Max size is 5MB.");
-        return;
-      }
-      if (!["image/jpeg", "image/png"].includes(file.type)) {
-        alert("Unsupported file format. Only JPEG and PNG are allowed.");
-        return;
-      }
+   
+    
       setFile(file);
     }
   };

@@ -10,7 +10,6 @@ import "react-toastify/dist/ReactToastify.css";
 const schema = yup.object().shape({
   name_en: yup.string().required("Name (English) is required"),
   name_ar: yup.string().required("Name (Arabic) is required"),
-  post_count: yup.number().required("Post count is required").positive("Post count must be a positive number"),
 });
 
 const AddTags = () => {
@@ -54,7 +53,6 @@ const AddTags = () => {
               initialValues={{
                 name_en: "",
                 name_ar: "",
-                post_count: 1,
               }}
               onSubmit={(values, { setSubmitting }) => {
                 setSubmitting(false);
@@ -65,8 +63,7 @@ const AddTags = () => {
                 // Check if any of the required fields are empty
                 const isFormInvalid =
                   !values.name_en ||
-                  !values.name_ar ||
-                  !values.post_count;
+                  !values.name_ar 
 
                 return (
                   <Form noValidate onSubmit={handleSubmit}>
@@ -109,24 +106,7 @@ const AddTags = () => {
                       </Form.Group>
                     </Row>
                     <Row className="mb-3">
-                      <Form.Group
-                        as={Col}
-                        md="6"
-                        controlId="validationFormik104"
-                        className="position-relative"
-                      >
-                        <Form.Label>Post Count</Form.Label>
-                        <Form.Control
-                          type="number"
-                          name="post_count"
-                          value={values.post_count}
-                          onChange={handleChange}
-                          isInvalid={touched.post_count && !!errors.post_count}
-                        />
-                        <Form.Control.Feedback type="invalid">
-                          {errors.post_count}
-                        </Form.Control.Feedback>
-                      </Form.Group>
+                   
                     </Row>
                     <Button type="submit" disabled={loading || isFormInvalid}>
                       {loading ? (

@@ -8,6 +8,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Provider, useSelector } from "react-redux";
 import { store } from "./store";
 import AddEditcategories from "./components/Pages/Categories/AddEdit";
+import UploadImage from "./components/Pages/UploadImgae";
+
+
 import Categories from "./components/Pages/Categories";
 import AddContacts from "./components/Pages/Contacts/Add";
 import AddQuestions from "./components/Pages/Questions/Add";
@@ -638,6 +641,10 @@ const Root = () => {
                 <Route
                   path={`/pages/projects/create`}
                   element={<AddProjects />}
+                />
+                <Route
+                  path={`/pages/uploadimage`}
+                  element={<UploadImage />}
                 />
                 <Route
                   path={`/pages/projects/edit/:id`}

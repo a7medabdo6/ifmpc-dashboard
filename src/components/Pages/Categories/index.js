@@ -437,11 +437,7 @@ const Categories = () => {
                             <span className="mt-1">{item.name_ar}</span>
                           </div>
                         </td>
-                        <td className="font-weight-semibold">
-                          <div className="d-flex">
-                            <span className="mt-1">{item.project_count}</span>
-                          </div>
-                        </td>
+                      
                         <td className="font-weight-semibold">
                           <div className="d-flex">
                             <span className="mt-1">

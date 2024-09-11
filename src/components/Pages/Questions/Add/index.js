@@ -8,26 +8,20 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const schema = yup.object().shape({
-  first_name: yup.string().required("First name is required"),
-  last_name: yup.string().required("Last name is required"),
-  email: yup
-    .string()
-    .email("Invalid email address")
-    .required("Email is required"),
-  phone: yup.string().required("Phone number is required"),
-  description: yup.string().required("Description is required"),
+  name: yup.string().required("Name is required"),
+  desc: yup.string().required("Description is required"),
 });
 
 const AddQuestions = () => {
   const [loading, setLoading] = useState(false); 
-  const [isFormValid, setIsFormValid] = useState(false); // Add state for form validity
+  const [isFormValid, setIsFormValid] = useState(false); 
   const { mutate, data, isError } = useCreateQuestion(); 
   const navigate = useNavigate();
 
   useEffect(() => {
     if (data) {
       toast.success("This item has been successfully created.");
-        navigate("/pages/Questions/");
+      navigate("/pages/Questions/");
     }
     if (isError) {
       toast.error("An error occurred while creating the Question.");
@@ -75,11 +69,8 @@ const AddQuestions = () => {
               validationSchema={schema}
               onSubmit={handleSubmit}
               initialValues={{
-                first_name: "",
-                last_name: "",
-                email: "user@example.com",
-                phone: "",
-                description: "",
+                name: "",
+                desc: "",
               }}
             >
               {({
@@ -98,96 +89,40 @@ const AddQuestions = () => {
                       controlId="validationFormik101"
                       className="position-relative"
                     >
-                      <Form.Label>First Name</Form.Label>
+                      <Form.Label>Name</Form.Label>
                       <Form.Control
                         type="text"
-                        name="first_name"
-                        value={values.first_name}
+                        name="name"
+                        value={values.name}
                         onChange={(e) => handleInputChange(e, handleChange, values)}
-                        isInvalid={touched.first_name && !!errors.first_name}
+                        isInvalid={touched.name && !!errors.name}
                       />
                       <Form.Control.Feedback type="invalid">
-                        {errors.first_name}
-                      </Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="4"
-                      controlId="validationFormik102"
-                      className="position-relative"
-                    >
-                      <Form.Label>Last Name</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="last_name"
-                        value={values.last_name}
-                        onChange={(e) => handleInputChange(e, handleChange, values)}
-                        isInvalid={touched.last_name && !!errors.last_name}
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {errors.last_name}
-                      </Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group
-                      as={Col}
-                      md="4"
-                      controlId="validationFormikEmail"
-                      className="position-relative"
-                    >
-                      <Form.Label>Email</Form.Label>
-                      <Form.Control
-                        type="email"
-                        name="email"
-                        value={values.email}
-                        onChange={(e) => handleInputChange(e, handleChange, values)}
-                        isInvalid={touched.email && !!errors.email}
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {errors.email}
-                      </Form.Control.Feedback>
-                    </Form.Group>
-                  </Row>
-                  <Row className="mb-3">
-                    <Form.Group
-                      as={Col}
-                      md="4"
-                      controlId="validationFormik103"
-                      className="position-relative"
-                    >
-                      <Form.Label>Phone</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="phone"
-                        value={values.phone}
-                        onChange={(e) => handleInputChange(e, handleChange, values)}
-                        isInvalid={touched.phone && !!errors.phone}
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {errors.phone}
+                        {errors.name}
                       </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group
                       as={Col}
                       md="8"
-                      controlId="validationFormik104"
+                      controlId="validationFormik102"
                       className="position-relative"
                     >
                       <Form.Label>Description</Form.Label>
                       <Form.Control
                         as="textarea"
-                        name="description"
-                        value={values.description}
+                        name="desc"
+                        value={values.desc}
                         onChange={(e) => handleInputChange(e, handleChange, values)}
-                        isInvalid={touched.description && !!errors.description}
+                        isInvalid={touched.desc && !!errors.desc}
                       />
                       <Form.Control.Feedback type="invalid">
-                        {errors.description}
+                        {errors.desc}
                       </Form.Control.Feedback>
                     </Form.Group>
                   </Row>
                   <Button
                     type="submit"
-                    disabled={isSubmitting || loading || !isFormValid} // Disable button if form is invalid
+                    disabled={isSubmitting || loading || !isFormValid} 
                   >
                     {isSubmitting || loading ? (
                       <div className="d-flex align-items-center">

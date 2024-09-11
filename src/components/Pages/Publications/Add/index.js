@@ -84,6 +84,16 @@ const AddPublications = () => {
       navigate("/pages/publications/");
     }
   }, [dataOfCreatePub, navigate]);
+  
+  const modules = {
+    toolbar: [
+     [{ header: [1, 2, 3, 4, 5, 6, false] }],
+     ["bold", "italic", "underline", "strike", "blockquote"],
+     [{ align: ["right", "center", "justify"] }],
+     [{ list: "ordered" }, { list: "bullet" }],
+     ["link", "image"],
+    ],
+   };
   return (
     <Fragment>
       <div className="page-header">
@@ -186,7 +196,7 @@ const AddPublications = () => {
                             setFieldValue("content_en", value)
                           }
                           theme="snow"
-                          modules={{ toolbar: true }}
+                          modules={modules}
                         />
                         {touched.content_en && errors.content_en && (
                           <div className="invalid-feedback">
@@ -206,8 +216,8 @@ const AddPublications = () => {
                             setFieldValue("content_ar", value)
                           }
                           theme="snow"
-                          modules={{ toolbar: true }}
-                        />
+                          modules={modules}
+                          />
                         {touched.content_ar && errors.content_ar && (
                           <div className="invalid-feedback">
                             {errors.content_ar}

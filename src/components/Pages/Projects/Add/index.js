@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect,useRef } from "react";
 import { Breadcrumb, Button, Col, Spinner, Row } from "react-bootstrap";
 import { Formik, FieldArray } from "formik";
 import { Form } from "react-bootstrap";
@@ -76,8 +76,9 @@ const AddProjects = () => {
       label: AUTH.name,
       value: AUTH.id,
     })) || [];
-
+const [values,setvalues] = useState()
   const handleSubmit = (values) => {
+    setvalues(values)
     setIsSubmitting(true); // Set submitting state to true
 
     const jsonData = {
@@ -157,6 +158,29 @@ const AddProjects = () => {
     }
   }, [dataOfCreatProject, navigate]);
 
+  const modules = {
+    toolbar: [
+     [{ header: [1, 2, 3, 4, 5, 6, false] }],
+     ["bold", "italic", "underline", "strike", "blockquote"],
+     [{ align: ["right", "center", "justify"] }],
+     [{ list: "ordered" }, { list: "bullet" }],
+     ["link", "image"],
+    ],
+   };
+   const quillRef = useRef(null);
+   useEffect(() => {
+    const quill = quillRef.current.getEditor();
+    const editor = quill.root;
+
+    // تعيين اتجاه النص بناءً على اللغة
+    if (values?.content_ar) {
+      console.log(values?.content_ar);
+      
+      editor.setAttribute('dir', 'rtl');
+    } else {
+      editor.setAttribute('dir', 'ltr');
+    }
+  }, [values?.content_ar]);
   return (
     <Fragment>
       <div className="page-header">
@@ -200,6 +224,9 @@ const AddProjects = () => {
                 const isFormValid = !Object.values(values).some(
                   (value) => value === "" || value === null
                 );
+                setvalues(values)
+
+               
                 return (
                   <Form noValidate onSubmit={handleSubmit}>
                     <Row className="mb-3">
@@ -253,6 +280,8 @@ const AddProjects = () => {
                             setFieldValue("content_en", value)
                           }
                           className="react-quill"
+                          modules={modules}
+
                         />
                         {touched.content_en && errors.content_en && (
                           <div className="invalid-feedback d-block">
@@ -272,6 +301,11 @@ const AddProjects = () => {
                             setFieldValue("content_ar", value)
                           }
                           className="react-quill"
+                          modules={modules}
+                          ref={quillRef}
+
+
+
                         />
                         {touched.content_ar && errors.content_ar && (
                           <div className="invalid-feedback d-block">
