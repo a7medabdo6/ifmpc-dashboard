@@ -419,8 +419,7 @@ const Categories = () => {
                     <tr>
                       <th className="wd-lg-10p">Name_en</th>
                       <th className="wd-lg-10p">Name_ar</th>
-                      <th className="wd-lg-20p">project_count</th>
-                      <th className="wd-lg-20p ">publication_count</th>
+                     
                       <th className="wd-lg-20p">Actions</th>
                     </tr>
                   </thead>
@@ -438,13 +437,7 @@ const Categories = () => {
                           </div>
                         </td>
                       
-                        <td className="font-weight-semibold">
-                          <div className="d-flex">
-                            <span className="mt-1">
-                              {item.publication_count}
-                            </span>
-                          </div>
-                        </td>
+                    
                         <td className="font-weight-semibold">
                           <div className="d-flex">
                             <Button

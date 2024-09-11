@@ -73,13 +73,28 @@ const AddTrainings = () => {
   
   const modules = {
     toolbar: [
-     [{ header: [1, 2, 3, 4, 5, 6, false] }],
-     ["bold", "italic", "underline", "strike", "blockquote"],
-     [{ align: ["right", "center", "justify"] }],
-     [{ list: "ordered" }, { list: "bullet" }],
-     ["link", "image"],
+      [{ header: "1" }, { header: "2" }, { font: [] }],
+      [{ size: [] }],
+      [
+        "bold",
+        "italic",
+        "underline",
+        "strike",
+        "blockquote",
+      ],
+      [{ align: ["right", "center", "justify"] }],
+
+      [
+        { list: "ordered" },
+        { list: "bullet" },
+        { indent: "-1" },
+        { indent: "+1" },
+      ],
+      ["link", "image", "video"], // Add video option here
+      ["clean"],
     ],
-   };
+  };
+  
    const quillRef = useRef(null);
    useEffect(() => {
     const quill = quillRef.current.getEditor();
@@ -259,27 +274,8 @@ const AddTrainings = () => {
                           onChange={(value) =>
                             setFieldValue("description_en", value)
                           }
-                          modules={{
-                            toolbar: [
-                              [{ header: "1" }, { header: "2" }, { font: [] }],
-                              [{ size: [] }],
-                              [
-                                "bold",
-                                "italic",
-                                "underline",
-                                "strike",
-                                "blockquote",
-                              ],
-                              [
-                                { list: "ordered" },
-                                { list: "bullet" },
-                                { indent: "-1" },
-                                { indent: "+1" },
-                              ],
-                              ["link", "image"],
-                              ["clean"],
-                            ],
-                          }}
+                                                    modules={modules}
+
                         />
                         {touched.description_en && errors.description_en && (
                           <div className="invalid-feedback d-block">
