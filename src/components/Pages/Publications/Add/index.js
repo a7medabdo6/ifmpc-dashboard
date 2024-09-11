@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState,useRef } from "react";
 import { Breadcrumb, Button, Col, Row, Spinner } from "react-bootstrap";
 import { Formik, FieldArray } from "formik";
 import { Form } from "react-bootstrap";
@@ -61,6 +61,7 @@ const AddPublications = () => {
       label: AUTH.name,
       value: AUTH.id,
     })) || [];
+    const [values,setvalues] = useState()
 
   const handleSubmit = (data) => {
     setIsSubmitting(true);
@@ -94,6 +95,19 @@ const AddPublications = () => {
      ["link", "image"],
     ],
    };
+   const quillRef = useRef(null);
+   useEffect(() => {
+    const quill = quillRef.current.getEditor();
+    const editor = quill.root;
+
+    // تعيين اتجاه النص بناءً على اللغة
+    if (values?.content_ar) {
+      
+      editor.setAttribute('dir', 'rtl');
+    } else {
+      editor.setAttribute('dir', 'ltr');
+    }
+  }, [values?.content_ar]);
   return (
     <Fragment>
       <div className="page-header">
@@ -144,6 +158,8 @@ const AddPublications = () => {
                 const isFormValid = !Object.values(values).some(
                   (value) => value === "" || value === null
                 );
+                setvalues(values)
+
                 return (
                   <Form noValidate onSubmit={handleSubmit}>
                     {/* Existing fields */}
@@ -216,7 +232,9 @@ const AddPublications = () => {
                             setFieldValue("content_ar", value)
                           }
                           theme="snow"
+                          className="react-quill"
                           modules={modules}
+                          ref={quillRef}
                           />
                         {touched.content_ar && errors.content_ar && (
                           <div className="invalid-feedback">

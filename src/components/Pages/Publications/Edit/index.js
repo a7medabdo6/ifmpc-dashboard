@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState ,useRef} from "react";
 import { Breadcrumb, Button, Col, Row, Spinner } from "react-bootstrap";
 import { Formik, FieldArray } from "formik";
 import { Form } from "react-bootstrap";
@@ -112,6 +112,20 @@ const EditPublications = () => {
      ["link", "image"],
     ],
    };
+   const quillRef = useRef(null);
+   useEffect(() => {
+    const quill = quillRef?.current?.getEditor();
+    
+    if (quill) { // Ensure quill is defined
+      const editor = quill.root;
+      if (dataone?.content_ar && dataone) {
+        console.log(dataone?.content_ar);
+        editor.setAttribute('dir', 'rtl'); // Set text direction to RTL
+      } else {
+        editor.setAttribute('dir', 'ltr'); // Default to LTR
+      }
+    }
+  }, [dataone?.content_ar, dataone]);
   if (!dataone) {
     return <div>loading...</div>;
   }
@@ -241,8 +255,10 @@ const EditPublications = () => {
                             setFieldValue("content_ar", value)
                           }
                           theme="snow"
+                          className="react-quill"
                           modules={modules}
-                        />
+                          ref={quillRef}        
+                                                  />
                         {touched.content_ar && errors.content_ar && (
                           <div className="invalid-feedback">
                             {errors.content_ar}

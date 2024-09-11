@@ -195,7 +195,6 @@ import { useNavigate } from "react-router-dom";
 const schema = yup.object().shape({
   name_en: yup.string().required("Name (English) is required"),
   name_ar: yup.string().required("Name (Arabic) is required"),
-  publication_count: yup.string().required("Publication count is required"),
 });
 
 const Editcategories = ({ id, itemData, viewDemoClose, setShow10 }) => {
@@ -228,7 +227,6 @@ const Editcategories = ({ id, itemData, viewDemoClose, setShow10 }) => {
               initialValues={{
                 name_en: itemData?.name_en || "",
                 name_ar: itemData?.name_ar || "",
-                publication_count: itemData?.publication_count || "",
               }}
             >
               {({
@@ -281,31 +279,7 @@ const Editcategories = ({ id, itemData, viewDemoClose, setShow10 }) => {
                     </Form.Group>
                   </Row>
 
-                  <Row className="mb-3">
-                    <Form.Group
-                      as={Col}
-                      md="4"
-                      controlId="validationFormik104"
-                      className="position-relative"
-                    >
-                      <Form.Label>Publication Count</Form.Label>
-                      <Form.Control
-                        type="number"
-                        name="publication_count"
-                        value={values.publication_count}
-                        onChange={handleChange}
-                        isInvalid={
-                          touched.publication_count &&
-                          !!errors.publication_count
-                        }
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {errors.publication_count}
-                      </Form.Control.Feedback>
-                    </Form.Group>
-
                  
-                  </Row>
 
                   <div className="d-flex flex-row-reverse">
                     <Button

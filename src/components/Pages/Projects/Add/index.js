@@ -174,7 +174,6 @@ const [values,setvalues] = useState()
 
     // تعيين اتجاه النص بناءً على اللغة
     if (values?.content_ar) {
-      console.log(values?.content_ar);
       
       editor.setAttribute('dir', 'rtl');
     } else {

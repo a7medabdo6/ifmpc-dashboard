@@ -211,7 +211,6 @@ import "react-toastify/dist/ReactToastify.css";
 const schema = yup.object().shape({
   name_ar: yup.string().required(),
   name_en: yup.string().required(),
-  publication_count: yup.string().required(),
   // other fields
 });
 
@@ -258,7 +257,6 @@ const AddEditcategories = () => {
               initialValues={{
                 name_ar: "",
                 name_en: "",
-                publication_count: "",
                 // other fields
               }}
             >
@@ -308,42 +306,14 @@ const AddEditcategories = () => {
                     </Form.Group>
                   </Row>
 
-                  <Row className="mb-3">
-                    <Form.Group
-                      as={Col}
-                      md="4"
-                      controlId="validationFormikPublicationCount"
-                      className="position-relative"
-                    >
-                      <Form.Label>Publication Count</Form.Label>
-                      <Form.Control
-                        type="number"
-                        name="publication_count"
-                        value={values.publication_count}
-                        onChange={handleChange}
-                        isValid={
-                          touched.publication_count && !errors.publication_count
-                        }
-                        isInvalid={
-                          touched.publication_count &&
-                          !!errors.publication_count
-                        }
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {errors.publication_count}
-                      </Form.Control.Feedback>
-                    </Form.Group>
-
                 
-                  </Row>
 
                   <Button
                     type="submit"
                     disabled={
                       loading ||
                       !values.name_ar ||
-                      !values.name_en ||
-                      !values.publication_count 
+                      !values.name_en 
                     }
                   >
                     {loading ? (

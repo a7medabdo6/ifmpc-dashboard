@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect,useRef } from "react";
 import { Breadcrumb, Button, Col, Row, Form, Spinner } from "react-bootstrap";
 import { Formik } from "formik";
 import * as yup from "yup";
@@ -68,7 +68,31 @@ const AddTrainings = () => {
       .then(() => alert("Image URL copied to clipboard!"))
       .catch(() => alert("Failed to copy URL."));
   };
+  const [values,setvalues] = useState()
 
+  
+  const modules = {
+    toolbar: [
+     [{ header: [1, 2, 3, 4, 5, 6, false] }],
+     ["bold", "italic", "underline", "strike", "blockquote"],
+     [{ align: ["right", "center", "justify"] }],
+     [{ list: "ordered" }, { list: "bullet" }],
+     ["link", "image"],
+    ],
+   };
+   const quillRef = useRef(null);
+   useEffect(() => {
+    const quill = quillRef.current.getEditor();
+    const editor = quill.root;
+
+    // تعيين اتجاه النص بناءً على اللغة
+    if (values?.description_ar) {
+      
+      editor.setAttribute('dir', 'rtl');
+    } else {
+      editor.setAttribute('dir', 'ltr');
+    }
+  }, [values?.description_ar]);
   return (
     <Fragment>
       <div className="page-header">
@@ -110,6 +134,8 @@ const AddTrainings = () => {
                 touched,
                 errors,
               }) => {
+                setvalues(values)
+
                 // Check if all required fields are filled
                 const isFormValid =
                   values.title_en &&
@@ -273,27 +299,9 @@ const AddTrainings = () => {
                           onChange={(value) =>
                             setFieldValue("description_ar", value)
                           }
-                          modules={{
-                            toolbar: [
-                              [{ header: "1" }, { header: "2" }, { font: [] }],
-                              [{ size: [] }],
-                              [
-                                "bold",
-                                "italic",
-                                "underline",
-                                "strike",
-                                "blockquote",
-                              ],
-                              [
-                                { list: "ordered" },
-                                { list: "bullet" },
-                                { indent: "-1" },
-                                { indent: "+1" },
-                              ],
-                              ["link", "image"],
-                              ["clean"],
-                            ],
-                          }}
+                          className="react-quill"
+                          modules={modules}
+                          ref={quillRef}
                         />
                         {touched.description_ar && errors.description_ar && (
                           <div className="invalid-feedback d-block">

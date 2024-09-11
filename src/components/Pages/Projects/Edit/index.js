@@ -64,7 +64,8 @@ const EditProjects = ({}) => {
   const { data: AuthorData } = useUsers();
   const { data: dataOfCategory } = useCategories();
   const { data: authorsData } = useAuthors();
-  const [uploadedImageUrl, setUploadedImageUrl] = useState("");
+  const [uploadedImageUrl, setUploadedImageUrl] = useState(    dataone?.image || ""
+  );
   const [file, setFile] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false); // Track submission state
 
@@ -209,17 +210,18 @@ const EditProjects = ({}) => {
    const quillRef = useRef(null);
    useEffect(() => {
     const quill = quillRef?.current?.getEditor();
-    const editor = quill?.root;
-
-    // تعيين اتجاه النص بناءً على اللغة
-    if (dataone?.content_ar && dataone) {
-      console.log(dataone?.content_ar);
-      
-      editor.setAttribute('dir', 'rtl');
-    } else {
-      editor.setAttribute('dir', 'ltr');
+    
+    if (quill) { // Ensure quill is defined
+      const editor = quill.root;
+      if (dataone?.content_ar && dataone) {
+        console.log(dataone?.content_ar);
+        editor.setAttribute('dir', 'rtl'); // Set text direction to RTL
+      } else {
+        editor.setAttribute('dir', 'ltr'); // Default to LTR
+      }
     }
-  }, [dataone?.content_ar,dataone]);
+  }, [dataone?.content_ar, dataone]);
+  
   if (isLoadingOne) {
     return <div>Loading...</div>; // Show a loading message or spinner while dataone is loading
   }
@@ -241,13 +243,14 @@ const EditProjects = ({}) => {
           <div className="card-body">
             <Formik
               validationSchema={schema}
-              onSubmit={(values) => handleSubmit(values)}
+
+              onSubmit={(values) =>  handleSubmit(values)}
               initialValues={{
                 name_en: dataone.name_en || "",
                 name_ar: dataone.name_ar || "",
                 content_en: dataone.content_en || "",
                 content_ar: dataone.content_ar || "",
-                image: dataone.images[0]?.image || "",
+                image: dataone.image || "",
                 popularity_count: dataone.popularity_count || "",
                 category: dataone.category?.id || null,
                 author: dataone.authors?.map((author) => author.id) || [],
