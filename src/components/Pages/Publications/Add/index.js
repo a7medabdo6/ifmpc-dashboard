@@ -30,6 +30,10 @@ const schema = yup.object().shape({
       url: yup.string().url().required(),
     })
   ),
+  language: yup.object().shape({
+    id: yup.number().required(),
+    lang: yup.string().required(),
+  }).required(), // Validation for the new select field
 });
 
 const AddPublications = () => {
@@ -44,7 +48,11 @@ const AddPublications = () => {
   const { data: dataOfCategory } = useCategories();
   const { data: authorsData } = useAuthors();
   const [isSubmitting, setIsSubmitting] = useState(false); // Track submission state
-
+  const languageOptions = [
+    { id: 1, lang: 'en', label: 'English' },
+    { id: 2, lang: 'ar', label: 'Arabic' },
+    { id: 3, lang: 'both', label: 'Both' },
+  ];
   // Convert tags data to options for Select
   const tagOptions =
     data?.results.map((tag) => ({ value: tag.id, label: tag.name })) || [];
@@ -159,6 +167,8 @@ const AddPublications = () => {
                     : [], // إذا كان هناك مؤلفون
                 tags: tagOptions.length > 0 ? [tagOptions[0].value] : [], // إذا كان هناك علامات
                 references: [{ name: "", url: "" }], // القيم الافتراضية للمراجع
+                language: { id: 1, lang: 'en' }, // Default value for language select
+
               }}
             >
               {({
@@ -213,7 +223,24 @@ const AddPublications = () => {
                           {errors.name_ar}
                         </Form.Control.Feedback>
                       </Form.Group>
-                     
+                      <Row className="mb-3">
+                    <Form.Group as={Col} md="12" controlId="validationFormikLanguage">
+                      <Form.Label>Select Language</Form.Label>
+                      <Select
+                        options={languageOptions}
+                        getOptionLabel={(option) => option.label}
+                        getOptionValue={(option) => option.id}
+                        value={values.language}
+                        onChange={(selectedOption) => setFieldValue("language", selectedOption)}
+                        isInvalid={!!errors.language && touched.language}
+                      />
+                      {errors.language && touched.language && (
+                        <div className="invalid-feedback d-block">
+                          {errors.language.id || errors.language.lang}
+                        </div>
+                      )}
+                    </Form.Group>
+                  </Row> 
                       <Form.Group
                         as={Col}
                         md="6"
