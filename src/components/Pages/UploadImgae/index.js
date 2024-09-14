@@ -1,16 +1,14 @@
-// src/Index.js
 import React, { useState } from 'react';
-import axios from 'axios';
 import { Button, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useCreateProjectImage } from "../../../Api/Projects";
 
 const Index = () => {
   const [file, setFile] = useState(null);
-  const [imageUrl, setImageUrl] = useState('');
-  const [copied, setCopied] = useState(false);
-  const { mutate: mutateImage, data: dataImage } = useCreateProjectImage();
   const [uploadedImageUrl, setUploadedImageUrl] = useState("");
+  const [copied, setCopied] = useState(false);
+  const { mutate: mutateImage } = useCreateProjectImage();
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -19,28 +17,16 @@ const Index = () => {
   const handleUpload = async () => {
     if (!file) return;
 
-    if (file) {
-        const formData = new FormData();
-        formData.append("file", file);
-        mutateImage(formData, {
-          onSuccess: (data) => {
-            setUploadedImageUrl(data.file_url);
-          },
-          onError: (error) => {
-            alert("Error uploading image.");
-          },
-        });
-      } else {
-        alert("No file selected.");
-      }
-  };
-
-  const handleCopy = () => {
-    navigator.clipboard
-      .writeText(uploadedImageUrl)
-      .then(() => alert("Image URL copied to clipboard!"))
-      .catch(() => alert("Failed to copy URL."));
-          setCopied(true);
+    const formData = new FormData();
+    formData.append("file", file);
+    mutateImage(formData, {
+      onSuccess: (data) => {
+        setUploadedImageUrl(data.file_url);
+      },
+      onError: () => {
+        alert("Error uploading image.");
+      },
+    });
   };
 
   return (
@@ -60,9 +46,16 @@ const Index = () => {
         <div className="mt-3">
           <h4>Uploaded Image URL:</h4>
           <p>{uploadedImageUrl}</p>
-          <Button variant="secondary" onClick={handleCopy}>
-            {copied ? 'Copied!' : 'Copy URL'}
-          </Button>
+
+          <CopyToClipboard
+            text={uploadedImageUrl}
+            onCopy={() => setCopied(true)}
+          >
+            <Button variant="secondary">
+              {copied ? 'Copied!' : 'Copy URL'}
+            </Button>
+          </CopyToClipboard>
+
           <div className="mt-3">
             <img src={uploadedImageUrl} alt="Uploaded" style={{ maxWidth: '100%', height: 'auto' }} />
           </div>
