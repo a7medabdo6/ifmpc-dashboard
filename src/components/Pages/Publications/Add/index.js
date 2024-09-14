@@ -30,10 +30,9 @@ const schema = yup.object().shape({
       url: yup.string().url().required(),
     })
   ),
-  language: yup.object().shape({
-    id: yup.number().required(),
-    lang: yup.string().required(),
-  }).required(), // Validation for the new select field
+  lang: yup.number().required(),
+
+ 
 });
 
 const AddPublications = () => {
@@ -167,7 +166,7 @@ const AddPublications = () => {
                     : [], // إذا كان هناك مؤلفون
                 tags: tagOptions.length > 0 ? [tagOptions[0].value] : [], // إذا كان هناك علامات
                 references: [{ name: "", url: "" }], // القيم الافتراضية للمراجع
-                language: { id: 1, lang: 'en' }, // Default value for language select
+                lang: 3, // Default value for language select
 
               }}
             >
@@ -230,8 +229,8 @@ const AddPublications = () => {
                         options={languageOptions}
                         getOptionLabel={(option) => option.label}
                         getOptionValue={(option) => option.id}
-                        value={values.language}
-                        onChange={(selectedOption) => setFieldValue("language", selectedOption)}
+                        value={values.id}
+                        onChange={(selectedOption) => setFieldValue("lang", selectedOption.id)}
                         isInvalid={!!errors.language && touched.language}
                       />
                       {errors.language && touched.language && (

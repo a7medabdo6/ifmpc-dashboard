@@ -45,6 +45,8 @@ const schema = yup.object().shape({
     })
   ),
   images: yup.array().of(yup.string().required("Image URL is required")),
+  lang: yup.number().required(),
+
 });
 
 const AddProjects = () => {
@@ -63,7 +65,11 @@ const AddProjects = () => {
   const [uploadedImageUrl, setUploadedImageUrl] = useState("");
   const [file, setFile] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false); // Track submission state
-
+  const languageOptions = [
+    { id: 1, lang: 'en', label: 'English' },
+    { id: 2, lang: 'ar', label: 'Arabic' },
+    { id: 3, lang: 'both', label: 'Both' },
+  ];
   const tagOptions =
     data?.results.map((tag) => ({ value: tag.id, label: tag.name })) || [];
   const categoryOptions =
@@ -96,6 +102,8 @@ const [values,setvalues] = useState()
         url: reference.url,
       })),
       images: values.images, // Updated to use images array directly
+      lang: values?.lang, // Default value for language select
+
     };
 
     mutate(jsonData, {
@@ -225,6 +233,8 @@ const [values,setvalues] = useState()
                 tags: [],
                 references: [{ name: "", url: "" }],
                 images: [], // Default URL for images
+                lang: 3, // Default value for language select
+
               }}
             >
               {({
@@ -281,7 +291,24 @@ const [values,setvalues] = useState()
                           {errors.name_ar}
                         </Form.Control.Feedback>
                       </Form.Group>
-                     
+                      <Row className="mb-3">
+                    <Form.Group as={Col} md="12" controlId="validationFormikLanguage">
+                      <Form.Label>Select Language</Form.Label>
+                      <Select
+                        options={languageOptions}
+                        getOptionLabel={(option) => option.label}
+                        getOptionValue={(option) => option.id}
+                        value={values.id}
+                        onChange={(selectedOption) => setFieldValue("lang", selectedOption.id)}
+                        isInvalid={!!errors.language && touched.language}
+                      />
+                      {errors.language && touched.language && (
+                        <div className="invalid-feedback d-block">
+                          {errors.language.id || errors.language.lang}
+                        </div>
+                      )}
+                    </Form.Group>
+                  </Row> 
                       <Form.Group
                         as={Col}
                         md="6"
