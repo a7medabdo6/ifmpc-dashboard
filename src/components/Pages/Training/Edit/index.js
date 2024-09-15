@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useCreateProjectImage } from "../../../../Api/Projects";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 const schema = yup.object().shape({
   title_en: yup.string().required(),
@@ -21,6 +22,8 @@ const schema = yup.object().shape({
 const EditTrainings = ({ id, itemData, viewDemoClose, setShow10 }) => {
   const { mutate, data } = useEditTraining();
   const navigate = useNavigate();
+  const [copied, setCopied] = useState(false);
+
   const { mutate: mutateImage, data: dataImage } = useCreateProjectImage();
   const [uploadedImageUrl, setUploadedImageUrl] = useState(
     itemData?.image || ""
@@ -248,9 +251,14 @@ const EditTrainings = ({ id, itemData, viewDemoClose, setShow10 }) => {
                               {uploadedImageUrl}
                             </a>
                           </p>
-                          <Button variant="secondary" onClick={handleCopyUrl}>
-                            Copy URL
-                          </Button>
+                          <CopyToClipboard
+            text={uploadedImageUrl}
+            onCopy={() => setCopied(true)}
+          >
+            <Button variant="secondary">
+              {copied ? 'Copied!' : 'Copy URL'}
+            </Button>
+          </CopyToClipboard>
                         </div>
                       )}
                     </Form.Group>

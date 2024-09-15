@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useCreateProjectImage } from "../../../../Api/Projects";
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 const schema = yup.object().shape({
   title_en: yup.string().required("Title (English) is required"),
@@ -70,7 +71,8 @@ const AddTrainings = () => {
   };
   const [values,setvalues] = useState()
 
-  
+  const [copied, setCopied] = useState(false);
+
   const modules = {
     toolbar: [
       [{ header: "1" }, { header: "2" }, { font: [] }],
@@ -253,9 +255,14 @@ const AddTrainings = () => {
                                 {uploadedImageUrl}
                               </a>
                             </p>
-                            <Button variant="secondary" onClick={handleCopyUrl}>
-                              Copy URL
-                            </Button>
+                            <CopyToClipboard
+            text={uploadedImageUrl}
+            onCopy={() => setCopied(true)}
+          >
+            <Button variant="secondary">
+              {copied ? 'Copied!' : 'Copy URL'}
+            </Button>
+          </CopyToClipboard>
                           </div>
                         )}
                       </Form.Group>

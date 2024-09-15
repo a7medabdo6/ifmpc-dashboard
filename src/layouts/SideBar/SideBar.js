@@ -3,12 +3,30 @@ import { MENUITEMS } from "./SideMenu";
 import { Link, NavLink } from "react-router-dom";
 import { Scrollbars } from "react-custom-scrollbars";
 import { horizontalmenusticky } from "../../data/Switcherdata/Switcherdata";
-import { useLocation } from "react-router-dom";
+import { useLocation ,useNavigate} from "react-router-dom";
+
 let history = [];
 const SideBar = () => {
   let location = useLocation();
-  console.log(location.pathname);
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    const checkTokenExpiration = () => {
+      const tokenExpirationTime = localStorage.getItem("tokenExpiration");
+      const currentTime = new Date().getTime();
+  
+      if (tokenExpirationTime && currentTime > tokenExpirationTime) {
+        // توكين منتهي الصلاحية، قم بحذفه
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("tokenExpiration");
+  
+        // قم بإعادة توجيه المستخدم إلى صفحة تسجيل الدخول
+        navigate('/');
+      }
+    };
+  
+    checkTokenExpiration();
+  }, [navigate]);
   const [menuitems, setMenuitems] = useState(MENUITEMS);
   // initial loading
   useEffect(() => {

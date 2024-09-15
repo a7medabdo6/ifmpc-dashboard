@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useRef } from "react";
+import React, { Fragment, useEffect, useRef,useState } from "react";
 import { Breadcrumb, Button, Col, Row, Form, Spinner } from "react-bootstrap";
 import { Formik } from "formik";
 import * as yup from "yup";
@@ -16,6 +16,7 @@ const schema = yup.object().shape({
 const EditLinks = ({ itemData, id, setShow10 }) => {
   const { mutate, data, isLoading } = useEditLink();
   const fileInputRef = useRef(null);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     if (data !== undefined) {

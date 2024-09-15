@@ -201,6 +201,7 @@ const Editcategories = ({ id, itemData, viewDemoClose, setShow10 }) => {
   const { mutate, data, isLoading } = useEditCategory();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     if (data) {

@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState,useRef } from "react";
+import React, { Fragment, useEffect, useState, useRef } from "react";
 import { Breadcrumb, Button, Col, Row, Spinner } from "react-bootstrap";
 import { Formik, FieldArray } from "formik";
 import { Form } from "react-bootstrap";
@@ -20,6 +20,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useParams } from 'react-router-dom';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 // Validation schema
 const schema = yup.object().shape({
@@ -48,11 +49,11 @@ const schema = yup.object().shape({
     })
   ),
   images: yup.array().of(yup.string().required("Image URL is required")),
-  lang: yup.number().required(),
+  language: yup.number().required(),
 
 });
 
-const EditProjects = ({}) => {
+const EditProjects = ({ }) => {
   const { id } = useParams();
 
   const location = useLocation();
@@ -60,20 +61,20 @@ const EditProjects = ({}) => {
   const { mutate, isLoading, error, data: dataEdit } = useEditProject();
   const { mutate: mutateImage, data: dataImage } = useCreateProjectImage();
   const { data: dataone, isLoading: isLoadingOne } = useOneProject(id);
-  console.log(dataone);
+  const [copied, setCopied] = useState(false);
 
   const { data } = useTags();
   const { data: AuthorData } = useUsers();
   const { data: dataOfCategory } = useCategories();
   const { data: authorsData } = useAuthors();
-  const [uploadedImageUrl, setUploadedImageUrl] = useState(    dataone?.image || ""
+  const [uploadedImageUrl, setUploadedImageUrl] = useState(dataone?.image || ""
   );
   const [file, setFile] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false); // Track submission state
   const languageOptions = [
-    { id: 1, lang: 'en', label: 'English' },
-    { id: 2, lang: 'ar', label: 'Arabic' },
-    { id: 3, lang: 'both', label: 'Both' },
+    { id: 1, language: 'en', label: 'English' },
+    { id: 2, language: 'ar', label: 'Arabic' },
+    { id: 3, language: 'both', label: 'Both' },
   ];
   const tagOptions =
     data?.results.map((tag) => ({ value: tag.id, label: tag.name })) || [];
@@ -106,7 +107,7 @@ const EditProjects = ({}) => {
         url: reference.url,
       })),
       images: values.images, // Updated to use images array directly
-      lang: values?.lang, // Default value for language select
+      language: values?.language, // Default value for language select
 
     };
     let data = {
@@ -170,7 +171,7 @@ const EditProjects = ({}) => {
       toast.success("This item has been successfully edited.");
 
       // تأخير الانتقال لمدة 2 ثانية (2000 مللي ثانية)
-        navigate("/pages/Projects/");
+      navigate("/pages/Projects/");
     }
   }, [dataEdit, navigate]);
   const [initialValues, setInitialValues] = useState({
@@ -185,7 +186,7 @@ const EditProjects = ({}) => {
     tags: [],
     references: [{ name: "", url: "" }],
     images: [],
-    lang:'', // Default value for language select
+    language: '', // Default value for language select
 
   });
 
@@ -203,12 +204,12 @@ const EditProjects = ({}) => {
         tags: dataone.tags?.map((tag) => tag.id) || [],
         references: dataone.references || [{ name: "", url: "" }],
         images: dataone.images?.map((image) => image.image) || [],
-        lang: dataone?.lang, // Default value for language select
+        language: dataone?.language, // Default value for language select
 
       });
     }
   }, [dataone]);
-  const [values,setvalues] = useState()
+  const [values, setvalues] = useState()
 
   const modules = {
     toolbar: [
@@ -233,10 +234,10 @@ const EditProjects = ({}) => {
       ["clean"],
     ],
   };
-   const quillRef = useRef(null);
-   useEffect(() => {
+  const quillRef = useRef(null);
+  useEffect(() => {
     const quill = quillRef?.current?.getEditor();
-    
+
     if (quill) { // Ensure quill is defined
       const editor = quill.root;
       if (dataone?.content_ar && dataone) {
@@ -247,7 +248,7 @@ const EditProjects = ({}) => {
       }
     }
   }, [dataone?.content_ar, dataone]);
-  
+
   if (isLoadingOne) {
     return <div>Loading...</div>; // Show a loading message or spinner while dataone is loading
   }
@@ -270,7 +271,7 @@ const EditProjects = ({}) => {
             <Formik
               validationSchema={schema}
 
-              onSubmit={(values) =>  handleSubmit(values)}
+              onSubmit={(values) => handleSubmit(values)}
               initialValues={{
                 name_en: dataone.name_en || "",
                 name_ar: dataone.name_ar || "",
@@ -283,7 +284,7 @@ const EditProjects = ({}) => {
                 tags: dataone.tags?.map((tag) => tag.id) || [],
                 references: dataone.references || [{ name: "", url: "" }],
                 images: dataone.images?.map((image) => image.image) || [],
-                lang:dataone?.lang
+                language: dataone?.language
               }}
             >
               {({
@@ -302,7 +303,7 @@ const EditProjects = ({}) => {
                 return (
                   <Form noValidate onSubmit={handleSubmit}>
                     <Row className="mb-3">
-                    
+
                       <Form.Group
                         as={Col}
                         md="6"
@@ -340,23 +341,23 @@ const EditProjects = ({}) => {
                         </Form.Control.Feedback>
                       </Form.Group>
                       <Row className="mb-3">
-                    <Form.Group as={Col} md="12" controlId="validationFormikLanguage">
-                      <Form.Label>Select Language</Form.Label>
-                      <Select
-                        options={languageOptions}
-                        getOptionLabel={(option) => option.label}
-                        getOptionValue={(option) => option.id}
-                        value={values.id}
-                        onChange={(selectedOption) => setFieldValue("lang", selectedOption.id)}
-                        isInvalid={!!errors.language && touched.language}
-                      />
-                      {errors.language && touched.language && (
-                        <div className="invalid-feedback d-block">
-                          {errors.language.id || errors.language.lang}
-                        </div>
-                      )}
-                    </Form.Group>
-                  </Row> 
+                        <Form.Group as={Col} md="12" controlId="validationFormikLanguage">
+                          <Form.Label>Select Language</Form.Label>
+                          <Select
+                            options={languageOptions}
+                            getOptionLabel={(option) => option.label}
+                            getOptionValue={(option) => option.id}
+                            value={values.id}
+                            onChange={(selectedOption) => setFieldValue("language", selectedOption.id)}
+                            isInvalid={!!errors.language && touched.language}
+                          />
+                          {errors.language && touched.language && (
+                            <div className="invalid-feedback d-block">
+                              {errors.language.id || errors.language.language}
+                            </div>
+                          )}
+                        </Form.Group>
+                      </Row>
                       <Form.Group
                         as={Col}
                         md="6"
@@ -391,7 +392,7 @@ const EditProjects = ({}) => {
                           }
                           className="react-quill"
                           modules={modules}
-                          ref={quillRef}                        />
+                          ref={quillRef} />
                         {touched.content_ar && errors.content_ar && (
                           <div className="invalid-feedback d-block">
                             {errors.content_ar}
@@ -441,12 +442,15 @@ const EditProjects = ({}) => {
                                   {uploadedImageUrl}
                                 </a>
                               </p>
-                              <Button
-                                variant="secondary"
-                                onClick={handleCopyUrl}
+
+                              <CopyToClipboard
+                                text={uploadedImageUrl}
+                                onCopy={() => setCopied(true)}
                               >
-                                Copy URL
-                              </Button>
+                                <Button variant="secondary">
+                                  {copied ? 'Copied!' : 'Copy URL'}
+                                </Button>
+                              </CopyToClipboard>
                             </div>
                           )}
                         </div>

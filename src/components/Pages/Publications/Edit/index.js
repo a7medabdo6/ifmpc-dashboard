@@ -45,7 +45,7 @@ const schema = yup.object().shape({
         .required("Reference URL is required"),
     })
   ),
-  lang: yup.number().required(),
+  language: yup.number().required(),
 
 });
 
@@ -62,9 +62,9 @@ const EditPublications = () => {
   const { data: dataone, isLoading: isLoadingOne } = useOnePublication(id);
   const [isSubmitting, setIsSubmitting] = useState(false); // Track submission state
   const languageOptions = [
-    { id: 1, lang: 'en', label: 'English' },
-    { id: 2, lang: 'ar', label: 'Arabic' },
-    { id: 3, lang: 'both', label: 'Both' },
+    { id: 1, language: 'en', label: 'English' },
+    { id: 2, language: 'ar', label: 'Arabic' },
+    { id: 3, language: 'both', label: 'Both' },
   ];
   // Convert tags data to options for Select
   const tagOptions =
@@ -188,7 +188,7 @@ const EditPublications = () => {
                   dataone?.tags.map((t) => t.id) ||
                   (tagOptions.length > 0 ? [tagOptions[0].value] : []),
                 references: dataone?.references || [{ name: "", url: "" }],
-                lang: dataone?.lang, // Default value for language select
+                language: dataone?.language, // Default value for language select
 
               }}
             >
@@ -252,12 +252,12 @@ const EditPublications = () => {
                         getOptionLabel={(option) => option.label}
                         getOptionValue={(option) => option.id}
                         value={values.id}
-                        onChange={(selectedOption) => setFieldValue("lang", selectedOption.id)}
+                        onChange={(selectedOption) => setFieldValue("language", selectedOption.id)}
                         isInvalid={!!errors.language && touched.language}
                       />
                       {errors.language && touched.language && (
                         <div className="invalid-feedback d-block">
-                          {errors.language.id || errors.language.lang}
+                          {errors.language.id || errors.language.language}
                         </div>
                       )}
                     </Form.Group>

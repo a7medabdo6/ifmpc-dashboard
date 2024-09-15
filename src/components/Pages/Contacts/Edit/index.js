@@ -21,6 +21,7 @@ const EditContacts = ({ id, itemData, viewDemoClose, setShow10 }) => {
   const [loading, setLoading] = useState(false);
   const [isFormValid, setIsFormValid] = useState(false);
   const { mutate, data } = useEditContact();
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     if (data !== undefined) {

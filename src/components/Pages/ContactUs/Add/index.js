@@ -34,6 +34,7 @@ const AddContactUs = () => {
   const mapRef = useRef();
   const provider = new OpenStreetMapProvider();
   const [isSubmitting, setIsSubmitting] = useState(false); // Track submission state
+  const [copied, setCopied] = useState(false);
 
   // وظيفة للحصول على تفاصيل الموقع بما في ذلك اسم البلد
   const getLocationDetails = async (lat, lng) => {

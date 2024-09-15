@@ -16,6 +16,7 @@ const AddTags = () => {
   const [loading, setLoading] = useState(false);
   const { mutate, data } = useCreateTage();
   const navigate = useNavigate();
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     if (data) {

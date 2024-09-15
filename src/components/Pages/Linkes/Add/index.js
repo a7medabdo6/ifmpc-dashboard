@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect,useState } from "react";
 import { Breadcrumb, Button, Col, Row, Form, Spinner } from "react-bootstrap";
 import { Formik } from "formik";
 import * as yup from "yup";
@@ -17,6 +17,7 @@ const schema = yup.object().shape({
 const AddLinks = () => {
   const { mutate, data } = useCreateLink();
   const navigate = useNavigate();
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     if (data) {

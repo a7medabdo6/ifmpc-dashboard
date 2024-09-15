@@ -15,6 +15,7 @@ const schema = yup.object().shape({
 const EditTags = ({ itemData, id, setShow10 }) => {
   const { mutate, data } = useEditTage();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     if (data) {

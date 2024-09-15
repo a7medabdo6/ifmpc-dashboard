@@ -23,6 +23,7 @@ const AddContacts = () => {
   const [isFormValid, setIsFormValid] = useState(false); // Add state for form validity
   const { mutate, data, isError } = useCreateContact(); 
   const navigate = useNavigate();
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     if (data) {

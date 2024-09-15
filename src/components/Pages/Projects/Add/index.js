@@ -17,6 +17,7 @@ import "react-quill/dist/quill.snow.css";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 // Validation schema
 const schema = yup.object().shape({
@@ -45,7 +46,7 @@ const schema = yup.object().shape({
     })
   ),
   images: yup.array().of(yup.string().required("Image URL is required")),
-  lang: yup.number().required(),
+  language: yup.number().required(),
 
 });
 
@@ -64,11 +65,13 @@ const AddProjects = () => {
   const { data: authorsData } = useAuthors();
   const [uploadedImageUrl, setUploadedImageUrl] = useState("");
   const [file, setFile] = useState(null);
+  const [copied, setCopied] = useState(false);
+
   const [isSubmitting, setIsSubmitting] = useState(false); // Track submission state
   const languageOptions = [
-    { id: 1, lang: 'en', label: 'English' },
-    { id: 2, lang: 'ar', label: 'Arabic' },
-    { id: 3, lang: 'both', label: 'Both' },
+    { id: 1, language: 'en', label: 'English' },
+    { id: 2, language: 'ar', label: 'Arabic' },
+    { id: 3, language: 'both', label: 'Both' },
   ];
   const tagOptions =
     data?.results.map((tag) => ({ value: tag.id, label: tag.name })) || [];
@@ -102,7 +105,7 @@ const [values,setvalues] = useState()
         url: reference.url,
       })),
       images: values.images, // Updated to use images array directly
-      lang: values?.lang, // Default value for language select
+      language: values?.language, // Default value for language select
 
     };
 
@@ -233,7 +236,7 @@ const [values,setvalues] = useState()
                 tags: [],
                 references: [{ name: "", url: "" }],
                 images: [], // Default URL for images
-                lang: 3, // Default value for language select
+                language: 3, // Default value for language select
 
               }}
             >
@@ -299,12 +302,12 @@ const [values,setvalues] = useState()
                         getOptionLabel={(option) => option.label}
                         getOptionValue={(option) => option.id}
                         value={values.id}
-                        onChange={(selectedOption) => setFieldValue("lang", selectedOption.id)}
+                        onChange={(selectedOption) => setFieldValue("language", selectedOption.id)}
                         isInvalid={!!errors.language && touched.language}
                       />
                       {errors.language && touched.language && (
                         <div className="invalid-feedback d-block">
-                          {errors.language.id || errors.language.lang}
+                          {errors.language.id || errors.language.language}
                         </div>
                       )}
                     </Form.Group>
@@ -397,12 +400,15 @@ const [values,setvalues] = useState()
                                   {uploadedImageUrl}
                                 </a>
                               </p>
-                              <Button
-                                variant="secondary"
-                                onClick={handleCopyUrl}
-                              >
-                                Copy URL
-                              </Button>
+                            
+          <CopyToClipboard
+            text={uploadedImageUrl}
+            onCopy={() => setCopied(true)}
+          >
+            <Button variant="secondary">
+              {copied ? 'Copied!' : 'Copy URL'}
+            </Button>
+          </CopyToClipboard>
                             </div>
                           )}
                         </div>

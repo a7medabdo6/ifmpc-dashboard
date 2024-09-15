@@ -218,6 +218,7 @@ const AddEditcategories = () => {
   const { mutate, data, isLoading } = useCreateCategory(); // Add isLoading from the mutation hook
   const navigate = useNavigate(); // Initialize navigate function
   const [loading, setLoading] = useState(false); // Manage loading state for button
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     if (data) {

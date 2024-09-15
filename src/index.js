@@ -1,4 +1,6 @@
-import React, { Fragment } from "react";
+import React, { Fragment,useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./index.scss";
@@ -772,6 +774,7 @@ const Root = () => {
   );
 };
 const queryClient = new QueryClient();
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
