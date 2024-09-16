@@ -8,14 +8,16 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const schema = yup.object().shape({
-  name: yup.string().required("Name is required"),
-  desc: yup.string().required("Description is required"),
+  name_en: yup.string().required("Name (English) is required"),
+  name_ar: yup.string().required("Name (Arabic) is required"),
+  desc_en: yup.string().required("Description (English) is required"),
+  desc_ar: yup.string().required("Description (Arabic) is required"),
 });
 
 const AddQuestions = () => {
-  const [loading, setLoading] = useState(false); 
-  const [isFormValid, setIsFormValid] = useState(false); 
-  const { mutate, data, isError } = useCreateQuestion(); 
+  const [loading, setLoading] = useState(false);
+  const [isFormValid, setIsFormValid] = useState(false);
+  const { mutate, data, isError } = useCreateQuestion();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -37,14 +39,14 @@ const AddQuestions = () => {
   };
 
   const handleSubmit = (values, { setSubmitting }) => {
-    setLoading(true); 
+    setLoading(true);
     mutate(values, {
       onSuccess: () => {
-        setLoading(false); 
+        setLoading(false);
         setSubmitting(false);
       },
       onError: () => {
-        setLoading(false); 
+        setLoading(false);
         setSubmitting(false);
       },
     });
@@ -69,8 +71,10 @@ const AddQuestions = () => {
               validationSchema={schema}
               onSubmit={handleSubmit}
               initialValues={{
-                name: "",
-                desc: "",
+                name_en: "",
+                name_ar: "",
+                desc_en: "",
+                desc_ar: "",
               }}
             >
               {({
@@ -85,44 +89,84 @@ const AddQuestions = () => {
                   <Row className="mb-3">
                     <Form.Group
                       as={Col}
-                      md="4"
+                      md="6"
                       controlId="validationFormik101"
                       className="position-relative"
                     >
-                      <Form.Label>Name</Form.Label>
+                      <Form.Label>Name (English)</Form.Label>
                       <Form.Control
                         type="text"
-                        name="name"
-                        value={values.name}
+                        name="name_en"
+                        value={values.name_en}
                         onChange={(e) => handleInputChange(e, handleChange, values)}
-                        isInvalid={touched.name && !!errors.name}
+                        isInvalid={touched.name_en && !!errors.name_en}
                       />
                       <Form.Control.Feedback type="invalid">
-                        {errors.name}
+                        {errors.name_en}
                       </Form.Control.Feedback>
                     </Form.Group>
+
                     <Form.Group
                       as={Col}
-                      md="8"
+                      md="6"
+                      controlId="validationFormik101"
+                      className="position-relative"
+                    >
+                      <Form.Label>Name (Arabic)</Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="name_ar"
+                        value={values.name_ar}
+                        onChange={(e) => handleInputChange(e, handleChange, values)}
+                        isInvalid={touched.name_ar && !!errors.name_ar}
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.name_ar}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+
+                    <Form.Group
+                      as={Col}
+                      md="6"
                       controlId="validationFormik102"
                       className="position-relative"
                     >
-                      <Form.Label>Description</Form.Label>
+                      <Form.Label>Description (English)</Form.Label>
                       <Form.Control
                         as="textarea"
-                        name="desc"
-                        value={values.desc}
+                        name="desc_en"
+                        value={values.desc_en}
                         onChange={(e) => handleInputChange(e, handleChange, values)}
-                        isInvalid={touched.desc && !!errors.desc}
+                        isInvalid={touched.desc_en && !!errors.desc_en}
                       />
                       <Form.Control.Feedback type="invalid">
-                        {errors.desc}
+                        {errors.desc_en}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+
+                    <Form.Group
+                      as={Col}
+                      md="6"
+                      controlId="validationFormik102"
+                      className="position-relative"
+                    >
+                      <Form.Label>Description (Arabic)</Form.Label>
+                      <Form.Control
+                        as="textarea"
+                        name="desc_ar"
+                        value={values.desc_ar}
+                        onChange={(e) => handleInputChange(e, handleChange, values)}
+                        isInvalid={touched.desc_ar && !!errors.desc_ar}
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.desc_ar}
                       </Form.Control.Feedback>
                     </Form.Group>
                   </Row>
+
                   <Button
                     type="submit"
-                    disabled={isSubmitting || loading || !isFormValid} 
+                    disabled={isSubmitting || loading || !isFormValid}
                   >
                     {isSubmitting || loading ? (
                       <div className="d-flex align-items-center">

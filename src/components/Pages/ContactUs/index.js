@@ -414,7 +414,7 @@ const ContactUs = () => {
             <Breadcrumb.Item active>ContactUs Page</Breadcrumb.Item>
           </Breadcrumb>
         </div>
-        <div className="d-flex">
+        {/* <div className="d-flex">
           <div className="justify-content-center">
             <Link to={"/pages/ContactUs/create"}>
               <Button
@@ -426,7 +426,7 @@ const ContactUs = () => {
               </Button>
             </Link>
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* Row */}
@@ -585,7 +585,7 @@ const ContactUs = () => {
                         <Modal.Title>Confirm Editing</Modal.Title>
                       </Modal.Header>
                       <Modal.Body>
-                        <Modal.Title>Edit categorie</Modal.Title>
+                        <Modal.Title>Edit ContactUs</Modal.Title>
                         <EditContactUs
                           setShow10={setShow10}
                           id={id}

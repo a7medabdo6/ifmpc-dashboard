@@ -8,8 +8,10 @@ import "react-toastify/dist/ReactToastify.css";
 
 // Update the schema to reflect new field names
 const schema = yup.object().shape({
-  name: yup.string().required("Name is required"),
-  desc: yup.string().required("Description is required"),
+  name_en: yup.string().required("Name (English) is required"),
+  name_ar: yup.string().required("Name (Arabic) is required"),
+  desc_en: yup.string().required("Description (English) is required"),
+  desc_ar: yup.string().required("Description (Arabic) is required"),
 });
 
 const EditQuestions = ({ id, itemData, viewDemoClose, setShow10 }) => {
@@ -27,8 +29,10 @@ const EditQuestions = ({ id, itemData, viewDemoClose, setShow10 }) => {
   useEffect(() => {
     // Check if required fields are valid
     const isValid =
-      itemData.name.trim() !== "" &&
-      itemData.desc.trim() !== "";
+      itemData.name_en.trim() !== "" &&
+      itemData.name_ar.trim() !== "" &&
+      itemData.desc_en.trim() !== "" &&
+      itemData.desc_ar.trim() !== "";
     setIsFormValid(isValid);
   }, [itemData]);
 
@@ -59,8 +63,10 @@ const EditQuestions = ({ id, itemData, viewDemoClose, setShow10 }) => {
               validationSchema={schema}
               onSubmit={handleSubmit}
               initialValues={{
-                name: itemData?.name || "",
-                desc: itemData?.desc || "",
+                name_en: itemData?.name_en || "",
+                name_ar: itemData?.name_ar || "",
+                desc_en: itemData?.desc_en || "",
+                desc_ar: itemData?.desc_ar || "",
               }}
             >
               {({
@@ -75,49 +81,108 @@ const EditQuestions = ({ id, itemData, viewDemoClose, setShow10 }) => {
                     <Form.Group
                       as={Col}
                       md="6"
-                      controlId="validationFormikName"
+                      controlId="validationFormikNameEn"
                       className="position-relative"
                     >
-                      <Form.Label>Name</Form.Label>
+                      <Form.Label>Name (English)</Form.Label>
                       <Form.Control
                         type="text"
-                        name="name"
-                        value={values.name}
+                        name="name_en"
+                        value={values.name_en}
                         onChange={(e) => {
                           handleChange(e);
                           setIsFormValid(
                             e.target.value.trim() !== "" &&
-                            values.desc.trim() !== ""
+                            values.name_ar.trim() !== "" &&
+                            values.desc_en.trim() !== "" &&
+                            values.desc_ar.trim() !== ""
                           );
                         }}
-                        isInvalid={touched.name && !!errors.name}
+                        isInvalid={touched.name_en && !!errors.name_en}
                       />
                       <Form.Control.Feedback type="invalid">
-                        {errors.name}
+                        {errors.name_en}
                       </Form.Control.Feedback>
                     </Form.Group>
+
                     <Form.Group
                       as={Col}
-                      md="12"
-                      controlId="validationFormikDesc"
+                      md="6"
+                      controlId="validationFormikNameAr"
                       className="position-relative"
                     >
-                      <Form.Label>Description</Form.Label>
+                      <Form.Label>Name (Arabic)</Form.Label>
                       <Form.Control
-                        as="textarea"
-                        name="desc"
-                        value={values.desc}
+                        type="text"
+                        name="name_ar"
+                        value={values.name_ar}
                         onChange={(e) => {
                           handleChange(e);
                           setIsFormValid(
-                            values.name.trim() !== "" &&
+                            values.name_en.trim() !== "" &&
+                            e.target.value.trim() !== "" &&
+                            values.desc_en.trim() !== "" &&
+                            values.desc_ar.trim() !== ""
+                          );
+                        }}
+                        isInvalid={touched.name_ar && !!errors.name_ar}
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.name_ar}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+
+                    <Form.Group
+                      as={Col}
+                      md="6"
+                      controlId="validationFormikDescEn"
+                      className="position-relative"
+                    >
+                      <Form.Label>Description (English)</Form.Label>
+                      <Form.Control
+                        as="textarea"
+                        name="desc_en"
+                        value={values.desc_en}
+                        onChange={(e) => {
+                          handleChange(e);
+                          setIsFormValid(
+                            values.name_en.trim() !== "" &&
+                            values.name_ar.trim() !== "" &&
+                            e.target.value.trim() !== "" &&
+                            values.desc_ar.trim() !== ""
+                          );
+                        }}
+                        isInvalid={touched.desc_en && !!errors.desc_en}
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.desc_en}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+
+                    <Form.Group
+                      as={Col}
+                      md="6"
+                      controlId="validationFormikDescAr"
+                      className="position-relative"
+                    >
+                      <Form.Label>Description (Arabic)</Form.Label>
+                      <Form.Control
+                        as="textarea"
+                        name="desc_ar"
+                        value={values.desc_ar}
+                        onChange={(e) => {
+                          handleChange(e);
+                          setIsFormValid(
+                            values.name_en.trim() !== "" &&
+                            values.name_ar.trim() !== "" &&
+                            values.desc_en.trim() !== "" &&
                             e.target.value.trim() !== ""
                           );
                         }}
-                        isInvalid={touched.desc && !!errors.desc}
+                        isInvalid={touched.desc_ar && !!errors.desc_ar}
                       />
                       <Form.Control.Feedback type="invalid">
-                        {errors.desc}
+                        {errors.desc_ar}
                       </Form.Control.Feedback>
                     </Form.Group>
                   </Row>
