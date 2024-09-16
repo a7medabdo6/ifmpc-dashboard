@@ -29,7 +29,7 @@ const schema = yup.object().shape({
   longitude: yup.number().required(),
 });
 
-const EditContactUs = ({ id, setShow10 }) => {
+const EditContactUs = ({ id, setShow10,itemData }) => {
   const { mutate, data } = useEditContactUs();
   const mapRef = useRef();
   const provider = new OpenStreetMapProvider();
@@ -134,13 +134,13 @@ const EditContactUs = ({ id, setShow10 }) => {
                 );
               }}
               initialValues={{
-                location_en: "",
-                location_ar: "",
-                email: "user@example.com",
-                phone: "",
-                map_link: "",
-                latitude: 51.505, // تعيين قيمة افتراضية
-                longitude: -0.09, // تعيين قيمة افتراضية
+                location_en: itemData?.location_en,
+                location_ar: itemData?.location_ar,
+                email: itemData?.email,
+                phone: itemData?.phone,
+                map_link: itemData?.map_link,
+                latitude: itemData?.latitude, // تعيين قيمة افتراضية
+                longitude: itemData?.longitude, // تعيين قيمة افتراضية
               }}
             >
               {({

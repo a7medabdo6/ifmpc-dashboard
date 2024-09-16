@@ -423,6 +423,15 @@ const Projects = () => {
                             >
                               Delete
                             </Button>
+                            {/* Preview Button */}
+                            <Button
+  onClick={() => window.open(`http://66.29.152.253:3000/en/research/Projects/${item?.id}`, '_blank')}
+  type="button"
+                              variant="info"
+                              style={{ marginInline: "5px" }}
+                            >
+                              Preview
+                            </Button>
                           </div>
                         </td>
                       </tr>
