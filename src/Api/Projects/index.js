@@ -1,11 +1,11 @@
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import axiosInstance from "../axiosConfig";
 
-const fetchProjects = async () => {
-  const response = await axiosInstance.get("/projects/");
+
+export const fetchProjects = async (limit, offset) => {
+  const response = await axiosInstance.get(`/projects/?limit=${limit}&offset=${offset}`);
   return response.data;
 };
-
 const fetchOneProject = async (id) => {
   console.log(id);
   
@@ -35,13 +35,14 @@ export const editProjects = async (data) => {
   );
   return response.data;
 };
-export const useProjects = () => {
+
+export const useProjects = (limit, offset) => {
   return useQuery({
-    queryKey: ["Projects"],
-    queryFn: fetchProjects,
+    queryKey: ["Projects", limit, offset],
+    queryFn: () => fetchProjects(limit, offset),
+    // يمكن إضافة خيارات أخرى هنا حسب الحاجة
   });
 };
-
 export const useOneProject = (id) => {
   return useQuery({
     queryKey: ["Projects", id], // Include the id in the queryKey

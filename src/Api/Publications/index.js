@@ -1,10 +1,12 @@
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import axiosInstance from "../axiosConfig";
 
-const fetchPublications = async () => {
-  const response = await axiosInstance.get("/publications");
+// تحديث دالة fetchPublications
+export const fetchPublications = async (limit, offset) => {
+  const response = await axiosInstance.get(`/publications/?limit=${limit}&offset=${offset}`);
   return response.data;
 };
+
 const fetchOnePublication = async (id) => {
   console.log(id);
   
@@ -31,10 +33,11 @@ export const editPublications = async (data) => {
   );
   return response.data;
 };
-export const usePublications = () => {
+export const usePublications = (limit, offset) => {
   return useQuery({
-    queryKey: ["Publications"],
-    queryFn: fetchPublications,
+    queryKey: ["Publications", limit, offset],
+    queryFn: () => fetchPublications(limit, offset),
+    // يمكن إضافة خيارات أخرى هنا حسب الحاجة
   });
 };
 
