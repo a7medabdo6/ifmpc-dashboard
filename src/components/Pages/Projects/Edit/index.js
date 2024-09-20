@@ -39,15 +39,15 @@ const schema = yup.object().shape({
     .of(yup.number())
     .required("At least one author is required"),
   tags: yup.array().of(yup.number()).required("At least one tag is required"),
-  references: yup.array().of(
-    yup.object().shape({
-      name: yup.string().required("Reference name is required"),
-      url: yup
-        .string()
-        .url("Invalid URL")
-        .required("Reference URL is required"),
-    })
-  ),
+  // references: yup.array().of(
+  //   yup.object().shape({
+  //     name: yup.string().required("Reference name is required"),
+  //     url: yup
+  //       .string()
+  //       .url("Invalid URL")
+  //       .required("Reference URL is required"),
+  //   })
+  // ),
   images: yup.array().of(yup.string().required("Image URL is required")),
   language: yup.number().required(),
 
@@ -102,10 +102,10 @@ const EditProjects = ({ }) => {
       category: values.category,
       author: values.author,
       tags: values.tags,
-      references: values.references.map((reference) => ({
-        name: reference.name,
-        url: reference.url,
-      })),
+      // references: values.references.map((reference) => ({
+      //   name: reference.name,
+      //   url: reference.url,
+      // })),
       images: values.images, // Updated to use images array directly
       language: values?.language, // Default value for language select
 
@@ -127,18 +127,17 @@ const EditProjects = ({ }) => {
     });
   };
   const handleFileChange = (event) => {
-    const file = event.currentTarget.files[0];
-    if (file) {
-      // Check file size and type before setting it
-      if (file.size > 5 * 1024 * 1024) {
-        alert("File size is too large. Max size is 5MB.");
-        return;
+    const selectedFile = event.target.files[0];
+  
+    if (selectedFile) {
+      const allowedTypes = ['image/jpeg', 'image/png', 'application/pdf'];
+  
+      if (allowedTypes.includes(selectedFile.type)) {
+        setFile(selectedFile); // تعيين الملف المحدد
+        setUploadedImageUrl(URL.createObjectURL(selectedFile)); // إذا كنت تريد عرض المعاينة
+      } else {
+        alert("Unsupported file format. Only JPEG, PNG, and PDF are allowed.");
       }
-      if (!["image/jpeg", "image/png"].includes(file.type)) {
-        alert("Unsupported file format. Only JPEG and PNG are allowed.");
-        return;
-      }
-      setFile(file); // Update file state
     }
   };
   const uploadImage = () => {
@@ -184,7 +183,7 @@ const EditProjects = ({ }) => {
     category: null,
     author: [],
     tags: [],
-    references: [{ name: "", url: "" }],
+    // references: [{ name: "", url: "" }],
     images: [],
     language: '', // Default value for language select
 
@@ -202,7 +201,7 @@ const EditProjects = ({ }) => {
         category: dataone.category?.id || null,
         author: dataone.authors?.map((author) => author.id) || [],
         tags: dataone.tags?.map((tag) => tag.id) || [],
-        references: dataone.references || [{ name: "", url: "" }],
+        // references: dataone.references || [{ name: "", url: "" }],
         images: dataone.images?.map((image) => image.image) || [],
         language: dataone?.language, // Default value for language select
 
@@ -282,7 +281,7 @@ const EditProjects = ({ }) => {
                 category: dataone.category?.id || null,
                 author: dataone.authors?.map((author) => author.id) || [],
                 tags: dataone.tags?.map((tag) => tag.id) || [],
-                references: dataone.references || [{ name: "", url: "" }],
+                // references: dataone.references || [{ name: "", url: "" }],
                 images: dataone.images?.map((image) => image.image) || [],
                 language: dataone?.language
               }}
@@ -404,11 +403,11 @@ const EditProjects = ({ }) => {
                         md="6"
                         controlId="validationFormikImage"
                       >
-                        <Form.Label>Image URL</Form.Label>
+                        <Form.Label>Image or PDF URL</Form.Label>
                         <Form.Control
                           type="text"
                           name="image"
-                          value={values?.image}
+                          value={values.image}
                           onChange={handleChange}
                           isValid={touched.image && !errors.image}
                           isInvalid={!!errors.image}
@@ -416,7 +415,7 @@ const EditProjects = ({ }) => {
                         <Form.Control.Feedback type="invalid">
                           {errors.image}
                         </Form.Control.Feedback>
-                        <div className="mt-3">
+                        {/* <div className="mt-3">
                           <Form.Label>Upload Image</Form.Label>
                           <Form.Control
                             type="file"
@@ -442,18 +441,56 @@ const EditProjects = ({ }) => {
                                   {uploadedImageUrl}
                                 </a>
                               </p>
-
-                              <CopyToClipboard
-                                text={uploadedImageUrl}
-                                onCopy={() => setCopied(true)}
-                              >
-                                <Button variant="secondary">
-                                  {copied ? 'Copied!' : 'Copy URL'}
-                                </Button>
-                              </CopyToClipboard>
+                            
+          <CopyToClipboard
+            text={uploadedImageUrl}
+            onCopy={() => setCopied(true)}
+          >
+            <Button variant="secondary">
+              {copied ? 'Copied!' : 'Copy URL'}
+            </Button>
+          </CopyToClipboard>
                             </div>
                           )}
-                        </div>
+                        </div> */}
+                        <div className="mt-3">
+  <Form.Label>Upload Image or PDF</Form.Label>
+  <Form.Control
+    type="file"
+    accept="image/*,.pdf"
+    onChange={handleFileChange}
+  />
+  <Button
+    type="button"
+    onClick={uploadImage}
+    className="mt-2"
+  >
+    Upload Image or PDF
+  </Button>
+  {uploadedImageUrl && (
+    <div className="mb-3">
+      <p>
+        Uploaded File URL:{" "}
+        <a
+          href={uploadedImageUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {uploadedImageUrl}
+        </a>
+      </p>
+      <CopyToClipboard
+        text={uploadedImageUrl}
+        onCopy={() => setCopied(true)}
+      >
+        <Button variant="secondary">
+          {copied ? 'Copied!' : 'Copy URL'}
+        </Button>
+      </CopyToClipboard>
+    </div>
+  )}
+</div>
+
                       </Form.Group>
                       <Form.Group
                         as={Col}
@@ -549,7 +586,7 @@ const EditProjects = ({ }) => {
                           </div>
                         )}
                       </Form.Group>
-                      <Form.Group
+                      {/* <Form.Group
                         as={Col}
                         md="6"
                         controlId="validationFormikReferences"
@@ -619,7 +656,7 @@ const EditProjects = ({ }) => {
                             </div>
                           )}
                         />
-                      </Form.Group>
+                      </Form.Group> */}
                       <Form.Group
                         as={Col}
                         md="6"

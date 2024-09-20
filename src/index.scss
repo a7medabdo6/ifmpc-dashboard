@@ -2067,4 +2067,62 @@ ol.progtrckr li.progtrckr-done:before {
 /* تطبيق المحاذاة للنصوص الأخرى (لنفترض أنها الإنجليزية) */
 .ql-snow .ql-editor[dir="ltr"] {
   text-align: left;
+
+}
+
+
+
+
+/* styles.css */
+
+/* استيراد الخطوط */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&family=Raleway&family=Roboto&display=swap');
+
+/* تنسيق الخلفية للمحرر */
+.react-quill {
+  height: 300px; /* ارتفاع المحرر */
+  background-color: #f8f9fa; /* لون الخلفية */
+  border: 1px solid #ced4da; /* إطار */
+  border-radius: 4px; /* زوايا مدورة */
+}
+
+/* تنسيق أزرار الأداة */
+.ql-toolbar {
+  background-color: #ffffff; /* لون الخلفية لأزرار الأداة */
+  border-bottom: 1px solid #ced4da; /* إطار أسفل */
+}
+
+/* تنسيق زر التنظيف */
+.ql-clean {
+  background-color: #dc3545; /* لون الزر */
+  color: white; /* لون النص */
+}
+
+/* تنسيق قائمة الثيمات */
+.themeSwitcher {
+  margin-top: 10px; /* مساحة فوق قائمة الثيمات */
+}
+
+.themeSwitcher label {
+  margin-right: 10px; /* مساحة بين التسمية والقائمة */
+}
+
+/* تنسيق نصوص المحرر */
+.ql-editor {
+  font-family: 'Roboto', sans-serif; /* خط النص */
+  font-size: 16px; /* حجم النص */
+  color: #495057; /* لون النص */
+}
+
+/* تخصيص الخطوط في الشريط */
+.ql-font-Ubuntu {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.ql-font-Raleway {
+  font-family: 'Raleway', sans-serif;
+}
+
+.ql-font-Roboto {
+  font-family: 'Roboto', sans-serif;
 }

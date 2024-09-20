@@ -18,6 +18,19 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import Quill from 'quill';
+
+
+const FontAttributor = Quill.import('attributors/class/font');
+FontAttributor.whitelist = [
+  'sofia',
+  'slabo',
+  'roboto',
+  'inconsolata',
+  'ubuntu',
+];
+Quill.register(FontAttributor, true);
+
 
 // Validation schema
 const schema = yup.object().shape({
@@ -25,7 +38,7 @@ const schema = yup.object().shape({
   name_ar: yup.string().required("Arabic name is required"),
   content_en: yup.string().required("English content is required"),
   content_ar: yup.string().required("Arabic content is required"),
-  image: yup.string().url("Invalid URL").required("Image URL is required"), // Changed to string
+  image: yup.string().required("Image URL is required"), // Changed to string
   popularity_count: yup
     .number()
     .integer()
@@ -36,15 +49,15 @@ const schema = yup.object().shape({
     .of(yup.number())
     .required("At least one author is required"),
   tags: yup.array().of(yup.number()).required("At least one tag is required"),
-  references: yup.array().of(
-    yup.object().shape({
-      name: yup.string().required("Reference name is required"),
-      url: yup
-        .string()
-        .url("Invalid URL")
-        .required("Reference URL is required"),
-    })
-  ),
+  // references: yup.array().of(
+  //   yup.object().shape({
+  //     name: yup.string().required("Reference name is required"),
+  //     url: yup
+  //       .string()
+  //       .url("Invalid URL")
+  //       .required("Reference URL is required"),
+  //   })
+  // ),
   images: yup.array().of(yup.string().required("Image URL is required")),
   language: yup.number().required(),
 
@@ -100,10 +113,10 @@ const [values,setvalues] = useState()
       category: values.category,
       author: values.author,
       tags: values.tags,
-      references: values.references.map((reference) => ({
-        name: reference.name,
-        url: reference.url,
-      })),
+      // references: values.references.map((reference) => ({
+      //   name: reference.name,
+      //   url: reference.url,
+      // })),
       images: values.images, // Updated to use images array directly
       language: values?.language, // Default value for language select
 
@@ -119,20 +132,18 @@ const [values,setvalues] = useState()
       },
     });
   };
-
   const handleFileChange = (event) => {
-    const file = event.currentTarget.files[0];
-    if (file) {
-      // Check file size and type before setting it
-      if (file.size > 5 * 1024 * 1024) {
-        alert("File size is too large. Max size is 5MB.");
-        return;
+    const selectedFile = event.target.files[0];
+  
+    if (selectedFile) {
+      const allowedTypes = ['image/jpeg', 'image/png', 'application/pdf'];
+  
+      if (allowedTypes.includes(selectedFile.type)) {
+        setFile(selectedFile); // تعيين الملف المحدد
+        setUploadedImageUrl(URL.createObjectURL(selectedFile)); // إذا كنت تريد عرض المعاينة
+      } else {
+        alert("Unsupported file format. Only JPEG, PNG, and PDF are allowed.");
       }
-      if (!["image/jpeg", "image/png"].includes(file.type)) {
-        alert("Unsupported file format. Only JPEG and PNG are allowed.");
-        return;
-      }
-      setFile(file); // Update file state
     }
   };
 
@@ -171,7 +182,7 @@ const [values,setvalues] = useState()
 
   const modules = {
     toolbar: [
-      [{ header: "1" }, { header: "2" }, { font: [] }],
+      [{ 'header': '1' }, { 'header': '2' }, { 'font': [] }],
       [{ size: [] }],
       [
         "bold",
@@ -234,7 +245,7 @@ const [values,setvalues] = useState()
                 category: null,
                 author: [],
                 tags: [],
-                references: [{ name: "", url: "" }],
+                // references: [{ name: "", url: "" }],
                 images: [], // Default URL for images
                 language: 3, // Default value for language select
 
@@ -327,6 +338,7 @@ const [values,setvalues] = useState()
                           modules={modules}
 
                         />
+                        
                         {touched.content_en && errors.content_en && (
                           <div className="invalid-feedback d-block">
                             {errors.content_en}
@@ -362,7 +374,7 @@ const [values,setvalues] = useState()
                         md="6"
                         controlId="validationFormikImage"
                       >
-                        <Form.Label>Image URL</Form.Label>
+                        <Form.Label>Image or PDF URL</Form.Label>
                         <Form.Control
                           type="text"
                           name="image"
@@ -374,7 +386,7 @@ const [values,setvalues] = useState()
                         <Form.Control.Feedback type="invalid">
                           {errors.image}
                         </Form.Control.Feedback>
-                        <div className="mt-3">
+                        {/* <div className="mt-3">
                           <Form.Label>Upload Image</Form.Label>
                           <Form.Control
                             type="file"
@@ -411,7 +423,45 @@ const [values,setvalues] = useState()
           </CopyToClipboard>
                             </div>
                           )}
-                        </div>
+                        </div> */}
+                        <div className="mt-3">
+  <Form.Label>Upload Image or PDF</Form.Label>
+  <Form.Control
+    type="file"
+    accept="image/*,.pdf"
+    onChange={handleFileChange}
+  />
+  <Button
+    type="button"
+    onClick={uploadImage}
+    className="mt-2"
+  >
+    Upload Image or PDF
+  </Button>
+  {uploadedImageUrl && (
+    <div className="mb-3">
+      <p>
+        Uploaded File URL:{" "}
+        <a
+          href={uploadedImageUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {uploadedImageUrl}
+        </a>
+      </p>
+      <CopyToClipboard
+        text={uploadedImageUrl}
+        onCopy={() => setCopied(true)}
+      >
+        <Button variant="secondary">
+          {copied ? 'Copied!' : 'Copy URL'}
+        </Button>
+      </CopyToClipboard>
+    </div>
+  )}
+</div>
+
                       </Form.Group>
                       <Form.Group
                         as={Col}
@@ -507,7 +557,7 @@ const [values,setvalues] = useState()
                           </div>
                         )}
                       </Form.Group>
-                      <Form.Group
+                      {/* <Form.Group
                         as={Col}
                         md="6"
                         controlId="validationFormikReferences"
@@ -577,7 +627,7 @@ const [values,setvalues] = useState()
                             </div>
                           )}
                         />
-                      </Form.Group>
+                      </Form.Group> */}
                       <Form.Group
                         as={Col}
                         md="6"
