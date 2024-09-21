@@ -10,6 +10,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useCreateProjectImage } from "../../../../Api/Projects";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import ReactQuillCommon from '../../../Utilities/ReactQuillCommon/ReactQuillCommon'
 
 const schema = yup.object().shape({
   title_en: yup.string().required("Title (English) is required"),
@@ -22,6 +23,7 @@ const schema = yup.object().shape({
 const AddTrainings = () => {
   const { mutate, data } = useCreateTraining();
   const navigate = useNavigate();
+  const [valueAlignDes, setvalueAlignDes] = useState("center");
 
   const [file, setFile] = useState(null);
   const [uploadedImageUrl, setUploadedImageUrl] = useState("");
@@ -98,18 +100,18 @@ const AddTrainings = () => {
   };
   
    const quillRef = useRef(null);
-   useEffect(() => {
-    const quill = quillRef.current.getEditor();
-    const editor = quill.root;
+  //  useEffect(() => {
+  //   const quill = quillRef.current.getEditor();
+  //   const editor = quill.root;
 
-    // تعيين اتجاه النص بناءً على اللغة
-    if (values?.description_ar) {
+  //   // تعيين اتجاه النص بناءً على اللغة
+  //   if (values?.description_ar) {
       
-      editor.setAttribute('dir', 'rtl');
-    } else {
-      editor.setAttribute('dir', 'ltr');
-    }
-  }, [values?.description_ar]);
+  //     editor.setAttribute('dir', 'rtl');
+  //   } else {
+  //     editor.setAttribute('dir', 'ltr');
+  //   }
+  // }, [values?.description_ar]);
   return (
     <Fragment>
       <div className="page-header">
@@ -276,13 +278,21 @@ const AddTrainings = () => {
                         className="position-relative"
                       >
                         <Form.Label>Description (English)</Form.Label>
-                        <ReactQuill
+                        {/* <ReactQuill
                           value={values.description_en}
                           onChange={(value) =>
                             setFieldValue("description_en", value)
                           }
                                                     modules={modules}
 
+                        /> */}
+                            <ReactQuillCommon
+                          textDirection='ltr' // تمرير اتجاه النص هنا
+
+                          textDes={values.description_en}
+                          setTextDes={(value) => setFieldValue("description_en", value)}
+                          title="Description"
+                          setvalueAlignDes={setvalueAlignDes} // If required for alignment
                         />
                         {touched.description_en && errors.description_en && (
                           <div className="invalid-feedback d-block">
@@ -297,7 +307,7 @@ const AddTrainings = () => {
                         className="position-relative"
                       >
                         <Form.Label>Description (Arabic)</Form.Label>
-                        <ReactQuill
+                        {/* <ReactQuill
                           value={values.description_ar}
                           onChange={(value) =>
                             setFieldValue("description_ar", value)
@@ -305,6 +315,14 @@ const AddTrainings = () => {
                           className="react-quill"
                           modules={modules}
                           ref={quillRef}
+                        /> */}
+                            <ReactQuillCommon
+                          textDirection='rtl' // تمرير اتجاه النص هنا
+
+                          textDes={values.description_ar}
+                          setTextDes={(value) => setFieldValue("description_ar", value)}
+                          title="Description"
+                          setvalueAlignDes={setvalueAlignDes} // If required for alignment
                         />
                         {touched.description_ar && errors.description_ar && (
                           <div className="invalid-feedback d-block">

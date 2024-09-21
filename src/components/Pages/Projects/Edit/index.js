@@ -21,6 +21,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useParams } from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import ReactQuillCommon from '../../../Utilities/ReactQuillCommon/ReactQuillCommon'
 
 // Validation schema
 const schema = yup.object().shape({
@@ -69,6 +70,8 @@ const EditProjects = ({ }) => {
   const { data: authorsData } = useAuthors();
   const [uploadedImageUrl, setUploadedImageUrl] = useState(dataone?.image || ""
   );
+  const [valueAlignDes, setvalueAlignDes] = useState("center");
+
   const [file, setFile] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false); // Track submission state
   const languageOptions = [
@@ -363,7 +366,15 @@ const EditProjects = ({ }) => {
                         controlId="validationFormikContentEn"
                       >
                         <Form.Label>Content (English)</Form.Label>
-                        <ReactQuill
+                        <ReactQuillCommon
+                          textDirection='ltr' // تمرير اتجاه النص هنا
+
+                          textDes={values.content_en}
+                          setTextDes={(value) => setFieldValue("content_en", value)}
+                          title="Description"
+                          setvalueAlignDes={setvalueAlignDes} // If required for alignment
+                        />
+                        {/* <ReactQuill
                           value={values?.content_en}
                           onChange={(value) =>
                             setFieldValue("content_en", value)
@@ -371,7 +382,7 @@ const EditProjects = ({ }) => {
                           className="react-quill"
                           modules={modules}
 
-                        />
+                        /> */}
                         {touched.content_en && errors.content_en && (
                           <div className="invalid-feedback d-block">
                             {errors.content_en}
@@ -384,6 +395,15 @@ const EditProjects = ({ }) => {
                         controlId="validationFormikContentAr"
                       >
                         <Form.Label>Content (Arabic)</Form.Label>
+                        <ReactQuillCommon
+                          textDirection='rtl' // تمرير اتجاه النص هنا
+
+                          textDes={values.content_ar}
+                          setTextDes={(value) => setFieldValue("content_ar", value)}
+                          title="Description"
+                          setvalueAlignDes={setvalueAlignDes} // If required for alignment
+                        />
+{/* 
                         <ReactQuill
                           value={values?.content_ar}
                           onChange={(value) =>
@@ -391,7 +411,7 @@ const EditProjects = ({ }) => {
                           }
                           className="react-quill"
                           modules={modules}
-                          ref={quillRef} />
+                          ref={quillRef} /> */}
                         {touched.content_ar && errors.content_ar && (
                           <div className="invalid-feedback d-block">
                             {errors.content_ar}
@@ -495,13 +515,15 @@ const EditProjects = ({ }) => {
                       <Form.Group
                         as={Col}
                         md="6"
+                        style={{display:'none'}}
+
                         controlId="validationFormikPopularityCount"
                       >
                         <Form.Label>Popularity Count</Form.Label>
                         <Form.Control
                           type="number"
                           name="popularity_count"
-                          value={values?.popularity_count}
+                          value={0}
                           onChange={handleChange}
                           isValid={
                             touched.popularity_count && !errors.popularity_count

@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Times+New+Roman:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courier+New:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comic+Sans+MS:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tahoma:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Verdana:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arial:wght@400;700&display=swap');
+@font-face {
+  font-family: 'Alfont';
+  src: url('../../../assets/fonts/alfont_com_arial-1.ttf') format('truetype');
+}
+.ql-editor {
+  background-color: #f1f5f9; /* Set your desired background color here */
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.ql-editor .ql-font-arial {
+  font-family: 'Arial', sans-serif;
+}
+.ql-editor .ql-font-roboto {
+  font-family: 'Roboto', sans-serif;
+}
+.ql-editor .ql-font-almarai {
+  font-family: 'Almarai', sans-serif;
+}
+.ql-editor .ql-font-source-sans-pro {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+.ql-editor .ql-font-times-new-roman {
+  font-family: 'Times New Roman', serif;
+}
+.ql-editor .ql-font-georgia {
+  font-family: 'Georgia', serif;
+}
+.ql-editor .ql-font-courier-new {
+  font-family: 'Courier New', monospace;
+}
+.ql-editor .ql-font-comic-sans-ms {
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+.ql-editor .ql-font-tahoma {
+  font-family: 'Tahoma', sans-serif;
+}
+.ql-editor .ql-font-verdana {
+  font-family: 'Alfont', sans-serif;
+}
+.ql-editor .ql-font-Alfont {
+  font-family: 'Alfont', sans-serif;
+}

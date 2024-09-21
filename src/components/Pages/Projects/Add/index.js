@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect,useRef } from "react";
+import React, { Fragment, useState, useEffect, useRef } from "react";
 import { Breadcrumb, Button, Col, Spinner, Row } from "react-bootstrap";
 import { Formik, FieldArray } from "formik";
 import { Form } from "react-bootstrap";
@@ -19,7 +19,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Quill from 'quill';
-
+import ReactQuillCommon from '../../../Utilities/ReactQuillCommon/ReactQuillCommon'
 
 const FontAttributor = Quill.import('attributors/class/font');
 FontAttributor.whitelist = [
@@ -71,6 +71,8 @@ const AddProjects = () => {
     data: dataOfCreatProject,
   } = useCreateProject();
   const { mutate: mutateImage, data: dataImage } = useCreateProjectImage();
+  const [textDes, setTextDes] = useState("");
+  const [valueAlignDes, setvalueAlignDes] = useState("center");
 
   const { data } = useTags();
   const { data: AuthorData } = useUsers();
@@ -98,7 +100,7 @@ const AddProjects = () => {
       label: AUTH.name,
       value: AUTH.id,
     })) || [];
-const [values,setvalues] = useState()
+  const [values, setvalues] = useState()
   const handleSubmit = (values) => {
     setvalues(values)
     setIsSubmitting(true); // Set submitting state to true
@@ -134,10 +136,10 @@ const [values,setvalues] = useState()
   };
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
-  
+
     if (selectedFile) {
       const allowedTypes = ['image/jpeg', 'image/png', 'application/pdf'];
-  
+
       if (allowedTypes.includes(selectedFile.type)) {
         setFile(selectedFile); // تعيين الملف المحدد
         setUploadedImageUrl(URL.createObjectURL(selectedFile)); // إذا كنت تريد عرض المعاينة
@@ -176,7 +178,7 @@ const [values,setvalues] = useState()
   useEffect(() => {
     if (dataOfCreatProject) {
       toast.success("This item has been successfully Created.");
-        navigate("/pages/Projects/");
+      navigate("/pages/Projects/");
     }
   }, [dataOfCreatProject, navigate]);
 
@@ -202,21 +204,21 @@ const [values,setvalues] = useState()
       ["link", "image", "video"], // Add video option here
       ["clean"],
     ],
-    
-  };
-   const quillRef = useRef(null);
-   useEffect(() => {
-    const quill = quillRef.current.getEditor();
-    const editor = quill.root;
 
-    // تعيين اتجاه النص بناءً على اللغة
-    if (values?.content_ar) {
-      
-      editor.setAttribute('dir', 'rtl');
-    } else {
-      editor.setAttribute('dir', 'ltr');
-    }
-  }, [values?.content_ar]);
+  };
+  const quillRef = useRef(null);
+  //  useEffect(() => {
+  //   const quill = quillRef.current.getEditor();
+  //   const editor = quill.root;
+
+  //   // تعيين اتجاه النص بناءً على اللغة
+  //   if (values?.content_ar) {
+
+  //     editor.setAttribute('dir', 'rtl');
+  //   } else {
+  //     editor.setAttribute('dir', 'ltr');
+  //   }
+  // }, [values?.content_ar]);
   return (
     <Fragment>
       <div className="page-header">
@@ -241,7 +243,7 @@ const [values,setvalues] = useState()
                 content_en: "",
                 content_ar: "",
                 image: "", // Default URL or path
-                popularity_count: "",
+                popularity_count: 0,
                 category: null,
                 author: [],
                 tags: [],
@@ -264,11 +266,11 @@ const [values,setvalues] = useState()
                 );
                 setvalues(values)
 
-               
+
                 return (
                   <Form noValidate onSubmit={handleSubmit}>
                     <Row className="mb-3">
-                     
+
                       <Form.Group
                         as={Col}
                         md="6"
@@ -306,39 +308,39 @@ const [values,setvalues] = useState()
                         </Form.Control.Feedback>
                       </Form.Group>
                       <Row className="mb-3">
-                    <Form.Group as={Col} md="12" controlId="validationFormikLanguage">
-                      <Form.Label>Select Language</Form.Label>
-                      <Select
-                        options={languageOptions}
-                        getOptionLabel={(option) => option.label}
-                        getOptionValue={(option) => option.id}
-                        value={values.id}
-                        onChange={(selectedOption) => setFieldValue("language", selectedOption.id)}
-                        isInvalid={!!errors.language && touched.language}
-                      />
-                      {errors.language && touched.language && (
-                        <div className="invalid-feedback d-block">
-                          {errors.language.id || errors.language.language}
-                        </div>
-                      )}
-                    </Form.Group>
-                  </Row> 
+                        <Form.Group as={Col} md="12" controlId="validationFormikLanguage">
+                          <Form.Label>Select Language</Form.Label>
+                          <Select
+                            options={languageOptions}
+                            getOptionLabel={(option) => option.label}
+                            getOptionValue={(option) => option.id}
+                            value={values.id}
+                            onChange={(selectedOption) => setFieldValue("language", selectedOption.id)}
+                            isInvalid={!!errors.language && touched.language}
+                          />
+                          {errors.language && touched.language && (
+                            <div className="invalid-feedback d-block">
+                              {errors.language.id || errors.language.language}
+                            </div>
+                          )}
+                        </Form.Group>
+                      </Row>
                       <Form.Group
                         as={Col}
                         md="6"
                         controlId="validationFormikContentEn"
                       >
                         <Form.Label>Content (English)</Form.Label>
-                        <ReactQuill
-                          value={values.content_en}
-                          onChange={(value) =>
-                            setFieldValue("content_en", value)
-                          }
-                          className="react-quill"
-                          modules={modules}
+                     
+                            <ReactQuillCommon
+                          textDirection='ltrt' // تمرير اتجاه النص هنا
 
+                          textDes={values.content_en}
+                          setTextDes={(value) => setFieldValue("content_en", value)}
+                          title="Description"
+                          setvalueAlignDes={setvalueAlignDes} // If required for alignment
                         />
-                        
+
                         {touched.content_en && errors.content_en && (
                           <div className="invalid-feedback d-block">
                             {errors.content_en}
@@ -351,17 +353,13 @@ const [values,setvalues] = useState()
                         controlId="validationFormikContentAr"
                       >
                         <Form.Label>Content (Arabic)</Form.Label>
-                        <ReactQuill
-                          value={values.content_ar}
-                          onChange={(value) =>
-                            setFieldValue("content_ar", value)
-                          }
-                          className="react-quill"
-                          modules={modules}
-                          ref={quillRef}
+                        <ReactQuillCommon
+                          textDirection='rtl' // تمرير اتجاه النص هنا
 
-
-
+                          textDes={values.content_ar}
+                          setTextDes={(value) => setFieldValue("content_ar", value)}
+                          title="Description"
+                          setvalueAlignDes={setvalueAlignDes} // If required for alignment
                         />
                         {touched.content_ar && errors.content_ar && (
                           <div className="invalid-feedback d-block">
@@ -425,46 +423,47 @@ const [values,setvalues] = useState()
                           )}
                         </div> */}
                         <div className="mt-3">
-  <Form.Label>Upload Image or PDF</Form.Label>
-  <Form.Control
-    type="file"
-    accept="image/*,.pdf"
-    onChange={handleFileChange}
-  />
-  <Button
-    type="button"
-    onClick={uploadImage}
-    className="mt-2"
-  >
-    Upload Image or PDF
-  </Button>
-  {uploadedImageUrl && (
-    <div className="mb-3">
-      <p>
-        Uploaded File URL:{" "}
-        <a
-          href={uploadedImageUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {uploadedImageUrl}
-        </a>
-      </p>
-      <CopyToClipboard
-        text={uploadedImageUrl}
-        onCopy={() => setCopied(true)}
-      >
-        <Button variant="secondary">
-          {copied ? 'Copied!' : 'Copy URL'}
-        </Button>
-      </CopyToClipboard>
-    </div>
-  )}
-</div>
+                          <Form.Label>Upload Image or PDF</Form.Label>
+                          <Form.Control
+                            type="file"
+                            accept="image/*,.pdf"
+                            onChange={handleFileChange}
+                          />
+                          <Button
+                            type="button"
+                            onClick={uploadImage}
+                            className="mt-2"
+                          >
+                            Upload Image or PDF
+                          </Button>
+                          {uploadedImageUrl && (
+                            <div className="mb-3">
+                              <p>
+                                Uploaded File URL:{" "}
+                                <a
+                                  href={uploadedImageUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  {uploadedImageUrl}
+                                </a>
+                              </p>
+                              <CopyToClipboard
+                                text={uploadedImageUrl}
+                                onCopy={() => setCopied(true)}
+                              >
+                                <Button variant="secondary">
+                                  {copied ? 'Copied!' : 'Copy URL'}
+                                </Button>
+                              </CopyToClipboard>
+                            </div>
+                          )}
+                        </div>
 
                       </Form.Group>
                       <Form.Group
                         as={Col}
+                        style={{display:'none'}}
                         md="6"
                         controlId="validationFormikPopularityCount"
                       >
@@ -472,7 +471,7 @@ const [values,setvalues] = useState()
                         <Form.Control
                           type="number"
                           name="popularity_count"
-                          value={values.popularity_count}
+                          value={0}
                           onChange={handleChange}
                           isValid={
                             touched.popularity_count && !errors.popularity_count

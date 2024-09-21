@@ -14,6 +14,8 @@ import "react-quill/dist/quill.snow.css"; // Import Quill styles
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ReactQuillCommon from '../../../Utilities/ReactQuillCommon/ReactQuillCommon'
+
 // Define validation schema using yup
 const schema = yup.object().shape({
   name_en: yup.string().required(),
@@ -24,12 +26,12 @@ const schema = yup.object().shape({
   category: yup.number().required(),
   author: yup.array().of(yup.number()).required(),
   tags: yup.array().of(yup.number()).required(),
-  references: yup.array().of(
-    yup.object().shape({
-      name: yup.string().required(),
-      url: yup.string().url().required(),
-    })
-  ),
+  // references: yup.array().of(
+  //   yup.object().shape({
+  //     name: yup.string().required(),
+  //     url: yup.string().url().required(),
+  //   })
+  // ),
   language: yup.number().required(),
 
  
@@ -42,6 +44,8 @@ const AddPublications = () => {
     error,
     data: dataOfCreatePub,
   } = useCreatePublication();
+  const [valueAlignDes, setvalueAlignDes] = useState("center");
+
   const { data } = useTags();
   const { data: AuthorData } = useUsers();
   const { data: dataOfCategory } = useCategories();
@@ -117,18 +121,18 @@ const AddPublications = () => {
     ],
   };
    const quillRef = useRef(null);
-   useEffect(() => {
-    const quill = quillRef.current.getEditor();
-    const editor = quill.root;
+  //  useEffect(() => {
+  //   const quill = quillRef.current.getEditor();
+  //   const editor = quill.root;
 
-    // تعيين اتجاه النص بناءً على اللغة
-    if (values?.content_ar) {
+  //   // تعيين اتجاه النص بناءً على اللغة
+  //   if (values?.content_ar) {
       
-      editor.setAttribute('dir', 'rtl');
-    } else {
-      editor.setAttribute('dir', 'ltr');
-    }
-  }, [values?.content_ar]);
+  //     editor.setAttribute('dir', 'rtl');
+  //   } else {
+  //     editor.setAttribute('dir', 'ltr');
+  //   }
+  // }, [values?.content_ar]);
   return (
     <Fragment>
       <div className="page-header">
@@ -165,7 +169,7 @@ const AddPublications = () => {
                     ? [authorsData.results[0].id]
                     : [], // إذا كان هناك مؤلفون
                 tags: tagOptions.length > 0 ? [tagOptions[0].value] : [], // إذا كان هناك علامات
-                references: [{ name: "", url: "" }], // القيم الافتراضية للمراجع
+                // references: [{ name: "", url: "" }], // القيم الافتراضية للمراجع
                 language: 3, // Default value for language select
 
               }}
@@ -246,14 +250,22 @@ const AddPublications = () => {
                         controlId="validationFormikContentEn"
                       >
                         <Form.Label>Content (English)</Form.Label>
-                        <ReactQuill
+                        <ReactQuillCommon
+                          textDirection='ltr' // تمرير اتجاه النص هنا
+
+                          textDes={values.content_en}
+                          setTextDes={(value) => setFieldValue("content_en", value)}
+                          title="Description"
+                          setvalueAlignDes={setvalueAlignDes} // If required for alignment
+                        />
+                        {/* <ReactQuill
                           value={values.content_en}
                           onChange={(value) =>
                             setFieldValue("content_en", value)
                           }
                           theme="snow"
                           modules={modules}
-                        />
+                        /> */}
                         {touched.content_en && errors.content_en && (
                           <div className="invalid-feedback">
                             {errors.content_en}
@@ -266,7 +278,15 @@ const AddPublications = () => {
                         controlId="validationFormikContentAr"
                       >
                         <Form.Label>Content (Arabic)</Form.Label>
-                        <ReactQuill
+                        <ReactQuillCommon
+                          textDirection='rtl' // تمرير اتجاه النص هنا
+
+                          textDes={values.content_ar}
+                          setTextDes={(value) => setFieldValue("content_ar", value)}
+                          title="Description"
+                          setvalueAlignDes={setvalueAlignDes} // If required for alignment
+                        />
+                        {/* <ReactQuill
                           value={values.content_ar}
                           onChange={(value) =>
                             setFieldValue("content_ar", value)
@@ -275,7 +295,7 @@ const AddPublications = () => {
                           className="react-quill"
                           modules={modules}
                           ref={quillRef}
-                          />
+                          /> */}
                         {touched.content_ar && errors.content_ar && (
                           <div className="invalid-feedback">
                             {errors.content_ar}
@@ -286,6 +306,8 @@ const AddPublications = () => {
                     <Row className="mb-3">
                       <Form.Group
                         as={Col}
+                        style={{display:'none'}}
+
                         md="6"
                         controlId="validationFormikPopularityCount"
                       >
@@ -293,7 +315,7 @@ const AddPublications = () => {
                         <Form.Control
                           type="number"
                           name="popularity_count"
-                          value={values.popularity_count}
+                          value={0}
                           onChange={handleChange}
                           isInvalid={
                             !!errors.popularity_count &&
@@ -379,7 +401,7 @@ const AddPublications = () => {
                           <div className="invalid-feedback">{errors.tags}</div>
                         )}
                       </Form.Group>
-                      <Form.Group
+                      {/* <Form.Group
                         as={Col}
                         md="6"
                         controlId="validationFormikReferences"
@@ -448,7 +470,7 @@ const AddPublications = () => {
                             </div>
                           )}
                         />
-                      </Form.Group>
+                      </Form.Group> */}
                     </Row>
                     <Button
                       type="submit"

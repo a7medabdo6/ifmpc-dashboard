@@ -10,6 +10,7 @@ import { useCreateProjectImage } from "../../../../Api/Projects";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import ReactQuillCommon from '../../../Utilities/ReactQuillCommon/ReactQuillCommon'
 
 const schema = yup.object().shape({
   title_en: yup.string().required(),
@@ -23,6 +24,7 @@ const EditTrainings = ({ id, itemData, viewDemoClose, setShow10 }) => {
   const { mutate, data } = useEditTraining();
   const navigate = useNavigate();
   const [copied, setCopied] = useState(false);
+  const [valueAlignDes, setvalueAlignDes] = useState("center");
 
   const { mutate: mutateImage, data: dataImage } = useCreateProjectImage();
   const [uploadedImageUrl, setUploadedImageUrl] = useState(
@@ -272,14 +274,22 @@ const EditTrainings = ({ id, itemData, viewDemoClose, setShow10 }) => {
                       className="position-relative"
                     >
                       <Form.Label>Description (English)</Form.Label>
-                      <ReactQuill
+                      <ReactQuillCommon
+                          textDirection='ltr' // تمرير اتجاه النص هنا
+
+                          textDes={values.description_en}
+                          setTextDes={(value) => setFieldValue("description_en", value)}
+                          title="Description"
+                          setvalueAlignDes={setvalueAlignDes} // If required for alignment
+                        />
+                      {/* <ReactQuill
                         value={values.description_en}
                         onChange={(value) =>
                           setFieldValue("description_en", value)
                         }
                         modules={modules}
 
-                      />
+                      /> */}
                       {touched.description_en && errors.description_en && (
                         <div className="invalid-feedback d-block">
                           {errors.description_en}
@@ -293,7 +303,7 @@ const EditTrainings = ({ id, itemData, viewDemoClose, setShow10 }) => {
                       className="position-relative"
                     >
                       <Form.Label>Description (Arabic)</Form.Label>
-                      <ReactQuill
+                      {/* <ReactQuill
                         value={values.description_ar}
                         onChange={(value) =>
                           setFieldValue("description_ar", value)
@@ -301,7 +311,15 @@ const EditTrainings = ({ id, itemData, viewDemoClose, setShow10 }) => {
                         className="react-quill"
                         modules={modules}
                         ref={quillRef}  
-                      />
+                      /> */}
+                         <ReactQuillCommon
+                          textDirection='rtl' // تمرير اتجاه النص هنا
+
+                          textDes={values.description_ar}
+                          setTextDes={(value) => setFieldValue("description_ar", value)}
+                          title="Description"
+                          setvalueAlignDes={setvalueAlignDes} // If required for alignment
+                        />
                       {touched.description_ar && errors.description_ar && (
                         <div className="invalid-feedback d-block">
                           {errors.description_ar}

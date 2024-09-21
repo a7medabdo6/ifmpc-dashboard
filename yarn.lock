@@ -12643,6 +12643,11 @@ react-tag-input-component@^1.0.7:
   dependencies:
     goober "^2.1.10"
 
+react-text-editor-kit@^1.5.2:
+  version "1.5.2"
+  resolved "https://registry.npmjs.org/react-text-editor-kit/-/react-text-editor-kit-1.5.2.tgz"
+  integrity sha512-e2c+9v6AOYb9KUAe2XohJMHQzkxcw6IqvthvPalzjEcCOp6xAsYnYGyYPfvfuGcjHM380QuM77gswaDE0v2jGQ==
+
 react-textarea-autosize@^7.1.0:
   version "7.1.2"
   resolved "https://registry.npmjs.org/react-textarea-autosize/-/react-textarea-autosize-7.1.2.tgz"
