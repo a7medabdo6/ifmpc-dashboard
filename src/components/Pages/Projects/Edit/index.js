@@ -19,16 +19,16 @@ import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useParams } from 'react-router-dom';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
-import ReactQuillCommon from '../../../Utilities/ReactQuillCommon/ReactQuillCommon'
+import { useParams } from "react-router-dom";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import ReactQuillCommon from "../../../Utilities/ReactQuillCommon/ReactQuillCommon";
 
 // Validation schema
 const schema = yup.object().shape({
   name_en: yup.string().required("English name is required"),
-  name_ar: yup.string().required("Arabic name is required"),
+  // name_ar: yup.string().required("Arabic name is required"),
   content_en: yup.string().required("English content is required"),
-  content_ar: yup.string().required("Arabic content is required"),
+  // content_ar: yup.string().required("Arabic content is required"),
   image: yup.string().required("Image URL is required"), // Changed to string
   popularity_count: yup
     .number()
@@ -51,10 +51,9 @@ const schema = yup.object().shape({
   // ),
   images: yup.array().of(yup.string().required("Image URL is required")),
   language: yup.number().required(),
-
 });
 
-const EditProjects = ({ }) => {
+const EditProjects = ({}) => {
   const { id } = useParams();
 
   const location = useLocation();
@@ -68,16 +67,17 @@ const EditProjects = ({ }) => {
   const { data: AuthorData } = useUsers();
   const { data: dataOfCategory } = useCategories();
   const { data: authorsData } = useAuthors();
-  const [uploadedImageUrl, setUploadedImageUrl] = useState(dataone?.image || ""
+  const [uploadedImageUrl, setUploadedImageUrl] = useState(
+    dataone?.image || ""
   );
   const [valueAlignDes, setvalueAlignDes] = useState("center");
 
   const [file, setFile] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false); // Track submission state
   const languageOptions = [
-    { id: 1, language: 'en', label: 'English' },
-    { id: 2, language: 'ar', label: 'Arabic' },
-    { id: 3, language: 'both', label: 'Both' },
+    { id: 1, language: "en", label: "English" },
+    { id: 2, language: "ar", label: "Arabic" },
+    { id: 3, language: "both", label: "Both" },
   ];
   const tagOptions =
     data?.results.map((tag) => ({ value: tag.id, label: tag.name })) || [];
@@ -111,7 +111,6 @@ const EditProjects = ({ }) => {
       // })),
       images: values.images, // Updated to use images array directly
       language: values?.language, // Default value for language select
-
     };
     let data = {
       jsonData,
@@ -131,10 +130,10 @@ const EditProjects = ({ }) => {
   };
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
-  
+
     if (selectedFile) {
-      const allowedTypes = ['image/jpeg', 'image/png', 'application/pdf'];
-  
+      const allowedTypes = ["image/jpeg", "image/png", "application/pdf"];
+
       if (allowedTypes.includes(selectedFile.type)) {
         setFile(selectedFile); // تعيين الملف المحدد
         setUploadedImageUrl(URL.createObjectURL(selectedFile)); // إذا كنت تريد عرض المعاينة
@@ -188,17 +187,16 @@ const EditProjects = ({ }) => {
     tags: [],
     // references: [{ name: "", url: "" }],
     images: [],
-    language: '', // Default value for language select
-
+    language: "", // Default value for language select
   });
 
   useEffect(() => {
     if (dataone) {
       setInitialValues({
         name_en: dataone.name_en || "",
-        name_ar: dataone.name_ar || "",
+        // name_ar: dataone.name_ar || "",
         content_en: dataone.content_en || "",
-        content_ar: dataone.content_ar || "",
+        // content_ar: dataone.content_ar || "",
         image: dataone.images[0]?.image || "",
         popularity_count: dataone.popularity_count || "",
         category: dataone.category?.id || null,
@@ -207,23 +205,16 @@ const EditProjects = ({ }) => {
         // references: dataone.references || [{ name: "", url: "" }],
         images: dataone.images?.map((image) => image.image) || [],
         language: dataone?.language, // Default value for language select
-
       });
     }
   }, [dataone]);
-  const [values, setvalues] = useState()
+  const [values, setvalues] = useState();
 
   const modules = {
     toolbar: [
       [{ header: "1" }, { header: "2" }, { font: [] }],
       [{ size: [] }],
-      [
-        "bold",
-        "italic",
-        "underline",
-        "strike",
-        "blockquote",
-      ],
+      ["bold", "italic", "underline", "strike", "blockquote"],
       [{ align: ["right", "center", "justify"] }],
 
       [
@@ -240,13 +231,14 @@ const EditProjects = ({ }) => {
   useEffect(() => {
     const quill = quillRef?.current?.getEditor();
 
-    if (quill) { // Ensure quill is defined
+    if (quill) {
+      // Ensure quill is defined
       const editor = quill.root;
       if (dataone?.content_ar && dataone) {
         console.log(dataone?.content_ar);
-        editor.setAttribute('dir', 'rtl'); // Set text direction to RTL
+        editor.setAttribute("dir", "rtl"); // Set text direction to RTL
       } else {
-        editor.setAttribute('dir', 'ltr'); // Default to LTR
+        editor.setAttribute("dir", "ltr"); // Default to LTR
       }
     }
   }, [dataone?.content_ar, dataone]);
@@ -272,13 +264,12 @@ const EditProjects = ({ }) => {
           <div className="card-body">
             <Formik
               validationSchema={schema}
-
               onSubmit={(values) => handleSubmit(values)}
               initialValues={{
                 name_en: dataone.name_en || "",
-                name_ar: dataone.name_ar || "",
+                // name_ar: dataone.name_ar || "",
                 content_en: dataone.content_en || "",
-                content_ar: dataone.content_ar || "",
+                // content_ar: dataone.content_ar || "",
                 image: dataone.image || "",
                 popularity_count: dataone.popularity_count || "",
                 category: dataone.category?.id || null,
@@ -286,7 +277,7 @@ const EditProjects = ({ }) => {
                 tags: dataone.tags?.map((tag) => tag.id) || [],
                 // references: dataone.references || [{ name: "", url: "" }],
                 images: dataone.images?.map((image) => image.image) || [],
-                language: dataone?.language
+                language: dataone?.language,
               }}
             >
               {({
@@ -300,12 +291,11 @@ const EditProjects = ({ }) => {
                 const isFormValid = !Object.values(values).some(
                   (value) => value === "" || value === null
                 );
-                setvalues(values)
+                setvalues(values);
 
                 return (
                   <Form noValidate onSubmit={handleSubmit}>
                     <Row className="mb-3">
-
                       <Form.Group
                         as={Col}
                         md="6"
@@ -343,14 +333,24 @@ const EditProjects = ({ }) => {
                         </Form.Control.Feedback>
                       </Form.Group>
                       <Row className="mb-3">
-                        <Form.Group as={Col} md="12" controlId="validationFormikLanguage">
+                        <Form.Group
+                          as={Col}
+                          md="12"
+                          controlId="validationFormikLanguage"
+                        >
                           <Form.Label>Select Language</Form.Label>
                           <Select
                             options={languageOptions}
                             getOptionLabel={(option) => option.label}
                             getOptionValue={(option) => option.id}
-                            value={values.id}
-                            onChange={(selectedOption) => setFieldValue("language", selectedOption.id)}
+                            value={
+                              languageOptions.filter(
+                                (item) => item?.id == values.language
+                              )[0]
+                            }
+                            onChange={(selectedOption) =>
+                              setFieldValue("language", selectedOption.id)
+                            }
                             isInvalid={!!errors.language && touched.language}
                           />
                           {errors.language && touched.language && (
@@ -367,10 +367,11 @@ const EditProjects = ({ }) => {
                       >
                         <Form.Label>Content (English)</Form.Label>
                         <ReactQuillCommon
-                          textDirection='ltr' // تمرير اتجاه النص هنا
-
+                          textDirection="ltr" // تمرير اتجاه النص هنا
                           textDes={values.content_en}
-                          setTextDes={(value) => setFieldValue("content_en", value)}
+                          setTextDes={(value) =>
+                            setFieldValue("content_en", value)
+                          }
                           title="Description"
                           setvalueAlignDes={setvalueAlignDes} // If required for alignment
                         />
@@ -396,14 +397,15 @@ const EditProjects = ({ }) => {
                       >
                         <Form.Label>Content (Arabic)</Form.Label>
                         <ReactQuillCommon
-                          textDirection='rtl' // تمرير اتجاه النص هنا
-
+                          textDirection="rtl" // تمرير اتجاه النص هنا
                           textDes={values.content_ar}
-                          setTextDes={(value) => setFieldValue("content_ar", value)}
+                          setTextDes={(value) =>
+                            setFieldValue("content_ar", value)
+                          }
                           title="Description"
                           setvalueAlignDes={setvalueAlignDes} // If required for alignment
                         />
-{/* 
+                        {/* 
                         <ReactQuill
                           value={values?.content_ar}
                           onChange={(value) =>
@@ -474,49 +476,47 @@ const EditProjects = ({ }) => {
                           )}
                         </div> */}
                         <div className="mt-3">
-  <Form.Label>Upload Image or PDF</Form.Label>
-  <Form.Control
-    type="file"
-    accept="image/*,.pdf"
-    onChange={handleFileChange}
-  />
-  <Button
-    type="button"
-    onClick={uploadImage}
-    className="mt-2"
-  >
-    Upload Image or PDF
-  </Button>
-  {uploadedImageUrl && (
-    <div className="mb-3">
-      <p>
-        Uploaded File URL:{" "}
-        <a
-          href={uploadedImageUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {uploadedImageUrl}
-        </a>
-      </p>
-      <CopyToClipboard
-        text={uploadedImageUrl}
-        onCopy={() => setCopied(true)}
-      >
-        <Button variant="secondary">
-          {copied ? 'Copied!' : 'Copy URL'}
-        </Button>
-      </CopyToClipboard>
-    </div>
-  )}
-</div>
-
+                          <Form.Label>Upload Image or PDF</Form.Label>
+                          <Form.Control
+                            type="file"
+                            accept="image/*,.pdf"
+                            onChange={handleFileChange}
+                          />
+                          <Button
+                            type="button"
+                            onClick={uploadImage}
+                            className="mt-2"
+                          >
+                            Upload Image or PDF
+                          </Button>
+                          {uploadedImageUrl && (
+                            <div className="mb-3">
+                              <p>
+                                Uploaded File URL:{" "}
+                                <a
+                                  href={uploadedImageUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  {uploadedImageUrl}
+                                </a>
+                              </p>
+                              <CopyToClipboard
+                                text={uploadedImageUrl}
+                                onCopy={() => setCopied(true)}
+                              >
+                                <Button variant="secondary">
+                                  {copied ? "Copied!" : "Copy URL"}
+                                </Button>
+                              </CopyToClipboard>
+                            </div>
+                          )}
+                        </div>
                       </Form.Group>
                       <Form.Group
                         as={Col}
                         md="6"
-                        style={{display:'none'}}
-
+                        style={{ display: "none" }}
                         controlId="validationFormikPopularityCount"
                       >
                         <Form.Label>Popularity Count</Form.Label>

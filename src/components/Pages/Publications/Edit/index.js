@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState ,useRef} from "react";
+import React, { Fragment, useEffect, useState, useRef } from "react";
 import { Breadcrumb, Button, Col, Row, Spinner } from "react-bootstrap";
 import { Formik, FieldArray } from "formik";
 import { Form } from "react-bootstrap";
@@ -18,15 +18,15 @@ import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useParams } from 'react-router-dom';
-import ReactQuillCommon from '../../../Utilities/ReactQuillCommon/ReactQuillCommon'
+import { useParams } from "react-router-dom";
+import ReactQuillCommon from "../../../Utilities/ReactQuillCommon/ReactQuillCommon";
 
 // Define validation schema using yup
 const schema = yup.object().shape({
   name_en: yup.string().required("English name is required"),
-  name_ar: yup.string().required("Arabic name is required"),
+  // name_ar: yup.string().required("Arabic name is required"),
   content_en: yup.string().required("English content is required"),
-  content_ar: yup.string().required("Arabic content is required"),
+  // content_ar: yup.string().required("Arabic content is required"),
   popularity_count: yup
     .number()
     .integer()
@@ -47,7 +47,6 @@ const schema = yup.object().shape({
   //   })
   // ),
   language: yup.number().required(),
-
 });
 
 const EditPublications = () => {
@@ -64,9 +63,9 @@ const EditPublications = () => {
   const { data: dataone, isLoading: isLoadingOne } = useOnePublication(id);
   const [isSubmitting, setIsSubmitting] = useState(false); // Track submission state
   const languageOptions = [
-    { id: 1, language: 'en', label: 'English' },
-    { id: 2, language: 'ar', label: 'Arabic' },
-    { id: 3, language: 'both', label: 'Both' },
+    { id: 1, language: "en", label: "English" },
+    { id: 2, language: "ar", label: "Arabic" },
+    { id: 3, language: "both", label: "Both" },
   ];
   // Convert tags data to options for Select
   const tagOptions =
@@ -115,13 +114,7 @@ const EditPublications = () => {
     toolbar: [
       [{ header: "1" }, { header: "2" }, { font: [] }],
       [{ size: [] }],
-      [
-        "bold",
-        "italic",
-        "underline",
-        "strike",
-        "blockquote",
-      ],
+      ["bold", "italic", "underline", "strike", "blockquote"],
       [{ align: ["right", "center", "justify"] }],
 
       [
@@ -134,10 +127,10 @@ const EditPublications = () => {
       ["clean"],
     ],
   };
-   const quillRef = useRef(null);
+  const quillRef = useRef(null);
   //  useEffect(() => {
   //   const quill = quillRef?.current?.getEditor();
-    
+
   //   if (quill) { // Ensure quill is defined
   //     const editor = quill.root;
   //     if (dataone?.content_ar && dataone) {
@@ -174,9 +167,9 @@ const EditPublications = () => {
               }}
               initialValues={{
                 name_en: dataone?.name_en || "",
-                name_ar: dataone?.name_ar || "",
+                // name_ar: dataone?.name_ar || "",
                 content_en: dataone?.content_en || "",
-                content_ar: dataone?.content_ar || "",
+                // content_ar: dataone?.content_ar || "",
                 popularity_count: dataone?.popularity_count || 0,
                 category:
                   dataone?.category?.id ||
@@ -190,8 +183,7 @@ const EditPublications = () => {
                   dataone?.tags.map((t) => t.id) ||
                   (tagOptions.length > 0 ? [tagOptions[0].value] : []),
                 // references: dataone?.references || [{ name: "", url: "" }],
-                language: dataone?.language, // Default value for language select
-
+                language: dataone?.language || 2, // Default value for language select
               }}
             >
               {({
@@ -209,7 +201,6 @@ const EditPublications = () => {
                   <Form noValidate onSubmit={handleSubmit}>
                     {/* Existing fields */}
                     <Row className="mb-3">
-                     
                       <Form.Group
                         as={Col}
                         md="6"
@@ -247,23 +238,33 @@ const EditPublications = () => {
                         </Form.Control.Feedback>
                       </Form.Group>
                       <Row className="mb-3">
-                    <Form.Group as={Col} md="12" controlId="validationFormikLanguage">
-                      <Form.Label>Select Language</Form.Label>
-                      <Select
-                        options={languageOptions}
-                        getOptionLabel={(option) => option.label}
-                        getOptionValue={(option) => option.id}
-                        value={values.id}
-                        onChange={(selectedOption) => setFieldValue("language", selectedOption.id)}
-                        isInvalid={!!errors.language && touched.language}
-                      />
-                      {errors.language && touched.language && (
-                        <div className="invalid-feedback d-block">
-                          {errors.language.id || errors.language.language}
-                        </div>
-                      )}
-                    </Form.Group>
-                  </Row> 
+                        <Form.Group
+                          as={Col}
+                          md="12"
+                          controlId="validationFormikLanguage"
+                        >
+                          <Form.Label>Select Language</Form.Label>
+                          <Select
+                            options={languageOptions}
+                            getOptionLabel={(option) => option.label}
+                            getOptionValue={(option) => option.id}
+                            value={
+                              languageOptions.filter(
+                                (item) => item?.id == values.language
+                              )[0]
+                            }
+                            onChange={(selectedOption) =>
+                              setFieldValue("language", selectedOption.id)
+                            }
+                            isInvalid={!!errors.language && touched.language}
+                          />
+                          {errors.language && touched.language && (
+                            <div className="invalid-feedback d-block">
+                              {errors.language.id || errors.language.language}
+                            </div>
+                          )}
+                        </Form.Group>
+                      </Row>
                       <Form.Group
                         as={Col}
                         md="6"
@@ -271,10 +272,11 @@ const EditPublications = () => {
                       >
                         <Form.Label>Content (English)</Form.Label>
                         <ReactQuillCommon
-                          textDirection='ltr' // تمرير اتجاه النص هنا
-
+                          textDirection="ltr" // تمرير اتجاه النص هنا
                           textDes={values.content_en}
-                          setTextDes={(value) => setFieldValue("content_en", value)}
+                          setTextDes={(value) =>
+                            setFieldValue("content_en", value)
+                          }
                           title="Description"
                           setvalueAlignDes={setvalueAlignDes} // If required for alignment
                         />
@@ -299,10 +301,11 @@ const EditPublications = () => {
                       >
                         <Form.Label>Content (Arabic)</Form.Label>
                         <ReactQuillCommon
-                          textDirection='rtl' // تمرير اتجاه النص هنا
-
+                          textDirection="rtl" // تمرير اتجاه النص هنا
                           textDes={values.content_ar}
-                          setTextDes={(value) => setFieldValue("content_ar", value)}
+                          setTextDes={(value) =>
+                            setFieldValue("content_ar", value)
+                          }
                           title="Description"
                           setvalueAlignDes={setvalueAlignDes} // If required for alignment
                         />
@@ -327,8 +330,7 @@ const EditPublications = () => {
                       <Form.Group
                         as={Col}
                         md="6"
-                        style={{display:'none'}}
-
+                        style={{ display: "none" }}
                         controlId="validationFormikPopularityCount"
                       >
                         <Form.Label>Popularity Count</Form.Label>

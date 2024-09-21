@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState,useRef } from "react";
+import React, { Fragment, useEffect, useState, useRef } from "react";
 import { Breadcrumb, Button, Col, Row, Spinner } from "react-bootstrap";
 import { Formik, FieldArray } from "formik";
 import { Form } from "react-bootstrap";
@@ -14,14 +14,14 @@ import "react-quill/dist/quill.snow.css"; // Import Quill styles
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ReactQuillCommon from '../../../Utilities/ReactQuillCommon/ReactQuillCommon'
+import ReactQuillCommon from "../../../Utilities/ReactQuillCommon/ReactQuillCommon";
 
 // Define validation schema using yup
 const schema = yup.object().shape({
   name_en: yup.string().required(),
-  name_ar: yup.string().required(),
+  // name_ar: yup.string().optional(),
   content_en: yup.string().required(),
-  content_ar: yup.string().required(),
+  // content_ar: yup.string().optional(),
   popularity_count: yup.number().integer().required(),
   category: yup.number().required(),
   author: yup.array().of(yup.number()).required(),
@@ -33,8 +33,6 @@ const schema = yup.object().shape({
   //   })
   // ),
   language: yup.number().required(),
-
- 
 });
 
 const AddPublications = () => {
@@ -52,9 +50,9 @@ const AddPublications = () => {
   const { data: authorsData } = useAuthors();
   const [isSubmitting, setIsSubmitting] = useState(false); // Track submission state
   const languageOptions = [
-    { id: 1, language: 'en', label: 'English' },
-    { id: 2, language: 'ar', label: 'Arabic' },
-    { id: 3, language: 'both', label: 'Both' },
+    { id: 1, language: "en", label: "English" },
+    { id: 2, language: "ar", label: "Arabic" },
+    { id: 3, language: "both", label: "Both" },
   ];
   // Convert tags data to options for Select
   const tagOptions =
@@ -72,7 +70,7 @@ const AddPublications = () => {
       label: AUTH.name,
       value: AUTH.id,
     })) || [];
-    const [values,setvalues] = useState()
+  const [values, setvalues] = useState();
 
   const handleSubmit = (data) => {
     setIsSubmitting(true);
@@ -96,18 +94,12 @@ const AddPublications = () => {
       navigate("/pages/publications/");
     }
   }, [dataOfCreatePub, navigate]);
-  
+
   const modules = {
     toolbar: [
       [{ header: "1" }, { header: "2" }, { font: [] }],
       [{ size: [] }],
-      [
-        "bold",
-        "italic",
-        "underline",
-        "strike",
-        "blockquote",
-      ],
+      ["bold", "italic", "underline", "strike", "blockquote"],
       [{ align: ["right", "center", "justify"] }],
 
       [
@@ -120,14 +112,14 @@ const AddPublications = () => {
       ["clean"],
     ],
   };
-   const quillRef = useRef(null);
+  const quillRef = useRef(null);
   //  useEffect(() => {
   //   const quill = quillRef.current.getEditor();
   //   const editor = quill.root;
 
   //   // تعيين اتجاه النص بناءً على اللغة
   //   if (values?.content_ar) {
-      
+
   //     editor.setAttribute('dir', 'rtl');
   //   } else {
   //     editor.setAttribute('dir', 'ltr');
@@ -158,9 +150,9 @@ const AddPublications = () => {
               }}
               initialValues={{
                 name_en: "",
-                name_ar: "",
+                // name_ar: "",
                 content_en: "",
-                content_ar: "",
+                // content_ar: "",
                 popularity_count: 0, // قيمة افتراضية مبدئية
                 category:
                   categoryOptions.length > 0 ? categoryOptions[0].value : "", // إذا كان هناك فئات
@@ -171,7 +163,6 @@ const AddPublications = () => {
                 tags: tagOptions.length > 0 ? [tagOptions[0].value] : [], // إذا كان هناك علامات
                 // references: [{ name: "", url: "" }], // القيم الافتراضية للمراجع
                 language: 3, // Default value for language select
-
               }}
             >
               {({
@@ -185,13 +176,12 @@ const AddPublications = () => {
                 const isFormValid = !Object.values(values).some(
                   (value) => value === "" || value === null
                 );
-                setvalues(values)
+                setvalues(values);
 
                 return (
                   <Form noValidate onSubmit={handleSubmit}>
                     {/* Existing fields */}
                     <Row className="mb-3">
-                    
                       <Form.Group
                         as={Col}
                         md="6"
@@ -227,23 +217,29 @@ const AddPublications = () => {
                         </Form.Control.Feedback>
                       </Form.Group>
                       <Row className="mb-3">
-                    <Form.Group as={Col} md="12" controlId="validationFormikLanguage">
-                      <Form.Label>Select Language</Form.Label>
-                      <Select
-                        options={languageOptions}
-                        getOptionLabel={(option) => option.label}
-                        getOptionValue={(option) => option.id}
-                        value={values.id}
-                        onChange={(selectedOption) => setFieldValue("language", selectedOption.id)}
-                        isInvalid={!!errors.language && touched.language}
-                      />
-                      {errors.language && touched.language && (
-                        <div className="invalid-feedback d-block">
-                          {errors.language.id || errors.language.language}
-                        </div>
-                      )}
-                    </Form.Group>
-                  </Row> 
+                        <Form.Group
+                          as={Col}
+                          md="12"
+                          controlId="validationFormikLanguage"
+                        >
+                          <Form.Label>Select Language</Form.Label>
+                          <Select
+                            options={languageOptions}
+                            getOptionLabel={(option) => option.label}
+                            getOptionValue={(option) => option.id}
+                            value={values.id}
+                            onChange={(selectedOption) =>
+                              setFieldValue("language", selectedOption.id)
+                            }
+                            isInvalid={!!errors.language && touched.language}
+                          />
+                          {errors.language && touched.language && (
+                            <div className="invalid-feedback d-block">
+                              {errors.language.id || errors.language.language}
+                            </div>
+                          )}
+                        </Form.Group>
+                      </Row>
                       <Form.Group
                         as={Col}
                         md="6"
@@ -251,10 +247,11 @@ const AddPublications = () => {
                       >
                         <Form.Label>Content (English)</Form.Label>
                         <ReactQuillCommon
-                          textDirection='ltr' // تمرير اتجاه النص هنا
-
+                          textDirection="ltr" // تمرير اتجاه النص هنا
                           textDes={values.content_en}
-                          setTextDes={(value) => setFieldValue("content_en", value)}
+                          setTextDes={(value) =>
+                            setFieldValue("content_en", value)
+                          }
                           title="Description"
                           setvalueAlignDes={setvalueAlignDes} // If required for alignment
                         />
@@ -279,10 +276,11 @@ const AddPublications = () => {
                       >
                         <Form.Label>Content (Arabic)</Form.Label>
                         <ReactQuillCommon
-                          textDirection='rtl' // تمرير اتجاه النص هنا
-
+                          textDirection="rtl" // تمرير اتجاه النص هنا
                           textDes={values.content_ar}
-                          setTextDes={(value) => setFieldValue("content_ar", value)}
+                          setTextDes={(value) =>
+                            setFieldValue("content_ar", value)
+                          }
                           title="Description"
                           setvalueAlignDes={setvalueAlignDes} // If required for alignment
                         />
@@ -306,8 +304,7 @@ const AddPublications = () => {
                     <Row className="mb-3">
                       <Form.Group
                         as={Col}
-                        style={{display:'none'}}
-
+                        style={{ display: "none" }}
                         md="6"
                         controlId="validationFormikPopularityCount"
                       >
