@@ -47,6 +47,8 @@ const schema = yup.object().shape({
   //   })
   // ),
   language: yup.number().required(),
+  custom_created_at: yup.string(), // يمكن أن تكون سلسلة أو غير موجودة
+
 });
 
 const EditPublications = () => {
@@ -184,6 +186,8 @@ const EditPublications = () => {
                   (tagOptions.length > 0 ? [tagOptions[0].value] : []),
                 // references: dataone?.references || [{ name: "", url: "" }],
                 language: dataone?.language || 2, // Default value for language select
+                custom_created_at: dataone?.custom_created_at || "", // أضف هذا الحقل
+
               }}
             >
               {({
@@ -264,6 +268,19 @@ const EditPublications = () => {
                             </div>
                           )}
                         </Form.Group>
+                        <Form.Group as={Col} md="6" controlId="validationFormikCustomCreatedAt">
+    <Form.Label>Custom Created At</Form.Label>
+    <Form.Control
+      type="date"
+      name="custom_created_at" // استخدم الاسم الجديد
+      value={values.custom_created_at}
+      onChange={handleChange}
+      isInvalid={touched.custom_created_at && !!errors.custom_created_at}
+    />
+    <Form.Control.Feedback type="invalid">
+      {errors.custom_created_at}
+    </Form.Control.Feedback>
+  </Form.Group>
                       </Row>
                       <Form.Group
                         as={Col}

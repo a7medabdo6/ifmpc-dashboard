@@ -59,6 +59,8 @@ const schema = yup.object().shape({
   // ),
   images: yup.array().of(yup.string().required("Image URL is required")),
   language: yup.number().required(),
+  custom_created_at: yup.string(), // يمكن أن تكون سلسلة أو غير موجودة
+
 });
 
 const AddProjects = () => {
@@ -117,8 +119,10 @@ const AddProjects = () => {
       //   name: reference.name,
       //   url: reference.url,
       // })),
-      images: values.images, // Updated to use images array directly
+      images: values.images, 
       language: values?.language, // Default value for language select
+      custom_created_at: values?.custom_created_at || "", // أضف هذا الحقل
+
     };
 
     mutate(jsonData, {
@@ -152,7 +156,7 @@ const AddProjects = () => {
       formData.append("file", file);
       mutateImage(formData, {
         onSuccess: (data) => {
-          setUploadedImageUrl(data.file_url); // Update state with the uploaded image URL
+          setUploadedImageUrl(data.file_url); 
         },
         onError: () => {
           alert("Error uploading image.");
@@ -240,6 +244,8 @@ const AddProjects = () => {
                 // references: [{ name: "", url: "" }],
                 images: [], // Default URL for images
                 language: 3, // Default value for language select
+                custom_created_at:  "", // أضف هذا الحقل
+
               }}
             >
               {({
@@ -317,6 +323,20 @@ const AddProjects = () => {
                             </div>
                           )}
                         </Form.Group>
+                        <Form.Group as={Col} md="6" controlId="validationFormikCustomCreatedAt">
+    <Form.Label>Custom Created At</Form.Label>
+    <Form.Control
+      type="date"
+      name="custom_created_at" // استخدم الاسم الجديد
+      value={values.custom_created_at}
+      onChange={handleChange}
+      isInvalid={touched.custom_created_at && !!errors.custom_created_at}
+    />
+    <Form.Control.Feedback type="invalid">
+      {errors.custom_created_at}
+    </Form.Control.Feedback>
+  </Form.Group>
+
                       </Row>
                       <Form.Group
                         as={Col}

@@ -51,6 +51,8 @@ const schema = yup.object().shape({
   // ),
   images: yup.array().of(yup.string().required("Image URL is required")),
   language: yup.number().required(),
+  custom_created_at: yup.string(), // يمكن أن تكون سلسلة أو غير موجودة
+
 });
 
 const EditProjects = ({}) => {
@@ -111,6 +113,8 @@ const EditProjects = ({}) => {
       // })),
       images: values.images, // Updated to use images array directly
       language: values?.language, // Default value for language select
+      custom_created_at: values?.custom_created_at || "", // أضف هذا الحقل
+
     };
     let data = {
       jsonData,
@@ -359,6 +363,19 @@ const EditProjects = ({}) => {
                             </div>
                           )}
                         </Form.Group>
+                        <Form.Group as={Col} md="6" controlId="validationFormikCustomCreatedAt">
+    <Form.Label>Custom Created At</Form.Label>
+    <Form.Control
+      type="date"
+      name="custom_created_at" // استخدم الاسم الجديد
+      value={values.custom_created_at}
+      onChange={handleChange}
+      isInvalid={touched.custom_created_at && !!errors.custom_created_at}
+    />
+    <Form.Control.Feedback type="invalid">
+      {errors.custom_created_at}
+    </Form.Control.Feedback>
+  </Form.Group>
                       </Row>
                       <Form.Group
                         as={Col}

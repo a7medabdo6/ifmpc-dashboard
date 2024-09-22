@@ -33,6 +33,8 @@ const schema = yup.object().shape({
   //   })
   // ),
   language: yup.number().required(),
+  custom_created_at: yup.string(), // يمكن أن تكون سلسلة أو غير موجودة
+
 });
 
 const AddPublications = () => {
@@ -163,6 +165,8 @@ const AddPublications = () => {
                 tags: tagOptions.length > 0 ? [tagOptions[0].value] : [], // إذا كان هناك علامات
                 // references: [{ name: "", url: "" }], // القيم الافتراضية للمراجع
                 language: 3, // Default value for language select
+                custom_created_at:  "", // أضف هذا الحقل
+
               }}
             >
               {({
@@ -239,6 +243,19 @@ const AddPublications = () => {
                             </div>
                           )}
                         </Form.Group>
+                        <Form.Group as={Col} md="6" controlId="validationFormikCustomCreatedAt">
+    <Form.Label>Custom Created At</Form.Label>
+    <Form.Control
+      type="date"
+      name="custom_created_at" // استخدم الاسم الجديد
+      value={values.custom_created_at}
+      onChange={handleChange}
+      isInvalid={touched.custom_created_at && !!errors.custom_created_at}
+    />
+    <Form.Control.Feedback type="invalid">
+      {errors.custom_created_at}
+    </Form.Control.Feedback>
+  </Form.Group>
                       </Row>
                       <Form.Group
                         as={Col}
