@@ -49,6 +49,10 @@ const CustomQuillEditor = ({
     "|",
     "video",
     "|",
+    "copy",
+    "|",
+    "cut",
+    "paste"
   ];
 
   const toolbar = [

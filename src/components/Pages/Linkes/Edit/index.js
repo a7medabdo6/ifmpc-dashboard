@@ -17,6 +17,7 @@ const EditLinks = ({ itemData, id, setShow10 }) => {
   const { mutate, data, isLoading } = useEditLink();
   const fileInputRef = useRef(null);
   const [copied, setCopied] = useState(false);
+console.log(itemData);
 
   useEffect(() => {
     if (data !== undefined) {
@@ -46,7 +47,7 @@ const EditLinks = ({ itemData, id, setShow10 }) => {
                 const formData = new FormData();
                 formData.append("name_en", data.name_en);
                 formData.append("name_ar", data.name_ar);
-                formData.append("logo", data.logo);
+                formData.append("logo", data.logo ? data.logo : itemData.logo );
                 formData.append("url", data.url);
 
                 mutate({ formData, id })
