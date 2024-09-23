@@ -326,8 +326,8 @@ const AddProjects = () => {
                         <Form.Group as={Col} md="6" controlId="validationFormikCustomCreatedAt">
     <Form.Label>Custom Created At</Form.Label>
     <Form.Control
-      type="date"
-      name="custom_created_at" // استخدم الاسم الجديد
+    type="datetime-local" // تغيير النوع ليشمل الوقت والتاريخ
+    name="custom_created_at" // استخدم الاسم الجديد
       value={values.custom_created_at}
       onChange={handleChange}
       isInvalid={touched.custom_created_at && !!errors.custom_created_at}

@@ -209,6 +209,8 @@ const EditProjects = ({}) => {
         // references: dataone.references || [{ name: "", url: "" }],
         images: dataone.images?.map((image) => image.image) || [],
         language: dataone?.language, // Default value for language select
+        custom_created_at: dataone?.custom_created_at || "", // أضف هذا الحقل
+
       });
     }
   }, [dataone]);
@@ -246,6 +248,18 @@ const EditProjects = ({}) => {
       }
     }
   }, [dataone?.content_ar, dataone]);
+  const formatDate = (dateString) => {
+    if (!dateString) return ""; // إذا لم تكن هناك قيمة، نعيد سلسلة فارغة
+    // إزالة الجزء 'Z' وتحويل السلسلة إلى كائن تاريخ
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // إضافة 0 إذا كان الشهر أقل من 10
+    const day = String(date.getDate()).padStart(2, "0");
+    const hours = String(date.getHours()).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+  
+    return `${year}-${month}-${day}T${hours}:${minutes}`;
+  };
 
   if (isLoadingOne) {
     return <div>Loading...</div>; // Show a loading message or spinner while dataone is loading
@@ -282,6 +296,8 @@ const EditProjects = ({}) => {
                 // references: dataone.references || [{ name: "", url: "" }],
                 images: dataone.images?.map((image) => image.image) || [],
                 language: dataone?.language,
+                custom_created_at: formatDate(dataone?.custom_created_at), // استخدام الدالة لتحويل التاريخ
+
               }}
             >
               {({
@@ -366,8 +382,8 @@ const EditProjects = ({}) => {
                         <Form.Group as={Col} md="6" controlId="validationFormikCustomCreatedAt">
     <Form.Label>Custom Created At</Form.Label>
     <Form.Control
-      type="date"
-      name="custom_created_at" // استخدم الاسم الجديد
+    type="datetime-local" // تغيير النوع ليشمل الوقت والتاريخ
+    name="custom_created_at" // استخدم الاسم الجديد
       value={values.custom_created_at}
       onChange={handleChange}
       isInvalid={touched.custom_created_at && !!errors.custom_created_at}
