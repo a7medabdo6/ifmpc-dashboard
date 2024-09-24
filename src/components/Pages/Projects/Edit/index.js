@@ -28,7 +28,7 @@ const schema = yup.object().shape({
   name_en: yup.string().required("English name is required"),
   // name_ar: yup.string().required("Arabic name is required"),
   content_en: yup.string().required("English content is required"),
-  // content_ar: yup.string().required("Arabic content is required"),
+  content_ar: yup.string().required("Arabic content is required"),
   image: yup.string().required("Image URL is required"), // Changed to string
   popularity_count: yup
     .number()
@@ -200,7 +200,7 @@ const EditProjects = ({}) => {
         name_en: dataone.name_en || "",
         // name_ar: dataone.name_ar || "",
         content_en: dataone.content_en || "",
-        // content_ar: dataone.content_ar || "",
+        content_ar: dataone.content_ar || "",
         image: dataone.images[0]?.image || "",
         popularity_count: dataone.popularity_count || "",
         category: dataone.category?.id || null,
@@ -287,7 +287,7 @@ const EditProjects = ({}) => {
                 name_en: dataone.name_en || "",
                 // name_ar: dataone.name_ar || "",
                 content_en: dataone.content_en || "",
-                // content_ar: dataone.content_ar || "",
+                content_ar: dataone.content_ar || "",
                 image: dataone.image || "",
                 popularity_count: dataone.popularity_count || "",
                 category: dataone.category?.id || null,
@@ -408,15 +408,7 @@ const EditProjects = ({}) => {
                           title="Description"
                           setvalueAlignDes={setvalueAlignDes} // If required for alignment
                         />
-                        {/* <ReactQuill
-                          value={values?.content_en}
-                          onChange={(value) =>
-                            setFieldValue("content_en", value)
-                          }
-                          className="react-quill"
-                          modules={modules}
-
-                        /> */}
+                       
                         {touched.content_en && errors.content_en && (
                           <div className="invalid-feedback d-block">
                             {errors.content_en}
@@ -439,14 +431,7 @@ const EditProjects = ({}) => {
                           setvalueAlignDes={setvalueAlignDes} // If required for alignment
                         />
                         {/* 
-                        <ReactQuill
-                          value={values?.content_ar}
-                          onChange={(value) =>
-                            setFieldValue("content_ar", value)
-                          }
-                          className="react-quill"
-                          modules={modules}
-                          ref={quillRef} /> */}
+                       
                         {touched.content_ar && errors.content_ar && (
                           <div className="invalid-feedback d-block">
                             {errors.content_ar}

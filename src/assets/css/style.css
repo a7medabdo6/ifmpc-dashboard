@@ -77225,3 +77225,6 @@ pre {
     }
 }
 /*# sourceMappingURL=style.css.map */
+.jodit-container .jodit-react-container{
+  width: 100% !important;
+}

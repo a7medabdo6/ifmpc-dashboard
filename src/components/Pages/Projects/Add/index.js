@@ -351,6 +351,7 @@ const AddProjects = () => {
                           setTextDes={(value) =>
                             setFieldValue("content_en", value)
                           }
+                          
                           title="Description"
                           setvalueAlignDes={setvalueAlignDes} // If required for alignment
                         />
