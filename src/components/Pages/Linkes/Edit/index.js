@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useRef,useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import { Breadcrumb, Button, Col, Row, Form, Spinner } from "react-bootstrap";
 import { Formik } from "formik";
 import * as yup from "yup";
@@ -17,7 +17,7 @@ const EditLinks = ({ itemData, id, setShow10 }) => {
   const { mutate, data, isLoading } = useEditLink();
   const fileInputRef = useRef(null);
   const [copied, setCopied] = useState(false);
-console.log(itemData);
+  console.log(itemData);
 
   useEffect(() => {
     if (data !== undefined) {
@@ -47,7 +47,12 @@ console.log(itemData);
                 const formData = new FormData();
                 formData.append("name_en", data.name_en);
                 formData.append("name_ar", data.name_ar);
-                formData.append("logo", data.logo ? data.logo : itemData.logo );
+                if (typeof data.logo != "string") {
+                  formData.append(
+                    "logo",
+                    data.logo ? data.logo : itemData.logo
+                  );
+                }
                 formData.append("url", data.url);
 
                 mutate({ formData, id })
@@ -80,7 +85,6 @@ console.log(itemData);
               }) => (
                 <Form noValidate onSubmit={handleSubmit}>
                   <Row className="mb-3">
-                  
                     <Form.Group
                       as={Col}
                       md="4"
