@@ -40,6 +40,7 @@ import AddImages from "./components/Pages/Images/Add";
 import EditProjects from "./components/Pages/Projects/Edit";
 import EditPublications from "./components/Pages/Publications/Edit";
 import Sliders from "./components/Pages/Slider";
+import EditTrainings from './components/Pages/Training/Edit/index'
 
 // Dashboard
 const Landingpageapp = React.lazy(() => import("./components/Landingpageapp"));
@@ -640,10 +641,13 @@ const Root = () => {
                   element={<AddEditcategories />}
                 />
                 <Route path={`/pages/tags/create`} element={<AddTags />} />
+                <Route path={`/pages/training/edit/:id`} element={<EditTrainings />} />
+
                 <Route
                   path={`/pages/projects/create`}
                   element={<AddProjects />}
                 />
+                
                 <Route
                   path={`/pages/uploadimage`}
                   element={<UploadImage />}

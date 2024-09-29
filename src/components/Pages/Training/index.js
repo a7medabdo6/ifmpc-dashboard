@@ -236,7 +236,7 @@
 // export default Trainings;
 
 
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState,useEffect } from "react";
 import {
   Breadcrumb,
   Button,
@@ -247,12 +247,12 @@ import {
   Modal,
   Pagination,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import EditTrainings from "./Edit/index";
 import { useTrainings } from "../../../Api/Training/index";
 import { useDeleteTraining, useEditTraining } from "../../../Api/Training";
+import { useNavigate, Link } from "react-router-dom";
 
 const Trainings = () => {
   const { mutate } = useDeleteTraining();
@@ -261,12 +261,20 @@ const Trainings = () => {
   const [Basic, setShow1] = useState(false);
   const [id, setId] = useState();
   const [itemData, setItemData] = useState();
+  const navigate = useNavigate();
+  const [title, setTitle] = useState(false);
 
   const handleDelete = () => {
     mutate(id);
     toast.success("This item has been successfully deleted.");
   };
-
+  useEffect(() => {
+    if (title && id) {
+      navigate(`/pages/training/edit/${id}`, {
+        state: { id: id },
+      });
+    }
+  }, [title, id, navigate]);
   const [show10, setShow10] = useState(false);
   const viewDemoShow = (modal) => {
     switch (modal) {
@@ -390,8 +398,10 @@ const Trainings = () => {
                                 type="submit"
                                 onClick={() => {
                                   setId(item?.id);
-                                  viewDemoShow("show10");
-                                  setItemData(item);
+                                  // viewDemoShow("show10");
+                                  // setItemData(item);
+                                  setTitle(true);
+
                                 }}
                               >
                                 Edit

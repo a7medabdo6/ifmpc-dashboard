@@ -11,6 +11,8 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import ReactQuillCommon from '../../../Utilities/ReactQuillCommon/ReactQuillCommon'
+import {useOneTraining} from '../../../../Api/Training'
+import { useParams } from "react-router-dom";
 
 const schema = yup.object().shape({
   title_en: yup.string().required(),
@@ -20,7 +22,12 @@ const schema = yup.object().shape({
   description_ar: yup.string().required(),
 });
 
-const EditTrainings = ({ id, itemData, viewDemoClose, setShow10 }) => {
+const EditTrainings = ({  itemData, viewDemoClose, setShow10 }) => {
+  const { id } = useParams();
+
+  const { data: dataone, isLoading: isLoadingOne } = useOneTraining(id);
+console.log(dataone);
+
   const { mutate, data } = useEditTraining();
   const navigate = useNavigate();
   const [copied, setCopied] = useState(false);
@@ -28,14 +35,14 @@ const EditTrainings = ({ id, itemData, viewDemoClose, setShow10 }) => {
 
   const { mutate: mutateImage, data: dataImage } = useCreateProjectImage();
   const [uploadedImageUrl, setUploadedImageUrl] = useState(
-    itemData?.image || ""
+    dataone?.image || ""
   );
   const [file, setFile] = useState(null);
-  const [imageUrl, setImageUrl] = useState(itemData?.image || "");
+  const [imageUrl, setImageUrl] = useState(dataone?.image || "");
 
   useEffect(() => {
     if (data) {
-      setShow10(false);
+      // setShow10(false);
       toast.success("This item has been successfully edited.");
         navigate("/pages/training/");
     }
@@ -110,14 +117,19 @@ const EditTrainings = ({ id, itemData, viewDemoClose, setShow10 }) => {
     
     if (quill) { // Ensure quill is defined
       const editor = quill.root;
-      if (itemData?.description_ar && itemData) {
-        console.log(itemData?.description_ar);
+      if (dataone?.description_ar && dataone) {
+        console.log(dataone?.description_ar);
         editor.setAttribute('dir', 'rtl'); // Set text direction to RTL
       } else {
         editor.setAttribute('dir', 'ltr'); // Default to LTR
       }
     }
-  }, [itemData?.description_ar, itemData]);
+  }, [dataone?.description_ar, dataone]);
+
+
+  if (!dataone) {
+    return <div>loading...</div>;
+  }
   return (
     <Fragment>
       <div className="page-header">
@@ -142,11 +154,11 @@ const EditTrainings = ({ id, itemData, viewDemoClose, setShow10 }) => {
                 setSubmitting(false);
               }}
               initialValues={{
-                title_en: itemData?.title_en || "",
-                title_ar: itemData?.title_ar || "",
-                image: itemData?.image || "",
-                description_en: itemData?.description_en || "",
-                description_ar: itemData?.description_ar || "",
+                title_en: dataone?.title_en || "",
+                title_ar: dataone?.title_ar || "",
+                image: dataone?.image || "",
+                description_en: dataone?.description_en || "",
+                description_ar: dataone?.description_ar || "",
               }}
             >
               {({
@@ -282,6 +294,7 @@ const EditTrainings = ({ id, itemData, viewDemoClose, setShow10 }) => {
                           title="Description"
                           setvalueAlignDes={setvalueAlignDes} // If required for alignment
                         />
+                        
                       {/* <ReactQuill
                         value={values.description_en}
                         onChange={(value) =>
@@ -312,6 +325,7 @@ const EditTrainings = ({ id, itemData, viewDemoClose, setShow10 }) => {
                         modules={modules}
                         ref={quillRef}  
                       /> */}
+                      
                          <ReactQuillCommon
                           textDirection='rtl' // تمرير اتجاه النص هنا
 

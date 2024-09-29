@@ -64,3 +64,17 @@ export const useEditTraining = () => {
     },
   });
 };
+
+const fetchOneTraining = async (id) => {
+  console.log(id);
+  
+  const response = await axiosInstance.get(`/trainings/${id}`);
+  return response.data;
+};
+export const useOneTraining = (id) => {
+  return useQuery({
+    queryKey: ["Trainings", id], // Include the id in the queryKey
+    queryFn: () => fetchOneTraining(id), // Pass id to the fetch function
+    enabled: !!id, // Ensure the query is only run if id is truthy
+  });
+};
