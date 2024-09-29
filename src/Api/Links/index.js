@@ -20,7 +20,7 @@ export const deleteLinks = async (id) => {
 export const editLinks = async (data) => {
   console.log(data);
 
-  const response = await axiosInstance.put(
+  const response = await axiosInstance.patch(
     `/settings/site-links/${data.id}/`,
     data?.formData
   );
