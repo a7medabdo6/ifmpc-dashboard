@@ -61,14 +61,12 @@ export const editSliders = async (data) => {
       const errorDetails = error.response.data.errors
         .map(err => `
           <div style="color: red;">
-            Field: <strong>${err.field_name}</strong>, Message: <strong>${err.message}</strong>
+             <strong>${err.field_name}</strong>, : <strong>${err.message}</strong>
           </div>
         `).join("");
         
       throw new Error(`
         <div>
-          <strong>Error ${error.response.status}:</strong> ${error.response.data.message}.
-          <div>Details:</div>
           ${errorDetails}
         </div>
       `);
