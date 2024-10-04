@@ -5,7 +5,7 @@ const Settings = () => (
   <Fragment>
     <div className="page-header">
       <div>
-        <h2 className="main-content-title tx-24 mg-b-5">Settings</h2>
+        <h2 className="main-content-title tx-24 mg-b-5">Settings4</h2>
         <Breadcrumb>
           <Breadcrumb.Item href="#"> Pages </Breadcrumb.Item>
           <Breadcrumb.Item active>Settings </Breadcrumb.Item>

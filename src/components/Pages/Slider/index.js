@@ -31,7 +31,7 @@ const Sliders = () => {
   const { mutate, isLoading, error, data: dataEdit } = useEditSlider();
   const { data } = useSliders();
   const { mutate: mutateImage, data: dataImage } = useCreateProjectImage();
-  console.log(data);
+  console.log(error,'88888');
   const [dataShow, setdataShow] = useState(null);
   useEffect(() => {
     if (data) {
@@ -312,8 +312,12 @@ const Sliders = () => {
                     >
                       {isLoading ? "Submitting..." : "Submit"}
                     </Button>
-
-                    {error && <div>{error.message}</div>}
+                    {error && (
+        <div style={{ color: 'red' }}>
+          <div dangerouslySetInnerHTML={{ __html: error.message }} />
+        </div>
+      )}
+                    {/* {error && <div>{error.message}</div>} */}
                   </Card.Body>
                 </Card>
               </Col>
