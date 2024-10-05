@@ -15,7 +15,7 @@ import { useCreateProjectImage } from "../../../Api/Projects";
 
 // Validation Schema
 const validationSchema = Yup.object({
-  footer_short_desc: Yup.string().required("Required"),
+  // footer_short_desc: Yup.string().required("Required"),
   footer_short_desc_en: Yup.string().required("Required"),
   footer_short_desc_ar: Yup.string().required("Required"),
   main_header_en: Yup.string().required("Required"),
@@ -113,7 +113,7 @@ const Sliders = () => {
   return (
     <Formik
       initialValues={{
-        footer_short_desc: dataShow?.footer_short_desc || "",
+        // footer_short_desc: dataShow?.footer_short_desc || "",
         footer_short_desc_en: dataShow?.footer_short_desc_en || "",
         footer_short_desc_ar: dataShow?.footer_short_desc_ar || "",
         main_header_en: dataShow?.main_header_en || "",
@@ -138,7 +138,7 @@ const Sliders = () => {
                       Sliders Page
                     </h2>
 
-                    <BootstrapForm.Group controlId="footer_short_desc">
+                    {/* <BootstrapForm.Group controlId="footer_short_desc">
                       <BootstrapForm.Label>
                         Footer Short Description
                       </BootstrapForm.Label>
@@ -150,7 +150,7 @@ const Sliders = () => {
                       {errors.footer_short_desc && touched.footer_short_desc ? (
                         <div>{errors.footer_short_desc}</div>
                       ) : null}
-                    </BootstrapForm.Group>
+                    </BootstrapForm.Group> */}
 
                     <BootstrapForm.Group controlId="footer_short_desc_en">
                       <BootstrapForm.Label>
