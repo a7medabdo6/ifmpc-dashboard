@@ -16,7 +16,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "http://66.29.152.253:8000/api", // Example base URL
+  baseURL: "https://backend.ifpmc.org/api", // Example base URL
   headers: {
     "Content-Type": "application/json",
   },
