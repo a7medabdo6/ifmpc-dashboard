@@ -138,7 +138,7 @@ const Publications = () => {
                             <Button
                               onClick={() =>
                                 window.open(
-                                  `http://66.29.152.253:3000/en/research/Publications/${item?.id}`,
+                                  `https://ifpmc.org/en/research/Publications/${item?.id}`,
                                   "_blank"
                                 )
                               }
@@ -146,7 +146,20 @@ const Publications = () => {
                               variant="info"
                               style={{ marginInline: "5px" }}
                             >
-                              Preview
+                             En Preview
+                            </Button>
+                            <Button
+                              onClick={() =>
+                                window.open(
+                                  `https://ifpmc.org/ar/research/Publications/${item?.id}`,
+                                  "_blank"
+                                )
+                              }
+                              type="button"
+                              variant="info"
+                              style={{ marginInline: "5px" }}
+                            >
+                             Ar Preview
                             </Button>
                           </div>
                         </td>
