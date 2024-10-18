@@ -140,7 +140,7 @@ const EditProjects = ({}) => {
 
       if (allowedTypes.includes(selectedFile.type)) {
         setFile(selectedFile); // تعيين الملف المحدد
-        setUploadedImageUrl(URL.createObjectURL(selectedFile)); // إذا كنت تريد عرض المعاينة
+        // setUploadedImageUrl(URL.createObjectURL(selectedFile)); // إذا كنت تريد عرض المعاينة
       } else {
         alert("Unsupported file format. Only JPEG, PNG, and PDF are allowed.");
       }
