@@ -138,7 +138,6 @@ export const MENUITEMS = [
         selected: false,
         title: "Questions",
       },
-
       {
         path: `/pages/uploadimage`,
         type: "link",
@@ -149,6 +148,27 @@ export const MENUITEMS = [
         title: "uploadimage",
       },
 
+      {
+        path: `/pages/services`,
+        type: "link",
+        icon: "fas fa-file-upload",
+
+        active: false,
+        selected: false,
+        title: "Services",
+      },
+
+      {
+        path: `/pages/ServicesItems`,
+        type: "link",
+        icon: "fas fa-file-upload",
+
+        active: false,
+        selected: false,
+        title: "ServicesItems",
+      },
+
+      
       
       // {
       //   title: "ECommerce",

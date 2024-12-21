@@ -41,6 +41,11 @@ import EditProjects from "./components/Pages/Projects/Edit";
 import EditPublications from "./components/Pages/Publications/Edit";
 import Sliders from "./components/Pages/Slider";
 import EditTrainings from './components/Pages/Training/Edit/index'
+import AddServices from "./components/Pages/services/Add";
+import EditServices from "./components/Pages/services/Edit";
+import EditServicesItems from "./components/Pages/servicesItems/Edit";
+import AddServicesItems from "./components/Pages/servicesItems/Add";
+import ServicesItems from "./components/Pages/servicesItems";
 
 // Dashboard
 const Landingpageapp = React.lazy(() => import("./components/Landingpageapp"));
@@ -61,6 +66,9 @@ const Contacts = React.lazy(() => import("./components/Pages/Contacts"));
 const Questions = React.lazy(() => import("./components/Pages/Questions"));
 
 const Trainings = React.lazy(() => import("./components/Pages/Training"));
+const Services = React.lazy(() => import("./components/Pages/services"));
+
+
 const AddTraining = React.lazy(() => import("./components/Pages/Training/Add"));
 
 const Carousels = React.lazy(() =>
@@ -640,9 +648,22 @@ const Root = () => {
                   path={`/pages/categories/create`}
                   element={<AddEditcategories />}
                 />
+                <Route
+                  path={`/pages/Service/create`}
+                  element={<AddServices />}
+                />
+ <Route
+                  path={`/pages/ServicesItems/create`}
+                  element={<AddServicesItems />}
+                />
+
                 <Route path={`/pages/tags/create`} element={<AddTags />} />
                 <Route path={`/pages/training/edit/:id`} element={<EditTrainings />} />
+                <Route path={`/pages/Service/edit/:id`} element={<EditServices />} />
+                <Route path={`/pages/ServicesItems/edit/:id`} element={<EditServicesItems />} />
 
+
+                
                 <Route
                   path={`/pages/projects/create`}
                   element={<AddProjects />}
@@ -667,7 +688,10 @@ const Root = () => {
                 />
                 <Route path={`/pages/contacts`} element={<Contacts />} />
                 <Route path={`/pages/questions`} element={<Questions />} />
+                <Route path={`/pages/services`} element={<Services />} />
+                <Route path={`/pages/ServicesItems`} element={<ServicesItems />} />
 
+                
                 <Route path={`/pages/training`} element={<Trainings />} />
                 <Route path={`/pages/settingspage`} element={<Sliders />} />
                 <Route path={`/pages/ourpartners`} element={<OurPartners />} />
