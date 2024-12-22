@@ -9,25 +9,37 @@ import "react-toastify/dist/ReactToastify.css";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { useCreateProjectImage } from "../../../../Api/Projects";
+import { useServices } from "../../../../Api/Services";
 
 const schema = yup.object().shape({
-  icon: yup.mixed().required('Icon is required'),
+  icon: yup.string().required('Icon is required'),
   title: yup.string().required('Title is required'),
-  description: yup.string().required('Description is required'),
-  service_id: yup.number().required('Service ID is required').typeError('Service ID must be a number'), // Make service_id a number
+
+  title_en: yup.string().required('Title (English) is required'),
+  title_ar: yup.string().required('Title (Arabic) is required'),
+  description_en: yup.string().required('Description (English) is required'),
+  description_ar: yup.string().required('Description (Arabic) is required'),
+  service: yup.number().required('Service ID is required').typeError('Service ID must be a number'), // Ensure service_id is a number
 });
 
 const AddServicesItems = () => {
   const { mutate, data } = useCreateServiceItems();
   const navigate = useNavigate();
   const [valueAlignDes, setvalueAlignDes] = useState("center");
+  const { data: DataService, error, isLoading } = useServices();
 
   const [file, setFile] = useState(null);
   const [uploadedImageUrl, setUploadedImageUrl] = useState("");
   const [imageUrl, setImageUrl] = useState(""); // To handle URL input
   const [isSubmitting, setIsSubmitting] = useState(false); // Loader state
   const [services, setServices] = useState([]); // State for storing services list
-
+  useEffect(() => {
+    const fetchServices = async () => {
+      setServices(DataService?.results);
+    };
+    fetchServices();
+  }, [DataService]);
   useEffect(() => {
     if (data) {
       toast.success("This item has been successfully created.");
@@ -35,19 +47,7 @@ const AddServicesItems = () => {
     }
   }, [data, navigate]);
 
-  useEffect(() => {
-    // You can replace this with your API call to fetch services.
-    const fetchServices = async () => {
-      // Example service list with numeric IDs (you can replace with an actual API call)
-      const serviceList = [
-        { id: 1, name: "Service 1" },
-        { id: 2, name: "Service 2" },
-        { id: 3, name: "Service 3" },
-      ];
-      setServices(serviceList);
-    };
-    fetchServices();
-  }, []);
+  
 
   const handleFileChange = (event) => {
     const file = event.currentTarget.files[0];
@@ -56,11 +56,20 @@ const AddServicesItems = () => {
     }
   };
 
+  const { mutate: mutateImage, data: dataImage } = useCreateProjectImage();
+
   const uploadImage = () => {
     if (file) {
       const formData = new FormData();
       formData.append("file", file);
-      // Image upload logic here (e.g., using an API)
+      mutateImage(formData, {
+        onSuccess: (data) => {
+          setUploadedImageUrl(data.file_url);
+        },
+        onError: (error) => {
+          alert("Error uploading image.");
+        },
+      });
     } else {
       alert("No file selected.");
     }
@@ -110,9 +119,16 @@ const AddServicesItems = () => {
               }}
               initialValues={{
                 title: "",
+
+                title_en: "",
+                
+                title_ar: "",
                 icon: "",
                 description: "",
-                service_id: "", // Keep service_id as a number type
+
+                description_en: "",
+                description_ar: "",
+                service: "", // Keep service_id as a number type
               }}
             >
               {({
@@ -126,14 +142,43 @@ const AddServicesItems = () => {
                 setValues(values);
 
                 const isFormValid =
-                  values.title &&
+                values.title &&
+
+                  values.title_en &&
+                  
+                  values.title_ar &&
                   (uploadedImageUrl || imageUrl) &&
                   values.description &&
-                  values.service_id && // Ensure service_id is selected
+
+                  values.description_en &&
+                  values.description_ar &&
+                  values.service && // Ensure service_id is selected
                   !isSubmitting;
 
                 return (
                   <Form noValidate onSubmit={handleSubmit}>
+                     <Row className="mb-3">
+                      <Form.Group
+                        as={Col}
+                        md="4"
+                        controlId="validationFormikTitleEn"
+                        className="position-relative"
+                      >
+                        <Form.Label>Title</Form.Label>
+                        <Form.Control
+                          type="text"
+                          name="title"
+                          value={values.title}
+                          onChange={handleChange}
+                          isInvalid={!!errors.title && touched.title}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                          {errors.title}
+                        </Form.Control.Feedback>
+                      </Form.Group>
+
+                    
+                    </Row>
                     <Row className="mb-3">
                       <Form.Group
                         as={Col}
@@ -144,13 +189,32 @@ const AddServicesItems = () => {
                         <Form.Label>Title (English)</Form.Label>
                         <Form.Control
                           type="text"
-                          name="title"
-                          value={values.title}
+                          name="title_en"
+                          value={values.title_en}
                           onChange={handleChange}
-                          isInvalid={!!errors.title && touched.title}
+                          isInvalid={!!errors.title_en && touched.title_en}
                         />
                         <Form.Control.Feedback type="invalid">
-                          {errors.title}
+                          {errors.title_en}
+                        </Form.Control.Feedback>
+                      </Form.Group>
+
+                      <Form.Group
+                        as={Col}
+                        md="4"
+                        controlId="validationFormikTitleAr"
+                        className="position-relative"
+                      >
+                        <Form.Label>Title (Arabic)</Form.Label>
+                        <Form.Control
+                          type="text"
+                          name="title_ar"
+                          value={values.title_ar}
+                          onChange={handleChange}
+                          isInvalid={!!errors.title_ar && touched.title_ar}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                          {errors.title_ar}
                         </Form.Control.Feedback>
                       </Form.Group>
                     </Row>
@@ -221,7 +285,6 @@ const AddServicesItems = () => {
                         )}
                       </Form.Group>
                     </Row>
-
                     <Row className="mb-3">
                       <Form.Group
                         as={Col}
@@ -239,6 +302,43 @@ const AddServicesItems = () => {
                           {errors.description}
                         </Form.Control.Feedback>
                       </Form.Group>
+
+                     
+                    </Row>
+                    <Row className="mb-3">
+                      <Form.Group
+                        as={Col}
+                        md="12"
+                        controlId="validationFormikDescription"
+                        className="position-relative"
+                      >
+                        <Form.Label>Description (English)</Form.Label>
+                        <ReactQuill
+                          value={values.description_en}
+                          onChange={(value) => setFieldValue("description_en", value)}
+                          modules={modules}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                          {errors.description_en}
+                        </Form.Control.Feedback>
+                      </Form.Group>
+
+                      <Form.Group
+                        as={Col}
+                        md="12"
+                        controlId="validationFormikDescriptionAr"
+                        className="position-relative"
+                      >
+                        <Form.Label>Description (Arabic)</Form.Label>
+                        <ReactQuill
+                          value={values.description_ar}
+                          onChange={(value) => setFieldValue("description_ar", value)}
+                          modules={modules}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                          {errors.description_ar}
+                        </Form.Control.Feedback>
+                      </Form.Group>
                     </Row>
 
                     <Row className="mb-3">
@@ -251,20 +351,20 @@ const AddServicesItems = () => {
                         <Form.Label>Select Service</Form.Label>
                         <Form.Control
                           as="select"
-                          name="service_id"
-                          value={values.service_id}
+                          name="service"
+                          value={values.service}
                           onChange={handleChange}
-                          isInvalid={!!errors.service_id && touched.service_id}
+                          isInvalid={!!errors.service && touched.service}
                         >
                           <option value="">Select a Service</option>
-                          {services.map(service => (
+                          {services?.map(service => (
                             <option key={service.id} value={service.id}>
-                              {service.name}
+                              {service?.f_title}
                             </option>
                           ))}
                         </Form.Control>
                         <Form.Control.Feedback type="invalid">
-                          {errors.service_id}
+                          {errors.service}
                         </Form.Control.Feedback>
                       </Form.Group>
                     </Row>

@@ -1,24 +1,26 @@
-import React, { Fragment, useState, useEffect, useRef } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { Breadcrumb, Button, Col, Row, Form, Spinner } from "react-bootstrap";
 import { Formik } from "formik";
 import * as yup from "yup";
-import { useEditService } from "../../../../Api/Services";
+import { useEditService, useOneService } from "../../../../Api/Services";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useCreateProjectImage } from "../../../../Api/Projects";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
-import { CopyToClipboard } from 'react-copy-to-clipboard';
-import ReactQuillCommon from '../../../Utilities/ReactQuillCommon/ReactQuillCommon';
-import { useOneService } from '../../../../Api/Services';
 import { useParams } from "react-router-dom";
 
 const schema = yup.object().shape({
   f_title: yup.string().required(),
+  f_title_en: yup.string().required(),
+  f_title_ar: yup.string().required(),
   s_title: yup.string().required(),
+  s_title_en: yup.string().required(),
+  s_title_ar: yup.string().required(),
   t_title: yup.string().required(),
+  t_title_en: yup.string().required(),
+  t_title_ar: yup.string().required(),
   description: yup.string().required(),
+  description_en: yup.string().required(),
+  description_ar: yup.string().required(),
   is_primary: yup.boolean().required(),
 });
 
@@ -31,8 +33,6 @@ const EditServices = ({ itemData, viewDemoClose, setShow10 }) => {
   const { mutate, data } = useEditService();
   const navigate = useNavigate();
 
-
-
   useEffect(() => {
     if (data) {
       toast.success("This item has been successfully edited.");
@@ -40,15 +40,6 @@ const EditServices = ({ itemData, viewDemoClose, setShow10 }) => {
     }
   }, [data, navigate]);
 
-  
-
-  
-
- 
-
-  
-
- 
   if (!dataone) {
     return <div>loading...</div>;
   }
@@ -76,10 +67,18 @@ const EditServices = ({ itemData, viewDemoClose, setShow10 }) => {
               }}
               initialValues={{
                 f_title: dataone?.f_title || "",
+                f_title_en: dataone?.f_title_en || "",
+                f_title_ar: dataone?.f_title_ar || "",
                 s_title: dataone?.s_title || "",
+                s_title_en: dataone?.s_title_en || "",
+                s_title_ar: dataone?.s_title_ar || "",
                 t_title: dataone?.t_title || "",
+                t_title_en: dataone?.t_title_en || "",
+                t_title_ar: dataone?.t_title_ar || "",
                 description: dataone?.description || "",
-                is_primary: dataone?.is_primary ,
+                description_en: dataone?.description_en || "",
+                description_ar: dataone?.description_ar || "",
+                is_primary: dataone?.is_primary || false,
               }}
             >
               {({
@@ -109,7 +108,37 @@ const EditServices = ({ itemData, viewDemoClose, setShow10 }) => {
                       </Form.Control.Feedback>
                     </Form.Group>
 
+                    <Form.Group as={Col} md="4" controlId="validationFormikTitleEn" className="position-relative">
+                      <Form.Label>First Title (EN)</Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="f_title_en"
+                        value={values.f_title_en}
+                        onChange={handleChange}
+                        isInvalid={!!errors.f_title_en && touched.f_title_en}
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.f_title_en}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+
                     <Form.Group as={Col} md="4" controlId="validationFormikTitleAr" className="position-relative">
+                      <Form.Label>First Title (AR)</Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="f_title_ar"
+                        value={values.f_title_ar}
+                        onChange={handleChange}
+                        isInvalid={!!errors.f_title_ar && touched.f_title_ar}
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.f_title_ar}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                  </Row>
+
+                  <Row className="mb-3">
+                    <Form.Group as={Col} md="4" controlId="validationFormikTitleEn" className="position-relative">
                       <Form.Label>Second Title</Form.Label>
                       <Form.Control
                         type="text"
@@ -123,7 +152,37 @@ const EditServices = ({ itemData, viewDemoClose, setShow10 }) => {
                       </Form.Control.Feedback>
                     </Form.Group>
 
+                    <Form.Group as={Col} md="4" controlId="validationFormikTitleEn" className="position-relative">
+                      <Form.Label>Second Title (EN)</Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="s_title_en"
+                        value={values.s_title_en}
+                        onChange={handleChange}
+                        isInvalid={!!errors.s_title_en && touched.s_title_en}
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.s_title_en}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+
                     <Form.Group as={Col} md="4" controlId="validationFormikTitleAr" className="position-relative">
+                      <Form.Label>Second Title (AR)</Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="s_title_ar"
+                        value={values.s_title_ar}
+                        onChange={handleChange}
+                        isInvalid={!!errors.s_title_ar && touched.s_title_ar}
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.s_title_ar}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                  </Row>
+
+                  <Row className="mb-3">
+                    <Form.Group as={Col} md="4" controlId="validationFormikTitleEn" className="position-relative">
                       <Form.Label>Third Title</Form.Label>
                       <Form.Control
                         type="text"
@@ -136,9 +195,36 @@ const EditServices = ({ itemData, viewDemoClose, setShow10 }) => {
                         {errors.t_title}
                       </Form.Control.Feedback>
                     </Form.Group>
+
+                    <Form.Group as={Col} md="4" controlId="validationFormikTitleEn" className="position-relative">
+                      <Form.Label>Third Title (EN)</Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="t_title_en"
+                        value={values.t_title_en}
+                        onChange={handleChange}
+                        isInvalid={!!errors.t_title_en && touched.t_title_en}
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.t_title_en}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+
+                    <Form.Group as={Col} md="4" controlId="validationFormikTitleAr" className="position-relative">
+                      <Form.Label>Third Title (AR)</Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="t_title_ar"
+                        value={values.t_title_ar}
+                        onChange={handleChange}
+                        isInvalid={!!errors.t_title_ar && touched.t_title_ar}
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.t_title_ar}
+                      </Form.Control.Feedback>
+                    </Form.Group>
                   </Row>
 
-                 
                   <Row className="mb-3">
                     <Form.Group as={Col} md="12" controlId="validationFormikDescription" className="position-relative">
                       <Form.Label>Description</Form.Label>
@@ -157,7 +243,44 @@ const EditServices = ({ itemData, viewDemoClose, setShow10 }) => {
                       )}
                     </Form.Group>
                   </Row>
-                 
+
+                  <Row className="mb-3">
+                    <Form.Group as={Col} md="12" controlId="validationFormikDescriptionEn" className="position-relative">
+                      <Form.Label>Description (EN)</Form.Label>
+                      <Form.Control
+                        as="textarea"
+                        rows={4}
+                        name="description_en"
+                        value={values.description_en}
+                        onChange={handleChange}
+                        isInvalid={!!errors.description_en && touched.description_en}
+                      />
+                      {touched.description_en && errors.description_en && (
+                        <div className="invalid-feedback d-block">
+                          {errors.description_en}
+                        </div>
+                      )}
+                    </Form.Group>
+                  </Row>
+
+                  <Row className="mb-3">
+                    <Form.Group as={Col} md="12" controlId="validationFormikDescriptionAr" className="position-relative">
+                      <Form.Label>Description (AR)</Form.Label>
+                      <Form.Control
+                        as="textarea"
+                        rows={4}
+                        name="description_ar"
+                        value={values.description_ar}
+                        onChange={handleChange}
+                        isInvalid={!!errors.description_ar && touched.description_ar}
+                      />
+                      {touched.description_ar && errors.description_ar && (
+                        <div className="invalid-feedback d-block">
+                          {errors.description_ar}
+                        </div>
+                      )}
+                    </Form.Group>
+                  </Row>
 
                   <Row className="mb-3">
                     <Form.Group as={Col} md="12" controlId="validationFormikIsPrimary" className="position-relative">
