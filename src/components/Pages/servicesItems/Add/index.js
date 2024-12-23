@@ -14,7 +14,7 @@ import { useServices } from "../../../../Api/Services";
 
 const schema = yup.object().shape({
   icon: yup.string().required('Icon is required'),
-  title: yup.string().required('Title is required'),
+  // title: yup.string().required('Title is required'),
 
   title_en: yup.string().required('Title (English) is required'),
   title_ar: yup.string().required('Title (Arabic) is required'),
@@ -98,7 +98,7 @@ const AddServicesItems = () => {
         <div>
           <h2 className="main-content-title tx-24 mg-b-5">Create Training</h2>
           <Breadcrumb>
-            <Breadcrumb.Item href="#">Pages</Breadcrumb.Item>
+             
             <Breadcrumb.Item active>Create Training</Breadcrumb.Item>
           </Breadcrumb>
         </div>
@@ -118,13 +118,13 @@ const AddServicesItems = () => {
                 mutate(data);
               }}
               initialValues={{
-                title: "",
+                // title: "",
 
                 title_en: "",
                 
                 title_ar: "",
                 icon: "",
-                description: "",
+                // description: "",
 
                 description_en: "",
                 description_ar: "",
@@ -142,13 +142,13 @@ const AddServicesItems = () => {
                 setValues(values);
 
                 const isFormValid =
-                values.title &&
+                // values.title &&
 
                   values.title_en &&
                   
                   values.title_ar &&
                   (uploadedImageUrl || imageUrl) &&
-                  values.description &&
+                  // values.description &&
 
                   values.description_en &&
                   values.description_ar &&
@@ -157,7 +157,7 @@ const AddServicesItems = () => {
 
                 return (
                   <Form noValidate onSubmit={handleSubmit}>
-                     <Row className="mb-3">
+                     {/* <Row className="mb-3">
                       <Form.Group
                         as={Col}
                         md="4"
@@ -178,7 +178,7 @@ const AddServicesItems = () => {
                       </Form.Group>
 
                     
-                    </Row>
+                    </Row> */}
                     <Row className="mb-3">
                       <Form.Group
                         as={Col}
@@ -285,7 +285,7 @@ const AddServicesItems = () => {
                         )}
                       </Form.Group>
                     </Row>
-                    <Row className="mb-3">
+                    {/* <Row className="mb-3">
                       <Form.Group
                         as={Col}
                         md="12"
@@ -304,7 +304,7 @@ const AddServicesItems = () => {
                       </Form.Group>
 
                      
-                    </Row>
+                    </Row> */}
                     <Row className="mb-3">
                       <Form.Group
                         as={Col}

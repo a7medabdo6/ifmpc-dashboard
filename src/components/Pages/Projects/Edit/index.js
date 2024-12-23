@@ -271,7 +271,7 @@ const EditProjects = ({}) => {
         <div>
           <h2 className="main-content-title tx-24 mg-b-5">Edit Project</h2>
           <Breadcrumb>
-            <Breadcrumb.Item href="#">Pages</Breadcrumb.Item>
+             
             <Breadcrumb.Item active>Edit Project</Breadcrumb.Item>
           </Breadcrumb>
         </div>

@@ -46,6 +46,15 @@ export const MENUITEMS = [
         selected: false,
         title: "Settings",
       },
+      {
+        path: `/pages/services`,
+        type: "link",
+        icon: "fas fa-file-upload",
+
+        active: false,
+        selected: false,
+        title: "Services",
+      },
       // {
       //   path: `/pages/images`,
       //   type: "link",
@@ -148,15 +157,7 @@ export const MENUITEMS = [
         title: "uploadimage",
       },
 
-      {
-        path: `/pages/services`,
-        type: "link",
-        icon: "fas fa-file-upload",
-
-        active: false,
-        selected: false,
-        title: "Services",
-      },
+      
 
       {
         path: `/pages/ServicesItems`,

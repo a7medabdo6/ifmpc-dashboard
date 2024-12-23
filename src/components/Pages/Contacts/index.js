@@ -74,7 +74,7 @@
 //         <div>
 //           <h2 className="main-content-title tx-24 mg-b-5">Contacts Page</h2>
 //           <Breadcrumb>
-//             <Breadcrumb.Item href="#"> Pages </Breadcrumb.Item>
+//              
 //             <Breadcrumb.Item active>Contacts Page</Breadcrumb.Item>
 //           </Breadcrumb>
 //         </div>
@@ -391,7 +391,7 @@ const Contacts = () => {
         <div>
           <h2 className="main-content-title tx-24 mg-b-5">Contacts Page</h2>
           <Breadcrumb>
-            <Breadcrumb.Item href="#"> Pages </Breadcrumb.Item>
+             
             <Breadcrumb.Item active>Contacts Page</Breadcrumb.Item>
           </Breadcrumb>
         </div>

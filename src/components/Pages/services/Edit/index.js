@@ -9,16 +9,12 @@ import "react-toastify/dist/ReactToastify.css";
 import { useParams } from "react-router-dom";
 
 const schema = yup.object().shape({
-  f_title: yup.string().required(),
   f_title_en: yup.string().required(),
   f_title_ar: yup.string().required(),
-  s_title: yup.string().required(),
   s_title_en: yup.string().required(),
   s_title_ar: yup.string().required(),
-  t_title: yup.string().required(),
   t_title_en: yup.string().required(),
   t_title_ar: yup.string().required(),
-  description: yup.string().required(),
   description_en: yup.string().required(),
   description_ar: yup.string().required(),
   is_primary: yup.boolean().required(),
@@ -50,7 +46,7 @@ const EditServices = ({ itemData, viewDemoClose, setShow10 }) => {
         <div>
           <h2 className="main-content-title tx-24 mg-b-5">Edit Training</h2>
           <Breadcrumb>
-            <Breadcrumb.Item href="#">Pages</Breadcrumb.Item>
+             
             <Breadcrumb.Item active>Edit Training</Breadcrumb.Item>
           </Breadcrumb>
         </div>
@@ -66,16 +62,12 @@ const EditServices = ({ itemData, viewDemoClose, setShow10 }) => {
                 setSubmitting(false);
               }}
               initialValues={{
-                f_title: dataone?.f_title || "",
                 f_title_en: dataone?.f_title_en || "",
                 f_title_ar: dataone?.f_title_ar || "",
-                s_title: dataone?.s_title || "",
                 s_title_en: dataone?.s_title_en || "",
                 s_title_ar: dataone?.s_title_ar || "",
-                t_title: dataone?.t_title || "",
                 t_title_en: dataone?.t_title_en || "",
                 t_title_ar: dataone?.t_title_ar || "",
-                description: dataone?.description || "",
                 description_en: dataone?.description_en || "",
                 description_ar: dataone?.description_ar || "",
                 is_primary: dataone?.is_primary || false,
@@ -94,19 +86,7 @@ const EditServices = ({ itemData, viewDemoClose, setShow10 }) => {
               }) => (
                 <Form noValidate onSubmit={handleSubmit}>
                   <Row className="mb-3">
-                    <Form.Group as={Col} md="4" controlId="validationFormikTitleEn" className="position-relative">
-                      <Form.Label>First Title</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="f_title"
-                        value={values.f_title}
-                        onChange={handleChange}
-                        isInvalid={!!errors.f_title && touched.f_title}
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {errors.f_title}
-                      </Form.Control.Feedback>
-                    </Form.Group>
+                   
 
                     <Form.Group as={Col} md="4" controlId="validationFormikTitleEn" className="position-relative">
                       <Form.Label>First Title (EN)</Form.Label>
@@ -138,19 +118,7 @@ const EditServices = ({ itemData, viewDemoClose, setShow10 }) => {
                   </Row>
 
                   <Row className="mb-3">
-                    <Form.Group as={Col} md="4" controlId="validationFormikTitleEn" className="position-relative">
-                      <Form.Label>Second Title</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="s_title"
-                        value={values.s_title}
-                        onChange={handleChange}
-                        isInvalid={!!errors.s_title && touched.s_title}
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {errors.s_title}
-                      </Form.Control.Feedback>
-                    </Form.Group>
+                  
 
                     <Form.Group as={Col} md="4" controlId="validationFormikTitleEn" className="position-relative">
                       <Form.Label>Second Title (EN)</Form.Label>
@@ -182,19 +150,7 @@ const EditServices = ({ itemData, viewDemoClose, setShow10 }) => {
                   </Row>
 
                   <Row className="mb-3">
-                    <Form.Group as={Col} md="4" controlId="validationFormikTitleEn" className="position-relative">
-                      <Form.Label>Third Title</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="t_title"
-                        value={values.t_title}
-                        onChange={handleChange}
-                        isInvalid={!!errors.t_title && touched.t_title}
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {errors.t_title}
-                      </Form.Control.Feedback>
-                    </Form.Group>
+                  
 
                     <Form.Group as={Col} md="4" controlId="validationFormikTitleEn" className="position-relative">
                       <Form.Label>Third Title (EN)</Form.Label>
@@ -225,24 +181,7 @@ const EditServices = ({ itemData, viewDemoClose, setShow10 }) => {
                     </Form.Group>
                   </Row>
 
-                  <Row className="mb-3">
-                    <Form.Group as={Col} md="12" controlId="validationFormikDescription" className="position-relative">
-                      <Form.Label>Description</Form.Label>
-                      <Form.Control
-                        as="textarea"
-                        rows={4}
-                        name="description"
-                        value={values.description}
-                        onChange={handleChange}
-                        isInvalid={!!errors.description && touched.description}
-                      />
-                      {touched.description && errors.description && (
-                        <div className="invalid-feedback d-block">
-                          {errors.description}
-                        </div>
-                      )}
-                    </Form.Group>
-                  </Row>
+                 
 
                   <Row className="mb-3">
                     <Form.Group as={Col} md="12" controlId="validationFormikDescriptionEn" className="position-relative">
@@ -282,20 +221,24 @@ const EditServices = ({ itemData, viewDemoClose, setShow10 }) => {
                     </Form.Group>
                   </Row>
 
-                  <Row className="mb-3">
-                    <Form.Group as={Col} md="12" controlId="validationFormikIsPrimary" className="position-relative">
-                      <Form.Label>Is Primary</Form.Label>
-                      <Form.Check
+                  <Row className="mb-3" >
+                   
+                    <Form.Group as={Col} md="12" controlId="validationFormikIsPrimary" className="position-relative" style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                    <Form.Check
                         type="checkbox"
                         name="is_primary"
                         checked={values.is_primary}
                         onChange={handleChange}
                         isInvalid={!!errors.is_primary && touched.is_primary}
+                        className="ms-3"
                       />
+                      <Form.Label>Is Primary</Form.Label>
+                    
                       <Form.Control.Feedback type="invalid">
                         {errors.is_primary}
                       </Form.Control.Feedback>
                     </Form.Group>
+
                   </Row>
 
                   <Button type="submit" disabled={isSubmitting || !isValid || !dirty}>

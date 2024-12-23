@@ -51,7 +51,7 @@ const Tags = () => {
         <div>
           <h2 className="main-content-title tx-24 mg-b-5">Tags Page</h2>
           <Breadcrumb>
-            <Breadcrumb.Item href="#"> Pages </Breadcrumb.Item>
+             
             <Breadcrumb.Item active>Tags Page</Breadcrumb.Item>
           </Breadcrumb>
         </div>

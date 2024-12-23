@@ -40,7 +40,6 @@ const AddTags = () => {
         <div>
           <h2 className="main-content-title tx-24 mg-b-5">Create Tags</h2>
           <Breadcrumb>
-            <Breadcrumb.Item href="#">Pages</Breadcrumb.Item>
             <Breadcrumb.Item active>Create Tags</Breadcrumb.Item>
           </Breadcrumb>
         </div>

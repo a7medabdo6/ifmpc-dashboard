@@ -31,7 +31,7 @@ const EditOurPartners = ({ id, setShow10, itemData }) => {
         <div>
           <h2 className="main-content-title tx-24 mg-b-5">Edit Our Partner</h2>
           <Breadcrumb>
-            <Breadcrumb.Item href="#">Pages</Breadcrumb.Item>
+             
             <Breadcrumb.Item active>Edit Our Partner</Breadcrumb.Item>
           </Breadcrumb>
         </div>

@@ -92,7 +92,7 @@ const Projects = () => {
         <div>
           <h2 className="main-content-title tx-24 mg-b-5">Projects Page</h2>
           <Breadcrumb>
-            <Breadcrumb.Item href="#"> Pages </Breadcrumb.Item>
+             
             <Breadcrumb.Item active>Projects Page</Breadcrumb.Item>
           </Breadcrumb>
         </div>

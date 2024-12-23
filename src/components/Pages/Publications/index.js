@@ -56,7 +56,7 @@ const Publications = () => {
         <div>
           <h2 className="main-content-title tx-24 mg-b-5">Publications Page</h2>
           <Breadcrumb>
-            <Breadcrumb.Item href="#"> Pages </Breadcrumb.Item>
+             
             <Breadcrumb.Item active>Publications Page</Breadcrumb.Item>
           </Breadcrumb>
         </div>

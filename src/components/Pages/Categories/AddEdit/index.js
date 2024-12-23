@@ -37,7 +37,7 @@
 //             Create categories
 //           </h2>
 //           <Breadcrumb>
-//             <Breadcrumb.Item href="#">Pages</Breadcrumb.Item>
+//              
 //             <Breadcrumb.Item active>Create categories</Breadcrumb.Item>
 //           </Breadcrumb>
 //         </div>
@@ -236,7 +236,7 @@ const AddEditcategories = () => {
             Create categories
           </h2>
           <Breadcrumb>
-            <Breadcrumb.Item href="#">Pages</Breadcrumb.Item>
+             
             <Breadcrumb.Item active>Create categories</Breadcrumb.Item>
           </Breadcrumb>
         </div>

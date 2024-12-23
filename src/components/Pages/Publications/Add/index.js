@@ -135,7 +135,7 @@ const AddPublications = () => {
             Create Publication
           </h2>
           <Breadcrumb>
-            <Breadcrumb.Item href="#">Pages</Breadcrumb.Item>
+             
             <Breadcrumb.Item active>Create Publication</Breadcrumb.Item>
           </Breadcrumb>
         </div>

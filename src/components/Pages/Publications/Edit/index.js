@@ -152,7 +152,7 @@ const EditPublications = () => {
         <div>
           <h2 className="main-content-title tx-24 mg-b-5">Edit Publication</h2>
           <Breadcrumb>
-            <Breadcrumb.Item href="#">Pages</Breadcrumb.Item>
+             
             <Breadcrumb.Item active>Edit Publication</Breadcrumb.Item>
           </Breadcrumb>
         </div>

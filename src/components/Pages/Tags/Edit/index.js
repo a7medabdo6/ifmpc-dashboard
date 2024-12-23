@@ -33,7 +33,6 @@ const EditTags = ({ itemData, id, setShow10 }) => {
         <div>
           <h2 className="main-content-title tx-24 mg-b-5">Edit Tags</h2>
           <Breadcrumb>
-            <Breadcrumb.Item href="#">Pages</Breadcrumb.Item>
             <Breadcrumb.Item active>Edit Tags</Breadcrumb.Item>
           </Breadcrumb>
         </div>

@@ -33,7 +33,7 @@ const AddOurPartners = () => {
             Create Our Partner
           </h2>
           <Breadcrumb>
-            <Breadcrumb.Item href="#">Pages</Breadcrumb.Item>
+             
             <Breadcrumb.Item active>Create Our Partner</Breadcrumb.Item>
           </Breadcrumb>
         </div>

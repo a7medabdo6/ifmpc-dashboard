@@ -16,10 +16,10 @@ import { useCreateProjectImage } from "../../../../Api/Projects";
 
 const schema = yup.object().shape({
   icon: yup.string().required("Icon is required"),
-  title: yup.string().required("Title is required"),
+  // title: yup.string().required("Title is required"),
   title_en: yup.string().required("Title (English) is required"),
   title_ar: yup.string().required("Title (Arabic) is required"),
-  description: yup.string().required("Description is required"),
+  // description: yup.string().required("Description is required"),
   description_en: yup.string().required("Description (English) is required"),
   description_ar: yup.string().required("Description (Arabic) is required"),
   service: yup.number().required("Service ID is required").typeError("Service ID must be a number"),
@@ -83,7 +83,7 @@ const EditServicesItems = ({ itemData, viewDemoClose, setShow10 }) => {
         <div>
           <h2 className="main-content-title tx-24 mg-b-5">Edit Training</h2>
           <Breadcrumb>
-            <Breadcrumb.Item href="#">Pages</Breadcrumb.Item>
+             
             <Breadcrumb.Item active>Edit Training</Breadcrumb.Item>
           </Breadcrumb>
         </div>
@@ -100,10 +100,10 @@ const EditServicesItems = ({ itemData, viewDemoClose, setShow10 }) => {
               }}
               initialValues={{
                 icon: dataone?.icon || "",
-                title: dataone?.title || "",
+                // title: dataone?.title || "",
                 title_en: dataone?.title_en || "",
                 title_ar: dataone?.title_ar || "",
-                description: dataone?.description || "",
+                // description: dataone?.description || "",
                 description_en: dataone?.description_en || "",
                 description_ar: dataone?.description_ar || "",
                 service: dataone?.service || "",
@@ -177,7 +177,7 @@ const EditServicesItems = ({ itemData, viewDemoClose, setShow10 }) => {
                           </div>
                         )}
                       </Form.Group>
-                    <Form.Group as={Col} md="4" controlId="validationFormikTitle" className="position-relative">
+                    {/* <Form.Group as={Col} md="4" controlId="validationFormikTitle" className="position-relative">
                       <Form.Label>Title</Form.Label>
                       <Form.Control
                         type="text"
@@ -189,7 +189,7 @@ const EditServicesItems = ({ itemData, viewDemoClose, setShow10 }) => {
                       <Form.Control.Feedback type="invalid">
                         {errors.title}
                       </Form.Control.Feedback>
-                    </Form.Group>
+                    </Form.Group> */}
                   </Row>
 
                   <Row className="mb-3">
@@ -223,7 +223,7 @@ const EditServicesItems = ({ itemData, viewDemoClose, setShow10 }) => {
                   </Row>
 
                   {/* General Description */}
-                  <Row className="mb-3">
+                  {/* <Row className="mb-3">
                     <Form.Group as={Col} md="12" controlId="validationFormikDescription" className="position-relative">
                       <Form.Label>Description</Form.Label>
                       <ReactQuill
@@ -237,7 +237,7 @@ const EditServicesItems = ({ itemData, viewDemoClose, setShow10 }) => {
                         </div>
                       )}
                     </Form.Group>
-                  </Row>
+                  </Row> */}
 
                   {/* Description (English) */}
                   <Row className="mb-3">
