@@ -29,10 +29,10 @@ const EditQuestions = ({ id, itemData, viewDemoClose, setShow10 }) => {
   useEffect(() => {
     // Check if required fields are valid
     const isValid =
-      itemData.name_en.trim() !== "" &&
-      itemData.name_ar.trim() !== "" &&
-      itemData.desc_en.trim() !== "" &&
-      itemData.desc_ar.trim() !== "";
+      itemData.name_en?.trim() !== "" &&
+      itemData.name_ar?.trim() !== "" &&
+      itemData.desc_en?.trim() !== "" &&
+      itemData.desc_ar?.trim() !== "";
     setIsFormValid(isValid);
   }, [itemData]);
 
@@ -92,10 +92,10 @@ const EditQuestions = ({ id, itemData, viewDemoClose, setShow10 }) => {
                         onChange={(e) => {
                           handleChange(e);
                           setIsFormValid(
-                            e.target.value.trim() !== "" &&
-                            values.name_ar.trim() !== "" &&
-                            values.desc_en.trim() !== "" &&
-                            values.desc_ar.trim() !== ""
+                            e.target.value?.trim() !== "" &&
+                            values.name_ar?.trim() !== "" &&
+                            values.desc_en?.trim() !== "" &&
+                            values.desc_ar?.trim() !== ""
                           );
                         }}
                         isInvalid={touched.name_en && !!errors.name_en}
@@ -119,10 +119,10 @@ const EditQuestions = ({ id, itemData, viewDemoClose, setShow10 }) => {
                         onChange={(e) => {
                           handleChange(e);
                           setIsFormValid(
-                            values.name_en.trim() !== "" &&
-                            e.target.value.trim() !== "" &&
-                            values.desc_en.trim() !== "" &&
-                            values.desc_ar.trim() !== ""
+                            values.name_en?.trim() !== "" &&
+                            e.target.value?.trim() !== "" &&
+                            values.desc_en?.trim() !== "" &&
+                            values.desc_ar?.trim() !== ""
                           );
                         }}
                         isInvalid={touched.name_ar && !!errors.name_ar}
@@ -146,10 +146,10 @@ const EditQuestions = ({ id, itemData, viewDemoClose, setShow10 }) => {
                         onChange={(e) => {
                           handleChange(e);
                           setIsFormValid(
-                            values.name_en.trim() !== "" &&
-                            values.name_ar.trim() !== "" &&
-                            e.target.value.trim() !== "" &&
-                            values.desc_ar.trim() !== ""
+                            values.name_en?.trim() !== "" &&
+                            values.name_ar?.trim() !== "" &&
+                            e.target.value?.trim() !== "" &&
+                            values.desc_ar?.trim() !== ""
                           );
                         }}
                         isInvalid={touched.desc_en && !!errors.desc_en}
@@ -173,10 +173,10 @@ const EditQuestions = ({ id, itemData, viewDemoClose, setShow10 }) => {
                         onChange={(e) => {
                           handleChange(e);
                           setIsFormValid(
-                            values.name_en.trim() !== "" &&
-                            values.name_ar.trim() !== "" &&
-                            values.desc_en.trim() !== "" &&
-                            e.target.value.trim() !== ""
+                            values.name_en?.trim() !== "" &&
+                            values.name_ar?.trim() !== "" &&
+                            values.desc_en?.trim() !== "" &&
+                            e.target.value?.trim() !== ""
                           );
                         }}
                         isInvalid={touched.desc_ar && !!errors.desc_ar}
